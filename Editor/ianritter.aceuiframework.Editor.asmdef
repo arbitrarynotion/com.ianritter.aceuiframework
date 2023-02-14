@@ -1,3 +1,16 @@
 {
-	"name": "ianritter.aceuiframework.Editor"
+    "name": "ianritter.aceuiframework.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a76c73d59a76f7f4395724616afbe8f4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da904437b43f2a443a252e3bf5bdabff, type: 3}
+  m_Name: AceThemeManagerDatabase
+  m_EditorClassIdentifier: 
+  scriptThemeInfoList:
+  - script: {fileID: 11500000, guid: cfd5686829358a14eaf78b8179d3fa81, type: 3}
+    theme: {fileID: 11400000, guid: e4731ab52ccaf1641b122926ee78d75e, type: 2}
+  - script: {fileID: 11500000, guid: b9671d95a8ec6ea46bcb4c652937fd2d, type: 3}
+    theme: {fileID: 11400000, guid: e4731ab52ccaf1641b122926ee78d75e, type: 2}
+  - script: {fileID: 11500000, guid: eaca05aa8e07e4a42bdcbf54caaa9575, type: 3}
+    theme: {fileID: 11400000, guid: 7f0ef88a20ec9e74daf2a296548936ff, type: 2}
+  - script: {fileID: 11500000, guid: 4f63b915fe8dca94d84ea4b3f58f7143, type: 3}
+    theme: {fileID: 11400000, guid: e4731ab52ccaf1641b122926ee78d75e, type: 2}
+  selectedScriptIndex: 1
+  selectedThemeIndex: 0

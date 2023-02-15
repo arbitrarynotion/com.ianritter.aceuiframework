@@ -1,4 +1,4 @@
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Blank
+namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Blank
 {
     public class BlankElementLayout : SingleElementLayout
     {

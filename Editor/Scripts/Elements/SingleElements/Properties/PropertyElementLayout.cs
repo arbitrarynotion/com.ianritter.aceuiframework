@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties
+namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Properties
 {
     public abstract class PropertyElementLayout : SingleElementLayout
     {

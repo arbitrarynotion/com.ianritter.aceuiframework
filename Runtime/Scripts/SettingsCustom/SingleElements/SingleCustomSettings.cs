@@ -1,5 +1,5 @@
 
-namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements
+namespace ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements
 {
     /// <summary>
     ///     Element settings provide a way to control the positioning, padding, and framing of an element. Some of these

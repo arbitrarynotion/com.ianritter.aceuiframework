@@ -1,7 +1,7 @@
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.HeadingGroup;
+using ACEPackage.Editor.Scripts.Elements.GroupElements.HeadingGroup;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Labeled
+namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Labeled
 {
     public class LabeledHeadingDraw : HeadingElementDraw
     {

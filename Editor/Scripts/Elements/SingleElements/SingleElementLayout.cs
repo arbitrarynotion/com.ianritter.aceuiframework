@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements
+namespace ACEPackage.Editor.Scripts.Elements.SingleElements
 {
     /// <summary>
     ///     Manages the position rect for a single element. Root single elements follow no special rules, using the default

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums
+namespace ACEPackage.Runtime.Scripts.Enums
 {
     [Serializable]
     public enum HeadingGroupSectionState

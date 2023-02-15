@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator
+namespace ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator
 {
     [Serializable]
     public class HeadingElementFrameSettings : FrameSettings

@@ -1,8 +1,8 @@
 using UnityEditor;
 using UnityEngine;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorRectGraphics;
+using static ACEPackage.Editor.Scripts.EditorGraphics.EditorRectGraphics;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements
+namespace ACEPackage.Editor.Scripts.Elements.GroupElements
 {
     /// <summary>
     ///     Manages the position rect for the child elements of a section. Due to Unity layout limitations, width is managed

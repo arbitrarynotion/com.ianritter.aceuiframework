@@ -1,16 +1,16 @@
 using System;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.BasicGroup;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.Groups.ChildAreaGroups;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.Groups.HeadingGroups;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.AceElementBuilder;
+using ACEPackage.Editor.Scripts.ACECore;
+using ACEPackage.Editor.Scripts.Elements;
+using ACEPackage.Editor.Scripts.Elements.GroupElements.BasicGroup;
+using ACEPackage.Runtime.Scripts.Enums;
+using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
+using ACEPackage.Runtime.Scripts.SettingsGlobal;
+using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.Groups.ChildAreaGroups;
+using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.Groups.HeadingGroups;
+using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator;
+using static ACEPackage.Editor.Scripts.ElementBuilding.AceElementBuilder;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.Groups.HeadingGroups
+namespace ACEPackage.Editor.Scripts.SettingsSections.Elements.Groups.HeadingGroups
 {
     public class HeadingGroupSettingsSection : LevelSettingsSection
     {
@@ -102,10 +102,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
 
                 headingsSection,
                 
-                GetGroupWithToggleHeading( headingGroupVarNames.ShowLayoutTools, $"Layout Tools ( LVL: {level.ToString()} )", string.Empty, null,
+                GetGroupWithFoldoutHeading( headingGroupVarNames.ShowLayoutTools, $"Layout Tools ( LVL: {level.ToString()} )", string.Empty, null,
                     // GetElement( headingGroupVarNames.HideFoldoutGroupElements, "Hide Heading", string.Empty, new SingleCustomSettings() {ForceSingleLine = true} ),
                     
-                    true,
                     GetLayoutToolsSection( 
                         GetLayoutToolsSubsection( "Heading Group", headingGroupVarNames ),
                         GetLayoutToolsSubsection( "HG Child Area", childAreaGroupVarNames, true )

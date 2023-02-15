@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.CompositeGroup
+namespace ACEPackage.Editor.Scripts.Elements.GroupElements.CompositeGroup
 {
     public class CompositeGroupLayout : GroupElementLayout
     {

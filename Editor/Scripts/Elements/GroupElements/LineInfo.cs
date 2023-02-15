@@ -1,4 +1,4 @@
-﻿namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements
+﻿namespace ACEPackage.Editor.Scripts.Elements.GroupElements
 {
     /// <summary>
     ///     Used to store details about a line of elements to speed up performance by reducing per-frame calculations.

@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
+namespace ACEPackage.Runtime.Scripts
 {
     public static class ExtensionMethods
     {

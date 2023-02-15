@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Label;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
+using ACEPackage.Editor.Scripts.ACECore;
+using ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Label;
+using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements
+namespace ACEPackage.Editor.Scripts.Elements.GroupElements
 {
     public class GroupElementList
     {

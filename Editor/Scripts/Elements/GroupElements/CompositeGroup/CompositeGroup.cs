@@ -1,10 +1,10 @@
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements;
+using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
+using ACEPackage.Runtime.Scripts.SettingsGlobal;
+using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.SingleElements;
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.CompositeGroup
+namespace ACEPackage.Editor.Scripts.Elements.GroupElements.CompositeGroup
 {
     /// <summary>
     ///     Use a composite group when you want to create a hierarchy of elements that behave as a single element.

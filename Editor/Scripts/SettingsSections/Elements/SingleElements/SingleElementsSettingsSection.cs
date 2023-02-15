@@ -1,12 +1,12 @@
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Basic;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements;
+using ACEPackage.Editor.Scripts.ACECore;
+using ACEPackage.Editor.Scripts.Elements;
+using ACEPackage.Editor.Scripts.Elements.SingleElements.Properties.Basic;
+using ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements;
+using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.SingleElements;
 using UnityEngine;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.AceElementBuilder;
+using static ACEPackage.Editor.Scripts.ElementBuilding.AceElementBuilder;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.SingleElements
+namespace ACEPackage.Editor.Scripts.SettingsSections.Elements.SingleElements
 {
     public class SingleElementsSettingsSection : LevelSettingsSection
     {
@@ -61,12 +61,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     new BasicProperty( frameVarNames.FramesSkipSingleLine, new GUIContent( "Skip Single Line" ), new SingleCustomSettings(), null )
                 ),
 
-                GetGroupWithToggleHeading( varNames.ShowLayoutTools, $"Layout Tools ( LVL: {level.ToString()} )", string.Empty, null,
+                GetGroupWithFoldoutHeading( varNames.ShowLayoutTools, $"Layout Tools ( LVL: {level.ToString()} )", string.Empty, null,
                     
                     // GetElement( ( varNames.HideElements), "Hide Elements", 
                     //     string.Empty, new SingleCustomSettings() {ForceSingleLine = true} ),
                     
-                    true,
                     GetLayoutToolsSection( 
                         GetLayoutToolsSubsection( "Single Element", varNames )
                     )

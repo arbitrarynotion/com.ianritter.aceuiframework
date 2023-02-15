@@ -1,10 +1,10 @@
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.Groups.ChildAreaGroups;
+using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
+using ACEPackage.Runtime.Scripts.SettingsGlobal;
+using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.Groups.ChildAreaGroups;
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.ChildAreaGroup
+namespace ACEPackage.Editor.Scripts.Elements.GroupElements.ChildAreaGroup
 {
     public class ChildAreaGroup : GroupElement
     {

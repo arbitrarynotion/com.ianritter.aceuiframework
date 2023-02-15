@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Linq;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.CompositeGroup;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Global;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.PropertySpecific;
+using ACEPackage.Editor.Scripts.ACECore;
+using ACEPackage.Editor.Scripts.ElementConditions;
+using ACEPackage.Editor.Scripts.Elements.GroupElements;
+using ACEPackage.Editor.Scripts.Elements.GroupElements.CompositeGroup;
+using ACEPackage.Runtime.Scripts.SettingsCustom;
+using ACEPackage.Runtime.Scripts.SettingsGlobal;
+using ACEPackage.Runtime.Scripts.SettingsGlobal.Global;
+using ACEPackage.Runtime.Scripts.SettingsGlobal.PropertySpecific;
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
+namespace ACEPackage.Editor.Scripts.Elements
 {
     public abstract class Element
     {
@@ -52,7 +52,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         public GroupElement ParentElement { get; set; }
         
         
-        // theme reference.
+        // Theme reference.
         /// <summary>
         ///     The settings used to modify the layout and look of the elements. This is a reference shared by
         ///     all elements and is modified via the Custom Editor Tool settings window.
@@ -84,22 +84,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         {
             get
             {
-                // Case 1: This element has been permanently set to false upon instantiation.
-                if ( CustomSettings.ForceDisable )
-                    return false;
-                
-                // Case 2: Element has been manually disabled.
-                if ( !_isEnabled )
+                // Todo: Double check logic on force disable from custom settings. If placed before !CanEdit()
+                if ( !_isEnabled 
+                     || !( ElementConditions == null || ElementConditions.Aggregate( true, ( current, disabledCheck ) => current & disabledCheck.Evaluate() ) )
+                     || CustomSettings.ForceDisable )
                     return false;
 
-                // Case 3: An element condition this element is dependent on evaluates to false.
-                if ( ElementConditions != null )
-                {
-                    if ( !ElementConditions.Aggregate( true, ( current, disabledCheck ) => current & disabledCheck.Evaluate() ) )
-                        return false;
-                }
-                
-                // Case 4: There are no direct reasons to disable but element has parent so mimic the parent.
+                // Otherwise, if I have a parent, check if they are disabled.
                 if ( HasParent() )
                     return ParentElement.IsEnabled;
 

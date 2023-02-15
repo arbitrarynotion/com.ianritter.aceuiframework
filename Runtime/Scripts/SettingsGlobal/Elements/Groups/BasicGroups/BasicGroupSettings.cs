@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.Groups.BasicGroups
+namespace ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.Groups.BasicGroups
 {
     [Serializable]
     public class BasicGroupSettings : GroupSettings

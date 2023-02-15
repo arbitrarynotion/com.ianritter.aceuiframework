@@ -1,8 +1,8 @@
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
+using ACEPackage.Runtime.Scripts.SettingsGlobal;
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Heading
+namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Heading
 {
     public abstract class HeadingElementDraw : SingleElementDraw
     {

@@ -1,9 +1,9 @@
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.Groups.BasicGroups;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.AceElementBuilder;
+using ACEPackage.Editor.Scripts.ACECore;
+using ACEPackage.Editor.Scripts.Elements;
+using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.Groups.BasicGroups;
+using static ACEPackage.Editor.Scripts.ElementBuilding.AceElementBuilder;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.Groups.BasicGroups
+namespace ACEPackage.Editor.Scripts.SettingsSections.Elements.Groups.BasicGroups
 {
     public class BasicGroupSettingsSection : LevelSettingsSection
     {
@@ -55,9 +55,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
 
                 GetFramesSection( "Frame", string.Empty, frameSettings, frameVarNames ),
                 
-                GetGroupWithToggleHeading( basicGroupVarNames.ShowLayoutTools, $"Layout Tools ( LVL: {level.ToString()} )", string.Empty, null,
+                GetGroupWithFoldoutHeading( basicGroupVarNames.ShowLayoutTools, $"Layout Tools ( LVL: {level.ToString()} )", string.Empty, null,
 
-                    true,
                     GetLayoutToolsSection( 
                         
                         GetLayoutToolsSubsection( "Heading Group", basicGroupVarNames )

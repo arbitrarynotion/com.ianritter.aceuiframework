@@ -1,9 +1,8 @@
-namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
+namespace ACEPackage.Runtime.Scripts
 {
     public static class AceEditorConstants
     {
         public const string UsersSearchFolderName = "Assets";
-        public const string DemosSearchFolderName = "Packages/com.ianritter.aceuiframework/Runtime/Scripts/Demos";
         public const string ThemesResourceFolderName = "ACEThemes";
         public const string EditorWindowThemeName = "AceEditorWindowTheme";
         public const string ThemeCoreName = "AceTheme";

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
+using ACEPackage.Editor.Scripts.ElementConditions;
+using ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements;
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties
+namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Properties
 {
     public abstract class PropertyElement : SingleElement
     {

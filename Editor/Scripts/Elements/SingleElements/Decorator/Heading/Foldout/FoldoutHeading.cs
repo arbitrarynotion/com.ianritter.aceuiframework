@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Foldout
+namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Foldout
 {
     public class FoldoutHeading : HeadingElement
     {

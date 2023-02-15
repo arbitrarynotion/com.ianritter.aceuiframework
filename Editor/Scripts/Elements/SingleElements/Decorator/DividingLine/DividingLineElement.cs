@@ -1,9 +1,9 @@
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
+using ACEPackage.Editor.Scripts.ElementConditions;
+using ACEPackage.Runtime.Scripts;
+using ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine
+namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine
 {
     public class DividingLineElement : SingleElement
     {

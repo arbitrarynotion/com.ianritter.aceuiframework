@@ -1,4 +1,4 @@
-﻿namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.Groups.HeadingGroups
+﻿namespace ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.Groups.HeadingGroups
 {
     public class HeadingGroupVarNames : ElementVarNames
     {

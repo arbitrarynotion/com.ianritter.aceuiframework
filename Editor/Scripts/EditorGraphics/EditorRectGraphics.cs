@@ -1,9 +1,9 @@
 using System;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
+using ACEPackage.Runtime.Scripts.Enums;
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics
+namespace ACEPackage.Editor.Scripts.EditorGraphics
 {
     public static class EditorRectGraphics
     {

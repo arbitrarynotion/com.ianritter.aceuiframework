@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Popup
+namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Properties.Popup
 {
     public class PopupElementDraw : PropertyElementDraw
     {

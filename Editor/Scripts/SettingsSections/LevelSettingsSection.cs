@@ -1,14 +1,14 @@
 using System;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Basic;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
+using ACEPackage.Editor.Scripts.ACECore;
+using ACEPackage.Editor.Scripts.Elements;
+using ACEPackage.Editor.Scripts.Elements.SingleElements.Properties.Basic;
+using ACEPackage.Runtime.Scripts.Enums;
+using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
+using ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements;
 using UnityEngine;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.AceElementBuilder;
+using static ACEPackage.Editor.Scripts.ElementBuilding.AceElementBuilder;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
+namespace ACEPackage.Editor.Scripts.SettingsSections
 {
     /// <summary>
     ///     This is a specialized setting section that facilitates the element level tabs menu.

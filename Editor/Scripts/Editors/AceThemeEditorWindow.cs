@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceRoots;
+using ACEPackage.Editor.Scripts.ACECore;
+using ACEPackage.Editor.Scripts.AceRoots;
 using UnityEditor;
 using UnityEngine;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorMeasurementLineGraphics;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.ThemeLoader;
-using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
+using static ACEPackage.Editor.Scripts.EditorGraphics.EditorMeasurementLineGraphics;
+using static ACEPackage.Editor.Scripts.ACECore.ThemeLoader;
+using static ACEPackage.Runtime.Scripts.AceEditorConstants;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
+namespace ACEPackage.Editor.Scripts.Editors
 {
     /// <summary>
     ///     Draws the ACE theme settings window. Note that the data drawn comes from the target
@@ -62,7 +62,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
             Debug.Log( $"ACETEW|GT: Getting target theme..." );
             if ( _selectedThemeIndex > ( _existingThemes.Count - 1 ) )
             {
-                Debug.Log( $"ACETEW|GT:     theme index {_selectedThemeIndex.ToString()} exceeds existing lists length of {_existingThemes.Count.ToString()}." );
+                Debug.Log( $"ACETEW|GT:     Theme index {_selectedThemeIndex.ToString()} exceeds existing lists length of {_existingThemes.Count.ToString()}." );
 
                 InitializeLists();
             }
@@ -79,7 +79,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
 
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField( "Selected theme:" );
+            EditorGUILayout.LabelField( "Selected Theme:" );
             _selectedThemeIndex = EditorGUILayout.Popup( _selectedThemeIndex, _themeOptions );
             EditorGUILayout.EndHorizontal();
             if ( EditorGUI.EndChangeCheck() )

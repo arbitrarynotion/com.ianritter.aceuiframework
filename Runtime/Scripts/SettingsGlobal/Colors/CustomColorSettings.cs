@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Colors
+namespace ACEPackage.Runtime.Scripts.SettingsGlobal.Colors
 {
     [Serializable]
     public class CustomColorSettings

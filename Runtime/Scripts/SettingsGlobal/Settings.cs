@@ -1,8 +1,8 @@
 using System;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
+using ACEPackage.Runtime.Scripts.Enums;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
+namespace ACEPackage.Runtime.Scripts.SettingsGlobal
 {
     [Serializable]
     public abstract class Settings

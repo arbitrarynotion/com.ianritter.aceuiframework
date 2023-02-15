@@ -1,4 +1,4 @@
-﻿namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums
+﻿namespace ACEPackage.Runtime.Scripts.Enums
 {
     public enum ConditionOperator
     {

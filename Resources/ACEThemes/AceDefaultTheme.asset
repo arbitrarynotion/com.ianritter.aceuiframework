@@ -111,7 +111,7 @@ MonoBehaviour:
   - applyFraming: 1
     includeBackground: 1
     frameType: 1
-    frameOutlineThickness: 2
+    frameOutlineThickness: 4
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 3
@@ -144,7 +144,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   headingGroupSectionState: 0
-  groupSectionState: 1
+  groupSectionState: 0
   headingGroupSettingsList:
   - topPadding: 0
     leftPadding: 0

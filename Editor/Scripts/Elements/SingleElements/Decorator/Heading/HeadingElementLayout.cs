@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Heading
+namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Heading
 {
     public abstract class HeadingElementLayout : SingleElementLayout
     {

@@ -1,4 +1,4 @@
-namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
+namespace ACEPackage.Runtime.Scripts.SettingsGlobal
 {
     public abstract class ElementFrameVarNames
     {

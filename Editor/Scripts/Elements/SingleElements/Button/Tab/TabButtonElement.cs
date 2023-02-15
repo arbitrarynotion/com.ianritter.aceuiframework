@@ -1,9 +1,9 @@
 using System;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
+using ACEPackage.Editor.Scripts.ElementConditions;
+using ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Button.Tab
+namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Button.Tab
 {
     public class TabButtonElement : ButtonElement
     {

@@ -1,8 +1,8 @@
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
+using ACEPackage.Runtime.Scripts.Enums;
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
+namespace ACEPackage.Editor.Scripts.Elements
 {
     public abstract class ElementLayout
     {

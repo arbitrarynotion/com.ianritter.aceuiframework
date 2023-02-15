@@ -1,8 +1,8 @@
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
+using ACEPackage.Runtime.Scripts.Enums;
+using ACEPackage.Runtime.Scripts.SettingsGlobal;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom
+namespace ACEPackage.Runtime.Scripts.SettingsCustom
 {
     public abstract class CustomSettings
     {

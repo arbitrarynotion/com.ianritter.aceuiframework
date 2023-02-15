@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.SingleElements
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements
 {
     [Serializable]
     public class SingleElementSettings : Settings

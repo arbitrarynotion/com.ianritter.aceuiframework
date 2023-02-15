@@ -1,10 +1,10 @@
-using ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Labeled;
-using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
-using ACEPackage.Runtime.Scripts.SettingsGlobal;
 using JetBrains.Annotations;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Labeled;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
 using UnityEngine;
 
-namespace ACEPackage.Editor.Scripts.Elements.GroupElements.HeadingGroup.Labeled
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.HeadingGroup.Labeled
 {
     public class LabeledGroup : HeadingGroup
     {
@@ -24,7 +24,10 @@ namespace ACEPackage.Editor.Scripts.Elements.GroupElements.HeadingGroup.Labeled
         }
         
         
+        protected override void ApplyPropertyState() {}
+
         protected override void InitializeLayout() => _labeledGroupLayout = new LabeledGroupLayout( this );
+        
         protected override void InitializeDraw() => _labeledGroupDraw = new LabeledGroupDraw( this );
     }
 }

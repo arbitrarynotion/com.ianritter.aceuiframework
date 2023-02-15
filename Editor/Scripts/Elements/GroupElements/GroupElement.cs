@@ -1,10 +1,10 @@
-using ACEPackage.Editor.Scripts.ACECore;
-using ACEPackage.Runtime.Scripts.SettingsCustom;
-using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
 using UnityEditor;
 using UnityEngine;
 
-namespace ACEPackage.Editor.Scripts.Elements.GroupElements
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements
 {
     public abstract class GroupElement : Element
     {

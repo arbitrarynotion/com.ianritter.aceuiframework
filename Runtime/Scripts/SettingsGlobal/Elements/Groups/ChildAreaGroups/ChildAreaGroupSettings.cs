@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.Groups.ChildAreaGroups
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.Groups.ChildAreaGroups
 {
     [Serializable]
     public class ChildAreaGroupSettings : GroupSettings

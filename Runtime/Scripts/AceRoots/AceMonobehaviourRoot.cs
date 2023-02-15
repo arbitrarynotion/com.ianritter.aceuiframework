@@ -1,7 +1,7 @@
-using ACEPackage.Runtime.Scripts.RuntimeElementBuilding;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding;
 using UnityEngine;
 
-namespace ACEPackage.Runtime.Scripts.AceRoots
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRoots
 {
     /// <summary>
     ///     Inherit from this class to utilize the custom editor tool for monobehaviours.
@@ -14,7 +14,8 @@ namespace ACEPackage.Runtime.Scripts.AceRoots
         ///     Provides a list of Elements which tells the editor how to draw the inspector.
         /// </summary>
         // public abstract Element[] GetElementList();
-        
+
+        public abstract string GetTargetName();
         
         public abstract ElementInfo[] GetElementInfoList();
         

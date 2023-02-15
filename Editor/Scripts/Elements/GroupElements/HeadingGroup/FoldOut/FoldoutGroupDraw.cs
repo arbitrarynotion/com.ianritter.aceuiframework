@@ -1,4 +1,4 @@
-namespace ACEPackage.Editor.Scripts.Elements.GroupElements.HeadingGroup.FoldOut
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.HeadingGroup.FoldOut
 {
     public class FoldoutGroupDraw : HeadingGroupDraw
     {

@@ -1,8 +1,8 @@
-using ACEPackage.Runtime.Scripts.AceRoots;
-using ACEPackage.Runtime.Scripts.RuntimeElementBuilding;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRoots;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding;
 using UnityEngine;
 
-namespace ACEPackage.Runtime.Scripts.Demos
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
 {
     [ExecuteInEditMode]
     public class Demo03 : AceMonobehaviourRoot
@@ -11,6 +11,7 @@ namespace ACEPackage.Runtime.Scripts.Demos
 
         // public override Element[] GetElementList() => new Element[]
         //     { new LabelElement( new GUIContent( $"Test with int: {testInt.ToString()}." ) ) };
+        public override string GetTargetName() => nameof(this.GetType);
 
         public override ElementInfo[] GetElementInfoList() => new ElementInfo[] {};
     }

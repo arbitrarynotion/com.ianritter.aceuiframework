@@ -1,6 +1,6 @@
-﻿using static ACEPackage.Runtime.Scripts.AceEditorConstants;
+﻿using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 
-namespace ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.Groups.BasicGroups
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.Groups.BasicGroups
 {
     public class BasicGroupVarNames : ElementVarNames
     {

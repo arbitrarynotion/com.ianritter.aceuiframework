@@ -1,4 +1,4 @@
-namespace ACEPackage.Editor.Scripts.Elements.GroupElements.HeadingGroup.Toggle
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.HeadingGroup.Toggle
 {
     public class ToggleGroupLayout : HeadingGroupLayout
     {

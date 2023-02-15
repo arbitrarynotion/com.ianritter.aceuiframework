@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace ACEPackage.Runtime.Scripts
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
 {
     public class DebugPrinting
     {

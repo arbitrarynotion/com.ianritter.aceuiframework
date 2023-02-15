@@ -1,6 +1,6 @@
 using System;
 
-namespace ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.SingleElements
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements
 {
     [Serializable]
     public class SingleElementFrameSettings : FrameSettings

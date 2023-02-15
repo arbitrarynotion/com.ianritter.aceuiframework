@@ -1,18 +1,19 @@
 using System.Linq;
-using ACEPackage.Editor.Scripts.ACECore;
-using ACEPackage.Editor.Scripts.ElementConditions;
-using ACEPackage.Editor.Scripts.Elements;
-using ACEPackage.Runtime.Scripts.AceRoots;
-using ACEPackage.Runtime.Scripts.RuntimeElementBuilding;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRoots;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding;
 using UnityEditor;
 using UnityEngine;
-using static ACEPackage.Editor.Scripts.ElementBuilding.ElementInfoConverter;
-using static ACEPackage.Editor.Scripts.EditorGraphics.EditorMeasurementLineGraphics;
-using static ACEPackage.Runtime.Scripts.DefaultInspectorDrawing;
-using static ACEPackage.Editor.Scripts.ACECore.ThemeLoader;
-using static ACEPackage.Runtime.Scripts.AceEditorConstants;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.ElementInfoConverter;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorMeasurementLineGraphics;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.DefaultInspectorDrawing;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.ThemeLoader;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.AceDelegates;
 
-namespace ACEPackage.Editor.Scripts.Editors
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
 {
     [CustomEditor( typeof( AceMonobehaviourRoot ), true )]
     public class AceMonobehaviourRootEditor : UnityEditor.Editor
@@ -25,13 +26,15 @@ namespace ACEPackage.Editor.Scripts.Editors
 
         private AceTheme _theme;
 
+        public string GetTargetName() => _targetScript.name;
+
         /// <summary>
         ///     If you override this method, be sure to first call base.OnEnable to ensure set up is still done.
         /// </summary>
         private void OnEnable()
         {
             _themeManagerDatabase = LoadScriptableObject<AceThemeManagerDatabase>( ThemeManagerDatabaseCoreName );
-            _themeManagerDatabase.OnThemeChanged += OnTargetsThemeUpdated;
+            _themeManagerDatabase.OnThemeAssignmentChanged += OnTargetsThemeAssignmentUpdated;
             
             _targetSerializedObject = serializedObject;
             _targetScript = (AceMonobehaviourRoot) target;
@@ -58,13 +61,17 @@ namespace ACEPackage.Editor.Scripts.Editors
         private void UpdateTargetsTheme()
         {
             AceTheme newTheme = _themeManagerDatabase.GetThemeForScript( _targetScript.GetType().ToString().Split( '.' ).Last() );
+            Debug.Log( $"AMRE|UTT: {_targetScript.name}'s theme was changed to {(newTheme != null ? newTheme.name : "null")}." );
             
             // Initialize theme on first run.
             if ( _theme == null )
             {
+                Debug.Log( $"AMRE|UTT: {_targetScript.name}'s theme was null." );
                 _theme = newTheme;
                 _theme.OnDataUpdated += OnThemeUpdated;
-                _theme.OnUIStateChanged += OnThemeUpdated;
+                _theme.OnUIStateUpdated += OnThemeUpdated;
+                Debug.Log( $"AMRE|UTT:     {_targetScript.name} has subscribed to changes in {_theme.name}." );
+                _theme.PrintMyUIStateUpdatedNotifySubscribers();
             }
             else
             {
@@ -72,14 +79,15 @@ namespace ACEPackage.Editor.Scripts.Editors
                 _theme = newTheme;
                 
                 _theme.OnDataUpdated += OnThemeUpdated;
-                _theme.OnUIStateChanged += OnThemeUpdated;
+                _theme.OnUIStateUpdated += OnThemeUpdated;
                 
                 previousTheme.OnDataUpdated -= OnThemeUpdated;
-                previousTheme.OnUIStateChanged -= OnThemeUpdated;
+                previousTheme.OnUIStateUpdated -= OnThemeUpdated;
+                Debug.Log( $"AMRE|UTT:     {_targetScript.name} has unsubscribed from {previousTheme.name}, and subscribed to changes in {_theme.name}." );
             }
         }
 
-        private void OnTargetsThemeUpdated()
+        private void OnTargetsThemeAssignmentUpdated()
         {
             UpdateTargetsTheme();
             OnTargetUiStateUpdated();
@@ -132,7 +140,7 @@ namespace ACEPackage.Editor.Scripts.Editors
                 _theme.OnDataUpdated -= OnThemeUpdated;
             
             _targetScript.OnTargetUIStateChanged -= OnTargetUiStateUpdated;
-            _themeManagerDatabase.OnThemeChanged -= OnTargetsThemeUpdated;
+            _themeManagerDatabase.OnThemeAssignmentChanged -= OnTargetsThemeAssignmentUpdated;
             
             OnDisableInclusions();
         }

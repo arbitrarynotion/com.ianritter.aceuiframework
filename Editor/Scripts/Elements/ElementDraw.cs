@@ -1,12 +1,12 @@
 using System;
-using ACEPackage.Editor.Scripts.Elements.GroupElements.HeadingGroup.FoldOut;
-using ACEPackage.Runtime.Scripts.Enums;
-using ACEPackage.Runtime.Scripts.SettingsGlobal;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.HeadingGroup.FoldOut;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
 using UnityEditor;
 using UnityEngine;
-using static ACEPackage.Editor.Scripts.EditorGraphics.EditorRectGraphics;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorRectGraphics;
 
-namespace ACEPackage.Editor.Scripts.Elements
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 {
     public abstract class ElementDraw
     {

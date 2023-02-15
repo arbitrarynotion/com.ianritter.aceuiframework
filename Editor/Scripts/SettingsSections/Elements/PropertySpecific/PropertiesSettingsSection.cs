@@ -1,9 +1,9 @@
-using ACEPackage.Editor.Scripts.ACECore;
-using ACEPackage.Editor.Scripts.Elements;
-using ACEPackage.Runtime.Scripts.SettingsGlobal.PropertySpecific;
-using static ACEPackage.Editor.Scripts.ElementBuilding.AceElementBuilder;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.PropertySpecific;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.AceElementBuilder;
 
-namespace ACEPackage.Editor.Scripts.SettingsSections.Elements.PropertySpecific
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.PropertySpecific
 {
     public class PropertiesSettingsSection : SettingsSection
     {

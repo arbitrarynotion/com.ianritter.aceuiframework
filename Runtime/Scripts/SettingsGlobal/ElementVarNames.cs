@@ -1,4 +1,4 @@
-namespace ACEPackage.Runtime.Scripts.SettingsGlobal
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
 {
     public class ElementVarNames
     {

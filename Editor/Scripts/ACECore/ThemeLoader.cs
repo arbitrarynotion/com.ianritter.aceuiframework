@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
-using ACEPackage.Editor.Scripts.AceRoots;
-using ACEPackage.Runtime.Scripts.AceRoots;
+using System.Linq;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceRoots;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRoots;
 using UnityEditor;
 using UnityEngine;
-using static ACEPackage.Runtime.Scripts.AceEditorConstants;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 
-namespace ACEPackage.Editor.Scripts.ACECore
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 {
     public static class ThemeLoader
     {
@@ -35,9 +36,13 @@ namespace ACEPackage.Editor.Scripts.ACECore
         // Todo: Make generic version that loads all scripts of a list of script types passed as a 'params' parameter.
         public static IEnumerable<MonoScript> GetAllAceUsers()
         {
-            // Debug.Log( "TL|GAT: Getting all user scripts..." );
-            string[] guids = AssetDatabase.FindAssets( "t:MonoScript", new[] {UsersSearchFolderName} );
+            Debug.Log( "TL|GAT: Getting all user scripts..." );
+            string[] guidsUser = AssetDatabase.FindAssets( "t:MonoScript", new[] {UsersSearchFolderName} );
+            string[] guidsDemo = AssetDatabase.FindAssets( "t:MonoScript", new[] {DemosSearchFolderName} );
+            string[] guids = guidsUser.Concat( guidsDemo ).ToArray();
             
+            Debug.Log( $"TL|GAT:     Checking {guids.Length.ToString()} assets..." );
+
             List<MonoScript> aceScripts = new List<MonoScript>();
             
             foreach (string guid in guids)
@@ -45,6 +50,9 @@ namespace ACEPackage.Editor.Scripts.ACECore
                 string path = AssetDatabase.GUIDToAssetPath( guid );
                 var currentObject = (MonoScript)AssetDatabase.LoadAssetAtPath( path, typeof(MonoScript) );
                 Type scriptType = currentObject.GetClass();
+                
+                Debug.Log( $"TL|GAAU:     Scanning \"{currentObject.name}\"..." );
+                
                 if ( currentObject.name.Equals( ThemeCoreName ) || currentObject.name.Equals( ThemeManagerDatabaseCoreName ) )
                     continue;
                 
@@ -55,7 +63,7 @@ namespace ACEPackage.Editor.Scripts.ACECore
                     aceScripts.Add( currentObject );
             }
             
-            // Debug.Log( $"TL|GAT:     {aceScripts.Count.ToString()} scripts found." );
+            Debug.Log( $"TL|GAAU:     {aceScripts.Count.ToString()} ACE scripts found." );
 
             return aceScripts.ToArray();
         }

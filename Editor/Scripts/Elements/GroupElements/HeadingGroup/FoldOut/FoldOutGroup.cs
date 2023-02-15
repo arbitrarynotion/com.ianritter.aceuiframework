@@ -1,10 +1,10 @@
-using ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Foldout;
-using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
-using ACEPackage.Runtime.Scripts.SettingsGlobal;
 using JetBrains.Annotations;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Foldout;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
 using UnityEngine;
 
-namespace ACEPackage.Editor.Scripts.Elements.GroupElements.HeadingGroup.FoldOut
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.HeadingGroup.FoldOut
 {
     public class FoldoutGroup : HeadingGroup
     {
@@ -25,6 +25,8 @@ namespace ACEPackage.Editor.Scripts.Elements.GroupElements.HeadingGroup.FoldOut
             : base( GUIContent.none, foldoutVarName, new FoldoutHeading( guiContent ), groupCustomSettings, newElements )
         {
         }
+
+        protected override void ApplyPropertyState() => IsVisible = HeadingProperty.boolValue;
 
         protected override void InitializeLayout() => FoldoutGroupLayout = new FoldoutGroupLayout( this );
 

@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace ACEPackage.Editor.Scripts.Elements.GroupElements.ChildAreaGroup
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.ChildAreaGroup
 {
     /// <summary>
     ///     This is group is used to encapsulate the child elements of a group element. 

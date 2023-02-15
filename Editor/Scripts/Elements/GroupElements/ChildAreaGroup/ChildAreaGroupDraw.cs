@@ -1,4 +1,4 @@
-namespace ACEPackage.Editor.Scripts.Elements.GroupElements.ChildAreaGroup
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.ChildAreaGroup
 {
     public class ChildAreaGroupDraw : GroupElementDraw
     {

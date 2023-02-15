@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ACEPackage.Editor.Scripts.Elements.GroupElements
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements
 {
     public abstract class GroupElementDraw : ElementDraw
     {

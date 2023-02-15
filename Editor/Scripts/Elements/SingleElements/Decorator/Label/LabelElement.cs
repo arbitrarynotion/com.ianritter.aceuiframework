@@ -1,9 +1,9 @@
-using ACEPackage.Editor.Scripts.ElementConditions;
-using ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using UnityEditor;
 using UnityEngine;
 
-namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Label
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Label
 {
     public class LabelElement : SingleElement
     {

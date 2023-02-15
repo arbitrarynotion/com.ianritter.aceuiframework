@@ -1,12 +1,12 @@
-using ACEPackage.Editor.Scripts.AceRoots;
-using ACEPackage.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceRoots;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
 using UnityEditor;
 using UnityEngine;
-using static ACEPackage.Editor.Scripts.ACECore.ThemeLoader;
-using static ACEPackage.Runtime.Scripts.AceEditorConstants;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.ThemeLoader;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 
 
-namespace ACEPackage.Editor.Scripts.Editors
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
 {
     public class AceThemeManagerEditorWindow : AceEditorWindow
     {

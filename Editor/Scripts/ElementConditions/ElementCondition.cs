@@ -1,9 +1,9 @@
 ﻿using System;
-using ACEPackage.Runtime.Scripts.Enums;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
 using UnityEditor;
 using UnityEngine;
 
-namespace ACEPackage.Editor.Scripts.ElementConditions
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions
 {
     public class ElementCondition
     {

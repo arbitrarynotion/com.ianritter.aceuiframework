@@ -1,12 +1,12 @@
-using ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Heading;
-using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
-using ACEPackage.Runtime.Scripts.SettingsGlobal;
-using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.Groups.HeadingGroups;
 using JetBrains.Annotations;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Heading;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.Groups.HeadingGroups;
 using UnityEditor;
 using UnityEngine;
 
-namespace ACEPackage.Editor.Scripts.Elements.GroupElements.HeadingGroup
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.HeadingGroup
 {
     public abstract class HeadingGroup : GroupElement
     {
@@ -91,14 +91,12 @@ namespace ACEPackage.Editor.Scripts.Elements.GroupElements.HeadingGroup
             HeadingProperty = targetScriptableObject.FindProperty( _headingPropertyVarName );
 
             if (HeadingProperty == null)
-            {
-                Debug.LogWarning( $"TG|ILP: {GetName()}: Error! Failed to find property for {_headingPropertyVarName}!" );
-                return;
-            }
-            
-            // Align the toggle bool with the existing target bool setting.
-            IsEnabled = HeadingProperty.boolValue;
-            IsVisible = HeadingProperty.boolValue;
+                Debug.LogWarning( $"TG|ILP: {GetName()}: Error! Failed to find heading property for {_headingPropertyVarName}!" );
         }
+
+        /// <summary>
+        ///     Ensure that the class member aligns with the initial state of the property it's aligned with.
+        /// </summary>
+        protected abstract void ApplyPropertyState();
     }
 }

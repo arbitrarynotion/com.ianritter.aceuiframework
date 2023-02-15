@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace ACEPackage.Runtime.Scripts.SettingsGlobal.PropertySpecific
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.PropertySpecific
 {
     [Serializable]
     public class PropertySpecificSettings

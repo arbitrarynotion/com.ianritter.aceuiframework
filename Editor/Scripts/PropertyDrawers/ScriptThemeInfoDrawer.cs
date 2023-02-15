@@ -1,8 +1,8 @@
-using ACEPackage.Editor.Scripts.ACECore;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
 using UnityEditor;
 using UnityEngine;
 
-namespace ACEPackage.Editor.Scripts.PropertyDrawers
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.PropertyDrawers
 {
     [CustomPropertyDrawer(typeof(ScriptThemeInfo))]
     public class ScriptThemeInfoDrawer : PropertyDrawer

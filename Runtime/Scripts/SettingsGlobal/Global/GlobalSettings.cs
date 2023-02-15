@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ACEPackage.Runtime.Scripts.SettingsGlobal.Global
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Global
 {
     [Serializable]
     public class GlobalSettings

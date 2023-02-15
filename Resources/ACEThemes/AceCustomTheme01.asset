@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076b7b2dc8b8fbd4dbb0d0a1a43b111e, type: 3}
   m_Name: AceCustomTheme01
   m_EditorClassIdentifier: 
-  selectedSection: 3
+  selectedSection: 4
   basicGroupLevelSettingsMode: 0
   headingGroupLevelSettingsMode: 0
   singleElementsLevelSettingsMode: 0
@@ -389,7 +389,7 @@ MonoBehaviour:
   - applyFraming: 1
     includeBackground: 0
     frameType: 2
-    frameOutlineThickness: 1
+    frameOutlineThickness: 2
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
@@ -623,5 +623,5 @@ MonoBehaviour:
   singleElementsSectionToggle: 1
   propertySpecificSectionToggle: 1
   basicGroupsSectionDrawAreaToggle: 1
-  headingGroupsSectionDrawAreaToggle: 1
+  headingGroupsSectionDrawAreaToggle: 0
   singleElementsSectionDrawAreaToggle: 1

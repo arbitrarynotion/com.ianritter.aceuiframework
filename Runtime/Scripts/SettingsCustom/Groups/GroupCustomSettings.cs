@@ -1,4 +1,4 @@
-namespace ACEPackage.Runtime.Scripts.SettingsCustom.Groups
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups
 {
     public class GroupCustomSettings : CustomSettings
     {

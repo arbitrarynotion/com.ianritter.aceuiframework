@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace ACEPackage.Editor.Scripts.Elements.GroupElements.BasicGroup
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.BasicGroup
 {
     public class BasicGroupLayout : GroupElementLayout
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
-using static ACEPackage.Editor.Scripts.EditorGraphics.EditorRectGraphics;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorRectGraphics;
 
-namespace ACEPackage.Editor.Scripts.Elements
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 {
     // Note: Padding is spaced added between the assigned position rect and the draw rect which is
     // derived from it.

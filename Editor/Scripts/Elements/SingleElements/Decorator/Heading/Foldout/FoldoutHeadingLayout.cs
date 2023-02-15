@@ -1,4 +1,4 @@
-namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Foldout
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Foldout
 {
     public class FoldoutHeadingLayout : HeadingElementLayout
     {

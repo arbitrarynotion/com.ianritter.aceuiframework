@@ -1,6 +1,6 @@
-using static ACEPackage.Runtime.Scripts.AceEditorConstants;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 
-namespace ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator
 {
     public class HeadingElementFrameSettingsVarNames : ElementFrameVarNames
     {

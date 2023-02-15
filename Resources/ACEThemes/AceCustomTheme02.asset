@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AceCustomTheme02
   m_EditorClassIdentifier: 
   selectedSection: 3
-  basicGroupLevelSettingsMode: 2
+  basicGroupLevelSettingsMode: 0
   headingGroupLevelSettingsMode: 0
   singleElementsLevelSettingsMode: 0
   globalSettings:
@@ -42,14 +42,14 @@ MonoBehaviour:
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
-    showLayoutTools: 0
+    showLayoutTools: 1
     hideElements: 0
     layoutToolsFrameType: 0
-    showPosRect: 0
+    showPosRect: 1
     layoutToolsPosRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
-    showFrameRect: 0
+    showFrameRect: 1
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
-    showDrawRect: 0
+    showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.2, g: 0.5, b: 0.7, a: 1}
   - topPadding: 0
     leftPadding: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   headingGroupSectionState: 0
-  groupSectionState: 1
+  groupSectionState: 0
   headingGroupSettingsList:
   - topPadding: 0
     leftPadding: 0
@@ -149,11 +149,11 @@ MonoBehaviour:
     showLayoutTools: 0
     hideElements: 0
     layoutToolsFrameType: 0
-    showPosRect: 0
+    showPosRect: 1
     layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
-    showFrameRect: 0
+    showFrameRect: 1
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
-    showDrawRect: 0
+    showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
     hideFoldoutGroupElements: 0
@@ -235,11 +235,11 @@ MonoBehaviour:
     showLayoutTools: 0
     hideElements: 0
     layoutToolsFrameType: 0
-    showPosRect: 0
+    showPosRect: 1
     layoutToolsPosRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
-    showFrameRect: 0
+    showFrameRect: 1
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
-    showDrawRect: 0
+    showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
   - topPadding: 0
     leftPadding: 0
@@ -458,18 +458,18 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   singleElementSettingsList:
-  - topPadding: 0
-    leftPadding: 0
-    rightPadding: 0
-    bottomPadding: 0
-    showLayoutTools: 0
+  - topPadding: 10
+    leftPadding: 10
+    rightPadding: 10
+    bottomPadding: 10
+    showLayoutTools: 1
     hideElements: 0
     layoutToolsFrameType: 0
-    showPosRect: 0
+    showPosRect: 1
     layoutToolsPosRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
-    showFrameRect: 0
-    frameRectColor: {r: 0, g: 0, b: 0, a: 0}
-    showDrawRect: 0
+    showFrameRect: 1
+    frameRectColor: {r: 0.23300104, g: 0.6415094, b: 0.2666532, a: 1}
+    showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
   - topPadding: 0
     leftPadding: 0
@@ -526,9 +526,9 @@ MonoBehaviour:
   singleElementFrameSettingsList:
   - applyFraming: 1
     includeBackground: 0
-    frameType: 5
-    frameOutlineThickness: 1
-    frameAutoPadding: 0
+    frameType: 1
+    frameOutlineThickness: 3
+    frameAutoPadding: 3.87
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
     skipSingleLineFrames: 1
@@ -586,7 +586,6 @@ MonoBehaviour:
   groupsSectionToggle: 1
   singleElementsSectionToggle: 1
   propertySpecificSectionToggle: 1
-  layoutToolsSectionToggle: 1
   basicGroupsSectionDrawAreaToggle: 0
-  headingGroupsSectionDrawAreaToggle: 0
-  singleElementsSectionDrawAreaToggle: 0
+  headingGroupsSectionDrawAreaToggle: 1
+  singleElementsSectionDrawAreaToggle: 1

@@ -1,5 +1,5 @@
 
-namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Labeled
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Labeled
 {
     public class LabeledHeadingLayout : HeadingElementLayout
     {

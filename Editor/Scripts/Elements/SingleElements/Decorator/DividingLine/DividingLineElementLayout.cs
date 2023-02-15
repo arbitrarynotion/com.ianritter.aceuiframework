@@ -1,4 +1,4 @@
-namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine
 {
     public class DividingLineElementLayout : SingleElementLayout
     {

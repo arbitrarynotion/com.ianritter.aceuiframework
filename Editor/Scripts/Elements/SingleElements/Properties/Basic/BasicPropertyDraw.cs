@@ -1,4 +1,4 @@
-namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Properties.Basic
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Basic
 {
     public class BasicPropertyDraw : PropertyElementDraw
     {

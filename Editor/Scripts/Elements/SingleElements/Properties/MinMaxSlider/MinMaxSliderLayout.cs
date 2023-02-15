@@ -1,4 +1,4 @@
-namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Properties.MinMaxSlider
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.MinMaxSlider
 {
     public class MinMaxSliderLayout : PropertyElementLayout
     {

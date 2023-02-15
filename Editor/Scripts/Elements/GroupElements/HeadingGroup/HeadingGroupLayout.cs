@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace ACEPackage.Editor.Scripts.Elements.GroupElements.HeadingGroup
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.HeadingGroup
 {
     public abstract class HeadingGroupLayout : GroupElementLayout
     {

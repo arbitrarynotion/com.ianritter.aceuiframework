@@ -1,12 +1,12 @@
 using System;
-using ACEPackage.Editor.Scripts.ACECore;
-using ACEPackage.Editor.Scripts.AceRoots;
-using ACEPackage.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceRoots;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
 using UnityEditor;
 using UnityEngine;
-using static ACEPackage.Editor.Scripts.ACECore.ThemeLoader;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.ThemeLoader;
 
-namespace ACEPackage.Editor.Scripts.Editors
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
 {
     public abstract class AceEditorWindow : EditorWindow
     {
@@ -43,7 +43,7 @@ namespace ACEPackage.Editor.Scripts.Editors
         {
             AceTheme = LoadScriptableObject<AceTheme>( GetEditorWindowThemeName() );
             if ( AceTheme == null )
-                Debug.LogError( "Failed to load CET Editor Window Theme!" );
+                Debug.LogError( "Failed to load CET Editor Window theme!" );
 
             TargetScript = GetTarget();
             if ( TargetScript == null )
@@ -85,14 +85,14 @@ namespace ACEPackage.Editor.Scripts.Editors
 
         private void SubscribeToTargetEvents()
         {
-            TargetScript.OnUIStateChanged += OnTargetUiStateUpdated;
+            TargetScript.OnUIStateUpdated += OnTargetUiStateUpdated;
             TargetScript.OnDataUpdated += OnTargetDataUpdated;
             TargetScript.OnDataUpdateRequired += OnTargetDataUpdateRequired;
         }
 
         private void UnsubscribeFromTargetEvents()
         {
-            TargetScript.OnUIStateChanged -= OnTargetUiStateUpdated;
+            TargetScript.OnUIStateUpdated -= OnTargetUiStateUpdated;
             TargetScript.OnDataUpdated -= OnTargetDataUpdated;
             TargetScript.OnDataUpdateRequired -= OnTargetDataUpdateRequired;
         }

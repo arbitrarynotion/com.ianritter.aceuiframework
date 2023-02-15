@@ -1,7 +1,7 @@
 using UnityEngine;
-using static ACEPackage.Editor.Scripts.EditorGraphics.EditorRectGraphics;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorRectGraphics;
 
-namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine
 {
     public class DividingLineElementDraw : SingleElementDraw
     {

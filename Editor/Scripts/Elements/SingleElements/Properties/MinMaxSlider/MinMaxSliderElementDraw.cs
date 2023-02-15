@@ -1,8 +1,8 @@
-using ACEPackage.Runtime.Scripts;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts;
 using UnityEditor;
 using UnityEngine;
 
-namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Properties.MinMaxSlider
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.MinMaxSlider
 {
     public class MinMaxSliderElementDraw : PropertyElementDraw
     {

@@ -1,19 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ACEPackage.Editor.Scripts.ACECore;
-using ACEPackage.Editor.Scripts.ElementConditions;
-using ACEPackage.Editor.Scripts.Elements;
-using ACEPackage.Runtime.Scripts.Enums;
-using ACEPackage.Runtime.Scripts.SettingsCustom;
-using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
-using ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements;
-using ACEPackage.Runtime.Scripts.SettingsGlobal;
-using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator;
-using static ACEPackage.Editor.Scripts.ElementBuilding.AceElementBuilder;
-using static ACEPackage.Editor.Scripts.ACECore.AceDelegates;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.AceElementBuilder;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.AceDelegates;
 
-namespace ACEPackage.Editor.Scripts.SettingsSections
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
 {
     [Serializable]
     public abstract class SettingsSection
@@ -48,6 +48,8 @@ namespace ACEPackage.Editor.Scripts.SettingsSections
         ///     Used to notify when data that affects the UI layout has occured, requiring a full UI rebuild.
         /// </summary>
         public void UIStateUpdatedNotify() => OnUIStateUpdated?.Invoke();
+        
+        public void PrintMyUIStateUpdatedEventSubscribers() => PrintMySubscribers( GetType().Name, OnUIStateUpdated, nameof(UIStateUpdated) );
 
 
         protected void EstablishSubscriptions() => AceTheme.OnColorsUpdated += OnColorsChanged;
@@ -103,9 +105,10 @@ namespace ACEPackage.Editor.Scripts.SettingsSections
                 GetFramesColorsSection( frameSettings, frameVarNames )
             };
 
-            return GetGroupWithFoldoutHeading( 
+            return GetGroupWithToggleHeading( 
                 frameVarNames.ShowFrame, title, tooltip,
                 null,
+                true,
                 subSections.ToArray() );
         }
 

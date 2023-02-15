@@ -1,4 +1,4 @@
-namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Label
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Label
 {
     public class LabelElementLayout : SingleElementLayout
     {

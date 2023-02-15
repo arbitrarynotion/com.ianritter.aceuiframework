@@ -1,39 +1,52 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ACEPackage.Editor.Scripts.AceRoots;
-using ACEPackage.Editor.Scripts.Elements;
-using ACEPackage.Editor.Scripts.Elements.SingleElements.Button.Basic;
-using ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine;
-using ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Label;
-using ACEPackage.Editor.Scripts.Elements.SingleElements.Properties.Popup;
-using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
-using ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using static ACEPackage.Editor.Scripts.ElementBuilding.AceElementBuilder;
-using static ACEPackage.Runtime.Scripts.AceEditorConstants;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceRoots;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Button.Basic;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Label;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Popup;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.AceElementBuilder;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.AceDelegates;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 
-namespace ACEPackage.Editor.Scripts.ACECore
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 {
     [CreateAssetMenu(menuName = ThemeDatabaseAssetMenuName)]
     public class AceThemeManagerDatabase : AceScriptableObjectRoot
     {
-        public List<ScriptThemeInfo> scriptThemeInfoList = new List<ScriptThemeInfo>();
-
-        private ScriptThemeInfo SelectedScript => scriptThemeInfoList[selectedScriptIndex] ?? null;
-        
         public int selectedScriptIndex = -1;
         public int selectedThemeIndex = -1;
-
+        public List<ScriptThemeInfo> scriptThemeInfoList = new List<ScriptThemeInfo>();
+        private ScriptThemeInfo SelectedScript => scriptThemeInfoList[selectedScriptIndex] ?? null;
         private List<MonoScript> _existingScripts;
         private List<AceTheme> _existingThemes;
         private AceTheme _defaultTheme;
         
-        public delegate void ThemeChanged();
-        public event ThemeChanged OnThemeChanged;
+        public delegate void ThemeAssignmentChanged();
+        public event ThemeAssignmentChanged OnThemeAssignmentChanged;
+        private void ThemeAssignmentChangedNotify()
+        {
+            OnThemeAssignmentChanged?.Invoke();
+            PrintMySubscribers( GetType().Name, OnThemeAssignmentChanged, MethodBase.GetCurrentMethod().Name );
+        }
+        
+        public AceTheme GetThemeForScript( string scriptName )
+        {
+            MonoScript script = _existingScripts.FirstOrDefault( monoScript => scriptName == monoScript.name );
+            
+            // Find the script in the scriptInfoList then return that entry's theme.
+            return scriptThemeInfoList.Where( scriptThemeInfo => scriptThemeInfo.script == script ).Select( scriptThemeInfo => scriptThemeInfo.theme ).FirstOrDefault();
+        }
 
-        private void ThemeChangedNotify() => OnThemeChanged?.Invoke();
+        public override Element[] GetElementList() => new [] { GetScriptAndThemeDropdown() };
+
         
         private void OnEnable()
         {
@@ -41,12 +54,48 @@ namespace ACEPackage.Editor.Scripts.ACECore
 
             RefreshResourceLists();
             UpdateSavedScriptsList();
+
+            // Rebuild the scripts list any time files are changed in the project window.
+            EditorApplication.projectChanged += OnProjectChanged;
+            OnScriptsReloaded += OnScriptsReloadedUpdate;
+        }
+
+        private void OnDisable()
+        {
+            EditorApplication.projectChanged -= OnProjectChanged;
+            OnScriptsReloaded -= OnScriptsReloadedUpdate;
+        }
+
+        private void OnProjectChanged()
+        {
+            Debug.Log( "ACETMD|OPC: Project Changed event called." );
+            UpdateSavedScriptsList();
         }
         
+        private void OnScriptsReloadedUpdate()
+        {
+            Debug.Log( "ACETMD|OPC: Scripts Reloaded event called." );
+            UpdateSavedScriptsList();
+        }
+        
+        public delegate void ScriptsReloaded();
+
+        public static event ScriptsReloaded OnScriptsReloaded;
+
+        [UnityEditor.Callbacks.DidReloadScripts]
+        private static void OnScriptsReloadedNotify()
+        {
+            Debug.Log( "ATMD|OSR: script recompile detected." );
+            OnScriptsReloaded?.Invoke();
+        }
+
         private void UpdateSavedScriptsList()
         {
+            Debug.Log( "ACETMD|USSL: Rebuilding ACE user scripts list..." );
             PurgeDeletedScriptsFromDb();
             AddNewScriptsToDb();
+            Debug.Log( "ACETMD|USSL:     Rebuild complete." );
+            UIStateUpdatedNotify();
         }
 
         private void RefreshResourceLists()
@@ -54,9 +103,9 @@ namespace ACEPackage.Editor.Scripts.ACECore
             _existingScripts = ThemeLoader.GetAllAceUsers().ToList();
             _existingThemes = ThemeLoader.GetAllThemes().ToList();
             
-            // Debug.Log( "ACETMD|PERL:     Results:" );
-            // PrintLocatedScripts();
-            // PrintLocatedThemes();
+            Debug.Log( "ACETMD|PERL:     Results:" );
+            PrintLocatedScripts();
+            PrintLocatedThemes();
             
             if ( _defaultTheme == null )
                 throw new NullReferenceException( $"ACETMD|PERL: Error!! Unable to load theme \"{DefaultThemeName}\"" );
@@ -90,7 +139,7 @@ namespace ACEPackage.Editor.Scripts.ACECore
                         selectedScriptIndex = ( scriptThemeInfoList.Count > 0 ) ? 0 : -1;
                     }
                         
-                    Debug.Log( $"ACETMD|I:     {scriptInfo.script.name} was deleted. Removing from database." );
+                    Debug.Log( $"ACETMD|I:     {scriptInfo.Name} was deleted. Removing from database." );
                     scriptThemeInfoList.Remove( scriptInfo );
                 }
             }
@@ -98,7 +147,9 @@ namespace ACEPackage.Editor.Scripts.ACECore
             if (!foundDeleted)
                 Debug.Log( $"ACETMD|I:     No scripts were deleted." );
         }
+
         
+
         private void AddNewScriptsToDb()
         {
             Debug.Log( "ACETMD|ASTD: Checking for new scripts..." );
@@ -111,39 +162,26 @@ namespace ACEPackage.Editor.Scripts.ACECore
                 Debug.Log( $"ACETMD|ASTD:     {script.name} is new. Adding to database." );
                 
                 // Create new script theme info entry for this script.
-                scriptThemeInfoList.Add( new ScriptThemeInfo() { script = script, theme = _defaultTheme } );
+                scriptThemeInfoList.Add( new ScriptThemeInfo( script.name, script, _defaultTheme ) );
             }
             
             if (!foundNew)
                 Debug.Log( $"ACETMD|ASTD:     No new scripts were found." );
         }
-        
-        private void UpdateSelectedScriptTheme()
-        {
-            // Important: call only after triggering OnDataUpdateRequired event or the index values
-            // will not have been updated.
-            SelectedScript.theme = _existingThemes[selectedThemeIndex];
-            ThemeChangedNotify();
-        }
-
-        public AceTheme GetThemeForScript( string scriptName )
-        {
-            MonoScript script = _existingScripts.FirstOrDefault( monoScript => scriptName == monoScript.name );
-            
-            // Find the script in the scriptInfoList then return that entry's theme.
-            return scriptThemeInfoList.Where( scriptThemeInfo => scriptThemeInfo.script == script ).Select( scriptThemeInfo => scriptThemeInfo.theme ).FirstOrDefault();
-        }
 
         private bool IsSaved( MonoScript script ) => scriptThemeInfoList.Any( scriptInfo => scriptInfo.script == script );
-        
-        public override Element[] GetElementList() => new [] { GetScriptAndThemeDropdown() };
-        
+
         private Element GetScriptAndThemeDropdown()
         {
+            if ( EditorApplication.isCompiling )
+                return new LabelElement( new GUIContent( "Recompiling..." ) );
+            
+            if ( _existingScripts == null )
+                return new LabelElement( new GUIContent( "Existing Scripts is being reset..." ) );
+            
             // Refresh button.
             Element refreshButton = new BasicButtonElement( 
-                new GUIContent( "Scan For Scripts", 
-                    "Press this if you create or delete a script while this window is open." ), 
+                new GUIContent( "Scan For script Changes" ), 
                 true, 
                 new SingleCustomSettings() { ForceSingleLine = true },
                 RefreshButtonPressed
@@ -160,7 +198,7 @@ namespace ACEPackage.Editor.Scripts.ACECore
                     null,
                     GetGroupWithLabelHeading
                     (
-                        "Script Theme Assignment", string.Empty,
+                        "script theme Assignment", string.Empty,
                         new GroupCustomSettings() { NumberOfColumns = 2 },
                         scriptPopup,
                         themePopup,
@@ -172,17 +210,23 @@ namespace ACEPackage.Editor.Scripts.ACECore
                 )
                 : GetGroupWithLabelHeading
                 (
-                    "Assign a Theme to Your Script", string.Empty,
+                    "Assign a theme to Your script", string.Empty,
                     new GroupCustomSettings { NumberOfColumns = 2 },
-                    new LabelElement( new GUIContent( "Script" ) ),
-                    new LabelElement( new GUIContent( "Theme" ) ),
+                    new LabelElement( new GUIContent( "script" ) ),
+                    new LabelElement( new GUIContent( "theme" ) ),
                     new LabelElement( new GUIContent( "No ACE scripts found." ) ),
                     refreshButton
                 );
         }
-        
+
         private string[] GetScriptOptions()
         {
+            if ( _existingScripts == null )
+            {
+                Debug.LogWarning( "ATMD|GSO: Aborting script options list as existing scripts list is null." );
+                return new string[] {};
+            }
+            
             string[] scriptOptions = new string[_existingScripts.Count];
             for (int i = 0; i < _existingScripts.Count; i++)
             {
@@ -203,23 +247,33 @@ namespace ACEPackage.Editor.Scripts.ACECore
             return themeOptions;
         }
 
-        private int GetSelectedScriptsThemeIndex() => _existingThemes.IndexOf( SelectedScript.theme );
-
         private void ScriptDropdownUpdated()
         {
             DataUpdateRequiredNotify();
             selectedThemeIndex = GetSelectedScriptsThemeIndex();
-            UIStateChangedNotify();
+            UIStateUpdatedNotify();
         }
-        
+
+        private int GetSelectedScriptsThemeIndex() => _existingThemes.IndexOf( SelectedScript.theme );
+
         private void ThemeDropdownUpdated()
         {
             DataUpdateRequiredNotify();
             UpdateSelectedScriptTheme();
-            UIStateChangedNotify();
+            UIStateUpdatedNotify();
         }
 
-        private void RefreshButtonPressed() => RefreshResourceLists();
+        private void UpdateSelectedScriptTheme()
+        {
+            // Important: call only after triggering OnDataUpdateRequired event or the index values
+            // will not have been updated.
+            string currentThemeName = SelectedScript.theme.name;
+            SelectedScript.theme = _existingThemes[selectedThemeIndex];
+            Debug.Log( $"ATMD|USST: {SelectedScript.Name}'s theme was changed from {currentThemeName} to {SelectedScript.theme.name}." );
+            ThemeAssignmentChangedNotify();
+        }
+
+        private void RefreshButtonPressed() => UpdateSavedScriptsList();
 
 
 #region PrintHelpers

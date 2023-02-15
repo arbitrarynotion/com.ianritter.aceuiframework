@@ -1,10 +1,10 @@
-using ACEPackage.Editor.Scripts.ACECore;
-using ACEPackage.Editor.Scripts.Elements;
-using ACEPackage.Editor.Scripts.SettingsSections.Elements.Groups.BasicGroups;
-using ACEPackage.Editor.Scripts.SettingsSections.Elements.Groups.HeadingGroups;
-using static ACEPackage.Editor.Scripts.ElementBuilding.AceElementBuilder;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.Groups.BasicGroups;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.Groups.HeadingGroups;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.AceElementBuilder;
 
-namespace ACEPackage.Editor.Scripts.SettingsSections.Elements.Groups
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.Groups
 {
     public class GroupSettingsSection : SettingsSection
     {

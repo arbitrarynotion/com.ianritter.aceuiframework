@@ -1,9 +1,9 @@
-using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
-using ACEPackage.Runtime.Scripts.SettingsGlobal;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
 using UnityEditor;
 using UnityEngine;
 
-namespace ACEPackage.Editor.Scripts.Elements.GroupElements.BasicGroup
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.BasicGroup
 {
     public class BasicGroup : GroupElement
     {

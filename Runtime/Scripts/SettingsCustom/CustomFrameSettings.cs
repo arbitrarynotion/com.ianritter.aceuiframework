@@ -1,6 +1,6 @@
-using ACEPackage.Runtime.Scripts.SettingsGlobal;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
 
-namespace ACEPackage.Runtime.Scripts.SettingsCustom
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom
 {
     public class CustomFrameSettings : FrameSettings
     {

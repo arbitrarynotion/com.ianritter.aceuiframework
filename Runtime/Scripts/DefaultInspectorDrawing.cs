@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace ACEPackage.Runtime.Scripts
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
 {
     public static class DefaultInspectorDrawing
     {

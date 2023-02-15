@@ -1,21 +1,16 @@
 using System;
-using ACEPackage.Runtime.Scripts.AceRoots;
-using ACEPackage.Runtime.Scripts.RuntimeElementBuilding;
-using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
-using ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements;
-using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.SingleElements;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRoots;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements;
 using UnityEngine;
 using Object = UnityEngine.Object;
-// using static ACEPackage.Scripts.EditorBound.ElementBuilding.AceElementBuilder;
-using static ACEPackage.Runtime.Scripts.RuntimeElementBuilding.RuntimeElementBuilder;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding.RuntimeElementBuilder;
 
-// Editor reference.
-
-// This needs to be replaced with a reference to ElementInfo to remove the editor reference.
-
-namespace ACEPackage.Runtime.Scripts.Demos
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
 {
-    public class Demo01NoEditor : AceMonobehaviourRoot
+    public class ACEInspectorExample : AceMonobehaviourRoot
     {
         public enum InspectorLayouts
         {
@@ -94,6 +89,9 @@ namespace ACEPackage.Runtime.Scripts.Demos
         // Editor reference.
         public SingleElementSettings singleElementSettings = new SingleElementSettings();
         
+        
+        public override string GetTargetName() => name;
+
         public override ElementInfo[] GetElementInfoList()
         {
             return enumsField switch
@@ -358,6 +356,7 @@ namespace ACEPackage.Runtime.Scripts.Demos
             };
         }
 
+        // This example is dependent on editor code. Need to rebuild with code in runtime assembly.
         private ElementInfo[] CompositeGroupExample()
         {
             // const string relativePathNameSingleElementSettings = nameof( singleElementSettings );

@@ -1,31 +1,33 @@
 using System;
 using System.Collections.Generic;
-using ACEPackage.Editor.Scripts.AceRoots;
-using ACEPackage.Editor.Scripts.ElementConditions;
-using ACEPackage.Editor.Scripts.Elements;
-using ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine;
-using ACEPackage.Editor.Scripts.Elements.SingleElements.Properties.Basic;
-using ACEPackage.Editor.Scripts.SettingsSections;
-using ACEPackage.Editor.Scripts.SettingsSections.Colors;
-using ACEPackage.Editor.Scripts.SettingsSections.Elements.Groups;
-using ACEPackage.Editor.Scripts.SettingsSections.Elements.PropertySpecific;
-using ACEPackage.Editor.Scripts.SettingsSections.Elements.SingleElements;
-using ACEPackage.Editor.Scripts.SettingsSections.Global;
-using ACEPackage.Runtime.Scripts.Enums;
-using ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements;
-using ACEPackage.Runtime.Scripts.SettingsGlobal;
-using ACEPackage.Runtime.Scripts.SettingsGlobal.Colors;
-using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.Groups.BasicGroups;
-using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.Groups.ChildAreaGroups;
-using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.Groups.HeadingGroups;
-using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.SingleElements;
-using ACEPackage.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator;
-using ACEPackage.Runtime.Scripts.SettingsGlobal.Global;
-using ACEPackage.Runtime.Scripts.SettingsGlobal.PropertySpecific;
+using System.Reflection;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceRoots;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Basic;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Colors;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.Groups;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.PropertySpecific;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.SingleElements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Global;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Colors;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.Groups.BasicGroups;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.Groups.ChildAreaGroups;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.Groups.HeadingGroups;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Global;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.PropertySpecific;
 using UnityEngine;
-using static ACEPackage.Runtime.Scripts.AceEditorConstants;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.AceDelegates;
 
-namespace ACEPackage.Editor.Scripts.ACECore
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 {
     /// <summary>
     ///     The theme houses both the theme settings and the element structure
@@ -179,15 +181,17 @@ namespace ACEPackage.Editor.Scripts.ACECore
             RebuildSettingsWindow();
         }
 
-        private void RebuildSettingsWindow() => UIStateChangedNotify();
+        private void RebuildSettingsWindow() => UIStateUpdatedNotify();
 
         private void RepaintSettingsWindow()
         {
             DataUpdateRequiredNotify();
             // Todo: All repainting set to rebuilding while ironing out updating issues.
-            UIStateChangedNotify();
+            UIStateUpdatedNotify();
             // DataUpdatedNotify();
         }
+
+        
         
 #region InitializeSettings
 

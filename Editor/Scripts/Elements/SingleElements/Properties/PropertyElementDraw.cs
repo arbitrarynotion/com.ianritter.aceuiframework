@@ -1,9 +1,9 @@
-using ACEPackage.Runtime.Scripts;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts;
 using UnityEditor;
 using UnityEngine;
-using static ACEPackage.Editor.Scripts.EditorGraphics.EditorRectGraphics;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorRectGraphics;
 
-namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Properties
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties
 {
     public abstract class PropertyElementDraw : SingleElementDraw
     {

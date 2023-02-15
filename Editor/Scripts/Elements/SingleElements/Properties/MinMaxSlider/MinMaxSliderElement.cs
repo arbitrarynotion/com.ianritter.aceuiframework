@@ -1,11 +1,11 @@
 ﻿using System;
-using ACEPackage.Editor.Scripts.ElementConditions;
-using ACEPackage.Editor.Scripts.Elements.SingleElements.Properties.Basic;
-using ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Basic;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using UnityEditor;
 using UnityEngine;
 
-namespace ACEPackage.Editor.Scripts.Elements.SingleElements.Properties.MinMaxSlider
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.MinMaxSlider
 {
     public class MinMaxSliderElement : PropertyElement
     {

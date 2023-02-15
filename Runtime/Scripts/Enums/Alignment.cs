@@ -1,4 +1,4 @@
-﻿namespace ACEPackage.Runtime.Scripts.Enums
+﻿namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums
 {
     public enum Alignment
     {

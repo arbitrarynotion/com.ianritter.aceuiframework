@@ -1,17 +1,17 @@
 using System;
-using ACEPackage.Editor.Scripts.ACECore;
-using ACEPackage.Editor.Scripts.ElementConditions;
-using ACEPackage.Editor.Scripts.Elements;
-using ACEPackage.Editor.Scripts.Elements.SingleElements.Decorator.Label;
-using ACEPackage.Editor.Scripts.Elements.SingleElements.Properties.Basic;
-using ACEPackage.Editor.Scripts.Elements.SingleElements.Properties.Popup;
-using ACEPackage.Runtime.Scripts.SettingsCustom;
-using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
-using ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Label;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Basic;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Popup;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using UnityEngine;
-using static ACEPackage.Editor.Scripts.ElementBuilding.AceElementBuilder;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.AceElementBuilder;
 
-namespace ACEPackage.Editor.Scripts.SettingsSections.Colors
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Colors
 {
     public class CustomColorsSection : SettingsSection
     {

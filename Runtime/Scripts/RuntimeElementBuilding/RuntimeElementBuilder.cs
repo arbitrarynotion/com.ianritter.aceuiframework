@@ -1,10 +1,11 @@
 using System;
-using ACEPackage.Runtime.Scripts.Enums;
-using ACEPackage.Runtime.Scripts.SettingsCustom;
-using ACEPackage.Runtime.Scripts.SettingsCustom.Groups;
-using ACEPackage.Runtime.Scripts.SettingsCustom.SingleElements;
 using JetBrains.Annotations;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using UnityEngine;
+
 // using ACEPackage.Scripts.EditorBound.ElementConditions;
 // using ACEPackage.Scripts.EditorBound.Elements;
 // using ACEPackage.Scripts.EditorBound.Elements.GroupElements.BasicGroup;
@@ -17,7 +18,7 @@ using UnityEngine;
 // using ACEPackage.Scripts.EditorBound.Elements.SingleElements.Decorator.Label;
 // using ACEPackage.Scripts.EditorBound.Elements.SingleElements.Properties.MinMaxSlider;
 
-namespace ACEPackage.Runtime.Scripts.RuntimeElementBuilding
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding
 {
     public class ElementConditionInfo
     {

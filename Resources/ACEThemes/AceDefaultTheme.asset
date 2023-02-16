@@ -591,5 +591,5 @@ MonoBehaviour:
   singleElementsSectionToggle: 1
   propertySpecificSectionToggle: 1
   basicGroupsSectionDrawAreaToggle: 1
-  headingGroupsSectionDrawAreaToggle: 0
+  headingGroupsSectionDrawAreaToggle: 1
   singleElementsSectionDrawAreaToggle: 1

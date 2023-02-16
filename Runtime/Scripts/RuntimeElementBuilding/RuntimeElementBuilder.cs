@@ -6,18 +6,6 @@ using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Group
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using UnityEngine;
 
-// using ACEPackage.Scripts.EditorBound.ElementConditions;
-// using ACEPackage.Scripts.EditorBound.Elements;
-// using ACEPackage.Scripts.EditorBound.Elements.GroupElements.BasicGroup;
-// using ACEPackage.Scripts.EditorBound.Elements.GroupElements.CompositeGroup;
-// using ACEPackage.Scripts.EditorBound.Elements.GroupElements.HeadingGroup.FoldOut;
-// using ACEPackage.Scripts.EditorBound.Elements.GroupElements.HeadingGroup.Labeled;
-// using ACEPackage.Scripts.EditorBound.Elements.SingleElements.Button;
-// using ACEPackage.Scripts.EditorBound.Elements.SingleElements.Button.Tab;
-// using ACEPackage.Scripts.EditorBound.Elements.SingleElements.Decorator.DividingLine;
-// using ACEPackage.Scripts.EditorBound.Elements.SingleElements.Decorator.Label;
-// using ACEPackage.Scripts.EditorBound.Elements.SingleElements.Properties.MinMaxSlider;
-
 namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding
 {
     public class ElementConditionInfo
@@ -35,11 +23,9 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
     }
     
     
-    // Collection of all info required to create an element facade.
     public abstract class ElementInfo
     {
         public ElementType ElementType { get; }
-        public abstract CustomSettings CustomSettings { get; }
         public bool HideOnDisable { get; protected set; } = false;
         public ElementConditionInfo[] ElementConditionInfos { get; protected set; } = new ElementConditionInfo[] {};
         
@@ -54,9 +40,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
     public abstract class SingleElementInfo : ElementInfo
     {
         public SingleCustomSettings SingleCustomSettings { get; }
-        public override CustomSettings CustomSettings => SingleCustomSettings;
 
-        public SingleElementInfo( ElementType elementType, GUIContent guiContent, SingleCustomSettings customSettings ) 
+        protected SingleElementInfo( ElementType elementType, GUIContent guiContent, SingleCustomSettings customSettings ) 
             : base( elementType, guiContent )
         {
             SingleCustomSettings = customSettings;
@@ -64,27 +49,11 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
 
     }
 
-    public class LabelInfo : SingleElementInfo
-    {
-        public LabelInfo( GUIContent guiContent, SingleCustomSettings customSettings ) 
-            : base( ElementType.SingleDecoratorLabel, guiContent, customSettings )
-        {
-        }
-    }
-    
-    public class DividerInfo : SingleElementInfo
-    {
-        public DividerInfo() 
-            : base( ElementType.SingleDecoratorDividingLine, GUIContent.none, new SingleCustomSettings() )
-        {
-        }
-    }
-
     public abstract class SingleInteractiveInfo : SingleElementInfo
     {
-        public Action Callback;
+        public readonly Action Callback;
 
-        public SingleInteractiveInfo( 
+        protected SingleInteractiveInfo( 
             ElementType elementType, 
             GUIContent guiContent, 
             SingleCustomSettings customSettings,
@@ -95,20 +64,43 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         }
     }
 
+    public abstract class GroupElementInfo : ElementInfo
+    {
+        public GroupCustomSettings GroupCustomSettings { get; }
+        public ElementInfo[] ElementInfos { get; }
+
+        protected GroupElementInfo( 
+            ElementType elementType,
+            GUIContent guiContent, 
+            GroupCustomSettings customSettings,
+            ElementInfo[] elementInfos ) 
+            : base( elementType, guiContent )
+        {
+            GroupCustomSettings = customSettings;
+            ElementInfos = elementInfos;
+        }
+    }
+
+    public class LabelInfo : SingleElementInfo
+    {
+        public LabelInfo( GUIContent guiContent, SingleCustomSettings customSettings ) 
+            : base( ElementType.SingleDecoratorLabel, guiContent, customSettings )
+        {
+        }
+    }
+
+    public class DividerInfo : SingleElementInfo
+    {
+        public DividerInfo() 
+            : base( ElementType.SingleDecoratorDividingLine, GUIContent.none, new SingleCustomSettings() )
+        {
+        }
+    }
+
     public class BasicPropertyInfo : SingleInteractiveInfo
     {
         public string VarName { get; }
 
-        // public BasicPropertyInfo( 
-        //     ElementType elementType, 
-        //     string varName, 
-        //     SingleCustomSettings customSettings,
-        //     Action callback ) 
-        //     : base( elementType, GUIContent.none, customSettings, callback )
-        // {
-        //     VarName = varName;
-        // }
-        
         public BasicPropertyInfo( 
             string varName, 
             GUIContent guiContent, 
@@ -133,7 +125,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
             ElementConditionInfos = elementConditionInfos;
         }
     }
-    
+
     public class MinMaxSliderInfo : SingleInteractiveInfo
     {
         public string MinVarName { get; }
@@ -157,26 +149,6 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         }
     }
     
-    
-    
-    public abstract class GroupElementInfo : ElementInfo
-    {
-        public GroupCustomSettings GroupCustomSettings { get; set; }
-        public override CustomSettings CustomSettings => GroupCustomSettings;
-        public ElementInfo[] ElementInfos { get; }
-
-        public GroupElementInfo( 
-            ElementType elementType,
-            GUIContent guiContent, 
-            GroupCustomSettings customSettings,
-            ElementInfo[] elementInfos ) 
-            : base( elementType, guiContent )
-        {
-            GroupCustomSettings = customSettings;
-            ElementInfos = elementInfos;
-        }
-    }
-
     public class FoldoutGroupInfo : GroupElementInfo
     {
         public string VarName { get; }
@@ -247,7 +219,6 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
     public static class RuntimeElementBuilder
     {
 #region SingleElement
-        
         
         /// <summary>
         ///     Get basic single element.

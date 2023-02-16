@@ -4,19 +4,15 @@
   "displayName": "ACE UI Framework",
   "description": "Accessible Custom Editor (ACE) UI is a user interface framework for Unity designed to make game script UI easy to both apply (in code) and fully customize (both in code and in-editor).",
   "unity": "2019.1",
-
   "documentationUrl": "https://example.com/",
   "changelogUrl": "https://example.com/changelog.html",
   "licensesUrl": "https://example.com/licensing.html",
-
   "author": {
     "name": "Ian Ritter",
     "email": "ian.ritter.cs@gmail.com",
     "url": "https://www.ianritter.dev"
   },
-
-
-  "samples" : [
+  "samples": [
     {
       "displayName": "Inspector UI Sample Scene",
       "description": "Example of using ACE UI Framework to override Inspector UI.",

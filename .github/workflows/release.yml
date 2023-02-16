@@ -1,4 +1,4 @@
-name: ⚙ Release
+name: Release
 on:
   push:
     branches:
@@ -6,13 +6,13 @@ on:
 
 jobs:
   release:
-    name: ⚙ Release
+    name: Release
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - uses: cycjimmy/semantic-release-action@v3
       env:
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         extra_plugins: |
           @semantic-release/changelog

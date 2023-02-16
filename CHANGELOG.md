@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.0.1...v1.0.2) (2023-02-16)
+
+
+### Bug Fixes
+
+* syntax error in release logic ([d86793f](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/d86793f201a71acac30739c2454412fc8e33a5af))
+* Update to release logic ([a8c39e5](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/a8c39e5bf5eeec6d387b2c63c4cc95d631ae6180))
+
 ## [1.0.1](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.0.0...v1.0.1) (2023-02-16)
 
 

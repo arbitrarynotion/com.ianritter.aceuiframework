@@ -26,9 +26,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         // Todo: Make generic version that loads all scriptable objects of the specified type.
         public static AceTheme[] GetAllThemes()
         {
-            // Debug.Log( "TL|GAT: Getting all themes..." );
+            Debug.Log( "TL|GAT: Getting all themes..." );
             UnityEngine.Object[] returnArray = Resources.LoadAll(ThemesResourceFolderName, typeof(AceTheme));
-            // Debug.Log( $"TL|GAT:     {returnArray.Length.ToString()} themes are being returned." );
+            Debug.Log( $"TL|GAT:     {returnArray.Length.ToString()} themes are being returned." );
 
             return Array.ConvertAll( returnArray, item => (AceTheme) item );
         }

@@ -51,6 +51,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         private void OnEnable()
         {
             _defaultTheme = ThemeLoader.LoadScriptableObject<AceTheme>( DefaultThemeName );
+            
+            if ( _defaultTheme == null )
+                throw new NullReferenceException( $"ACETMD|PERL: Error!! Unable to load theme \"{DefaultThemeName}\"" );
 
             RefreshResourceLists();
             UpdateSavedScriptsList();
@@ -100,15 +103,21 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         private void RefreshResourceLists()
         {
-            _existingScripts = ThemeLoader.GetAllAceUsers().ToList();
-            _existingThemes = ThemeLoader.GetAllThemes().ToList();
-            
             Debug.Log( "ACETMD|PERL:     Results:" );
+            LoadThemes();
+            LoadScripts();
+        }
+
+        private void LoadScripts()
+        {
+            _existingScripts = ThemeLoader.GetAllAceUsers().ToList();
             PrintLocatedScripts();
+        }
+
+        private void LoadThemes()
+        {
+            _existingThemes = ThemeLoader.GetAllThemes().ToList();
             PrintLocatedThemes();
-            
-            if ( _defaultTheme == null )
-                throw new NullReferenceException( $"ACETMD|PERL: Error!! Unable to load theme \"{DefaultThemeName}\"" );
         }
 
         private void PurgeDeletedScriptsFromDb()
@@ -187,6 +196,14 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                 RefreshButtonPressed
             );
             
+            // Refresh button.
+            Element reloadThemesButton = new BasicButtonElement( 
+                new GUIContent( "Reload Themes" ), 
+                true, 
+                new SingleCustomSettings() { ForceSingleLine = true },
+                ReloadThemes
+            );
+            
             // Build list of script options
             Element scriptPopup = new PopupElement( nameof( selectedScriptIndex ), GUIContent.none, GetScriptOptions(), new SingleCustomSettings(), ScriptDropdownUpdated );
             Element themePopup = new PopupElement( nameof( selectedThemeIndex ), GUIContent.none, GetThemeOptions(), new SingleCustomSettings(), ThemeDropdownUpdated );
@@ -203,7 +220,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                         scriptPopup,
                         themePopup,
                         new DividingLineElement( 6f, 2f ),
-                        refreshButton
+                        refreshButton,
+                        reloadThemesButton
                     )
                 
                     // Todo: Menu for creating, duplicating, and deleting themes.
@@ -274,6 +292,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         }
 
         private void RefreshButtonPressed() => UpdateSavedScriptsList();
+
+        private void ReloadThemes() => LoadThemes();
 
 
 #region PrintHelpers

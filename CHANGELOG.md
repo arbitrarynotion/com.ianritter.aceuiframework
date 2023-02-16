@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.0.2...v1.0.3) (2023-02-16)
+
+
+### Bug Fixes
+
+* themeLoader logic modified ([8091f4d](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/8091f4d72dc8f1af4bf26c6101e8149f2d9162f5))
+
 ## [1.0.2](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.0.1...v1.0.2) (2023-02-16)
 
 

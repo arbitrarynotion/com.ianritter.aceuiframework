@@ -1,4 +1,4 @@
-name: Release
+name: CI
 on:
   push:
     branches:
@@ -6,15 +6,18 @@ on:
 
 jobs:
   release:
-    name: Release
+    name: release
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+      with:
+          fetch-depth: 0
+    - name: Release
     - uses: cycjimmy/semantic-release-action@v3
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         extra_plugins: |
           @semantic-release/changelog
           @semantic-release/git
         branch: main
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

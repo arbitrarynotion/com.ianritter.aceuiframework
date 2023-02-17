@@ -55,12 +55,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
 
                 GetFramesSection( "Frame", string.Empty, frameSettings, frameVarNames ),
                 
-                GetGroupWithToggleHeading( basicGroupVarNames.ShowLayoutTools, $"Layout Tools ( LVL: {level.ToString()} )", string.Empty, null,
+                GetGroupWithToggleHeading( basicGroupVarNames.ShowLayoutVisualizations, $"Layout Visualizations ( LVL: {level.ToString()} )", string.Empty, null,
 
                     true,
-                    GetLayoutToolsSection( 
+                    GetLayoutVisualizationSection( 
                         
-                        GetLayoutToolsSubsection( "Heading Group", basicGroupVarNames )
+                        GetLayoutVisualizationSubsection( "Heading Group", basicGroupVarNames )
                     )
                 )
             };

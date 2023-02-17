@@ -102,13 +102,17 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
 
                 headingsSection,
                 
-                GetGroupWithToggleHeading( headingGroupVarNames.ShowLayoutTools, $"Layout Tools ( LVL: {level.ToString()} )", string.Empty, null,
+                GetGroupWithToggleHeading( headingGroupVarNames.ShowLayoutVisualizations, 
+                    $"Layout Visualizations ( LVL: {level.ToString()} )", 
+                    "Show the outlines of the position boxes used to place each element. " +
+                    "Use to see exactly what combination of padding is being applied to elements.", 
+                    null,
                     // GetElement( headingGroupVarNames.HideFoldoutGroupElements, "Hide Heading", string.Empty, new SingleCustomSettings() {ForceSingleLine = true} ),
                     
                     true,
-                    GetLayoutToolsSection( 
-                        GetLayoutToolsSubsection( "Heading Group", headingGroupVarNames ),
-                        GetLayoutToolsSubsection( "HG Child Area", childAreaGroupVarNames, true )
+                    GetLayoutVisualizationSection( 
+                        GetLayoutVisualizationSubsection( "Heading Group", headingGroupVarNames ),
+                        GetLayoutVisualizationSubsection( "HG Child Area", childAreaGroupVarNames, true )
                     )
                 )
             };

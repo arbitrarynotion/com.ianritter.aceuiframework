@@ -92,6 +92,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
 
             if (HeadingProperty == null)
                 Debug.LogWarning( $"TG|ILP: {GetName()}: Error! Failed to find heading property for {_headingPropertyVarName}!" );
+            
+            ApplyPropertyState();
         }
 
         /// <summary>

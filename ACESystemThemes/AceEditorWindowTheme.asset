@@ -17,7 +17,6 @@ MonoBehaviour:
   headingGroupLevelSettingsMode: 2
   singleElementsLevelSettingsMode: 0
   globalSettings:
-    globalAdjustmentsFoldout: 1
     leftIndentUnitAmount: 15
     elementVerticalPadding: 2
     columnGap: 0
@@ -25,11 +24,11 @@ MonoBehaviour:
     groupWidthPriorityAdjustment: 0
     propertyWidthPriorityAdjustment: 0
     minMaxWidthPriorityAdjustment: 0
-    labelWidthPriorityAdjustment: 0
-    widthTruncating: 1
     frameOutlineColor: {r: 0.32, g: 0.32, b: 0.32, a: 1}
     headingTextEnabledColor: {r: 1, g: 1, b: 1, a: 1}
-    headingTextDisabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    widthTruncating: 1
+    showGridLines: 0
+    showMeasurementLines: 0
   customColorsSettings:
     customColorsList:
     - name: Outlines
@@ -57,11 +56,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
+    layoutToolsPosRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.2, g: 0.5, b: 0.7, a: 1}
+    layoutToolsDrawRectColor: {r: 0.2, g: 0.5, b: 0.7, a: 1}
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
@@ -70,11 +69,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
+    layoutToolsPosRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.2, g: 0.5, b: 0.7, a: 1}
+    layoutToolsDrawRectColor: {r: 0.2, g: 0.5, b: 0.7, a: 1}
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
@@ -83,11 +82,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
+    layoutToolsPosRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.2, g: 0.5, b: 0.7, a: 1}
+    layoutToolsDrawRectColor: {r: 0.2, g: 0.5, b: 0.7, a: 1}
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
@@ -96,11 +95,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
+    layoutToolsPosRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.2, g: 0.5, b: 0.7, a: 1}
+    layoutToolsDrawRectColor: {r: 0.2, g: 0.5, b: 0.7, a: 1}
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
@@ -109,11 +108,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
+    layoutToolsPosRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.2, g: 0.5, b: 0.7, a: 1}
+    layoutToolsDrawRectColor: {r: 0.2, g: 0.5, b: 0.7, a: 1}
   basicGroupFrameSettingsList:
   - applyFraming: 1
     includeBackground: 0
@@ -161,11 +160,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
+    layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
+    layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
     hideFoldoutGroupElements: 0
     hideToggleGroupElements: 0
@@ -178,11 +177,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
+    layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
+    layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
     hideFoldoutGroupElements: 0
     hideToggleGroupElements: 0
@@ -195,11 +194,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
+    layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
+    layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
     hideFoldoutGroupElements: 0
     hideToggleGroupElements: 0
@@ -212,11 +211,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
+    layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
+    layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
     hideFoldoutGroupElements: 0
     hideToggleGroupElements: 0
@@ -229,11 +228,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
+    layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
+    layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
     hideFoldoutGroupElements: 0
     hideToggleGroupElements: 0
@@ -247,11 +246,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
+    layoutToolsPosRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
+    layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
@@ -260,11 +259,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
+    layoutToolsPosRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
+    layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
@@ -273,11 +272,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
+    layoutToolsPosRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
+    layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
@@ -286,11 +285,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
+    layoutToolsPosRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
+    layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
@@ -299,11 +298,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
+    layoutToolsPosRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
+    layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
   headingElementFrameSettingsList:
   - applyFraming: 1
     includeBackground: 1
@@ -313,7 +312,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
     textHorizontalOffset: 0
-    boxHeight: 0
+    boxHeight: 4
     enabledTextColorIndex: 6
     disabledTextColorIndex: 7
   - applyFraming: 1
@@ -324,7 +323,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 2
     textHorizontalOffset: 0
-    boxHeight: 0
+    boxHeight: 2
     enabledTextColorIndex: 6
     disabledTextColorIndex: 7
   - applyFraming: 1
@@ -335,7 +334,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 3
     textHorizontalOffset: 0
-    boxHeight: 0
+    boxHeight: 2
     enabledTextColorIndex: 6
     disabledTextColorIndex: 7
   - applyFraming: 1
@@ -346,7 +345,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 4
     textHorizontalOffset: 0
-    boxHeight: 0
+    boxHeight: 1
     enabledTextColorIndex: 6
     disabledTextColorIndex: 7
   - applyFraming: 1
@@ -357,7 +356,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 5
     textHorizontalOffset: 0
-    boxHeight: 0
+    boxHeight: 1
     enabledTextColorIndex: 6
     disabledTextColorIndex: 7
   foldoutGroupSettingsList:
@@ -477,11 +476,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
+    layoutToolsPosRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
+    layoutToolsDrawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
@@ -490,11 +489,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
+    layoutToolsPosRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
+    layoutToolsDrawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
@@ -503,11 +502,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
+    layoutToolsPosRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
+    layoutToolsDrawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
@@ -516,11 +515,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
+    layoutToolsPosRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
+    layoutToolsDrawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
@@ -529,11 +528,11 @@ MonoBehaviour:
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0
-    posRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
+    layoutToolsPosRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
     showFrameRect: 0
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 0
-    drawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
+    layoutToolsDrawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
   singleElementFrameSettingsList:
   - applyFraming: 1
     includeBackground: 0
@@ -588,20 +587,15 @@ MonoBehaviour:
     propertyDropDownsMinWidth: 60
     propertySetsMinWidth: 60
     propertyGenericMinWidth: 60
-    propertyObjectMinWidth: 60
     minMaxDecimalPlace: 2
     minMaxSliderMinWidth: 200
     minMaxSliderFloatFieldWidth: 35
     minMaxSliderSeparation: 4
-  layoutToolsGeneralSettings:
-    showGridLines: 0
-    showMeasurementLines: 0
   globalSettingsSectionToggle: 1
   colorsSectionToggle: 1
   groupsSectionToggle: 1
   singleElementsSectionToggle: 1
   propertySpecificSectionToggle: 1
-  layoutToolsSectionToggle: 1
   basicGroupsSectionDrawAreaToggle: 0
   headingGroupsSectionDrawAreaToggle: 0
   singleElementsSectionDrawAreaToggle: 0

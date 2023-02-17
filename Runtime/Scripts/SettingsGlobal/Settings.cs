@@ -16,10 +16,10 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
         [Range(0, 10)]
         public float bottomPadding = 0f;
 
-        public bool showLayoutTools = false;
+        public bool showLayoutVisualizations = false;
         public bool hideElements = false;
         
-        public DebugFrameType layoutToolsFrameType = DebugFrameType.FullSolid;
+        public DebugFrameType layoutVisualizationsFrameType = DebugFrameType.FullSolid;
         
         public bool showPosRect;
         public Color layoutToolsPosRectColor;

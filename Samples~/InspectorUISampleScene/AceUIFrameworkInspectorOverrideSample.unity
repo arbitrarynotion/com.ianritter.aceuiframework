@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 2037722370}
   - component: {fileID: 2037722369}
   m_Layer: 0
-  m_Name: ACEDemo01NoEditor
+  m_Name: AceUIInspectorExample
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2037722368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f63b915fe8dca94d84ea4b3f58f7143, type: 3}
+  m_Script: {fileID: 11500000, guid: d601b28506cfa9e448583a8a9bf7baa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   intField: 5

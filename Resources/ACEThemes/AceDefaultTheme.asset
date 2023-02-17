@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076b7b2dc8b8fbd4dbb0d0a1a43b111e, type: 3}
   m_Name: AceDefaultTheme
   m_EditorClassIdentifier: 
-  selectedSection: 3
+  selectedSection: 4
   basicGroupLevelSettingsMode: 0
   headingGroupLevelSettingsMode: 0
   singleElementsLevelSettingsMode: 0
@@ -466,7 +466,7 @@ MonoBehaviour:
     leftPadding: 0.86
     rightPadding: 0.5
     bottomPadding: 0
-    showLayoutTools: 1
+    showLayoutTools: 0
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 0

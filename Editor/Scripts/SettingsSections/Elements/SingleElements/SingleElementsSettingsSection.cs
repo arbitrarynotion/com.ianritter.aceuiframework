@@ -61,14 +61,14 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     new BasicProperty( frameVarNames.FramesSkipSingleLine, new GUIContent( "Skip Single Line" ), new SingleCustomSettings(), null )
                 ),
 
-                GetGroupWithToggleHeading( varNames.ShowLayoutTools, $"Layout Tools ( LVL: {level.ToString()} )", string.Empty, null,
+                GetGroupWithToggleHeading( varNames.ShowLayoutVisualizations, $"Layout Visualizations ( LVL: {level.ToString()} )", string.Empty, null,
                     
                     // GetElement( ( varNames.HideElements), "Hide Elements", 
                     //     string.Empty, new SingleCustomSettings() {ForceSingleLine = true} ),
                     
                     true,
-                    GetLayoutToolsSection( 
-                        GetLayoutToolsSubsection( "Single Element", varNames )
+                    GetLayoutVisualizationSection( 
+                        GetLayoutVisualizationSubsection( "Single Element", varNames )
                     )
                 )
             };

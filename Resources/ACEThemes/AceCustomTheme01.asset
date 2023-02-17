@@ -78,7 +78,7 @@ MonoBehaviour:
     leftPadding: 4
     rightPadding: 4
     bottomPadding: 4
-    showLayoutTools: 1
+    showLayoutTools: 0
     hideElements: 1
     layoutToolsFrameType: 0
     showPosRect: 1
@@ -498,7 +498,7 @@ MonoBehaviour:
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
-    showLayoutTools: 1
+    showLayoutTools: 0
     hideElements: 0
     layoutToolsFrameType: 0
     showPosRect: 1
@@ -623,5 +623,5 @@ MonoBehaviour:
   singleElementsSectionToggle: 1
   propertySpecificSectionToggle: 1
   basicGroupsSectionDrawAreaToggle: 1
-  headingGroupsSectionDrawAreaToggle: 1
+  headingGroupsSectionDrawAreaToggle: 0
   singleElementsSectionDrawAreaToggle: 1

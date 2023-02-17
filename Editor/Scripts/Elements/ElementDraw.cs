@@ -128,11 +128,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         private void DrawLayoutToolsPosAndDrawRects()
         {
             Settings settings = LayoutToolsSettingsSource;
-            if ( !settings.showLayoutTools || !ShouldShowLayoutTools() ) return;
+            if ( !settings.showLayoutVisualizations || !ShouldShowLayoutTools() ) return;
             
-            if ( settings.showPosRect ) DrawDebugElementFrame( settings.layoutToolsFrameType, Element.Layout.GetPositionRect(), settings.layoutToolsPosRectColor );
-            if ( settings.showFrameRect ) DrawDebugElementFrame( settings.layoutToolsFrameType, Element.Layout.GetFrameRect(), settings.frameRectColor );
-            if ( settings.showDrawRect ) DrawDebugElementFrame( settings.layoutToolsFrameType, Element.Layout.GetDrawRect(), settings.layoutToolsDrawRectColor );
+            if ( settings.showPosRect ) DrawDebugElementFrame( settings.layoutVisualizationsFrameType, Element.Layout.GetPositionRect(), settings.layoutToolsPosRectColor );
+            if ( settings.showFrameRect ) DrawDebugElementFrame( settings.layoutVisualizationsFrameType, Element.Layout.GetFrameRect(), settings.frameRectColor );
+            if ( settings.showDrawRect ) DrawDebugElementFrame( settings.layoutVisualizationsFrameType, Element.Layout.GetDrawRect(), settings.layoutToolsDrawRectColor );
         }
 
         private void DrawDebugElementFrame( DebugFrameType frameType, Rect frameRect, Color color )

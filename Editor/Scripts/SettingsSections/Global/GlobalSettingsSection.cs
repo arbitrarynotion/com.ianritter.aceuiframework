@@ -14,13 +14,17 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
         
         public override Element GetSection()
         {
-            return GetGroupWithFoldoutHeading( nameof( AceTheme.globalSettingsSectionToggle ), "Global", "Group of elements with a heading.", null,
+            return GetGroupWithFoldoutHeading( nameof( AceTheme.globalSettingsSectionToggle ), 
+                "Global", 
+                "Global settings are applied to all non-root UI elements. A root UI element is one that is not grouped with any other element.", 
+                null,
                 GetElement( GetRelativePathVarName( nameof(GlobalSettings.leftIndentUnitAmount) ), "Indent Unit Amount", "Used for all indents. This is the amount for a single indent." ),
                 GetElement( GetRelativePathVarName( nameof( GlobalSettings.elementVerticalPadding ) ), "Vertical Spacing", "Vertical space between each element." ),
                 GetElement( GetRelativePathVarName( nameof( GlobalSettings.columnGap ) ), "Column Gap", "Gap between elements that share a line." ),
                 
                 // Todo: This debug options section will probably get removed later if it doesn't prove to be useful from a user's perspective.
-                GetGroupWithLabelHeading( "Debugging", string.Empty, null,
+                GetGroupWithFoldoutHeading( GetRelativePathVarName( nameof(GlobalSettings.debugOptionsToggle) ), 
+                    "Debugging", string.Empty, null,
                     // This is for debugging as width truncating can mask layout bugs.
                     GetElement( GetRelativePathVarName( nameof(GlobalSettings.widthTruncating) ), "Width Truncating",
                         "Feature that limits the width of an element to the width of a control rect. The" +

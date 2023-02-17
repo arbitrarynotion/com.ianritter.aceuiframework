@@ -11,7 +11,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
             _childAreaGroup = groupElement;
         }
 
-        // ShowLayoutTools defaults to true so this makes the child area's layout tools visibility dependent on it's parent.
-        protected override bool ShouldShowLayoutTools() => _childAreaGroup.ParentElement.Settings.showLayoutTools;
+        // ShowLayoutVisualizations defaults to true so this makes the child area's layout tools visibility dependent on it's parent.
+        protected override bool ShouldShowLayoutTools() => _childAreaGroup.ParentElement.Settings.showLayoutVisualizations;
     }
 }

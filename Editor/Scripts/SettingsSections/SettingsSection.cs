@@ -18,49 +18,46 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
     [Serializable]
     public abstract class SettingsSection
     {
-        protected readonly CustomFrameSettings NoFrame = new CustomFrameSettings() { applyFraming = false };
-        
-        protected readonly ElementCondition[] NoFilter = new ElementCondition[0];
-        
-        protected AceTheme AceTheme;
-
-        protected string MyRelativeVarName;
-        
-#region Delegates
-
         /// <summary>
         ///     This event is invoked when a data change occurs that justifies a repaint (element values have changed).
         /// </summary>
         public event DataUpdated OnDataUpdated;
-        
-        /// <summary>
-        ///     Used to notify when data that affects the UI data has occured, requiring a redraw.
-        /// </summary>
-        public void DataUpdatedNotify() => OnDataUpdated?.Invoke();
-        
-        
+
         /// <summary>
         ///     This event is invoked when a data change occurs that requires a full UI rebuild (element layout was changed).
         /// </summary>
         public event UIStateUpdated OnUIStateUpdated;
-        
-        /// <summary>
-        ///     Used to notify when data that affects the UI layout has occured, requiring a full UI rebuild.
-        /// </summary>
-        public void UIStateUpdatedNotify() => OnUIStateUpdated?.Invoke();
+
+        protected readonly CustomFrameSettings NoFrame = new CustomFrameSettings() { applyFraming = false };
+
+        protected readonly ElementCondition[] NoFilter = new ElementCondition[0];
+
+        protected AceTheme AceTheme;
+
+        protected string MyRelativeVarName;
+
+
+        public abstract Element GetSection();
         
         public void PrintMyUIStateUpdatedEventSubscribers() => PrintMySubscribers( GetType().Name, OnUIStateUpdated, nameof(UIStateUpdated) );
 
+        public void ClearSubscriptions() => AceTheme.OnColorsUpdated -= OnColorsChanged;
+
+
+        /// <summary>
+        ///     Used to notify when data that affects the UI data has occured, requiring a redraw.
+        /// </summary>
+        protected void DataUpdatedNotify() => OnDataUpdated?.Invoke();
+
+        /// <summary>
+        ///     Used to notify when data that affects the UI layout has occured, requiring a full UI rebuild.
+        /// </summary>
+        protected void UIStateUpdatedNotify() => OnUIStateUpdated?.Invoke();
 
         protected void EstablishSubscriptions() => AceTheme.OnColorsUpdated += OnColorsChanged;
 
-        public void ClearSubscriptions() => AceTheme.OnColorsUpdated -= OnColorsChanged;
-
-#endregion
-
         protected abstract string GetRelativePathVarName( string varName );
 
-        public abstract Element GetSection();
 
         protected ( string varName, string title, string tooltip )[] GetPositionSection(
             string topVarName,
@@ -112,13 +109,45 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
                 subSections.ToArray() );
         }
 
+        protected Element GetTextColorsSection( HeadingElementFrameSettings frameSettings, HeadingElementFrameSettingsVarNames frameVarNames )
+        {
+            return GetGroupWithLabelHeading( "Text Colors", string.Empty, null,
+                AceTheme.GetColorSelectionElement( "Enabled", string.Empty,
+                    frameSettings.enabledTextColorIndex,
+                    frameVarNames.EnabledTextColorIndex, OnColorSelectionChanged,
+                    GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
+                AceTheme.GetColorSelectionElement( "Disabled", string.Empty,
+                    frameSettings.disabledTextColorIndex,
+                    frameVarNames.DisabledTextColorIndex, OnColorSelectionChanged )
+            );
+        }
+
+        protected Element GetLayoutVisualizationSection( params Element[] layoutVisualizationSubsections )
+        {
+            return GetGroup(
+                null,
+                layoutVisualizationSubsections
+            );
+        }
+
+        protected static Element GetLayoutVisualizationSubsection( string title, ElementVarNames varNames, bool indent = false )
+        {
+            return GetCompositeLayoutDrawGroup( title, indent,
+                varNames.LayoutVisualizationsFrameType,
+                varNames.ShowPosRect,
+                varNames.PosRectColor,
+                varNames.ShowFrameRect,
+                varNames.FrameRectColor,
+                varNames.ShowDrawRect,
+                varNames.DrawRectColor
+            );
+        }
+
         private Element GetFrameStyleSection( ElementFrameVarNames frameVarNames, bool skipAutoBorder,
             params Element[] prependStyleElements )
         {
             List<Element> returnList = prependStyleElements.ToList();
-            // if ( !skipAutoBorder )
-            //     returnList.Add( new BasicProperty( frameVarNames.FramePadding, "Frame Padding", string.Empty ) );
-            
+
             returnList.AddRange( GetFrameStyleTypeAndThicknessSection( frameVarNames, skipAutoBorder ) );
             
             return GetGroupWithLabelHeading( "Style", string.Empty, null, returnList.ToArray() );
@@ -142,19 +171,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
             return returnList;
         }
 
-        protected Element GetTextColorsSection( HeadingElementFrameSettings frameSettings, HeadingElementFrameSettingsVarNames frameVarNames )
-        {
-            return GetGroupWithLabelHeading( "Text Colors", string.Empty, null,
-                AceTheme.GetColorSelectionElement( "Enabled", string.Empty,
-                    frameSettings.enabledTextColorIndex,
-                    frameVarNames.EnabledTextColorIndex, OnColorSelectionChanged,
-                    GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
-                AceTheme.GetColorSelectionElement( "Disabled", string.Empty,
-                    frameSettings.disabledTextColorIndex,
-                    frameVarNames.DisabledTextColorIndex, OnColorSelectionChanged )
-            );
-        }
-        
         private Element GetFramesColorsSection( FrameSettings frameSettings, ElementFrameVarNames frameVarNames )
         {
             return GetGroupWithLabelHeading( "Frame Colors", string.Empty, null,
@@ -173,31 +189,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
 
         private void OnColorsChanged() => DataUpdatedNotify();
 
-        protected Element GetLayoutToolsSection( params Element[] layoutToolsSubsections )
-        {
-            return GetGroupWithLabelHeading(
-                "Layout Position and Draw Rects",
-                "Show the outlines of the position boxes used to place each element. " +
-                "Useful in determining exactly what settings are doing when it's not clear.",
-                null,
-                layoutToolsSubsections
-            );
-        }
-
-        protected static Element GetLayoutToolsSubsection( string title, ElementVarNames varNames, bool indent = false )
-        {
-            return GetCompositeLayoutDrawGroup( title, indent,
-                varNames.LayoutToolsFrameType,
-                varNames.ShowPosRect,
-                varNames.PosRectColor,
-                varNames.ShowFrameRect,
-                varNames.FrameRectColor,
-                varNames.ShowDrawRect,
-                varNames.DrawRectColor
-            );
-        }
-
-        public static Element GetCompositeLayoutDrawGroup( string title, bool indent,
+        private static Element GetCompositeLayoutDrawGroup( string title, bool indent,
             string frameTypeVarName, 
             string posRectToggleVarName, string posRectColorVarName, 
             string frameRectToggleVarName, string frameRectColorVarName, 

@@ -381,7 +381,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 //     ),
                 //     
                 //     SettingsSection.GetCompositeLayoutDrawGroup( "Group 1", false,
-                //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutToolsFrameType ),
+                //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutVisualizationsFrameType ),
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.showPosRect ),
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutToolsPosRectColor ),
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.showFrameRect ),
@@ -390,7 +390,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutToolsDrawRectColor ), false
                 //     ),
                 //     SettingsSection.GetCompositeLayoutDrawGroup( "Group 2", false,
-                //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutToolsFrameType ),
+                //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutVisualizationsFrameType ),
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.showPosRect ),
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutToolsPosRectColor ),
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.showFrameRect ),
@@ -399,7 +399,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutToolsDrawRectColor ), false
                 //     ),
                 //     SettingsSection.GetCompositeLayoutDrawGroup( "Group 3", false,
-                //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutToolsFrameType ),
+                //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutVisualizationsFrameType ),
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.showPosRect ),
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutToolsPosRectColor ),
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.showFrameRect ),
@@ -408,7 +408,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutToolsDrawRectColor ), false
                 //     ),
                 //     SettingsSection.GetCompositeLayoutDrawGroup( "Group 4", true,
-                //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutToolsFrameType ),
+                //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutVisualizationsFrameType ),
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.showPosRect ),
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.layoutToolsPosRectColor ),
                 //         relativePathNameSingleElementSettings + "." + nameof( singleElementSettings.showFrameRect ),

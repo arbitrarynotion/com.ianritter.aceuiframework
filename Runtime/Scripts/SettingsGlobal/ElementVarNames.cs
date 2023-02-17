@@ -7,9 +7,9 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
         public readonly string RightPadding;
         public readonly string BottomPadding;
 
-        public readonly string ShowLayoutTools;
+        public readonly string ShowLayoutVisualizations;
         public readonly string HideElements;
-        public readonly string LayoutToolsFrameType;
+        public readonly string LayoutVisualizationsFrameType;
         
         public readonly string ShowPosRect;
         public readonly string PosRectColor;
@@ -29,8 +29,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
             RightPadding = arrayLookupString + nameof( Settings.rightPadding );
             BottomPadding = arrayLookupString + nameof( Settings.bottomPadding );
         
-            LayoutToolsFrameType = arrayLookupString + nameof( Settings.layoutToolsFrameType );
-            ShowLayoutTools = arrayLookupString + nameof( Settings.showLayoutTools );
+            LayoutVisualizationsFrameType = arrayLookupString + nameof( Settings.layoutVisualizationsFrameType );
+            ShowLayoutVisualizations = arrayLookupString + nameof( Settings.showLayoutVisualizations );
             HideElements = arrayLookupString + nameof( Settings.hideElements );
             
             ShowPosRect = arrayLookupString + nameof( Settings.showPosRect );

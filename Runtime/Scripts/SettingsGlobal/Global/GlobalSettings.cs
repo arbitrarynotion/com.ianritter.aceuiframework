@@ -65,6 +65,9 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.G
         
         
         // Debug options
+        [HideInInspector]
+        public bool debugOptionsToggle = false;
+        
         /// <summary>
         /// Turn off the feature that ensures position rects don't exceed the width of the window. Useful for diagnosing
         /// column alignment issues which would otherwise have their source masked by this feature.

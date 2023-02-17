@@ -22,7 +22,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     "The following settings control how much space is allocated to the two parts of an element: label and field." +
                     "When the assigned min width exceeds the width available, the element will draw its field on a second line.", null,
 
-                    GetElement( GetRelativePathVarName( nameof( PropertySpecificSettings.showWideModeBoxes ) ), "Wide Mode Boxes",  
+                    GetElement( GetRelativePathVarName( nameof( PropertySpecificSettings.showWideModeBoxes ) ), "Wide Mode Visuals",  
                         "Highlight elements using custom wide mode. Note: only applied to elements sharing an element line. Green = label, Orange = label end, Yellow = field." +
                         "Note that red line at top marks default wide mode trigger width for non-custom wide mode elements (just for reference)." ),
                     GetGroupWithLabelHeading( "Labels", string.Empty, null,

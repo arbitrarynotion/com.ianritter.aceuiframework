@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.0.3...v1.0.4) (2023-02-17)
+
+
+### Bug Fixes
+
+* layout visualization foldout logic ([23bb986](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/23bb9865d80f3f073f7e85e08ff0d879e0d1bc82))
+
 ## [1.0.3](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.0.2...v1.0.3) (2023-02-16)
 
 

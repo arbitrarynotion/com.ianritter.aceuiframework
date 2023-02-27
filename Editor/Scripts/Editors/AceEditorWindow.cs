@@ -4,7 +4,7 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceRoots;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
 using UnityEditor;
 using UnityEngine;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.ThemeLoader;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services.ObjectLoader;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
 {
@@ -14,10 +14,21 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
         protected AceTheme AceTheme { get; private set; }
         
         // This theme is the data that the menu will be displaying, it has no effect on this window's layout.
-        private AceScriptableObjectRoot TargetScript { get; set; }
+        private AceScriptableObjectRoot TargetScript
+        {
+            get
+            {
+                if ( _targetScript == null )
+                    _targetScript = GetTarget();
+                return _targetScript;
+            }
+            set => _targetScript = value;
+        }
+        private AceScriptableObjectRoot _targetScript;
+        
         public SerializedObject targetSerializedObject;
 
-        protected Element[] Elements { get; set; }
+        protected Element[] Elements { get; private set; }
         
         protected virtual void OnEnableFirst() { }
         protected virtual void OnEnableLast() { }
@@ -44,10 +55,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
             AceTheme = LoadScriptableObject<AceTheme>( GetEditorWindowThemeName() );
             if ( AceTheme == null )
                 Debug.LogError( "Failed to load CET Editor Window theme!" );
-
-            TargetScript = GetTarget();
-            if ( TargetScript == null )
-                throw new NullReferenceException( "Failed to load selected Target Scriptable Object!" );
 
             // The SO will be used to connect the elements to their actual data. The data is not available when
             // elements are initialized so it must be attached later during a manual element initialization phase.

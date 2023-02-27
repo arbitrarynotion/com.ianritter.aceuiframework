@@ -1,11 +1,10 @@
 using System;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
-using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics
+namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services.UIGraphics
 {
-    public static class EditorRectGraphics
+    public static class UIRectGraphics
     {
         /// <summary>
         ///     Draws the provided rect's outline with the specified color and line thickness.
@@ -28,7 +27,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics
         {
             Rect leftRect = rect;
             leftRect.width = lineThickness;
-            EditorGUI.DrawRect( leftRect, outlineColor );
+            DrawRect( leftRect, outlineColor );
         }
 
         /// <summary>
@@ -38,7 +37,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics
         {
             Rect rightRect = rect;
             rightRect.xMin += rightRect.width - lineThickness;
-            EditorGUI.DrawRect( rightRect, outlineColor );
+            DrawRect( rightRect, outlineColor );
         }
         
         /// <summary>
@@ -48,7 +47,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics
         {
             Rect topRect = rect;
             topRect.height = lineThickness;
-            EditorGUI.DrawRect( topRect, outlineColor );
+            DrawRect( topRect, outlineColor );
         }
         
         /// <summary>
@@ -58,7 +57,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics
         {
             Rect bottomRect = rect;
             bottomRect.yMin += bottomRect.height - lineThickness;
-            EditorGUI.DrawRect( bottomRect, outlineColor );
+            DrawRect( bottomRect, outlineColor );
         }
 
         /// <summary>
@@ -66,7 +65,18 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics
         /// </summary>
         public static void DrawSolidRect( Rect rect, Color color )
         {
-            EditorGUI.DrawRect( rect, color );
+            DrawRect( rect, color );
+        }
+
+        // Hijacked this from EditorGUI to detach this class from Editor dependency.
+        private static void DrawRect( Rect rect, Color color )
+        {
+            if ( Event.current.type != EventType.Repaint )
+                return;
+            Color color1 = GUI.color;
+            GUI.color *= color;
+            GUI.DrawTexture( rect, Texture2D.whiteTexture );
+            GUI.color = color1;
         }
 
         /// <summary>
@@ -237,6 +247,24 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics
             return frameType != ElementFrameType.None &&
                    !( frameType == ElementFrameType.SkipBottom
                       || frameType == ElementFrameType.LeftOnly );
+        }
+        
+        
+        public static Texture2D GenerateTexture( int width, int height, Color color )
+        {
+            Color[] pixels = new Color[width * height];
+
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                pixels[i] = color;
+            }
+
+            var backgroundTexture = new Texture2D( width, height );
+
+            backgroundTexture.SetPixels( pixels );
+            backgroundTexture.Apply();
+
+            return backgroundTexture;
         }
     }
 }

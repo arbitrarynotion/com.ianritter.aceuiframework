@@ -1,10 +1,9 @@
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceRoots;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services.ObjectLoader;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 using UnityEditor;
 using UnityEngine;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.ThemeLoader;
-using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
-
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
 {
@@ -21,7 +20,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
         protected override string GetTooltip() => string.Empty;
         
         protected override AceScriptableObjectRoot GetTarget() => 
-            LoadScriptableObject<AceScriptableObjectRoot>( ThemeManagerDatabaseCoreName );
+            LoadScriptableObject<AceScriptableObjectRoot>( ThemeManagerCoreName );
 
         /// <summary>
         ///     Draw the elements to the editor window. Returns true if the settings get changed.

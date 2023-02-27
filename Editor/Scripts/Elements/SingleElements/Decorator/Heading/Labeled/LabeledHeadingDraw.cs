@@ -17,11 +17,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
 
         protected override void DrawElementContents()
         {
-            HeadingGroup labeledGroup = (HeadingGroup) _labeledHeading.ParentElement;
-
-            if (labeledGroup.HeadingGroupSettings.hideFoldoutGroupElements)
-                return;
-
             Rect headingDrawRect = _labeledHeading.HeadingElementLayout.GetDrawRect();
 
             var labelRect = new Rect( headingDrawRect );

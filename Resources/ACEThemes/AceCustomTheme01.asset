@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076b7b2dc8b8fbd4dbb0d0a1a43b111e, type: 3}
   m_Name: AceCustomTheme01
   m_EditorClassIdentifier: 
-  selectedSection: 3
+  logger: {fileID: 11400000, guid: 993055de20daf4b4dbc34b32f77e4a47, type: 2}
+  selectedSection: 2
   basicGroupLevelSettingsMode: 0
   headingGroupLevelSettingsMode: 0
   singleElementsLevelSettingsMode: 0
@@ -26,6 +27,7 @@ MonoBehaviour:
     minMaxWidthPriorityAdjustment: 0
     frameOutlineColor: {r: 0.32, g: 0.32, b: 0.32, a: 1}
     headingTextEnabledColor: {r: 1, g: 1, b: 1, a: 1}
+    debugOptionsToggle: 0
     widthTruncating: 1
     showGridLines: 0
     showMeasurementLines: 0
@@ -40,9 +42,9 @@ MonoBehaviour:
     - name: Green 1
       color: {r: 0.2519464, g: 0.6415094, b: 0.21484515, a: 1}
     - name: Green 2
-      color: {r: 0.1673264, g: 0.4339623, b: 0.14124244, a: 1}
+      color: {r: 0.17955618, g: 0.46226418, b: 0.15045391, a: 1}
     - name: Green 3
-      color: {r: 0.1673264, g: 0.4339623, b: 0.14124244, a: 1}
+      color: {r: 0.13482375, g: 0.33962262, b: 0.11374155, a: 1}
     - name: Green 4
       color: {r: 0.08898064, g: 0.24528301, b: 0.07289071, a: 1}
     - name: Blue 1
@@ -74,13 +76,13 @@ MonoBehaviour:
     - name: Disabled Text
       color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   basicGroupSettingsList:
-  - topPadding: 4
-    leftPadding: 4
-    rightPadding: 4
-    bottomPadding: 4
-    showLayoutTools: 0
+  - topPadding: 0
+    leftPadding: 0
+    rightPadding: 0
+    bottomPadding: 0
+    showLayoutVisualizations: 0
     hideElements: 1
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 1
     layoutToolsPosRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
     showFrameRect: 1
@@ -91,9 +93,9 @@ MonoBehaviour:
     leftPadding: 5
     rightPadding: 5
     bottomPadding: 5
-    showLayoutTools: 0
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 1
     layoutToolsPosRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
     showFrameRect: 0
@@ -104,9 +106,9 @@ MonoBehaviour:
     leftPadding: 5
     rightPadding: 5
     bottomPadding: 5
-    showLayoutTools: 0
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 1
     layoutToolsPosRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
     showFrameRect: 0
@@ -117,9 +119,9 @@ MonoBehaviour:
     leftPadding: 5
     rightPadding: 5
     bottomPadding: 5
-    showLayoutTools: 0
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 1
     layoutToolsPosRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
     showFrameRect: 0
@@ -130,9 +132,9 @@ MonoBehaviour:
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
-    showLayoutTools: 0
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 0
     layoutToolsPosRectColor: {r: 0, g: 0.2, b: 0.4, a: 1}
     showFrameRect: 0
@@ -144,7 +146,7 @@ MonoBehaviour:
     includeBackground: 1
     frameType: 1
     frameOutlineThickness: 2
-    frameAutoPadding: 2
+    frameAutoPadding: 5
     frameOutlineColorIndex: 7
     backgroundColorIndex: 10
   - applyFraming: 1
@@ -176,15 +178,15 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   headingGroupSectionState: 0
-  groupSectionState: 0
+  groupSectionState: 1
   headingGroupSettingsList:
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
-    showLayoutTools: 0
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 1
     layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
     showFrameRect: 1
@@ -192,16 +194,13 @@ MonoBehaviour:
     showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
-    hideFoldoutGroupElements: 0
-    hideToggleGroupElements: 0
-    hideLabelGroupElements: 0
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
-    showLayoutTools: 0
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 0
     layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
     showFrameRect: 0
@@ -209,16 +208,27 @@ MonoBehaviour:
     showDrawRect: 0
     layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
-    hideFoldoutGroupElements: 0
-    hideToggleGroupElements: 0
-    hideLabelGroupElements: 0
+  - topPadding: 3.31
+    leftPadding: 0.65
+    rightPadding: 10
+    bottomPadding: 6.21
+    showLayoutVisualizations: 0
+    hideElements: 0
+    layoutVisualizationsFrameType: 0
+    showPosRect: 0
+    layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
+    showFrameRect: 0
+    frameRectColor: {r: 0, g: 0, b: 0, a: 0}
+    showDrawRect: 0
+    layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
+    useSeparateHeadingSettings: 0
   - topPadding: 0
     leftPadding: 5
     rightPadding: 5
     bottomPadding: 5
-    showLayoutTools: 0
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 0
     layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
     showFrameRect: 0
@@ -226,33 +236,13 @@ MonoBehaviour:
     showDrawRect: 0
     layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
-    hideFoldoutGroupElements: 0
-    hideToggleGroupElements: 0
-    hideLabelGroupElements: 0
-  - topPadding: 0
-    leftPadding: 5
-    rightPadding: 5
-    bottomPadding: 5
-    showLayoutTools: 0
-    hideElements: 0
-    layoutToolsFrameType: 0
-    showPosRect: 0
-    layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
-    showFrameRect: 0
-    frameRectColor: {r: 0, g: 0, b: 0, a: 0}
-    showDrawRect: 0
-    layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
-    useSeparateHeadingSettings: 0
-    hideFoldoutGroupElements: 0
-    hideToggleGroupElements: 0
-    hideLabelGroupElements: 0
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
-    showLayoutTools: 0
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 0
     layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
     showFrameRect: 0
@@ -260,30 +250,27 @@ MonoBehaviour:
     showDrawRect: 0
     layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
-    hideFoldoutGroupElements: 0
-    hideToggleGroupElements: 0
-    hideLabelGroupElements: 0
   childAreaGroupSettingsList:
   - topPadding: 2
     leftPadding: 2
     rightPadding: 2
     bottomPadding: 8
-    showLayoutTools: 1
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
-    showPosRect: 1
+    layoutVisualizationsFrameType: 0
+    showPosRect: 0
     layoutToolsPosRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
-    showFrameRect: 1
+    showFrameRect: 0
     frameRectColor: {r: 0.3930669, g: 0.3930669, b: 0.6886792, a: 1}
-    showDrawRect: 1
+    showDrawRect: 0
     layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
   - topPadding: 0
     leftPadding: 0
     rightPadding: 2
     bottomPadding: 4
-    showLayoutTools: 1
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 1
     layoutToolsPosRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
     showFrameRect: 0
@@ -294,9 +281,9 @@ MonoBehaviour:
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
-    showLayoutTools: 0
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 1
     layoutToolsPosRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
     showFrameRect: 0
@@ -307,9 +294,9 @@ MonoBehaviour:
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
-    showLayoutTools: 0
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 1
     layoutToolsPosRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
     showFrameRect: 0
@@ -320,9 +307,9 @@ MonoBehaviour:
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
-    showLayoutTools: 0
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 0
     layoutToolsPosRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
     showFrameRect: 0
@@ -338,42 +325,42 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 18
     textHorizontalOffset: 0
-    boxHeight: 6.81
+    boxHeight: 10.4
     enabledTextColorIndex: 19
     disabledTextColorIndex: 20
   - applyFraming: 1
-    includeBackground: 0
+    includeBackground: 1
     frameType: 1
     frameOutlineThickness: 3
     frameAutoPadding: 0
     frameOutlineColorIndex: 11
     backgroundColorIndex: 14
-    textHorizontalOffset: 15
+    textHorizontalOffset: 0
     boxHeight: 0
-    enabledTextColorIndex: 0
-    disabledTextColorIndex: 1
+    enabledTextColorIndex: 19
+    disabledTextColorIndex: 20
   - applyFraming: 1
-    includeBackground: 0
+    includeBackground: 1
     frameType: 1
-    frameOutlineThickness: 1
+    frameOutlineThickness: 3
+    frameAutoPadding: 0
+    frameOutlineColorIndex: 7
+    backgroundColorIndex: 10
+    textHorizontalOffset: 0
+    boxHeight: 8.7
+    enabledTextColorIndex: 19
+    disabledTextColorIndex: 20
+  - applyFraming: 1
+    includeBackground: 1
+    frameType: 1
+    frameOutlineThickness: 2
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
-    textHorizontalOffset: 15
+    textHorizontalOffset: 0
     boxHeight: 0
-    enabledTextColorIndex: 0
-    disabledTextColorIndex: 1
-  - applyFraming: 1
-    includeBackground: 0
-    frameType: 1
-    frameOutlineThickness: 1
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
-    textHorizontalOffset: 15
-    boxHeight: 0
-    enabledTextColorIndex: 0
-    disabledTextColorIndex: 1
+    enabledTextColorIndex: 19
+    disabledTextColorIndex: 20
   - applyFraming: 1
     includeBackground: 0
     frameType: 1
@@ -401,9 +388,9 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 16
   - applyFraming: 1
-    includeBackground: 0
-    frameType: 1
-    frameOutlineThickness: 1
+    includeBackground: 1
+    frameType: 2
+    frameOutlineThickness: 4
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 17
@@ -494,13 +481,13 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   singleElementSettingsList:
-  - topPadding: 0
-    leftPadding: 0
-    rightPadding: 0
-    bottomPadding: 0
-    showLayoutTools: 0
+  - topPadding: 2
+    leftPadding: 2
+    rightPadding: 2
+    bottomPadding: 2
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 1
     layoutToolsPosRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
     showFrameRect: 1
@@ -511,9 +498,9 @@ MonoBehaviour:
     leftPadding: 10
     rightPadding: 10
     bottomPadding: 10
-    showLayoutTools: 1
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 1
     layoutToolsPosRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
     showFrameRect: 0
@@ -524,9 +511,9 @@ MonoBehaviour:
     leftPadding: 10
     rightPadding: 10
     bottomPadding: 10
-    showLayoutTools: 1
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 1
     layoutToolsPosRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
     showFrameRect: 0
@@ -537,9 +524,9 @@ MonoBehaviour:
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
-    showLayoutTools: 1
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 1
     layoutToolsPosRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
     showFrameRect: 0
@@ -550,9 +537,9 @@ MonoBehaviour:
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
-    showLayoutTools: 1
+    showLayoutVisualizations: 0
     hideElements: 0
-    layoutToolsFrameType: 0
+    layoutVisualizationsFrameType: 0
     showPosRect: 1
     layoutToolsPosRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
     showFrameRect: 0
@@ -562,11 +549,11 @@ MonoBehaviour:
   singleElementFrameSettingsList:
   - applyFraming: 1
     includeBackground: 1
-    frameType: 1
+    frameType: 7
     frameOutlineThickness: 2
-    frameAutoPadding: 2
-    frameOutlineColorIndex: 15
-    backgroundColorIndex: 16
+    frameAutoPadding: 2.88
+    frameOutlineColorIndex: 4
+    backgroundColorIndex: 6
     skipSingleLineFrames: 1
   - applyFraming: 1
     includeBackground: 0
@@ -605,13 +592,13 @@ MonoBehaviour:
     propertyChildLabelWidth: 75
     propertyLabelEndPadding: 4
     propertyNumberFieldsMinWidth: 40
-    propertySlidersMinWidth: 115
+    propertySlidersMinWidth: 74.2
     propertyStringFieldsMinWidth: 76.6
     propertyBoolsMinWidth: 58
-    propertyColorsMinWidth: 82.5
-    propertyAnimationCurvesMinWidth: 90.1
-    propertyDropDownsMinWidth: 81.9
-    propertySetsMinWidth: 130.7
+    propertyColorsMinWidth: 69
+    propertyAnimationCurvesMinWidth: 105
+    propertyDropDownsMinWidth: 92
+    propertySetsMinWidth: 143
     propertyGenericMinWidth: 96
     minMaxDecimalPlace: 2
     minMaxSliderMinWidth: 157
@@ -623,5 +610,5 @@ MonoBehaviour:
   singleElementsSectionToggle: 1
   propertySpecificSectionToggle: 1
   basicGroupsSectionDrawAreaToggle: 1
-  headingGroupsSectionDrawAreaToggle: 0
+  headingGroupsSectionDrawAreaToggle: 1
   singleElementsSectionDrawAreaToggle: 1

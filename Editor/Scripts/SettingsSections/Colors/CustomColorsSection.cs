@@ -1,7 +1,7 @@
 using System;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Label;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Basic;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Popup;
@@ -9,7 +9,7 @@ using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using UnityEngine;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.AceElementBuilder;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding.AceElementBuilder;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Colors
 {
@@ -29,12 +29,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
         
         public override Element GetSection()
         {
-            return GetGroupWithFoldoutHeading( nameof( AceTheme.colorsSectionToggle ), "Colors", string.Empty,
+            return GetGroupWithFoldoutHeading( nameof( AceTheme.colorsSectionToggle ), "PresetColors", string.Empty,
                 new GroupCustomSettings() {CustomFrameSettings = NoFrame},
 
                 // Custom colors array. Note that the Custom Color class has a property drawer applied to it
                 // which determines how each element in the array is drawn.
-                new BasicProperty( GetRelativePathVarName( AceTheme.GetCustomColorListVarName ), new GUIContent( "Custom Colors" ), new SingleCustomSettings(), OnColorsChanged )
+                new BasicProperty( GetRelativePathVarName( AceTheme.GetCustomColorListVarName ), new GUIContent( "Custom PresetColors" ), new SingleCustomSettings(), OnColorsChanged )
             );
         }
 

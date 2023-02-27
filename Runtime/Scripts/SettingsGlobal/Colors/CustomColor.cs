@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Colors
@@ -14,5 +15,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
             this.name = name;
             this.color = color;
         }
+        
+        public string GetHex() => ColorUtility.ToHtmlStringRGBA( color );
     }
 }

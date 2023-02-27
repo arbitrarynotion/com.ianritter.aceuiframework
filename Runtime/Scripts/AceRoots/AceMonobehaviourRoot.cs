@@ -1,4 +1,6 @@
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.EventHandlers;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services;
 using UnityEngine;
 
 namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRoots
@@ -8,8 +10,9 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRoots
     /// </summary>
     public abstract class AceMonobehaviourRoot : MonoBehaviour
     {
-        // public AceTheme Theme { get; set; }
-
+        [HideInInspector]
+        public AceEventHandler aceEventHandler;
+        protected CustomLogger logger;
         /// <summary>
         ///     Provides a list of Elements which tells the editor how to draw the inspector.
         /// </summary>

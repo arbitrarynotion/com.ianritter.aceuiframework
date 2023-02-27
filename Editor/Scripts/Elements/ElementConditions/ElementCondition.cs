@@ -3,7 +3,7 @@ using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementConditions
 {
     public class ElementCondition
     {

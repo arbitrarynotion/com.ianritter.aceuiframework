@@ -1,7 +1,7 @@
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts;
 using UnityEditor;
 using UnityEngine;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorRectGraphics;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services.UIGraphics.UIRectGraphics;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties
 {

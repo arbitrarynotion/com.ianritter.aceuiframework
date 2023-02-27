@@ -16,6 +16,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.PropertyDrawers
                 stringRect.height = EditorGUIUtility.singleLineHeight + 2f;
                 float singleFieldWidth = ( position.width / 2f ) - 4f;
                 stringRect.width = singleFieldWidth;
+                
                 var colorFieldRect = new Rect( position );
                 colorFieldRect.height = EditorGUIUtility.singleLineHeight + 2f;
                 colorFieldRect.xMin += singleFieldWidth + 4f;

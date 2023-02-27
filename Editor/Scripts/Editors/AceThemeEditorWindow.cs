@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
@@ -5,7 +6,7 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceRoots;
 using UnityEditor;
 using UnityEngine;
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorMeasurementLineGraphics;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.ThemeLoader;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services.ObjectLoader;
 using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
@@ -19,10 +20,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
         [MenuItem( ThemeSettingsWindowMenuItemName )]
         public static void OpenCustomEditorToolSettings() => GetWindow<AceThemeEditorWindow>();
         
-        private List<AceTheme> _existingThemes;
-
-        private string[] _themeOptions;
-        private int _selectedThemeIndex = 2;
+        public int selectedThemeIndex;
         
         protected override Vector2 GetEditorWindowMinSize() => new Vector2( 375, 300);
 
@@ -33,41 +31,39 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
         
         private Vector2 _scrollPosition;
 
+        private AceThemeManager _themeManager;
+
 
         protected override void OnEnableFirst()
         {
-            InitializeLists();
+            _themeManager = GetAssetsByType<AceThemeManager>().FirstOrDefault();
+            if ( _themeManager == null )
+                throw new NullReferenceException( "Unable to load theme manager.");
         }
 
-        private void InitializeLists()
-        {
-            _existingThemes = GetAllThemes().ToList();
-            _themeOptions = GetThemeOptions();
-        }
-        
-        private string[] GetThemeOptions()
-        {
-            string[] themeOptions = new string[_existingThemes.Count];
-            for (int i = 0; i < _existingThemes.Count; i++)
-            {
-                themeOptions[i] = $"({i.ToString()}) {_existingThemes[i].name}";
-            }
-            return themeOptions;
-        }
+        // private string[] GetThemeOptions()
+        // {
+        //     List<AceTheme> themes = _themeManager.GetThemeList();
+        //     string[] themeOptions = new string[themes.Count];
+        //     for (int i = 0; i < themes.Count; i++)
+        //     {
+        //         themeOptions[i] = $"({i.ToString()}) {themes[i].name}";
+        //     }
+        //     return themeOptions;
+        // }
         
         private void ThemeDropdownUpdated() => PerformTargetSwap();
 
         protected override AceScriptableObjectRoot GetTarget()
         {
-            Debug.Log( $"ACETEW|GT: Getting target theme..." );
-            if ( _selectedThemeIndex > ( _existingThemes.Count - 1 ) )
-            {
-                Debug.Log( $"ACETEW|GT:     theme index {_selectedThemeIndex.ToString()} exceeds existing lists length of {_existingThemes.Count.ToString()}." );
-
-                InitializeLists();
-            }
-                
-            return _existingThemes[_selectedThemeIndex];
+            return _themeManager.GetThemeForIndex( selectedThemeIndex );
+            
+            // List<AceTheme> themes = _themeManager.GetThemeList();
+            // Debug.Log( $"{name}: Getting target theme..." );
+            // if ( selectedThemeIndex > ( themes.Count - 1 ) )
+            //     Debug.LogWarning( $"{name}: theme index {selectedThemeIndex.ToString()} exceeds existing list's length of {themes.Count.ToString()}." );
+            //
+            // return themes[selectedThemeIndex];
         }
 
         /// <summary>
@@ -80,13 +76,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField( "Selected theme:" );
-            _selectedThemeIndex = EditorGUILayout.Popup( _selectedThemeIndex, _themeOptions );
+            selectedThemeIndex = EditorGUILayout.Popup( selectedThemeIndex, _themeManager.GetThemeOptions() );
             EditorGUILayout.EndHorizontal();
             if ( EditorGUI.EndChangeCheck() )
             {
                 ThemeDropdownUpdated();
             }
-            EditorGUILayout.LabelField( $" {_existingThemes[_selectedThemeIndex].name}" );
+            EditorGUILayout.LabelField( $" {_themeManager.GetThemeForIndex(selectedThemeIndex).name}" );
             
             // Draw the first three elements: divider, enums field, divider.
             for (int i = 0; i < 3; i++)
@@ -95,8 +91,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
             }
             
             // Then start scroll field and draw the rest of the elements.
-            _scrollPosition = GUILayout.BeginScrollView( _scrollPosition, GUILayout.Width( position.width ),
-                GUILayout.Height( position.height - 80 ) );
+            _scrollPosition = GUILayout.BeginScrollView( _scrollPosition, GUILayout.Width( position.width ), GUILayout.Height( position.height - 80 ) );
             {
                 for (int i = 3; i < Elements.Length; i++)
                 {

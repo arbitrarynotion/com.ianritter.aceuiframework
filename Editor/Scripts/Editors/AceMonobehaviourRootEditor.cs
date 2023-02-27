@@ -1,20 +1,24 @@
 using System.Linq;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRoots;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding;
 using UnityEditor;
 using UnityEngine;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.ElementInfoConverter;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding.ElementInfoConverter;
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorMeasurementLineGraphics;
 using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.DefaultInspectorDrawing;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.ThemeLoader;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services.ObjectLoader;
 using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.AceDelegates;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
 {
+    /* When this script is the root of a class hierarchy, all child classes 
+     * 
+     */
+    
     [CustomEditor( typeof( AceMonobehaviourRoot ), true )]
     public class AceMonobehaviourRootEditor : UnityEditor.Editor
     {
@@ -22,7 +26,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
         private AceMonobehaviourRoot _targetScript;
 
         private Element[] _inspectorElements;
-        private AceThemeManagerDatabase _themeManagerDatabase;
+        private AceThemeManager _themeManager;
 
         private AceTheme _theme;
 
@@ -33,8 +37,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
         /// </summary>
         private void OnEnable()
         {
-            _themeManagerDatabase = LoadScriptableObject<AceThemeManagerDatabase>( ThemeManagerDatabaseCoreName );
-            _themeManagerDatabase.OnThemeAssignmentChanged += OnTargetsThemeAssignmentUpdated;
+            _themeManager = LoadScriptableObject<AceThemeManager>( ThemeManagerCoreName );
+            _themeManager.OnThemeAssignmentChanged += OnTargetsThemeAssignmentUpdated;
             
             _targetSerializedObject = serializedObject;
             _targetScript = (AceMonobehaviourRoot) target;
@@ -60,7 +64,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
 
         private void UpdateTargetsTheme()
         {
-            AceTheme newTheme = _themeManagerDatabase.GetThemeForScript( _targetScript.GetType().ToString().Split( '.' ).Last() );
+            AceTheme newTheme = _themeManager.GetThemeForScript( _targetScript.GetType().ToString().Split( '.' ).Last() );
             Debug.Log( $"AMRE|UTT: {_targetScript.name}'s theme was changed to {(newTheme != null ? newTheme.name : "null")}." );
             
             // Initialize theme on first run.
@@ -71,7 +75,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
                 _theme.OnDataUpdated += OnThemeUpdated;
                 _theme.OnUIStateUpdated += OnThemeUpdated;
                 Debug.Log( $"AMRE|UTT:     {_targetScript.name} has subscribed to changes in {_theme.name}." );
-                _theme.PrintMyUIStateUpdatedNotifySubscribers();
+                // _theme.PrintMyUIStateUpdatedNotifySubscribers();
             }
             else
             {
@@ -89,21 +93,14 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
 
         private void OnTargetsThemeAssignmentUpdated()
         {
+            Debug.Log( $"{name}: Notified to update my theme." );
             UpdateTargetsTheme();
             OnTargetUiStateUpdated();
         }
 
         private void GetInspectorElementsListFromTarget()
         {
-            // _inspectorElements = _targetScript.GetElementList();
-
-            
-            ElementInfo[] elementInfos = _targetScript.GetElementInfoList();
-            _inspectorElements = new Element[ elementInfos.Length ];
-            for (int i = 0; i < elementInfos.Length; i++)
-            {
-                _inspectorElements[i] = ConvertElement( elementInfos[i] );
-            }
+            _inspectorElements = ConvertElementInfoList( _targetScript.GetElementInfoList() );
 
             // Initialize the inspector elements.
             foreach (Element element in _inspectorElements)
@@ -140,7 +137,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors
                 _theme.OnDataUpdated -= OnThemeUpdated;
             
             _targetScript.OnTargetUIStateChanged -= OnTargetUiStateUpdated;
-            _themeManagerDatabase.OnThemeAssignmentChanged -= OnTargetsThemeAssignmentUpdated;
+            _themeManager.OnThemeAssignmentChanged -= OnTargetsThemeAssignmentUpdated;
             
             OnDisableInclusions();
         }

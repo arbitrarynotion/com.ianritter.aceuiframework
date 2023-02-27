@@ -1,24 +1,26 @@
 using System;
+using System.Linq;
 using JetBrains.Annotations;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.BasicGroup;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.CompositeGroup;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.HeadingGroup.FoldOut;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.HeadingGroup.Labeled;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.HeadingGroup.Toggle;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Button;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Button.Basic;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Button.Tab;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Label;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Basic;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.MinMaxSlider;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Popup;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding
 {
     public static class AceElementBuilder
     {
@@ -31,7 +33,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
             string title, 
             string tooltip = "" )
         {
-            return new BasicProperty( varName, new GUIContent( new GUIContent( title, tooltip ) ), new SingleCustomSettings(), null );
+            return new BasicProperty( varName, new GUIContent( title, tooltip ), new SingleCustomSettings(), null );
         }
         
         /// <summary>
@@ -55,7 +57,26 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
             bool hideOnDisable = false, 
             params ElementCondition[] conditions )
         {
-            return new BasicProperty( varName, new GUIContent( new GUIContent( title, tooltip ) ), settings ?? new SingleCustomSettings(), null, hideOnDisable, conditions );
+            return new BasicProperty( varName, new GUIContent( title, tooltip ), settings ?? new SingleCustomSettings(), null, hideOnDisable, conditions );
+        }
+        
+        /// <summary>
+        ///     Get basic single element using both settings and conditions.
+        /// </summary>
+        public static Element GetPopupElement( 
+            string varName, 
+            GUIContent guiContent, 
+            string[] options,
+            [CanBeNull] SingleCustomSettings settings, 
+            Action callback,
+            bool hideOnDisable = false, 
+            params ElementCondition[] conditions )
+        {
+            return new PopupElement( varName, 
+                guiContent, 
+                options,
+                settings ?? new SingleCustomSettings(), 
+                callback, hideOnDisable, conditions );
         }
         
 #endregion
@@ -78,7 +99,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
         public static Element GetLabelElement( 
             string title, string tooltip )
         {
-            return new LabelElement( new GUIContent( new GUIContent( title, tooltip ) ) );
+            return new LabelElement( new GUIContent( title, tooltip ) );
         }
         
         /// <summary>
@@ -98,7 +119,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
             string title, string tooltip, 
             [CanBeNull] SingleCustomSettings settings )
         {
-            return new LabelElement( new GUIContent( new GUIContent( title, tooltip ) ), false, settings );
+            return new LabelElement( new GUIContent( title, tooltip ), false, settings );
         }
         
 #endregion
@@ -114,7 +135,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
         //     string minVarName, string maxVarName, float minLimit, float maxLimit )
         // {
         //     return new MinMaxSliderElement( 
-        //         new GUIContent( new GUIContent( title, tooltip ) ), 
+        //         new GUIContent( title, tooltip ), 
         //         minVarName, 
         //         maxVarName, 
         //         minLimit, 
@@ -141,7 +162,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
             params ElementCondition[] conditions )
         {
             return new MinMaxSliderElement( 
-                new GUIContent( new GUIContent( title, tooltip ) ), 
+                new GUIContent( title, tooltip ), 
                 minVarName, 
                 maxVarName, 
                 minLimit, 
@@ -166,6 +187,37 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
             return new DividingLineElement();
         }
         
+        /// <summary>
+        ///     Get divider element.
+        /// </summary>
+        public static Element GetDividerElement( float boxHeight, float dividerThickness)
+        {
+            return new DividingLineElement( boxHeight, dividerThickness );
+        }
+        
+#endregion
+
+
+#region ButtonElements
+
+        /// <summary>
+        ///     Get divider element.
+        /// </summary>
+        public static Element GetBasicButton(
+            GUIContent guiContent,
+            bool focused,
+            SingleCustomSettings singleCustomSettings,
+            Action callback
+            )
+        {
+            return new BasicButtonElement( 
+                guiContent,
+                focused,
+                singleCustomSettings,
+                callback 
+            );
+        }
+
 #endregion
 
         
@@ -210,7 +262,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
                 elements[index++] = element;
             }
             
-            return new FoldoutGroup( toggleVarName, new GUIContent( new GUIContent( title, tooltip ) ), customSettings, elements );
+            return new FoldoutGroup( toggleVarName, new GUIContent( title, tooltip ), customSettings, elements );
         }
         
         /// <summary>
@@ -232,7 +284,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
                 elements[index++] = element;
             }
 
-            return new FoldoutGroup( toggleVarName, new GUIContent( new GUIContent( title, tooltip ) ), customSettings, elements );
+            return new FoldoutGroup( toggleVarName, new GUIContent( title, tooltip ), customSettings, elements );
         }
         
         /// <summary>
@@ -293,6 +345,45 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
             params Element[] elements )
         {
             return new LabeledGroup( new GUIContent( title, tooltip ), customSettings, elements );
+        }
+        
+        // /// <summary>
+        // ///     Get a foldout group using a toggle, groups settings, and a variable list of elements.
+        // /// </summary>
+        // public static Element GetGroupWithLabelHeading( 
+        //     string title, 
+        //     string tooltip, 
+        //     [CanBeNull] GroupCustomSettings customSettings, 
+        //     Element[] elementList,
+        //     params Element[] elements )
+        // {
+        //     elementList.ToList().Concat( elements.ToList() );
+        //     return new LabeledGroup( new GUIContent( title, tooltip ), customSettings, elementList.ToArray() );
+        // }
+        
+        /// <summary>
+        ///     Get a foldout group using a toggle, groups settings, a list of elements, and a variable list of elements.
+        /// </summary>
+        public static Element GetGroupWithLabelHeading( 
+            string title, 
+            string tooltip, 
+            [CanBeNull] GroupCustomSettings customSettings, 
+            Element[] elementList,
+            params Element[] elementsSingles )
+        {
+            Element[] elements = new Element[elementList.Length + elementsSingles.Length];
+            int index = 0;
+            foreach ( Element element in elementList )
+            {
+                elements[index++] = element;
+            }
+
+            foreach ( Element element in elementsSingles )
+            {
+                elements[index++] = element;
+            }
+            
+            return new LabeledGroup( new GUIContent( title, tooltip ), customSettings, elements.ToArray() );
         }
 
 #endregion
@@ -501,7 +592,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
 //                 elements[index++] = element;
 //             }
 //             
-//             return new FoldoutGroup( toggleVarName, new GUIContent( new GUIContent( title, tooltip ) ), customSettings, elements );
+//             return new FoldoutGroup( toggleVarName, new GUIContent( title, tooltip ), customSettings, elements );
 //         }
 //         
 //         /// <summary>
@@ -523,7 +614,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
 //                 elements[index++] = element;
 //             }
 //
-//             return new FoldoutGroup( toggleVarName, new GUIContent( new GUIContent( title, tooltip ) ), customSettings, elements );
+//             return new FoldoutGroup( toggleVarName, new GUIContent( title, tooltip ), customSettings, elements );
 //         }
 //         
 //         /// <summary>

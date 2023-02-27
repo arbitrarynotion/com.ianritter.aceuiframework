@@ -1,6 +1,5 @@
 using System;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.BasicGroup;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.CompositeGroup;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.HeadingGroup.FoldOut;
@@ -13,12 +12,15 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElemen
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding
 {
+    /// <summary>
+    ///     Convert ElementInfo into Element for the Ace UI Framework.
+    /// </summary>
     public static class ElementInfoConverter
     {
         // Receive element info and return the instantiated element.
-        public static Element ConvertElement( ElementInfo elementInfo )
+        private static Element ConvertElement( ElementInfo elementInfo )
         {
             switch ( elementInfo.ElementType )
             {
@@ -119,7 +121,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding
         }
 
 
-        private static Element[] ConvertElementInfoList( ElementInfo[] elementInfos )
+        public static Element[] ConvertElementInfoList( ElementInfo[] elementInfos )
         {
             Element[] elements = new Element[ elementInfos.Length ];
             for (int i = 0; i < elementInfos.Length; i++)

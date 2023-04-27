@@ -1,10 +1,10 @@
 using System;
+using UnityEngine;
 using JetBrains.Annotations;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
-using UnityEngine;
+using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
 
 namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding
 {
@@ -258,6 +258,20 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
     public static class RuntimeElementBuilder
     {
 #region SingleElement
+        
+        
+        /// <summary>
+        ///     Get basic single element.
+        /// </summary>
+        public static ElementInfo GetElement( string varName )
+        {
+            return new BasicPropertyInfo( 
+                varName, 
+                new GUIContent( NicifyVariableName( varName ) ), 
+                new SingleCustomSettings(), 
+                null
+            );
+        }
         
         /// <summary>
         ///     Get basic single element.

@@ -20,9 +20,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         {
             var foldoutGroup = (HeadingGroup) _foldoutHeading.ParentElement;
 
-            if (foldoutGroup.HeadingGroupSettings.hideFoldoutGroupElements)
-                return;
-
             Rect headingDrawRect = _foldoutHeading.HeadingElementLayout.GetDrawRect();
 
             // Foldouts are offset horizontally by -15 by default which aligns their label to others but leaves their arrow sticking out

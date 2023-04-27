@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.CompositeGroup;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;

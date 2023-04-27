@@ -1,7 +1,7 @@
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.PropertySpecific;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.AceElementBuilder;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding.AceElementBuilder;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.PropertySpecific
 {
@@ -38,7 +38,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                         GetElement( GetRelativePathVarName( nameof( PropertySpecificSettings.propertySlidersMinWidth ) ), "Sliders", string.Empty ),
                         GetElement( GetRelativePathVarName( nameof( PropertySpecificSettings.propertyStringFieldsMinWidth ) ), "Strings", string.Empty ),
                         // ( GetRelativePathVarName( nameof( PropertySpecificSettings.propertyBoolsMinWidth ) ), "Bools", string.Empty ),
-                        GetElement( GetRelativePathVarName( nameof( PropertySpecificSettings.propertyColorsMinWidth ) ), "Colors", string.Empty ),
+                        GetElement( GetRelativePathVarName( nameof( PropertySpecificSettings.propertyColorsMinWidth ) ), "PresetColors", string.Empty ),
                         GetElement( GetRelativePathVarName( nameof( PropertySpecificSettings.propertyAnimationCurvesMinWidth ) ), "Animation Curves", string.Empty ),
                         GetElement( GetRelativePathVarName( nameof( PropertySpecificSettings.propertyDropDownsMinWidth ) ), "Drop Downs", string.Empty ),
                         GetElement( GetRelativePathVarName( nameof( PropertySpecificSettings.propertySetsMinWidth ) ), "Sets", string.Empty ),

@@ -1,3 +1,16 @@
 {
-	"name": "ianritter.aceuiframework"
+    "name": "ianritter.aceuiframework",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8c64a276186c0884daeeeee55360faa8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

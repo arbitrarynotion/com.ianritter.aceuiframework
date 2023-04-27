@@ -1,0 +1,191 @@
+﻿@startuml AceSystemArchitecture
+
+!theme reddress-darkblue
+' !theme reddress-darkorange
+' !include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/cyborg/puml-theme-cyborg.puml
+
+
+package "Assets/UserThemes" <<Database>> {
+    class InstantiatedTheme{
+        
+    }
+
+    ' InstantiatedTheme -up-> AceTheme #4AEA2A : Instance of
+}
+
+package "Editor" <<Folder>> {
+    
+    package "UnityEditor" <<Folder>>{
+    class Editor{
+    }
+    Editor -up-> InspectorUI : Draws to
+
+    class EditorWindow{
+    }
+    EditorWindow -up-> EditorWindowUI : Draws to
+    }
+
+
+    package "AceCore" <<Frame>>{    
+        class AceTheme{
+        
+        }
+
+        class AceThemeManager{
+
+        }
+
+        ' InstantiatedTheme -up-> AceTheme #4AEA2A : Instance of
+        
+    }
+
+    ' note top of AceTheme
+    '     Theme instances are loaded
+    '     into the ThemeManager where
+    '     they are assigned to a
+    '     AceMonoBehaviorRoot script type
+    ' end note
+    
+    package "RootEditors" <<Frame>> {
+        
+        abstract class AceScriptableObjectEditorRoot{
+            - Element[]: elementList
+            + Element[]: GetElementList()
+            - AceTheme: theme
+        }
+
+        class AceMonoBehaviourRootEditor{
+        
+        }
+        class AceMonoBehaviourRootEditor extends Editor
+
+        class AceTheme implements AceScriptableObjectEditorRoot
+        class AceThemeManager implements AceScriptableObjectEditorRoot
+
+    }
+
+    package "Elements" <<Frame>>{
+        class Element{
+
+        }
+        Element --* AceScriptableObjectEditorRoot::elementList
+    }
+
+    package "InspectorUI" <<Cloud>>{
+        
+    }
+
+    package "EditorWindowUI" <<Cloud>>{
+        
+    }
+    
+    
+
+    package "EditorWindows" <<Frame>>{
+        
+        abstract class AceEditorWindow{
+
+        }
+
+        class AceThemeEditorWindow{
+            
+        }
+
+        class AceThemeManagerEditorWindow{
+            
+        }
+        
+        
+
+        
+
+        class AceThemeEditorWindow extends AceEditorWindow
+        class AceThemeManagerEditorWindow extends AceEditorWindow
+        class AceEditorWindow extends EditorWindow
+        
+    }
+    ' note bottom of AceMonoBehaviourRootEditor
+    '     ElementInfo[] is converted
+    '     to Element[] via 
+    '     ElementInfoConverter
+    ' end note
+
+    
+    
+}
+
+
+
+package "Runtime" <<Folder>> {
+
+    AceThemeEditorWindow -[#blue,dotted,thickness=4]- AceTheme : Editor for
+    AceThemeManagerEditorWindow -[#blue,dotted,thickness=4]- AceThemeManager : Editor for
+    
+    
+    package "Demos" <<Frame>>{
+        class Demo{
+            + ElementInfo[]: GetElementInfoList()
+        }
+        
+        
+    }
+    
+
+    package "ElementBuilder" <<Frame>>{
+        abstract class ElementInfo{
+            
+        }
+        ' ElementInfo --o Demo::GetElementInfoList
+        Demo::GetElementInfoList o-right- ElementInfo
+    }
+    
+    
+    
+    
+    package "Roots" <<Frame>> {
+        
+        abstract class AceScriptableObjectRuntimeRoot{
+            + ElementInfo[]: GetElementInfoList()
+            - AceTheme: theme
+        }
+
+        abstract class AceMonoBehaviourRoot{
+            {abstract} + ElementInfo[]: GetElementInfoList()
+            - AceTheme: theme
+           
+        }
+
+        
+
+        
+
+        InstantiatedTheme --o AceMonoBehaviourRoot::theme
+        InstantiatedTheme --o AceScriptableObjectRuntimeRoot::theme
+        InstantiatedTheme --o AceScriptableObjectEditorRoot::theme
+
+        
+        class Demo implements AceMonoBehaviourRoot
+
+        AceMonoBehaviourRootEditor -[#blue,dotted,thickness=4]- AceMonoBehaviourRoot : Editor for
+
+        
+            
+    }
+
+    ScriptableObjects --o AceScriptableObjectEditorRoot::theme
+
+
+    ' package "Services" <<Frame>>{
+        
+    '     class ObjectLoader{
+
+    '     }
+
+        
+    '     ObjectLoader --> DefaultTheme : Loads
+    '     ObjectLoader <-- DefaultTheme
+    ' }
+}
+
+
+@enduml

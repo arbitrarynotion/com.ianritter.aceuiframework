@@ -20,9 +20,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         {
             var toggleGroup = (HeadingGroup) _toggleHeading.ParentElement;
 
-            if ( toggleGroup.HeadingGroupSettings.hideFoldoutGroupElements )
-                return;
-
             Rect headingDrawRect = Element.Layout.GetDrawRect();
 
             var toggleRect = new Rect( headingDrawRect );

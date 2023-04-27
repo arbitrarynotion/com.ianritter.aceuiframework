@@ -1,0 +1,70 @@
+﻿@startuml Theme Manager Sequence Diagram
+
+!$orange1 = "#D7983C"
+!$orange2 = "#E2B16A"
+!$orange3 = "#F8D79F"
+
+hide footbox
+Participant ThemeManger as TM
+Participant TMListHandler as TML
+Participant ObjectLoader as OL
+Participant TMButtonHandler as TMB
+
+== Initialization ==
+[-> TM ++  $orange1 : <<**UnityEvent**>>\nOnEnable()
+TM -> TML ++ $orange1 : Instantiate
+activate OL $orange1
+TML -> OL ++ $orange2 : LoadScriptableObject()
+return DefaultTheme
+TM -> TMB ++ $orange1: Instantiate
+TM -> TML : GetThemeInfoList()
+TML -> TML ++ $orange2 : GetAllAceUsers()
+return ExistingScripts
+TML -> OL ++ $orange2 : GetAssetsByType()
+return ExistingThemes
+deactivate OL
+TML -> TML : PurgeDeletedScripts()
+TML -> TML : AddNewScripts()
+TM <- TML : <<**Event**>> \nUIStateUpdatedNotify()
+[<- TM : <<**Event**>> \nUIStateUpdatedNotify()
+
+== Draw UI ==
+
+[-> TM : <<**AceScriptableObjectRoot**>>\nGetElementList()
+TM -> TM ++ $orange2 : GetScriptAndThemeDropdown()
+TM -> TML ++ $orange2 : GetThemesList().Count
+return Count
+TM -> TMB ++ $orange2 : GetButtons()
+return Element[]
+deactivate TMB
+[<-- TM : Element[]
+deactivate TM
+
+== Callbacks ==
+
+[-> TM ++ $orange2 : <<**Button Callback**>> \nScriptDropdownUpdated()
+[<- TM : <<**Event**>> \nDataUpdateRequiredNotify()
+TM -> TM ++ $orange3 : GetSelectedScriptsThemeIndex()
+TM -> TML ++ $orange2 : GetThemesList()
+TM -> TM : GetSelectScript().theme
+return Index of Selected Script
+return Set Selected Script to Index
+[<- TM : <<**Event**>> \nUIStateUpdatedNotify()
+deactivate TM
+
+
+
+[-> TM ++ $orange2 : <<**Button Callback**>> \nThemeDropdownUpdated()
+[<- TM : <<**Event**>> \nDataUpdateRequiredNotify()
+TM -> TM ++ $orange3 : GetSelectScript()
+return ScriptThemeInfo for Selected Script
+TM -> TML ++ $orange2 : GetThemeForIndex()
+return Theme for Index
+deactivate TML
+[<- TM : <<**Event**>> \nThemeAssignmentChangedNotify()
+[<- TM : <<**Event**>> \nUIStateUpdatedNotify()
+deactivate TM
+
+
+
+@enduml

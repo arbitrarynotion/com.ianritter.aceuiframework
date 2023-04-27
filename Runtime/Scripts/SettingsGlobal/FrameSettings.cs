@@ -1,5 +1,5 @@
 using System;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Enums;
 using UnityEngine;
 
 namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal

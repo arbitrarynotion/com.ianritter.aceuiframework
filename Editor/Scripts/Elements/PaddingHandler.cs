@@ -1,6 +1,5 @@
 using UnityEngine;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorRectGraphics;
-
+using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.UIGraphics.UIRectGraphics;
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 {
     // Note: Padding is spaced added between the assigned position rect and the draw rect which is
@@ -10,24 +9,14 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
     // is to increase the versatility of the frame offset settings.
     public class PaddingHandler
     {
-#region Private Class Data
-
         private Element Element { get; }
 
-#endregion
-
-
-#region Constructors
-
+        
         public PaddingHandler( Element element )
         {
             Element = element;
         }
-
-#endregion
-
-
-#region Public Methods
+        
 
         public float GetLeftEdgePadding() => Element.Layout.GetLeftEdgeTypeBasedAdjustment() +
                                              Element.Layout.GetCustomLeftIndentAmount() +
@@ -65,11 +54,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
             baseRect.xMax -= GetGlobalRightEdgePadding();
             return baseRect;
         }
-
-#endregion
-
-
-#region Private Methods
 
         private float GetColumnLeftPadding() =>
             Element.HasParent() && !Element.HasOwnLine() && !Element.Layout.IsFirstOnLine
@@ -125,7 +109,5 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 
         private float GetGlobalBottomEdgePadding() =>
             Element.Layout.ShouldApplyGlobalBottomPadding() ? Element.Settings.bottomPadding : 0;
-
-#endregion
     }
 }

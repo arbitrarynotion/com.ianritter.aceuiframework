@@ -1,23 +1,23 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots;
 using UnityEditor;
 using UnityEngine;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceRoots;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Label;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Colors;
-using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
-using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services.TextFormat;
-
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding.AceElementBuilder;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
+using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
+using static Packages.com.ianritter.unityscriptingtools.Editor.AssetLoader;
+
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 {
     [CreateAssetMenu( menuName = ThemeManagerAssetMenuName )]
-    public class AceThemeManager : AceScriptableObjectRoot
+    public class AceThemeManager : AceScriptableObjectEditorRoot
     {
         [SerializeField] [HideInInspector]
         private int selectedScriptIndex = 0;
@@ -30,7 +30,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         private TMListHandler _tmListHandler;
         private TMButtonHandler _tmButtonHandler;
 
-        private ColorPickerHandler _colorPickerHandler;
+        // private ColorPickerHandler _colorPickerHandler;
         
         
         
@@ -41,11 +41,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         private void ThemeAssignmentChangedNotify()
         {
             OnThemeAssignmentChanged?.Invoke();
-            logger.LogStart( MethodBase.GetCurrentMethod() );
+            logger.LogStart();
             
-            logger.Log( $"{name}'s subscribers:", true );
+            logger.LogIndentStart( $"{GetColoredStringOrange( logger.ApplyNameFormatting( name ) )}'s " +
+                                   $"subscribers (all open Inspector window targets):" );
             PrintSubscribersForEvent( OnThemeAssignmentChanged, nameof( OnThemeAssignmentChanged ) );
-            logger.LogEnd( MethodBase.GetCurrentMethod() );
+            logger.DecrementMethodIndent();
+            logger.LogEnd();
             
         }
         
@@ -64,22 +66,22 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             logger.Log( "On enable called..." );
             _tmListHandler = new TMListHandler( this, logger );
             _tmButtonHandler = new TMButtonHandler( _tmListHandler, this, logger );
-            var customColorPickerLogger = ObjectLoader.LoadScriptableObject<CustomLogger>( "ColorPickerLogger" );
-            _colorPickerHandler = new ColorPickerHandler( 
-                customColorPickerLogger, 
-                new Rect( new Vector2( 0, 0 ), new Vector2( 0, 0) ), 
-                new Vector2(350, 400), 
-                5 );
-            
-            if ( _colorPickerHandler == null )
-            {
-                logger.LogError( "Color Picker is null!" );
-            }
+            var customColorPickerLogger = LoadScriptableObject<CustomLogger>( "ColorPickerLogger" );
+            // _colorPickerHandler = new ColorPickerHandler(
+            //     new Vector2( 10f, 10f ), 
+            //     new Vector2(350, 400), 
+            //     5
+            // );
+            //
+            // if ( _colorPickerHandler == null )
+            // {
+            //     logger.LogError( "Color Picker is null!" );
+            // }
 
             // Rebuild the scripts list any time files are changed in the project window.
             EditorApplication.projectChanged += OnProjectChanged;
             OnScriptsReloaded += OnScriptsReloadedUpdate;
-            _colorPickerHandler.OnColorSelected += OnColorSelection;
+            // _colorPickerHandler.OnColorSelected += OnColorSelection;
             
             
             RefreshScriptThemeInfoList();
@@ -89,14 +91,14 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         {
             EditorApplication.projectChanged -= OnProjectChanged;
             OnScriptsReloaded -= OnScriptsReloadedUpdate;
-            _colorPickerHandler.OnColorSelected -= OnColorSelection;
+            // _colorPickerHandler.OnColorSelected -= OnColorSelection;
         }
 
-        private void OnColorSelection( CustomColor color )
-        {
-            logger.Log( $"Color picker returned color: {GetColoredString( color.name, color.GetHex() )}" );
-            _colorPickerHandler.Close();
-        }
+        // private void OnColorSelection( CustomColor color )
+        // {
+        //     logger.Log( $"Color picker returned color: {GetColoredString( color.name, color.GetHex() )}" );
+        //     _colorPickerHandler.Close();
+        // }
 
         private void OnProjectChanged()
         {
@@ -109,7 +111,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         private void OnScriptsReloadedUpdate()
         {
             // _logger.Log( $"{GetColoredStringOrange( "***" )} Scripts Reloaded event called." );
-            logger.LogEvent( MethodBase.GetCurrentMethod() );
+            logger.LogEvent();
             RefreshScriptThemeInfoList();
         }
 
@@ -152,6 +154,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         
         private Element GetScriptAndThemeDropdown()
         {
+            List<AceTheme> themeList = _tmListHandler.GetThemesList();
+            if ( themeList == null || themeList.Count == 0 )
+            {
+                logger.LogWarning( "Theme list is null or empty!" );
+                return new LabelElement( new GUIContent( "Failed to get Themes.") );
+            }
+            
             if ( EditorApplication.isCompiling )
                 return GetLabelElement( "Recompiling..." );
 
@@ -173,7 +182,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                         scriptPopup,
                         themePopup,
                         GetDividerElement( 6f, 2f ),
-                        GetBasicButton( new GUIContent( "Show Preset Colors"), true, new SingleCustomSettings(), _colorPickerHandler.ColorPickerButtonPressed ), 
+                        // GetBasicButton( new GUIContent( "Show Preset Colors"), true, new SingleCustomSettings(), _colorPickerHandler.ColorPickerButtonPressed ), 
+
                     },
                     _tmButtonHandler.GetButtons( scriptThemeInfoList.Count )
                 )
@@ -232,23 +242,22 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         public void PrintScriptThemeInfoList()
         {
-            logger.LogStart( MethodBase.GetCurrentMethod() );
-            logger.Log( "Script theme assignments:", true );
+            logger.LogStart();
+            logger.LogIndentStart( "Script theme assignments:", true );
 
             foreach ( ScriptThemeInfo scriptThemeInfo in scriptThemeInfoList )
             {
-                logger.Log(
+                logger.LogOneTimeIndent(
                     $"{GetColoredStringYellow( logger.ApplyNameFormatting( scriptThemeInfo.script.name ) )} " +
-                    $": {GetColoredStringGreen( logger.ApplyNameFormatting( scriptThemeInfo.theme.name ) )}",
-                    true, true );
+                    $": {GetColoredStringGreen( logger.ApplyNameFormatting( scriptThemeInfo.theme.name ) )}" );
             }
 
-            logger.LogEnd( MethodBase.GetCurrentMethod() );
+            logger.LogEnd();
         }
 
         public void PrintScriptOptions( string[] scriptOptions )
         {
-            logger.Log( $"ACETMD|PSO:     {scriptOptions.Length.ToString()} script options found:" );
+            logger.Log( $"{scriptOptions.Length.ToString()} script options found:" );
 
             foreach ( string script in scriptOptions )
             {

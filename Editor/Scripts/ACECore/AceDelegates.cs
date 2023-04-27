@@ -1,8 +1,8 @@
 using System;
 using System.Reflection;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services;
-using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services.TextFormat;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
+using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,7 +19,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         {
             if ( subscribedEvent == null ) return;
 
-            logger.LogStart( methodBase );
+            logger.LogStart();
             logger.Log( $"{GetColoredStringGreen(eventName)} subscribers:" );
             
             foreach ( Delegate @delegate in subscribedEvent.GetInvocationList() )
@@ -35,7 +35,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                 }
             }
             
-            logger.LogEnd( methodBase );
+            logger.LogEnd();
         }
         
         

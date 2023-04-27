@@ -1,0 +1,93 @@
+    "charts": [
+        {
+            "name": "objects",
+            "items": [ 
+                {"name": "User-Role-Cache", "groups": ["TTL", "Key-Value", "Fast"]},
+                {"name": "User-Role", "groups": ["Numeric-Filter"]},
+                {"name": "Asset", "groups": ["Inherited","Key-Value", "Fast", "Nested"]},
+                {"name": "Searchable-Asset", "groups": [
+                    "Text-Search",
+                    "Numeric-Filter", 
+                    "Nested",
+                    "Inherited"
+                ]}
+            ]
+        },
+        {
+            "name": "data",
+            "items": [ 
+                {"name": "Couchbase", "groups": [
+                    "TTL", 
+                    "Key-Value", 
+                    "Consistent", 
+                    "Nested",
+                    "Inherited",
+                    "Free"
+                ]},
+                {"name": "MongoDB", "groups": [
+                    "TTL", 
+                    "Key-Value", 
+                    "Consistent", 
+                    "Nested",
+                    "Inherited",
+                    "Free"
+                ]},
+                {"name": "Redis", "groups": [
+                    "TTL", 
+                    "Fast",
+                    "Key-Value", 
+                    "Consistent", 
+                    "Nested",
+                    "Inherited",
+                    "Binary",
+                    "Free"
+                ]},
+                {"name": "Memcache", "groups": [
+                    "TTL", 
+                    "Key-Value", 
+                    "Fast", 
+                    "Consistent",
+                    "Nested",
+                    "Inherited",
+                    "Binary",
+                    "Free"
+                ]},
+                {"name": "ElasticSearch", "groups": [
+                    "Consistent",
+                    "Numeric-Filter",
+                    "Nested",
+                    "Text-Search",
+                    "Inherited",
+                    "Free"
+                ]},
+                {"name": "MS-SQL", "groups": [
+                    "Consistent",
+                    "Numeric-Filter"
+                ]},
+                {"name": "MySql", "groups": [
+                    "Consistent",
+                    "Numeric-Filter",
+                    "Nested",
+                    "Binary",
+                    "Free"
+                ]},
+                {"name": "S3", "groups": [
+                    "Consistent",
+                    "Key-Value",
+                    "Nested",
+                    "TTL",
+                    "Inherited",
+                    "Binary"
+                ]},
+                {"name": "DynamoDB", "groups": [
+                    "Consistent",
+                    "Key-Value",
+                    "Numeric-Filter",
+                    "Nested",
+                    "TTL",
+                    "Inherited"        
+                ]}        
+            ]
+        }
+    ]
+}

@@ -1,0 +1,180 @@
+@startuml AceSystemArchitecture
+
+!theme reddress-darkblue
+' !theme reddress-darkorange
+' !include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/cyborg/puml-theme-cyborg.puml
+
+
+package "Assets/UserThemes" <<Database>> {
+    class InstantiatedTheme << (S,orange) >>{
+        # Element[]: GetElementList()
+    }
+
+    ' InstantiatedTheme -up-> AceTheme #4AEA2A : Instance of
+}
+
+package "EditorWindowUI" <<Cloud>>{
+}
+
+package "Editor" <<Folder>> {
+    
+    package "UnityEditor" <<Folder>>{
+    class EditorWindow <<ScriptableObject>>{
+        + delegate OnGUI()
+    }
+    EditorWindow -up-> EditorWindowUI : Draws to
+    ' EditorWindow -[#blue,dotted,thickness=4]-> EditorWindowUI : Draws to
+
+    }
+
+    package "AceCore" <<Frame>>{    
+        class AceTheme{
+            # Element[]: GetElementList()
+        }
+
+        InstantiatedTheme -- AceTheme : Instance Of
+
+        class AceThemeManager{
+            # Element[]: GetElementList()
+        }
+
+        ' InstantiatedTheme -up-> AceTheme #4AEA2A : Instance of
+    }
+
+    ' note top of AceTheme
+    '     Theme instances are loaded
+    '     into the ThemeManager where
+    '     they are assigned to a
+    '     AceMonoBehaviorRoot script type
+    ' end note
+    
+    package "RootEditors" <<Frame>> {
+        
+        abstract class AceScriptableObjectEditorRoot <<ScriptableObject>>{
+            - Element[]: elementList
+            # {abstract} Element[]: GetElementList()
+            - AceTheme: theme
+        }
+
+        class AceTheme implements AceScriptableObjectEditorRoot
+        class AceThemeManager implements AceScriptableObjectEditorRoot
+    }
+
+    package "Elements" <<Frame>>{
+        class Element{
+        }
+        Element --* AceScriptableObjectEditorRoot::elementList
+    }
+
+
+
+    package "EditorWindows" <<Frame>>{
+        
+        abstract class AceEditorWindow{
+            + SerializedObject TargetSerializedObject
+            # Element[]: elementList
+            # AceTheme: theme
+            - AceScriptableObjectEditorRoot _target
+
+            + void OnGUI()
+            # {abstract} AceScriptableObjectEditorRoot GetTarget()
+            # {abstract} string GetEditorWindowThemeName()
+            # {abstract} void OnEnableFirst()
+            # {abstract} void OnEnableLast()
+            # {abstract} Vector2 GetEditorWindowMinSize()
+            # {abstract} string GetTitle()
+            # {abstract} string GetTooltip()
+        }
+
+        note left of AceEditorWindow::elementList
+            Populates elementList via
+            _target.GetelementList().
+        end note
+
+        note left of AceEditorWindow::OnGUI()
+            Event Function.
+            Draws UI by iterating through
+            elementList, calling 
+            element.DrawElement().
+        end note
+
+        note left of AceEditorWindow::GetTarget()
+            Editor windows have no
+            target by default so they
+            must be provided.
+        end note
+
+        
+
+        class AceThemeEditorWindow{
+            # AceScriptableObjectEditorRoot GetTarget()
+            # string GetEditorWindowThemeName()
+            # void OnEnableFirst()
+            # void OnEnableLast()
+            # Vector2 GetEditorWindowMinSize()
+            # string GetTitle()
+            # string GetTooltip()
+        }
+
+        class AceThemeManagerEditorWindow{ 
+            # AceScriptableObjectEditorRoot GetTarget()
+            # string GetEditorWindowThemeName()
+            # void OnEnableFirst()
+            # void OnEnableLast()
+            # Vector2 GetEditorWindowMinSize()
+            # string GetTitle()
+            # string GetTooltip()
+        }
+        
+        class AceThemeEditorWindow extends AceEditorWindow
+        class AceThemeManagerEditorWindow extends AceEditorWindow
+        AceEditorWindow -up-|> EditorWindow
+        Element --o AceEditorWindow::elementList
+
+    }
+
+    ' AceThemeEditorWindow -[#blue,dotted,thickness=4]- AceTheme : Editor for
+    ' AceThemeEditorWindow o-- AceScriptableObjectEditorRoot : as SerializedObject
+    ' AceThemeManagerEditorWindow -[#blue,dotted,thickness=4]- AceThemeManager : Editor for
+    ' AceThemeManagerEditorWindow o-- AceScriptableObjectEditorRoot : as SerializedObject
+    
+    AceScriptableObjectEditorRoot --o AceEditorWindow::_target
+
+    InstantiatedTheme --o AceScriptableObjectEditorRoot::theme        
+    InstantiatedTheme --o AceEditorWindow::theme
+
+}
+
+
+
+' package "Runtime" <<Folder>> {
+
+'     class ScriptableObject
+
+'     AceScriptableObjectEditorRoot --|> ScriptableObject
+'     EditorWindow --|> ScriptableObject
+
+
+
+'     ' package "Roots" <<Frame>> {
+        
+
+        
+'     '     abstract class AceScriptableObjectRuntimeRoot{
+'     '         + ElementInfo[]: GetElementInfoList()
+'     '         - AceTheme: theme
+'     '     }
+
+'     '     ' InstantiatedTheme --o AceScriptableObjectRuntimeRoot::theme
+'     ' }
+
+'     ' package "Services" <<Frame>>{  
+'     '     class ObjectLoader{
+'     '     }
+'     '     ObjectLoader --> DefaultTheme : Loads
+'     '     ObjectLoader <-- DefaultTheme
+'     ' }
+' }
+
+
+@enduml

@@ -1,5 +1,10 @@
 ﻿@startuml
 
+!theme reddress-darkblue
+' !theme reddress-darkorange
+' !include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/cyborg/puml-theme-cyborg.puml
+
+
 left to right direction
 
 package "Runtime" <<Folder>> {

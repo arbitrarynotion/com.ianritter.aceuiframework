@@ -20,6 +20,11 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
             ConditionOperator = conditionOperator;
             ConditionValue = conditionValue;
         }
+        
+        public ElementConditionInfo( string propVarName )
+        {
+            PropVarName = propVarName;
+        }
     }
     
     
@@ -121,6 +126,40 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
             : base( ElementType.SinglePropertyBasic, guiContent, customSettings, callback )
         {
             VarName = varName;
+            HideOnDisable = hideOnDisable;
+            ElementConditionInfos = elementConditionInfos;
+        }
+    }
+    
+    public class PopupPropertyInfo : SingleInteractiveInfo
+    {
+        public string VarName { get; }
+        public string[] Options { get; }
+
+        public PopupPropertyInfo( 
+            string varName, 
+            GUIContent guiContent, 
+            string[] options,
+            SingleCustomSettings customSettings,
+            Action callback ) 
+            : base( ElementType.SinglePropertyPopup, guiContent, customSettings, callback )
+        {
+            VarName = varName;
+            Options = options;
+        }
+
+        public PopupPropertyInfo( 
+            string varName, 
+            GUIContent guiContent, 
+            string[] options,
+            SingleCustomSettings customSettings,
+            Action callback,
+            bool hideOnDisable, 
+            ElementConditionInfo[] elementConditionInfos ) 
+            : base( ElementType.SinglePropertyPopup, guiContent, customSettings, callback )
+        {
+            VarName = varName;
+            Options = options;
             HideOnDisable = hideOnDisable;
             ElementConditionInfos = elementConditionInfos;
         }
@@ -252,6 +291,26 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         /// </summary>
         public static ElementInfo GetElement( 
             string varName, 
+            GUIContent guiContent, 
+            [CanBeNull] SingleCustomSettings settings,
+            Action callback = null, 
+            bool hideOnDisable = false, 
+            params ElementConditionInfo[] conditions )
+        {
+            return new BasicPropertyInfo( 
+                varName, 
+                guiContent, 
+                settings ?? new SingleCustomSettings(),
+                callback,
+                hideOnDisable, 
+                conditions );
+        }
+        
+        /// <summary>
+        ///     Get basic single element using both settings and conditions.
+        /// </summary>
+        public static ElementInfo GetElement( 
+            string varName, 
             string title, 
             string tooltip, 
             [CanBeNull] SingleCustomSettings settings,
@@ -269,6 +328,52 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         }
         
 #endregion
+        
+        
+        /// <summary>
+        ///     Get basic single element using both settings and conditions.
+        /// </summary>
+        public static ElementInfo GetPopupElement( 
+            string varName, 
+            GUIContent guiContent, 
+            string[] options,
+            [CanBeNull] SingleCustomSettings settings,
+            Action callback = null, 
+            bool hideOnDisable = false, 
+            params ElementConditionInfo[] conditions )
+        {
+            return new PopupPropertyInfo( 
+                varName, 
+                guiContent, 
+                options,
+                settings ?? new SingleCustomSettings(),
+                callback,
+                hideOnDisable, 
+                conditions );
+        }
+        
+        /// <summary>
+        ///     Get basic single element using both settings and conditions.
+        /// </summary>
+        public static ElementInfo GetPopupElement( 
+            string varName, 
+            string title, 
+            string tooltip,  
+            string[] options,
+            [CanBeNull] SingleCustomSettings settings,
+            Action callback = null, 
+            bool hideOnDisable = false, 
+            params ElementConditionInfo[] conditions )
+        {
+            return new PopupPropertyInfo( 
+                varName, 
+                new GUIContent( title, tooltip), 
+                options,
+                settings ?? new SingleCustomSettings(),
+                callback,
+                hideOnDisable, 
+                conditions );
+        }
 
 
 #region LabelElements

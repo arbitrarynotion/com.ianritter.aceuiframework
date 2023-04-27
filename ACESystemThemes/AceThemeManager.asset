@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: AceThemeManager
   m_EditorClassIdentifier: 
   logger: {fileID: 11400000, guid: bfc12a2931a9d5440892df79f346a961, type: 2}
-  selectedScriptIndex: 2
-  selectedThemeIndex: 0
+  selectedScriptIndex: 0
+  selectedThemeIndex: 2
   scriptThemeInfoList:
   - script: {fileID: 11500000, guid: d75a22a16e9d4a347b804271cceedef3, type: 3}
     theme: {fileID: 11400000, guid: 7f0ef88a20ec9e74daf2a296548936ff, type: 2}
   - script: {fileID: 11500000, guid: 24e6685a6732860499f270d588c1c421, type: 3}
-    theme: {fileID: 11400000, guid: 7f0ef88a20ec9e74daf2a296548936ff, type: 2}
+    theme: {fileID: 11400000, guid: 5c9e78e05dd76e842b92bed878f6e90a, type: 2}
   - script: {fileID: 11500000, guid: d601b28506cfa9e448583a8a9bf7baa0, type: 3}
     theme: {fileID: 11400000, guid: e4731ab52ccaf1641b122926ee78d75e, type: 2}
   - script: {fileID: 11500000, guid: b9671d95a8ec6ea46bcb4c652937fd2d, type: 3}

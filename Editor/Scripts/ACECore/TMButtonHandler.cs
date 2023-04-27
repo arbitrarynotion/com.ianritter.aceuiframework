@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Reflection;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding.AceElementBuilder;
 using UnityEngine;
 
@@ -22,6 +22,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             _logger = logger;
         }
 
+        /// <summary>
+        /// Get the Scan Scripts button and a button for each theme to report it's event subscribers for debugging.
+        /// </summary>
+        /// <param name="scriptInfoListSize">Used to check if themes list is empty.</param>
+        /// <returns></returns>
         public Element[] GetButtons( int scriptInfoListSize )
         {
             // return new Element[] {new LabelElement( new GUIContent( "Buttons!" ) )};
@@ -54,13 +59,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         // Button callbacks go here.
         private void ScanForScriptChanges()
         {
-            _logger.LogStart( MethodBase.GetCurrentMethod(), true );
+            _logger.LogStart( true );
             _logger.Log( "ScriptThemeInfoList state before refresh:" );
             _themeManager.PrintScriptThemeInfoList();
             _themeManager.RefreshScriptThemeInfoList();
             _logger.Log( "ScriptThemeInfoList state after refresh:" );
             _themeManager.PrintScriptThemeInfoList();
-            _logger.LogEnd( MethodBase.GetCurrentMethod(), true );
+            _logger.LogEnd();
         }
         
         

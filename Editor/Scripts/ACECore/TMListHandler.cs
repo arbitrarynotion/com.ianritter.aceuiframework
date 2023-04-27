@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using UnityEngine;
 using UnityEditor;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceRoots;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRoots;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services;
-using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services.ObjectLoader;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting;
 using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
+using static Packages.com.ianritter.unityscriptingtools.Editor.AssetLoader;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 {
@@ -63,7 +63,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         public void GetScriptThemeInfoList( List<ScriptThemeInfo> scriptThemeInfoList )
         {
-            _logger.LogStart( MethodBase.GetCurrentMethod(), true );
+            _logger.LogStart( true );
 
             // Update script and theme lists.
             ExistingScripts = GetAllAceUsers();
@@ -78,14 +78,14 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             // Notify subscribers that the theme manager's state may have changed.
             _themeManager.UIStateUpdatedNotify();
             
-            _logger.LogEnd( MethodBase.GetCurrentMethod(), true );
+            _logger.LogEnd();
         }
         
         
 
         private void PurgeDeletedScriptsFromDb( List<ScriptThemeInfo> scriptThemeInfoList )
         {
-            _logger.LogStart( MethodBase.GetCurrentMethod() );
+            _logger.LogStart();
 
             bool foundDeleted = false;
 
@@ -95,8 +95,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                 if ( ExistingScripts.Count == 0 ) // all scripts removed, just reset.
                 {
                     scriptThemeInfoList.Clear();
-                    _logger.Log( "    No scripts to search.", true );
-                    _logger.LogEnd( MethodBase.GetCurrentMethod() );
+                    _logger.LogIndentStart( "    No scripts to search." );
+                    _logger.LogEnd();
                     return;
                 }
                 
@@ -119,36 +119,36 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             }
 
             if ( !foundDeleted )
-                _logger.Log( $"    No scripts were deleted.", true );
+                _logger.LogOneTimeIndent( $"    No scripts were deleted." );
 
-            _logger.LogEnd( MethodBase.GetCurrentMethod() );
+            _logger.LogEnd();
         }
 
         private void AddNewScriptsToDb( List<ScriptThemeInfo> scriptThemeInfoList )
         {
-            _logger.LogStart( MethodBase.GetCurrentMethod() );
+            _logger.LogStart();
 
             // Are there new scripts that haven't yet been saved?
             bool foundNew = false;
             foreach ( MonoScript script in ExistingScripts.Where( script => !_themeManager.IsSaved( script ) ) )
             {
                 foundNew = true;
-                _logger.Log( $"{TextFormat.GetColoredStringBlue(script.name)} is new. Adding to database.", true, true );
+                _logger.LogOneTimeIndent( $"{TextFormat.GetColoredStringBlue(script.name)} is new. Adding to database." );
                 
                 // Create new script theme info entry for this script.
                 scriptThemeInfoList.Add( new ScriptThemeInfo( script.name, script, _defaultTheme ) );
             }
             
             if ( !foundNew )
-                _logger.Log( "No new scripts were found.", true );
+                _logger.LogOneTimeIndent( "No new scripts were found." );
 
-            _logger.LogEnd( MethodBase.GetCurrentMethod() );
+            _logger.LogEnd();
         }
 
 
         private List<MonoScript> GetAllAceUsers()
         {
-            _logger.LogStart( MethodBase.GetCurrentMethod(), true );
+            _logger.LogStart( true );
             List<MonoScript> monoScripts = GetAssetsByType<MonoScript>( UsersSearchFolderName, DemosSearchFolderName );
             // Debug.Log( $"    Checking {TextFormat.GetColoredStringYellow(monoScripts.Count.ToString())} assets..." );
 
@@ -165,28 +165,28 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                 if ( scriptType != null && scriptType.IsSubclassOf( typeof( AceMonobehaviourRoot ) ) )
                     aceScripts.Add( monoScript );
 
-                if ( scriptType != null && scriptType.IsSubclassOf( typeof( AceScriptableObjectRoot ) ) )
+                if ( scriptType != null && scriptType.IsSubclassOf( typeof( AceScriptableObjectEditorRoot ) ) )
                     aceScripts.Add( monoScript );
             }
 
             _logger.Log( $"{TextFormat.GetColoredStringYellow( aceScripts.Count.ToString() )} ACE scripts found." );
-            _logger.LogEnd( MethodBase.GetCurrentMethod(), true );
+            _logger.LogEnd();
 
             return aceScripts;
         }
 
         private void PrintScripts()
         {
-            _logger.LogStart( MethodBase.GetCurrentMethod() );
+            _logger.LogStart();
             PrintList( _logger, ExistingScripts );
-            _logger.LogEnd( MethodBase.GetCurrentMethod() );
+            _logger.LogEnd();
         }
 
         private void PrintThemes()
         {
-            _logger.LogStart( MethodBase.GetCurrentMethod() );
+            _logger.LogStart();
             PrintList( _logger, ExistingThemes );
-            _logger.LogEnd( MethodBase.GetCurrentMethod() );
+            _logger.LogEnd();
         }
 
         private static void PrintList<T>( CustomLogger logger, List<T> list ) where T : UnityEngine.Object
@@ -197,8 +197,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
             foreach ( T theme in list )
             {
-                logger.Log( $"{TextFormat.GetColoredStringYellow( logger.ApplyNameFormatting( theme.name ) )}", true,
-                    true );
+                logger.LogOneTimeIndent( $"{TextFormat.GetColoredStringYellow( logger.ApplyNameFormatting( theme.name ) )}" );
             }
         }
     }

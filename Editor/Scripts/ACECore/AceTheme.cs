@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceRoots;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine;
@@ -35,7 +35,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
     /// </summary>
     
     [CreateAssetMenu(menuName = ThemeAssetMenuName)]
-    public class AceTheme : AceScriptableObjectRoot
+    public class AceTheme : AceScriptableObjectEditorRoot
     {
         [SerializeField] private SettingsSectionOptions selectedSection;
         

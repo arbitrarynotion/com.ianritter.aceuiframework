@@ -9,35 +9,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 045d0eaa2f4bfa04e935f379dff588dd, type: 3}
+  m_Script: {fileID: 11500000, guid: e2446efb71edc1d4dbf1152fb3a81ae5, type: 3}
   m_Name: ThemeManagerLogger
   m_EditorClassIdentifier: 
   showLogs: 1
+  useClassPrefix: 0
+  boldMethods: 0
+  boldBlockMethods: 0
+  maxPrefixCharacters: 0
+  nicifiedNames: 1
   logPrefix:
     toggle: 1
-    symbol: ThemeMngr
-    color: {r: 0.21226415, g: 0.8490566, b: 0.75683147, a: 1}
+    customColor:
+      name: ThemeMngr
+      color: {r: 0.21226415, g: 0.8490566, b: 0.75683147, a: 1}
   blockDivider:
     toggle: 1
-    symbol: ----------
-    color: {r: 0, g: 0, b: 0, a: 1}
-  blockDividers:
+    customColor:
+      name: "\u2015\u2015\u2015\u2015\u2015"
+      color: {r: 0.6156863, g: 0.6156863, b: 0.6156863, a: 1}
+  indentMarker:
     toggle: 1
-    symbol: '|'
-    color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+    customColor:
+      name: '|'
+      color: {r: 0, g: 0, b: 0, a: 1}
   methodDividers:
     toggle: 1
-    symbol: .
-    color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
+    customColor:
+      name: .
+      color: {r: 0, g: 0, b: 0, a: 1}
   logBlockStart:
     toggle: 1
-    symbol: -->
-    color: {r: 0.29803923, g: 0.8, b: 0.29803923, a: 1}
+    customColor:
+      name: -->
+      color: {r: 0.29803923, g: 0.8, b: 0.29803923, a: 1}
   logBlockEnd:
     toggle: 1
-    symbol: <--
-    color: {r: 0.29803923, g: 0.6, b: 0.9019608, a: 1}
+    customColor:
+      name: <--
+      color: {r: 0.29803923, g: 0.6, b: 0.9019608, a: 1}
   logEventPrefix:
     toggle: 1
-    symbol: '***'
-    color: {r: 0.9019608, g: 0.5019608, b: 0.2, a: 1}
+    customColor:
+      name: '***'
+      color: {r: 0.9019608, g: 0.5019608, b: 0.2, a: 1}
+  blockMethodColor: {r: 1, g: 1, b: 0, a: 1}
+  methodColor: {r: 0.9019608, g: 0.5019608, b: 0.2, a: 1}

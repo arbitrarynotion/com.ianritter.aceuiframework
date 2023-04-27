@@ -9,6 +9,7 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElemen
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Label;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Basic;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.MinMaxSlider;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Popup;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding;
 
@@ -50,7 +51,17 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
                     );
                 
                 case ElementType.SinglePropertyPopup:
-                    break;
+                    var popupPropertyInfo = (PopupPropertyInfo) elementInfo;
+                    return new PopupElement( 
+                        popupPropertyInfo.VarName, 
+                        popupPropertyInfo.GUIContent, 
+                        popupPropertyInfo.Options,
+                        popupPropertyInfo.SingleCustomSettings, 
+                        popupPropertyInfo.Callback, 
+                        popupPropertyInfo.HideOnDisable, 
+                        ConvertElementConditions( popupPropertyInfo.ElementConditionInfos )
+                    );
+                    
                 
                 case ElementType.SingleBlank:
                     break;

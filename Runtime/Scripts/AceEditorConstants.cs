@@ -2,24 +2,28 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
 {
     public static class AceEditorConstants
     {
+        // Asset paths.
         public const string UsersSearchFolderName = "Assets";
+        public const string ThemesSearchFolderName = "Packages/com.ianritter.aceuiframework/AceThemes/User";
         public const string DemosSearchFolderName = "Packages/com.ianritter.aceuiframework/Runtime/Scripts/Demos";
-        public const string ThemesSearchFolderName = "Packages/com.ianritter.aceuiframework/Resources/ACEThemes";
         public const string LoggersSearchFolderName = "Packages/com.ianritter.aceuiframework/Runtime/Scripts/Services/Loggers";
-        public const string ThemesResourceFolderName = "ACEThemes";
+        
+        // System theme names.
         public const string EditorWindowThemeName = "AceEditorWindowTheme";
-        public const string ThemeCoreName = "AceTheme";
-        public const string ThemeManagerCoreName = "AceThemeManager";
         public const string DefaultThemeName = "AceDefaultTheme";
-        public const string ThemeLoggerName = "ThemeLogger";
+        
+        // Script names.
+        public const string ThemeManagerCoreName = "AceThemeManager";
+        public const string ThemeCoreName = "AceTheme";
 
+        // Text displayed in the editor.
         public const string ThemeAssetMenuName = "ACE Theme";
         public const string ThemeManagerAssetMenuName = "ACE Theme Manager";
         public const string LoggerAssetMenuName = "Custom Logger";
         public const string ThemeSettingsWindowMenuItemName = "Tools/ACE Theme Settings";
         public const string ThemeSettingsWindowTitle = "ACE Theme Settings";
         public const string ThemeManagerSettingsWindowMenuItemName = "Tools/ACE Theme Manager";
-        public const string ThemeManagerSettingsWindowTitle = "ACE Theme Manager";
+        public const string ThemeManagerWindowTitle = "ACE Theme Manager";
         public const string ColorPickerWindowTitle = "Color Picker";
         
         // Can not access the var names directly because the AceTheme is in an Editor folder.

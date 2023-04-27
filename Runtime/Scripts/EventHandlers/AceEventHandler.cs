@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Reflection;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Services;
 using UnityEngine;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting;
 
 namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.EventHandlers
 {
@@ -58,11 +58,11 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.EventHandlers
 
         public void PrintMySubscribers()
         {
-            _logger.LogStart( MethodBase.GetCurrentMethod(), true );
-            _logger.Log( $"{_owner}'s Events and their subscribers:" );
+            _logger.LogStart( true );
+            _logger.LogIndentStart( $"{_owner}'s Events and their subscribers:" );
             PrintSubscribersForEvent( OnDataUpdated );
             PrintSubscribersForEvent( OnUIStateUpdated );
-            _logger.LogEnd( MethodBase.GetCurrentMethod(), true );
+            _logger.LogEnd();
         }
 
         private void PrintSubscribersForEvent( Delegate myEvent )

@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.1.0...v1.1.1) (2023-04-27)
+
+
+### Bug Fixes
+
+* Update to RuntimeElementBuilder.cs ([3d794a0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/3d794a09d595266296964e6a795180fa18806108))
+
 # [1.1.0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.0.4...v1.1.0) (2023-04-27)
 
 

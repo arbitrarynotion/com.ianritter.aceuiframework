@@ -4,9 +4,9 @@
     {
         public readonly string UseSeparateHeadingSettings;
         
-        public readonly string HideFoldoutGroupElements;
-        public readonly string HideToggleGroupElements;
-        public readonly string HideLabelGroupElements;
+        // public readonly string HideFoldoutGroupElements;
+        // public readonly string HideToggleGroupElements;
+        // public readonly string HideLabelGroupElements;
         
         public HeadingGroupVarNames( string listVarName, int index ) 
             : base( listVarName, index )
@@ -15,9 +15,9 @@
 
             UseSeparateHeadingSettings = arrayLookupString + nameof( HeadingGroupSettings.useSeparateHeadingSettings );
             
-            HideFoldoutGroupElements = arrayLookupString + nameof( HeadingGroupSettings.hideFoldoutGroupElements );
-            HideToggleGroupElements = arrayLookupString + nameof( HeadingGroupSettings.hideToggleGroupElements );
-            HideLabelGroupElements = arrayLookupString + nameof( HeadingGroupSettings.hideLabelGroupElements );
+            // HideFoldoutGroupElements = arrayLookupString + nameof( HeadingGroupSettings.hideFoldoutGroupElements );
+            // HideToggleGroupElements = arrayLookupString + nameof( HeadingGroupSettings.hideToggleGroupElements );
+            // HideLabelGroupElements = arrayLookupString + nameof( HeadingGroupSettings.hideLabelGroupElements );
         }
     }
 }

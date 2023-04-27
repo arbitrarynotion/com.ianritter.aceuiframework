@@ -1,0 +1,104 @@
+﻿@startuml
+
+!theme reddress-darkblue
+' !theme reddress-darkorange
+' !include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/cyborg/puml-theme-cyborg.puml
+
+
+left to right direction
+
+package "Runtime" <<Folder>> {
+
+    package "Services"{
+        class DebugLogger{
+        }
+   
+    }
+    
+    
+    
+    package "Editor" <<Folder>> {
+    
+        package "Roots" <<Rectangle>> {
+            abstract class ScriptableObjectRoot{
+                + DebugLogger: logger
+                {abstract} # Element[]: GetElementList()
+            }
+            
+            abstract class MonobehaviourRoot{
+                + DebugLogger: logger
+                {abstract} # Element[]: GetElementList()
+                
+                + void OnThemeAssignmentUpdated()
+            }
+        }
+        
+        
+        
+        package "Editors" <<Rectangle>> {
+            class ThemeManagerEditorWindow{
+                
+            }
+        }
+        
+        class Theme{
+        }
+       
+        
+        
+        DebugLogger -down-o ScriptableObjectRoot::logger
+        DebugLogger -up-|> ScriptableObjectRoot
+
+    
+        package "Theme Manager" {
+            ThemeManagerEditorWindow -up-> ThemeManager : Editor for
+            ThemeManager --|> ScriptableObjectRoot
+            
+            MonobehaviourRoot --> ThemeManager::ThemeAssignmentChanged : subscribed
+            TMListManager --* ThemeManager::tmListManager
+            TMButtonHandler --* ThemeManager::tmButtonHandler
+            ScriptThemeInfo --* ThemeManager::scriptThemeInfoList
+            
+            Theme --o ScriptThemeInfo::theme
+
+            
+            
+            class ThemeManager{
+                - TMListManager: tmListManager
+                - TMButtonHandler: tmButtonHandler
+                - List<ScriptThemeInfo> scriptThemeInfoList
+                + delegate: ThemeAssignmentChanged
+                <<event>>
+                + ThemeAssignmentChanged: OnThemeAssignmentChanged
+
+                
+                + bool IsSaved( MonoScript script )
+                + Theme GetThemeForIndex( int index )
+                + ScriptThemeInfo GetSelectedScriptThemeInfo()
+                + string[] GetThemeOptions()
+                + void ResetSelectedScript()
+                # Element[]: GetElementList()
+            }
+            
+            class ScriptThemeInfo{
+                + MonoScript script
+                + Theme theme
+            }
+            
+            class TMButtonHandler{
+                + Element[] GetButtons()
+            }
+            
+            class TMListManager{
+                + Themes[] GetThemesList()
+                + Theme GetThemeForIndex( int index )
+                + string[] GetThemeOptions()
+                + void GetScriptThemeInfoList( ScriptThemeInfo[] list )
+            }
+        }
+    }
+
+}
+
+
+@enduml

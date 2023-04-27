@@ -1,27 +1,29 @@
 using System;
 using System.Reflection;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.Editors;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
+using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
 using UnityEditor;
 using UnityEngine;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 {
-    public class AceDelegates : MonoBehaviour
+    public static class AceDelegates
     {
         public delegate void DataUpdated();
         public delegate void UIStateUpdated();
         public delegate void DataUpdateRequired();
         public delegate void ColorsUpdated();
         
-        public static void PrintMySubscribers( string callingType, Delegate subscribedEvent, string eventName )
+        public static void PrintMySubscribers( CustomLogger logger, MethodBase methodBase, Delegate subscribedEvent, string eventName )
         {
             if ( subscribedEvent == null ) return;
 
-            Debug.Log( $"ATMD|PS: {callingType}:{eventName} subscribers:" );
-            // Get list of subscribers.
+            logger.LogStart();
+            logger.Log( $"{GetColoredStringGreen(eventName)} subscribers:" );
+            
             foreach ( Delegate @delegate in subscribedEvent.GetInvocationList() )
             {
-                // Get list of attributes.
                 foreach ( Attribute attribute in @delegate.Target.GetType().GetCustomAttributes() )
                 {
                     // If the Custom Editor attribute is found, this is an editor script.
@@ -29,9 +31,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                     
                     // Todo: At least for now, all editors will be monobehaviour roots. I'll need to update this if I include the scriptable object root.
                     var monobehaviourRoot = (AceMonobehaviourRootEditor) @delegate.Target;
-                    Debug.Log( $"    {monobehaviourRoot.GetTargetName()}" );
+                    logger.Log( $"    {GetColoredStringYellow(monobehaviourRoot.GetTargetName())}" );
                 }
             }
+            
+            logger.LogEnd();
         }
         
         

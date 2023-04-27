@@ -7,9 +7,9 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.E
     public class HeadingGroupSettings : GroupSettings
     {
         public bool useSeparateHeadingSettings = false;
-        public bool hideFoldoutGroupElements;
-        public bool hideToggleGroupElements;
-        public bool hideLabelGroupElements;
+        // public bool hideFoldoutGroupElements;
+        // public bool hideToggleGroupElements;
+        // public bool hideLabelGroupElements;
 
         public HeadingGroupSettings() 
             : base( 

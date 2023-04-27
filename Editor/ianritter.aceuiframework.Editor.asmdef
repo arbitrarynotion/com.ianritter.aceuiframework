@@ -2,9 +2,13 @@
     "name": "ianritter.aceuiframework.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:a76c73d59a76f7f4395724616afbe8f4"
+        "GUID:a76c73d59a76f7f4395724616afbe8f4",
+        "GUID:c06660795a3106e4d89b47bc8065e935",
+        "GUID:8c64a276186c0884daeeeee55360faa8"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

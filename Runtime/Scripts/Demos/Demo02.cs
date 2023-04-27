@@ -1,5 +1,5 @@
 using System;
-using Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRoots;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
@@ -68,7 +68,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
         [Range( 0f, 0.3f )] public float closeFade2 = 0.012f;
         [Range( 0.6f, 1.0f )] public float farFade2 = 0.5f;
 
-        private ACEInspectorExample.InspectorLayouts _enumsChangeCheck = ACEInspectorExample.InspectorLayouts.BasicExample1;
+        // private ACEInspectorExample.InspectorLayouts _enumsChangeCheck = ACEInspectorExample.InspectorLayouts.BasicExample1;
         
         private readonly ElementInfo _dividerElement = GetDividerElement();
         private readonly ElementInfo _layoutDropdownElement = GetElement( nameof( enumsField ), "Inspector Layouts", string.Empty );

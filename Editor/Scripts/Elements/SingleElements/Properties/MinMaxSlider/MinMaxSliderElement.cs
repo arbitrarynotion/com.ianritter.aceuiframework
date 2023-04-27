@@ -1,5 +1,5 @@
 ﻿using System;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Basic;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using UnityEditor;

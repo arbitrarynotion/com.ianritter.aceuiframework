@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Enums;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ElementBuilding.AceElementBuilder;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding.AceElementBuilder;
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.AceDelegates;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
@@ -39,8 +40,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
 
         public abstract Element GetSection();
         
-        public void PrintMyUIStateUpdatedEventSubscribers() => PrintMySubscribers( GetType().Name, OnUIStateUpdated, nameof(UIStateUpdated) );
-
         public void ClearSubscriptions() => AceTheme.OnColorsUpdated -= OnColorsChanged;
 
 
@@ -111,7 +110,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
 
         protected Element GetTextColorsSection( HeadingElementFrameSettings frameSettings, HeadingElementFrameSettingsVarNames frameVarNames )
         {
-            return GetGroupWithLabelHeading( "Text Colors", string.Empty, null,
+            return GetGroupWithLabelHeading( "Text PresetColors", string.Empty, null,
                 AceTheme.GetColorSelectionElement( "Enabled", string.Empty,
                     frameSettings.enabledTextColorIndex,
                     frameVarNames.EnabledTextColorIndex, OnColorSelectionChanged,
@@ -173,7 +172,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
 
         private Element GetFramesColorsSection( FrameSettings frameSettings, ElementFrameVarNames frameVarNames )
         {
-            return GetGroupWithLabelHeading( "Frame Colors", string.Empty, null,
+            return GetGroupWithLabelHeading( "Frame PresetColors", string.Empty, null,
                 AceTheme.GetColorSelectionElement( "Outline", string.Empty,
                     frameSettings.frameOutlineColorIndex,
                     frameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,

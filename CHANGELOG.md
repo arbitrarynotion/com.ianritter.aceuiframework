@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.0.4...v1.1.0) (2023-04-27)
+
+
+### Bug Fixes
+
+* refactor ([de69798](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/de697980d742a58ef7b6f0424547bc4008331943))
+
+
+### Features
+
+* Overhaul to Theme Manager ([3489b09](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/3489b0947e28b17c1b446841a0193c424ba626f2))
+
 ## [1.0.4](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.0.3...v1.0.4) (2023-02-17)
 
 

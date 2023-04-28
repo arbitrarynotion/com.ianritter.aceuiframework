@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2446efb71edc1d4dbf1152fb3a81ae5, type: 3}
-  m_Name: ThemeLogger
+  m_Name: MonobehaviourRootEditorLogger
   m_EditorClassIdentifier: 
   showLogs: 1
   useClassPrefix: 1
@@ -21,8 +21,8 @@ MonoBehaviour:
   logPrefix:
     toggle: 1
     customColor:
-      name: Theme
-      color: {r: 0.3, g: 0.6, b: 0.9, a: 1}
+      name: AceMRE
+      color: {r: 0.85490197, g: 0.64705884, b: 0.1254902, a: 1}
   blockDivider:
     toggle: 1
     customColor:

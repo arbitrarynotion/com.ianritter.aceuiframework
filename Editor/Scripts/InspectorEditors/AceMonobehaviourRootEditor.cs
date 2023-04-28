@@ -3,6 +3,7 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
 using UnityEditor;
 using UnityEngine;
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding.ElementInfoConverter;
@@ -24,6 +25,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
 
         private AceTheme _theme;
 
+        private CustomLogger _logger;
+
         public string GetTargetName() => _targetScript.GetType().ToString();
 
         /// <summary>
@@ -31,13 +34,17 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
         /// </summary>
         private void OnEnable()
         {
-            
             _themeManager = LoadScriptableObject<AceThemeManager>( ThemeManagerCoreName );
             _themeManager.OnThemeAssignmentChanged += OnTargetsThemeAssignmentUpdated;
             
+            _logger = LoadScriptableObject<CustomLogger>( MonobehaviourRootEditorLoggerName );
+            string result = _logger == null ? "failed" : "succeeded";
+            Debug.LogWarning( $"AMRE|OE: Loading of {MonobehaviourRootEditorLoggerName}: {result}" );
+
+            
             _targetSerializedObject = serializedObject;
             _targetScript = (AceMonobehaviourRoot) target;
-            Debug.Log( $"AMRE|OE: {_targetScript.name}'s OnEnable called." );
+            _logger.Log( $"{_targetScript.name}'s OnEnable called." );
             
             InitializeTargetsTheme();
 
@@ -68,10 +75,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
 
         private void UpdateTargetsTheme()
         {
-            Debug.Log( $"AMRE|UTT: Updating {_targetScript.name}'s theme." );
+            _logger.LogStart();
+            _logger.LogIndentStart( $"Updating {_targetScript.name}'s theme." );
 
             AceTheme newTheme = _themeManager.GetThemeForScript( _targetScript.GetType().ToString().Split( '.' ).Last() );
-            Debug.Log( $"AMRE|UTT:     {_targetScript.name}'s theme was changed to {(newTheme != null ? newTheme.name : "null")}." );
+            _logger.LogIndentStart( $"{_targetScript.name}'s theme was changed to {(newTheme != null ? newTheme.name : "null")}." );
             
             // Initialize theme on first run.
             if ( _theme != newTheme )
@@ -98,12 +106,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
                 _theme.OnDataUpdated += OnThemeUpdated;
                 _theme.OnUIStateUpdated += OnThemeUpdated;
                 
-                Debug.Log( $"AMRE|UTT:         {_targetScript.name} has unsubscribed from {previousThemeName}, and subscribed to changes in {_theme.name}." );
+                _logger.Log( $"{_targetScript.name} has unsubscribed from {previousThemeName}, and subscribed to changes in {_theme.name}." );
             }
             else
             {
-                Debug.Log( $"AMRE|UTT:         No change in {_targetScript.name}'s theme detected." );
+                _logger.Log( $"No change in {_targetScript.name}'s theme detected." );
             }
+            _logger.LogEnd();
         }
 
         private void OnTargetsThemeAssignmentUpdated()
@@ -184,7 +193,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
         /// </summary>
         public override void OnInspectorGUI()
         {
+            OnInspectorGUIPreDraw();
             DrawCustomInspector();
+            OnInspectorGUIPostDraw();
         }
 
         private void DrawCustomInspector()

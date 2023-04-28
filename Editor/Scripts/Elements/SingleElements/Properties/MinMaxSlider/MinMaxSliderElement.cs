@@ -21,6 +21,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         private readonly string _maxVarName;
         public readonly float MinLimit;
         public readonly float MaxLimit;
+        public bool IsFloatType { get; private set; }
         
         
         public MinMaxSliderElement( 
@@ -49,6 +50,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             MaxPropertyElement = new BasicProperty( _maxVarName, new GUIContent( ObjectNames.NicifyVariableName( _maxVarName ) ), new SingleCustomSettings(), null );
             MinPropertyElement.Initialize( targetScriptableObject, AceTheme, DrawnInInspector );
             MaxPropertyElement.Initialize( targetScriptableObject, AceTheme, DrawnInInspector );
+            IsFloatType = MinPropertyElement.Property.propertyType == SerializedPropertyType.Float;
         }
 
         protected override void InitializeLayout() => _minMaxSliderLayout = new MinMaxSliderLayout( this );

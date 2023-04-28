@@ -80,6 +80,11 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
         [Range( 0f, 0.3f )] public float closeFade2 = 0.012f;
         [Range( 0.6f, 1.0f )] public float farFade2 = 0.5f;
 
+        public int minMaxIntMinLimit = 0;
+        public int minMaxIntMaxLimit = 10;
+        public int minMaxLowerInt = 0;
+        public int minMaxUpperInt = 5;
+
         private InspectorLayouts _enumsChangeCheck = InspectorLayouts.BasicExample1;
         
         private readonly ElementInfo _dividerElement = GetDividerElement();
@@ -466,6 +471,20 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                                 TopPadding = 4f
                             }
                         ),
+                        GetElement( nameof( closeFade2 ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true } ),
+                        GetElement( nameof( farFade2 ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true } ),
+                        
+                        GetMinMaxSliderElement( "MinMax Slider (Int) on its own line", "MinMax tooltip!", 
+                            nameof(minMaxLowerInt), nameof(minMaxUpperInt), minMaxIntMinLimit, minMaxIntMaxLimit,
+                            new SingleCustomSettings()
+                            {
+                                ForceSingleLine = true,
+                                TopPadding = 4f
+                            }
+                        ),
+
+                        GetElement( nameof( minMaxLowerInt ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true } ),
+                        GetElement( nameof( minMaxUpperInt ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true } ),
                         
                         // Element level 2
                         GetGroupWithToggleHeading( null, "Toggle Group", "Head 3 tooltip!", null, false,

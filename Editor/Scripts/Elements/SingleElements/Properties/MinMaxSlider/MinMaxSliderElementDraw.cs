@@ -1,3 +1,4 @@
+using System;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts;
 using UnityEditor;
 using UnityEngine;
@@ -53,9 +54,18 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
                 width = _minMaxSliderElement.PropertiesSettings.minMaxSliderFloatFieldWidth
             };
 
-            DrawMinMaxFloatField( _minMaxSliderElement.MinPropertyElement, leftFieldRect, 
-                _minMaxSliderElement.MinLimit, 
-                _minMaxSliderElement.MaxPropertyElement.Property.floatValue );
+            if ( _minMaxSliderElement.IsFloatType )
+            {
+                DrawMinMaxFloatField( _minMaxSliderElement.MinPropertyElement, leftFieldRect, 
+                    _minMaxSliderElement.MinLimit, 
+                    _minMaxSliderElement.MaxPropertyElement.Property.floatValue );
+            }
+            else
+            {
+                DrawMinMaxIntField( _minMaxSliderElement.MinPropertyElement, leftFieldRect, 
+                    (int) _minMaxSliderElement.MinLimit, 
+                    _minMaxSliderElement.MaxPropertyElement.Property.intValue );
+            }
         }
 
         private void DrawRightFloatField( Rect fieldRect )
@@ -67,8 +77,18 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             };
             rightFieldRect.x += fieldRect.width - _minMaxSliderElement.PropertiesSettings.minMaxSliderFloatFieldWidth;
 
-            DrawMinMaxFloatField( _minMaxSliderElement.MaxPropertyElement, rightFieldRect, 
-                _minMaxSliderElement.MinPropertyElement.Property.floatValue, _minMaxSliderElement.MaxLimit );
+            if ( _minMaxSliderElement.IsFloatType )
+            {
+                DrawMinMaxFloatField( _minMaxSliderElement.MaxPropertyElement, rightFieldRect, 
+                    _minMaxSliderElement.MinPropertyElement.Property.floatValue, 
+                    _minMaxSliderElement.MaxLimit );
+            }
+            else
+            {
+                DrawMinMaxIntField( _minMaxSliderElement.MaxPropertyElement, rightFieldRect, 
+                    _minMaxSliderElement.MinPropertyElement.Property.intValue, 
+                    (int) _minMaxSliderElement.MaxLimit );
+            }
         }
 
         /// <summary>
@@ -82,16 +102,26 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             minMaxSliderRect.xMin += ( _minMaxSliderElement.PropertiesSettings.minMaxSliderFloatFieldWidth + _minMaxSliderElement.PropertiesSettings.minMaxSliderSeparation );
             minMaxSliderRect.xMax -= ( _minMaxSliderElement.PropertiesSettings.minMaxSliderFloatFieldWidth + _minMaxSliderElement.PropertiesSettings.minMaxSliderSeparation );
             
-            float minValue = minProperty.floatValue.RoundToDecimalPlace( _minMaxSliderElement.PropertiesSettings.minMaxDecimalPlace );
-            float maxValue = maxProperty.floatValue.RoundToDecimalPlace( _minMaxSliderElement.PropertiesSettings.minMaxDecimalPlace );
+            int decimalPlace = _minMaxSliderElement.IsFloatType 
+                ? _minMaxSliderElement.PropertiesSettings.minMaxDecimalPlace 
+                : 0;
+            
+            // float minValue = minProperty.floatValue.RoundToDecimalPlace( decimalPlace );
+            // float maxValue = maxProperty.floatValue.RoundToDecimalPlace( decimalPlace );
+            
+            float minValue = GetPropertyValueAsFloat( minProperty ).RoundToDecimalPlace( decimalPlace );
+            float maxValue = GetPropertyValueAsFloat( maxProperty ).RoundToDecimalPlace( decimalPlace );
 
             EditorGUI.BeginChangeCheck();
             EditorGUI.MinMaxSlider( minMaxSliderRect, GUIContent.none, ref minValue, ref maxValue, minLimit, maxLimit );
             if (!EditorGUI.EndChangeCheck())
                 return;
             
-            minProperty.floatValue = minValue.RoundToDecimalPlace( _minMaxSliderElement.PropertiesSettings.minMaxDecimalPlace );
-            maxProperty.floatValue = maxValue.RoundToDecimalPlace( _minMaxSliderElement.PropertiesSettings.minMaxDecimalPlace );
+            // minProperty.floatValue = minValue.RoundToDecimalPlace( decimalPlace );
+            // maxProperty.floatValue = maxValue.RoundToDecimalPlace( decimalPlace );
+            
+            SetFloatValue( minProperty, minValue.RoundToDecimalPlace( decimalPlace ) );
+            SetFloatValue( maxProperty, maxValue.RoundToDecimalPlace( decimalPlace ) );
         }
     
         /// <summary>
@@ -99,7 +129,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         /// </summary>
         private void DrawMinMaxFloatField( PropertyElement propertyElement, Rect floatRect, float clampLower, float clampUpper )
         {
-            float value = propertyElement.Property.floatValue.RoundToDecimalPlace( _minMaxSliderElement.PropertiesSettings.minMaxDecimalPlace );
+            // float value = propertyElement.Property.floatValue.RoundToDecimalPlace( _minMaxSliderElement.PropertiesSettings.minMaxDecimalPlace );
+            float value = GetPropertyValueAsFloat( propertyElement.Property ).RoundToDecimalPlace( _minMaxSliderElement.PropertiesSettings.minMaxDecimalPlace );
         
             EditorGUI.BeginChangeCheck();
             value = EditorGUI.FloatField( floatRect, value );
@@ -109,7 +140,53 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
 
             value = Mathf.Clamp( value.RoundToDecimalPlace( _minMaxSliderElement.PropertiesSettings.minMaxDecimalPlace ), clampLower, clampUpper );
 
-            propertyElement.Property.floatValue = value;
+            // propertyElement.Property.floatValue = value;
+            SetFloatValue( propertyElement.Property, value );
+        }
+        
+        /// <summary>
+        ///     Draws a float field in the provided rect. 
+        /// </summary>
+        private void DrawMinMaxIntField( PropertyElement propertyElement, Rect floatRect, int clampLower, int clampUpper )
+        {
+            int value = propertyElement.Property.intValue;
+        
+            EditorGUI.BeginChangeCheck();
+            value = EditorGUI.IntField( floatRect, value );
+
+            if (!EditorGUI.EndChangeCheck())
+                return;
+
+            value = Mathf.Clamp( value, clampLower, clampUpper );
+
+            propertyElement.Property.intValue = value;
+        }
+
+        private float GetPropertyValueAsFloat( SerializedProperty property )
+        {
+            return property.propertyType switch
+            {
+                SerializedPropertyType.Float => property.floatValue,
+                SerializedPropertyType.Integer => property.intValue,
+                _ => throw new NotSupportedException(
+                    $"Min/Max slider does not support value type: {property.propertyType.ToString()}" )
+            };
+        }
+
+        private void SetFloatValue( SerializedProperty property, float value )
+        {
+            switch (property.propertyType)
+            {
+                case SerializedPropertyType.Float:
+                    property.floatValue = value;
+                    break;
+                case SerializedPropertyType.Integer:
+                    property.intValue = (int) value;
+                    break;
+                default:
+                    throw new NotSupportedException(
+                        $"Min/Max slider does not support value type: {property.propertyType.ToString()}" );
+            }
         }
     }
 }

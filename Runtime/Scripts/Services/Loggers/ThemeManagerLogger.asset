@@ -41,12 +41,12 @@ MonoBehaviour:
   logBlockStart:
     toggle: 1
     customColor:
-      name: -->
+      name: "\u25BA"
       color: {r: 0.29803923, g: 0.8, b: 0.29803923, a: 1}
   logBlockEnd:
     toggle: 1
     customColor:
-      name: <--
+      name: "\u25C0"
       color: {r: 0.29803923, g: 0.6, b: 0.9019608, a: 1}
   logEventPrefix:
     toggle: 1

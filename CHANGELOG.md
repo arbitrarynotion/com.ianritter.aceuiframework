@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.1.1...v1.1.2) (2023-04-28)
+
+
+### Bug Fixes
+
+* Update to AceMonobehaviourRoot functionality ([629008a](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/629008a149ca982f780dd136b35629e617cec143))
+
 ## [1.1.1](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.1.0...v1.1.1) (2023-04-27)
 
 

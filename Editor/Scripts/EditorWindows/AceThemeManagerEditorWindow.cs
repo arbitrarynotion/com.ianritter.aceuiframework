@@ -25,7 +25,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
         protected override string GetTooltip() => string.Empty;
         
         protected override AceScriptableObjectEditorRoot GetTarget() => 
-            LoadScriptableObject<AceScriptableObjectEditorRoot>( ThemeManagerCoreName );
+            LoadScriptableObject<AceScriptableObjectEditorRoot>( ThemeManagerCoreName, SystemCoreSearchFolderName );
 
         /// <summary>
         ///     Draw the elements to the editor window. Returns true if the settings get changed.

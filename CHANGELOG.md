@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.1.3...v1.1.4) (2023-04-29)
+
+
+### Bug Fixes
+
+* Update to DividerElement ([2f018fe](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/2f018fe6609a937813d2c2cfee2f0cfe13915fc2))
+
 ## [1.1.3](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.1.2...v1.1.3) (2023-04-29)
 
 

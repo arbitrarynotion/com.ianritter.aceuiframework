@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.1.5...v1.1.6) (2023-04-29)
+
+
+### Bug Fixes
+
+* Update to AceEditorConstants.cs ([90d42f7](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/90d42f7e40fe8988e47db17a30566506738be95a))
+
 ## [1.1.5](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.1.4...v1.1.5) (2023-04-29)
 
 

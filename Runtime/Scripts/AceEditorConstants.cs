@@ -5,7 +5,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
         // Asset paths.
         public const string UsersSearchFolderName = "Assets";
         public const string ThemesSearchFolderName = "Packages/com.ianritter.aceuiframework/ScriptableObjects/AceThemes/User";
-        public const string SystemCoreSearchFolderName = "Packages/com.ianritter.aceuiframework/ScriptableObjects//ACECore";
+        public const string SystemCoreSearchFolderName = "Packages/com.ianritter.aceuiframework/ScriptableObjects/ACECore";
         public const string DemosSearchFolderName = "Packages/com.ianritter.aceuiframework/Runtime/Scripts/Demos";
         public const string LoggersSearchFolderName = "Packages/com.ianritter.aceuiframework/Runtime/Scripts/Services/Loggers";
         

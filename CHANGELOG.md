@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.1.4...v1.1.5) (2023-04-29)
+
+
+### Bug Fixes
+
+* Update to AceThemeMangerEditorWindow.cs ([b8d304d](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/b8d304dd2aa6431e10d67f6c688093ee843ec399))
+
 ## [1.1.4](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.1.3...v1.1.4) (2023-04-29)
 
 

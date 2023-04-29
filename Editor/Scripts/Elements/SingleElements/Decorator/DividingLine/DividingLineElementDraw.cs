@@ -16,7 +16,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         
 
         protected override void DrawElementContents() => 
-            DrawDivider( _dividingLineElement.UseCustomColor ?  _dividingLineElement.Color : _dividingLineElement.GlobalSettings.frameOutlineColor );
+            DrawDivider( _dividingLineElement.UseCustomColor ? _dividingLineElement.Color : _dividingLineElement.GlobalSettings.frameOutlineColor );
 
         private void DrawDivider( Color color )
         {

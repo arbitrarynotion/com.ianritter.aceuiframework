@@ -73,9 +73,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
                     break;
                 
                 case ElementType.SingleDecoratorDividingLine:
-                    return new DividingLineElement();
+                    var dividingLineInfo = (DividerInfo) elementInfo;
+                    return dividingLineInfo.UseCustomColor 
+                        ? new DividingLineElement( dividingLineInfo.Color, dividingLineInfo.BoxHeight, dividingLineInfo.DividerThickness ) 
+                        : new DividingLineElement();
 
-                
+
                 case ElementType.SingleDecoratorLabel:
                     var singleElementInfo = (SingleElementInfo) elementInfo;
                     return new LabelElement( singleElementInfo.GUIContent );

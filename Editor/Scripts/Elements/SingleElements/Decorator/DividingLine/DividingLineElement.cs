@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
@@ -15,8 +16,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         
         public readonly float DividerThickness;
         public readonly float BoxHeight;
-        public readonly bool UseCustomColor;
         public readonly Color Color;
+        public readonly bool UseCustomColor;
         
 
         // Todo: Add option to change divider color to settings window.
@@ -43,9 +44,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         /// <param name="color">Specify the color used to draw the dividing line.</param>
         /// <param name="boxHeight">The amount of vertical space the divider will take up.</param>
         /// <param name="dividerThickness">The thickness of the line drawn in the vertical center of the box height.</param>
-        public DividingLineElement( Color color, float boxHeight = 5f, float dividerThickness = 1f ) : 
+        public DividingLineElement( 
+            Color color, 
+            float boxHeight = 5f, 
+            float dividerThickness = 1f ) : 
             base( GUIContent.none, new SingleCustomSettings() {ForceSingleLine = true}, false, new ElementCondition[] {} )
         {
+            if ( color != null )
+            {
+                
+            }
             UseCustomColor = true;
             Color = color;
             BoxHeight = boxHeight;

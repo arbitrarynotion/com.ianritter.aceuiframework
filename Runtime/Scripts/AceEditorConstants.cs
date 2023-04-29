@@ -21,9 +21,9 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
         public const string ThemeAssetMenuName = "ACE Theme";
         public const string ThemeManagerAssetMenuName = "ACE Theme Manager";
         public const string LoggerAssetMenuName = "Custom Logger";
-        public const string ThemeSettingsWindowMenuItemName = "Tools/ACE Theme Settings";
+        public const string ThemeSettingsWindowMenuItemName = "Tools/ACE UI/Theme Settings";
         public const string ThemeSettingsWindowTitle = "ACE Theme Settings";
-        public const string ThemeManagerSettingsWindowMenuItemName = "Tools/ACE Theme Manager";
+        public const string ThemeManagerSettingsWindowMenuItemName = "Tools/ACE UI/Theme Manager";
         public const string ThemeManagerWindowTitle = "ACE Theme Manager";
         public const string ColorPickerWindowTitle = "Color Picker";
         

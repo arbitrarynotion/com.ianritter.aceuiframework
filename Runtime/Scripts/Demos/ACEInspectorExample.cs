@@ -446,6 +446,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                     GetElement( nameof(boundsField), "Bounds", string.Empty ), 
                     GetElement( nameof(rectField), "Rect", string.Empty ), 
                     
+                    GetDividerElement( 10f, 3f, new Color( 1f, 1f, 0f, 1f )),
+                    
                     // Element level 1
                     GetGroupWithLabelHeading( "Labeled Group, indented by 1", "Head 2 tooltip!",
                         new GroupCustomSettings()

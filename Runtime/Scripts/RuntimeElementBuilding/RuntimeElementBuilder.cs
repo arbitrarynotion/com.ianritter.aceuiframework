@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
+using UnityEngine.UIElements;
 using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
 
 namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding
@@ -96,9 +97,23 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
 
     public class DividerInfo : SingleElementInfo
     {
+        public float DividerThickness { get; } = 1f;
+        public float BoxHeight { get; } = 5f;
+        public bool UseCustomColor { get; } = false;
+        public Color Color { get; } = new Color( 0f, 0f, 0f, 1f );
+        
         public DividerInfo() 
             : base( ElementType.SingleDecoratorDividingLine, GUIContent.none, new SingleCustomSettings() )
         {
+        }
+        
+        public DividerInfo( float boxHeight, float dividerThickness, Color color ) 
+            : base( ElementType.SingleDecoratorDividingLine, GUIContent.none, new SingleCustomSettings() )
+        {
+            DividerThickness = dividerThickness;
+            BoxHeight = boxHeight;
+            UseCustomColor = true;
+            Color = color;
         }
     }
 
@@ -263,14 +278,22 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         /// <summary>
         ///     Get basic single element.
         /// </summary>
-        public static ElementInfo GetElement( string varName )
+        public static ElementInfo GetElement( string varName, bool includeVarNameAsLabel = true )
         {
+            string name = includeVarNameAsLabel ? CapitalizeFirstLetter( NicifyVariableName( varName ) ) : string.Empty;
             return new BasicPropertyInfo( 
                 varName, 
-                new GUIContent( NicifyVariableName( varName ) ), 
+                new GUIContent( name ), 
                 new SingleCustomSettings(), 
                 null
             );
+        }
+
+        private static string CapitalizeFirstLetter( string name )
+        {
+            char[] charName = name.ToCharArray();
+            charName[0] = char.ToUpper( charName[0] );
+            return new string( charName );
         }
         
         /// <summary>
@@ -473,6 +496,14 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         public static ElementInfo GetDividerElement()
         {
             return new DividerInfo();
+        }
+        
+        /// <summary>
+        ///     Get divider element.
+        /// </summary>
+        public static ElementInfo GetDividerElement( float boxHeight, float dividerThickness, Color color )
+        {
+            return new DividerInfo( boxHeight, dividerThickness, color );
         }
         
 #endregion

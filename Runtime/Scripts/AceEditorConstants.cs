@@ -4,7 +4,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
     {
         // Asset paths.
         public const string UsersSearchFolderName = "Assets";
-        public const string ThemesSearchFolderName = "Packages/com.ianritter.aceuiframework/AceThemes/User";
+        public const string ThemesSearchFolderName = "Packages/com.ianritter.aceuiframework/ScriptableObjects/AceThemes/User";
+        public const string SystemCoreSearchFolderName = "Packages/com.ianritter.aceuiframework/ScriptableObjects//ACECore";
         public const string DemosSearchFolderName = "Packages/com.ianritter.aceuiframework/Runtime/Scripts/Demos";
         public const string LoggersSearchFolderName = "Packages/com.ianritter.aceuiframework/Runtime/Scripts/Services/Loggers";
         
@@ -19,13 +20,15 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
 
         // Text displayed in the editor.
         public const string ThemeAssetMenuName = "ACE Theme";
-        public const string ThemeManagerAssetMenuName = "ACE Theme Manager";
-        public const string LoggerAssetMenuName = "Custom Logger";
-        public const string ThemeSettingsWindowMenuItemName = "Tools/ACE UI/Theme Settings";
         public const string ThemeSettingsWindowTitle = "ACE Theme Settings";
-        public const string ThemeManagerSettingsWindowMenuItemName = "Tools/ACE UI/Theme Manager";
+        public const string ThemeManagerAssetMenuName = "ACE Theme Manager";
         public const string ThemeManagerWindowTitle = "ACE Theme Manager";
+        public const string LoggerAssetMenuName = "Custom Logger";
         public const string ColorPickerWindowTitle = "Color Picker";
+
+        // Menu Item Paths
+        public const string ThemeSettingsWindowMenuItemName = "Tools/ACE UI/Theme Settings";
+        public const string ThemeManagerSettingsWindowMenuItemName = "Tools/ACE UI/Theme Manager";
         
         // Can not access the var names directly because the AceTheme is in an Editor folder.
         // This ugly workaround was the only way to retain this framework.

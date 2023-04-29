@@ -34,12 +34,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
         /// </summary>
         private void OnEnable()
         {
-            _themeManager = LoadScriptableObject<AceThemeManager>( ThemeManagerCoreName );
+            _themeManager = LoadScriptableObject<AceThemeManager>( ThemeManagerCoreName, SystemCoreSearchFolderName );
+            
+            // string result = _themeManager == null ? "failed" : "succeeded";
+            // Debug.LogWarning( $"AMRE|OE: Loading of {ThemeManagerCoreName}: {result}" );
+            
             _themeManager.OnThemeAssignmentChanged += OnTargetsThemeAssignmentUpdated;
             
             _logger = LoadScriptableObject<CustomLogger>( MonobehaviourRootEditorLoggerName );
-            string result = _logger == null ? "failed" : "succeeded";
-            Debug.LogWarning( $"AMRE|OE: Loading of {MonobehaviourRootEditorLoggerName}: {result}" );
+            // string result = _logger == null ? "failed" : "succeeded";
+            // Debug.LogWarning( $"AMRE|OE: Loading of {MonobehaviourRootEditorLoggerName}: {result}" );
 
             
             _targetSerializedObject = serializedObject;

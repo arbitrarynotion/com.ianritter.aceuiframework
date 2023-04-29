@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 076b7b2dc8b8fbd4dbb0d0a1a43b111e, type: 3}
-  m_Name: AceCustomTheme01
+  m_Name: AceDefaultTheme
   m_EditorClassIdentifier: 
   logger: {fileID: 11400000, guid: 993055de20daf4b4dbc34b32f77e4a47, type: 2}
   selectedSection: 3
@@ -54,7 +54,7 @@ MonoBehaviour:
     - name: Blue 3
       color: {r: 0.076628685, g: 0.2749996, b: 0.3962264, a: 1}
     - name: Blue 4
-      color: {r: 0.05896227, g: 0.16951653, b: 0.23584908, a: 1}
+      color: {r: 0.078431375, g: 0.16862746, b: 0.23529413, a: 1}
     - name: Orange 1
       color: {r: 0.8862746, g: 0.69411767, b: 0.4156863, a: 1}
     - name: Orange 2
@@ -319,7 +319,7 @@ MonoBehaviour:
   headingElementFrameSettingsList:
   - applyFraming: 1
     includeBackground: 1
-    frameType: 1
+    frameType: 4
     frameOutlineThickness: 2
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
   foldoutGroupSettingsList:
   - applyFraming: 1
     includeBackground: 0
-    frameType: 2
+    frameType: 4
     frameOutlineThickness: 2
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
@@ -547,10 +547,10 @@ MonoBehaviour:
     showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
   singleElementFrameSettingsList:
-  - applyFraming: 1
+  - applyFraming: 0
     includeBackground: 1
-    frameType: 7
-    frameOutlineThickness: 2
+    frameType: 0
+    frameOutlineThickness: 1
     frameAutoPadding: 2.88
     frameOutlineColorIndex: 4
     backgroundColorIndex: 6

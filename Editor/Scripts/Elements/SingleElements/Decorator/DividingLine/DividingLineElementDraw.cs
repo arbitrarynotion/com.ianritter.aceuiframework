@@ -22,8 +22,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         {
             float padding = _dividingLineElement.BoxHeight - _dividingLineElement.DividerThickness;
             var elementHeightRect = new Rect(_dividingLineElement.SingleElementLayout.GetDrawRect());
+            // DrawRectOutline( elementHeightRect, Color.grey );
+            
+            // Calculate trim values.
+            float leftTrimPadding = elementHeightRect.width * _dividingLineElement.LeftTrimPercent;
+            float rightTrimPadding = elementHeightRect.width * _dividingLineElement.RightTrimPercent;
+            
             elementHeightRect.y += padding / 2f;
             elementHeightRect.height = _dividingLineElement.DividerThickness;
+            elementHeightRect.xMin += leftTrimPadding;
+            elementHeightRect.xMax -= rightTrimPadding;
             DrawSolidRect( elementHeightRect, color );
         }
     }

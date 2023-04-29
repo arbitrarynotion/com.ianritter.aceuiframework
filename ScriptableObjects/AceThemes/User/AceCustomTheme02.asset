@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 076b7b2dc8b8fbd4dbb0d0a1a43b111e, type: 3}
-  m_Name: AceDefaultTheme
+  m_Name: AceCustomTheme02
   m_EditorClassIdentifier: 
   logger: {fileID: 11400000, guid: 993055de20daf4b4dbc34b32f77e4a47, type: 2}
-  selectedSection: 4
+  selectedSection: 3
   basicGroupLevelSettingsMode: 0
   headingGroupLevelSettingsMode: 0
   singleElementsLevelSettingsMode: 0
   globalSettings:
-    leftIndentUnitAmount: 14.4
-    elementVerticalPadding: 4.4
-    columnGap: 0
+    leftIndentUnitAmount: 16.9
+    elementVerticalPadding: 2
+    columnGap: 4
     sectionWidthPriorityAdjustment: 0
     groupWidthPriorityAdjustment: 0
     propertyWidthPriorityAdjustment: 0
@@ -38,11 +38,43 @@ MonoBehaviour:
     - name: Root Background
       color: {r: 0.18, g: 0.18, b: 0.18, a: 1}
     - name: Child Background
-      color: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
-    - name: Red Background
-      color: {r: 0.26415092, g: 0.12584549, b: 0.12584549, a: 1}
-    - name: Red Background
-      color: {r: 0.0069419593, g: 0.49056602, b: 0.07020149, a: 1}
+      color: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+    - name: Green 1
+      color: {r: 0.2519464, g: 0.6415094, b: 0.21484515, a: 1}
+    - name: Green 2
+      color: {r: 0.17955618, g: 0.46226418, b: 0.15045391, a: 1}
+    - name: Green 3
+      color: {r: 0.13482375, g: 0.33962262, b: 0.11374155, a: 1}
+    - name: Green 4
+      color: {r: 0.08898064, g: 0.24528301, b: 0.07289071, a: 1}
+    - name: Blue 1
+      color: {r: 0.38959596, g: 0.6467465, b: 0.8018868, a: 1}
+    - name: Blue 2
+      color: {r: 0.08121216, g: 0.4582605, b: 0.6886792, a: 1}
+    - name: Blue 3
+      color: {r: 0.076628685, g: 0.2749996, b: 0.3962264, a: 1}
+    - name: Blue 4
+      color: {r: 0.05896227, g: 0.16951653, b: 0.23584908, a: 1}
+    - name: Orange 1
+      color: {r: 0.8862746, g: 0.69411767, b: 0.4156863, a: 1}
+    - name: Orange 2
+      color: {r: 0.764151, g: 0.53601706, b: 0.20545568, a: 1}
+    - name: Orange 3
+      color: {r: 0.5660378, g: 0.38396677, b: 0.120149545, a: 1}
+    - name: Orange 4
+      color: {r: 0.3962264, g: 0.25656596, b: 0.054200795, a: 1}
+    - name: Grey 1
+      color: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
+    - name: Grey 2
+      color: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
+    - name: Grey 3
+      color: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
+    - name: Grey 4
+      color: {r: 0.16981131, g: 0.16580632, b: 0.16580632, a: 1}
+    - name: Enabled Text
+      color: {r: 1, g: 1, b: 1, a: 1}
+    - name: Disabled Text
+      color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   basicGroupSettingsList:
   - topPadding: 0
     leftPadding: 0
@@ -113,20 +145,20 @@ MonoBehaviour:
   - applyFraming: 1
     includeBackground: 1
     frameType: 1
-    frameOutlineThickness: 2
-    frameAutoPadding: 0
+    frameOutlineThickness: 1
+    frameAutoPadding: 4
     frameOutlineColorIndex: 0
-    backgroundColorIndex: 3
+    backgroundColorIndex: 6
   - applyFraming: 1
     includeBackground: 0
-    frameType: 2
+    frameType: 5
     frameOutlineThickness: 1
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   - applyFraming: 1
     includeBackground: 0
-    frameType: 2
+    frameType: 5
     frameOutlineThickness: 1
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
@@ -146,20 +178,20 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   headingGroupSectionState: 0
-  groupSectionState: 1
+  groupSectionState: 0
   headingGroupSettingsList:
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
-    bottomPadding: 10
+    bottomPadding: 4
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
-    showPosRect: 0
+    showPosRect: 1
     layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
-    showFrameRect: 0
+    showFrameRect: 1
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
-    showDrawRect: 0
+    showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
   - topPadding: 0
@@ -219,18 +251,18 @@ MonoBehaviour:
     layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
   childAreaGroupSettingsList:
-  - topPadding: 0
+  - topPadding: 2
     leftPadding: 0
-    rightPadding: 0
-    bottomPadding: 0
+    rightPadding: 2
+    bottomPadding: 8
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
-    showPosRect: 0
+    showPosRect: 1
     layoutToolsPosRectColor: {r: 0.5, g: 0.3, b: 0.3, a: 1}
-    showFrameRect: 0
+    showFrameRect: 1
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
-    showDrawRect: 0
+    showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
   - topPadding: 0
     leftPadding: 0
@@ -286,8 +318,19 @@ MonoBehaviour:
     layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
   headingElementFrameSettingsList:
   - applyFraming: 1
+    includeBackground: 1
+    frameType: 4
+    frameOutlineThickness: 2
+    frameAutoPadding: 0
+    frameOutlineColorIndex: 0
+    backgroundColorIndex: 10
+    textHorizontalOffset: 2
+    boxHeight: 8
+    enabledTextColorIndex: 19
+    disabledTextColorIndex: 20
+  - applyFraming: 1
     includeBackground: 0
-    frameType: 1
+    frameType: 4
     frameOutlineThickness: 1
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
@@ -298,7 +341,7 @@ MonoBehaviour:
     disabledTextColorIndex: 1
   - applyFraming: 1
     includeBackground: 0
-    frameType: 1
+    frameType: 4
     frameOutlineThickness: 1
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
@@ -309,7 +352,7 @@ MonoBehaviour:
     disabledTextColorIndex: 1
   - applyFraming: 1
     includeBackground: 0
-    frameType: 1
+    frameType: 4
     frameOutlineThickness: 1
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
@@ -320,18 +363,7 @@ MonoBehaviour:
     disabledTextColorIndex: 1
   - applyFraming: 1
     includeBackground: 0
-    frameType: 1
-    frameOutlineThickness: 1
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
-    textHorizontalOffset: 15
-    boxHeight: 0
-    enabledTextColorIndex: 0
-    disabledTextColorIndex: 1
-  - applyFraming: 1
-    includeBackground: 0
-    frameType: 1
+    frameType: 4
     frameOutlineThickness: 1
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
@@ -343,7 +375,7 @@ MonoBehaviour:
   foldoutGroupSettingsList:
   - applyFraming: 1
     includeBackground: 0
-    frameType: 3
+    frameType: 4
     frameOutlineThickness: 2
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
@@ -450,17 +482,17 @@ MonoBehaviour:
     backgroundColorIndex: 1
   singleElementSettingsList:
   - topPadding: 0
-    leftPadding: 0.86
-    rightPadding: 0.5
+    leftPadding: 0
+    rightPadding: 0
     bottomPadding: 0
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
-    showPosRect: 0
+    showPosRect: 1
     layoutToolsPosRectColor: {r: 0.1, g: 0.4, b: 0.2, a: 1}
-    showFrameRect: 0
-    frameRectColor: {r: 0, g: 0, b: 0, a: 0}
-    showDrawRect: 0
+    showFrameRect: 1
+    frameRectColor: {r: 0.23300104, g: 0.6415094, b: 0.2666532, a: 1}
+    showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
   - topPadding: 0
     leftPadding: 0
@@ -517,11 +549,11 @@ MonoBehaviour:
   singleElementFrameSettingsList:
   - applyFraming: 1
     includeBackground: 1
-    frameType: 5
+    frameType: 1
     frameOutlineThickness: 1
-    frameAutoPadding: 0
+    frameAutoPadding: 2
     frameOutlineColorIndex: 0
-    backgroundColorIndex: 2
+    backgroundColorIndex: 1
     skipSingleLineFrames: 0
   - applyFraming: 1
     includeBackground: 0
@@ -556,17 +588,17 @@ MonoBehaviour:
     backgroundColorIndex: 1
     skipSingleLineFrames: 1
   propertySpecificSettings:
-    showWideModeBoxes: 1
-    propertyChildLabelWidth: 50
-    propertyLabelEndPadding: 2.9
-    propertyNumberFieldsMinWidth: 121
-    propertySlidersMinWidth: 85
-    propertyStringFieldsMinWidth: 100
+    showWideModeBoxes: 0
+    propertyChildLabelWidth: 100
+    propertyLabelEndPadding: 0
+    propertyNumberFieldsMinWidth: 60
+    propertySlidersMinWidth: 60
+    propertyStringFieldsMinWidth: 60
     propertyBoolsMinWidth: 60
     propertyColorsMinWidth: 60
     propertyAnimationCurvesMinWidth: 60
     propertyDropDownsMinWidth: 60
-    propertySetsMinWidth: 89
+    propertySetsMinWidth: 60
     propertyGenericMinWidth: 60
     minMaxDecimalPlace: 2
     minMaxSliderMinWidth: 200
@@ -577,6 +609,6 @@ MonoBehaviour:
   groupsSectionToggle: 1
   singleElementsSectionToggle: 1
   propertySpecificSectionToggle: 1
-  basicGroupsSectionDrawAreaToggle: 1
+  basicGroupsSectionDrawAreaToggle: 0
   headingGroupsSectionDrawAreaToggle: 1
   singleElementsSectionDrawAreaToggle: 1

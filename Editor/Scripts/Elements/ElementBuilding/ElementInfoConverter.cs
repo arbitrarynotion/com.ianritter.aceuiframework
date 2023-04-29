@@ -75,7 +75,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
                 case ElementType.SingleDecoratorDividingLine:
                     var dividingLineInfo = (DividerInfo) elementInfo;
                     return dividingLineInfo.UseCustomColor 
-                        ? new DividingLineElement( dividingLineInfo.Color, dividingLineInfo.BoxHeight, dividingLineInfo.DividerThickness ) 
+                        ? new DividingLineElement( 
+                            dividingLineInfo.Color, 
+                            dividingLineInfo.BoxHeight, 
+                            dividingLineInfo.DividerThickness,
+                            dividingLineInfo.LeftTrimPercent,
+                            dividingLineInfo.RightTrimPercent
+                        ) 
                         : new DividingLineElement();
 
 

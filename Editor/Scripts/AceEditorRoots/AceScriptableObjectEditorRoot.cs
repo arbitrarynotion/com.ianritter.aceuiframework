@@ -108,7 +108,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
                 {
                     var target = (AceThemeEditorWindow) currentDelegate.Target;
                     logger.LogOneTimeIndent( $"• {GetColoredStringYellow( logger.ApplyNameFormatting( currentDelegate.Target.GetType().Name ) )}: " +
-                                             $"{GetColoredString( target.GetTargetName(), Purple.color )}" );
+                                             $"{GetColoredString( target.GetTargetName(), Yellow.color )}" );
                 }
                 // else if ( currentDelegate.Target.GetType() == typeof( AceMonobehaviourRoot ) )
                 // {

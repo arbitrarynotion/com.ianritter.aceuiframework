@@ -18,6 +18,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         public readonly float BoxHeight;
         public readonly Color Color;
         public readonly bool UseCustomColor;
+        public readonly float LeftTrimPercent;
+        public readonly float RightTrimPercent;
         
 
         // Todo: Add option to change divider color to settings window.
@@ -44,10 +46,15 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         /// <param name="color">Specify the color used to draw the dividing line.</param>
         /// <param name="boxHeight">The amount of vertical space the divider will take up.</param>
         /// <param name="dividerThickness">The thickness of the line drawn in the vertical center of the box height.</param>
+        /// <param name="leftTrimPercent"></param>
+        /// <param name="rightTrimPercent"></param>
         public DividingLineElement( 
             Color color, 
             float boxHeight = 5f, 
-            float dividerThickness = 1f ) : 
+            float dividerThickness = 1f,
+            float leftTrimPercent = 0f,
+            float rightTrimPercent = 0f
+        ) : 
             base( GUIContent.none, new SingleCustomSettings() {ForceSingleLine = true}, false, new ElementCondition[] {} )
         {
             if ( color != null )
@@ -55,9 +62,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
                 
             }
             UseCustomColor = true;
-            Color = color;
-            BoxHeight = boxHeight;
             DividerThickness = dividerThickness;
+            BoxHeight = boxHeight;
+            Color = color;
+            LeftTrimPercent = leftTrimPercent;
+            RightTrimPercent = rightTrimPercent;
             DividerThickness.AtMost( BoxHeight );
         }
         

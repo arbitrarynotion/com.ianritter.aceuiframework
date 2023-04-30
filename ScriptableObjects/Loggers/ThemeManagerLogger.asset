@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ThemeManagerLogger
   m_EditorClassIdentifier: 
   showLogs: 1
-  useClassPrefix: 0
-  boldMethods: 0
-  boldBlockMethods: 0
+  useClassPrefix: 1
+  boldMethods: 1
+  boldBlockMethods: 1
   maxPrefixCharacters: 0
   nicifiedNames: 1
   logPrefix:

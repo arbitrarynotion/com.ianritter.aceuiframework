@@ -74,16 +74,29 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
                 
                 case ElementType.SingleDecoratorDividingLine:
                     var dividingLineInfo = (DividerInfo) elementInfo;
-                    return dividingLineInfo.UseCustomColor 
-                        ? new DividingLineElement( 
-                            dividingLineInfo.Color, 
-                            dividingLineInfo.BoxHeight, 
-                            dividingLineInfo.DividerThickness,
-                            dividingLineInfo.LeftTrimPercent,
-                            dividingLineInfo.RightTrimPercent
-                        ) 
-                        : new DividingLineElement();
 
+                    if ( !dividingLineInfo.UseCustomColor ) return new DividingLineElement();
+                    
+                    if ( dividingLineInfo.SettingsAreLive )
+                    {
+                        return new DividingLineElement(
+                            dividingLineInfo.Color,
+                            dividingLineInfo.BoxHeight,
+                            dividingLineInfo.DividerThickness,
+                            dividingLineInfo.LeftTrimPercentPropertyVarName,
+                            dividingLineInfo.RightTrimPercentPropertyVarName,
+                            dividingLineInfo.SingleCustomSettings
+                        );
+                    }
+
+                    return new DividingLineElement(
+                        dividingLineInfo.Color,
+                        dividingLineInfo.BoxHeight,
+                        dividingLineInfo.DividerThickness,
+                        dividingLineInfo.LeftTrimPercent,
+                        dividingLineInfo.RightTrimPercent,
+                        dividingLineInfo.SingleCustomSettings
+                    );
 
                 case ElementType.SingleDecoratorLabel:
                     var singleElementInfo = (SingleElementInfo) elementInfo;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2446efb71edc1d4dbf1152fb3a81ae5, type: 3}
   m_Name: EditorLogger
   m_EditorClassIdentifier: 
-  showLogs: 0
+  showLogs: 1
   useClassPrefix: 1
   boldMethods: 1
   boldBlockMethods: 1

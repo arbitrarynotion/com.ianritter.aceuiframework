@@ -1,9 +1,11 @@
 using System;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Enums;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding.RuntimeElementBuilder;
@@ -446,9 +448,10 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                     GetElement( nameof(boundsField), "Bounds", string.Empty ), 
                     GetElement( nameof(rectField), "Rect", string.Empty ), 
                     
-                    GetDividerElement( 10f, 10f, Color.yellow, 0.25f, 0f ),
-                    GetDividerElement( 10f, 10f, Color.red, 0f, 0.25f ),
-                    GetDividerElement( 10f, 10f, Color.green, 0.25f, 0.25f ),
+                    GetDividerElement( 10f, 8f, Color.yellow, 0.25f, 0.5f ),
+                    GetDividerElement( 10f, 8f, Color.red, 0f, 0.35f ),
+                    GetDividerElement( 10f, 8f, Color.green, 0.25f, 1f ),
+                    
                     
                     // Element level 1
                     GetGroupWithLabelHeading( "Labeled Group, indented by 1", "Head 2 tooltip!",
@@ -465,15 +468,27 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                         ), 
                         GetLabelElement( "Label.", "Label 3 tooltip!" ), 
                         GetElement( nameof(floatSliderField), "Int Slider Standalone", string.Empty ),
-                        GetMinMaxSliderElement( "MinMax Slider", "MinMax tooltip!", 
+                        GetMinMaxSliderElement( "MinMax Slider 1", "MinMax tooltip!", 
                             nameof(closeFade1), nameof(farFade1), 0, 1 ),
                         GetMinMaxSliderElement( "MinMax Slider on its own line", "MinMax tooltip!", 
                             nameof(closeFade2), nameof(farFade2), 0, 1,
                             new SingleCustomSettings()
                             {
                                 ForceSingleLine = true,
-                                TopPadding = 4f
+                                TopPadding = 4f,
+                                BottomPadding = 4f
                             }
+                        ),
+                        GetDividerElement( 10f, 8f, Color.cyan,
+                            nameof( closeFade2 ), 
+                            nameof( farFade2 ),
+                            new SingleCustomSettings() {CustomFrameSettings = new CustomFrameSettings()
+                            {
+                                applyFraming = true,
+                                includeBackground = true,
+                                frameAutoPadding = 2f,
+                                frameType = ElementFrameType.FullOutline
+                            }}
                         ),
                         GetElement( nameof( closeFade2 ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true } ),
                         GetElement( nameof( farFade2 ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true } ),

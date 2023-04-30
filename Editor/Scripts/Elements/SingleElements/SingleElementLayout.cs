@@ -1,3 +1,5 @@
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements;
 using UnityEditor;
 using UnityEngine;
 
@@ -64,7 +66,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
 
         public override bool ShouldShowFrame()
         {
-            if ( SingleElement.IsRootElement() )
+            if ( Element.IsRootElement() )
                 return false;
 
             if ( Element.ParentIsCompositeGroup() )
@@ -72,6 +74,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
 
             if ( Element.CustomSettings.BlockFrame() )
                 return false;
+
+            if ( Element.CustomSettings.OverrideFrame() )
+                return Element.CustomSettings.CustomFrameSettings.applyFraming;
 
             if ( !Element.ParentElement.GroupCustomSettings.ChildSingleElementsHaveFrames )
                 return false;
@@ -91,13 +96,23 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
 
         private bool ShouldApplyPaddingToAnySide()
         {
-            if ( SingleElement.IsRootElement() )
+            // Todo: Solve issue where custom frame override is still responding to 
+            // if ( SingleElement.CustomSettings.OverrideFrame() )
+            //     return true;
+            
+            if ( Element.IsRootElement() )
                 return false;
 
             if ( Element.ParentIsCompositeGroup() )
                 return false;
+            
+            if ( Element.CustomSettings.BlockFrame() )
+                return false;
 
             if ( Element.HasOwnLine() && SingleElement.SingleElementFrameSettings.skipSingleLineFrames )
+                return false;
+
+            if ( !Element.FrameSettings.applyFraming )
                 return false;
 
             return true;

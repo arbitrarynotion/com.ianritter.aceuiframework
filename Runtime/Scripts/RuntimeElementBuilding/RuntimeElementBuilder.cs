@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 using JetBrains.Annotations;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
-using UnityEngine.UIElements;
 using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
 
 namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding
@@ -103,15 +103,32 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         public Color Color { get; } = new Color( 0f, 0f, 0f, 1f );
         public float LeftTrimPercent { get; } = 0f;
         public float RightTrimPercent { get; } = 0f;
+        public bool SettingsAreLive { get; }
+        public string LeftTrimPercentPropertyVarName { get; }
+        public string RightTrimPercentPropertyVarName { get; }
 
-        
         public DividerInfo() 
-            : base( ElementType.SingleDecoratorDividingLine, GUIContent.none, new SingleCustomSettings() )
+            : base( ElementType.SingleDecoratorDividingLine, GUIContent.none, new SingleCustomSettings()
+            {
+                CustomFrameSettings = new CustomFrameSettings() {applyFraming = false}
+            } 
+        )
         {
         }
         
-        public DividerInfo( float boxHeight, float dividerThickness, Color color, float leftTrimPercent = 0f, float rightTrimPercent = 0f ) 
-            : base( ElementType.SingleDecoratorDividingLine, GUIContent.none, new SingleCustomSettings() )
+        public DividerInfo( 
+            float boxHeight, 
+            float dividerThickness, 
+            Color color, 
+            float leftTrimPercent = 0f, 
+            float rightTrimPercent = 0f,
+            SingleCustomSettings customSettings = null
+        ) 
+            : base( 
+                ElementType.SingleDecoratorDividingLine, 
+                GUIContent.none, 
+                customSettings ?? new SingleCustomSettings() {CustomFrameSettings = new CustomFrameSettings() {applyFraming = false}} 
+            )
         {
             DividerThickness = dividerThickness;
             BoxHeight = boxHeight;
@@ -120,7 +137,31 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
             LeftTrimPercent = leftTrimPercent;
             RightTrimPercent = rightTrimPercent;
         }
+        
+        public DividerInfo( 
+            float boxHeight, 
+            float dividerThickness, 
+            Color color,
+            string leftTrimPercentPropertyVarName,
+            string rightTrimPercentPropertyVarName,
+            SingleCustomSettings customSettings = null
+        ) 
+            : base( 
+                ElementType.SingleDecoratorDividingLine, 
+                GUIContent.none, 
+                customSettings ?? new SingleCustomSettings() {CustomFrameSettings = new CustomFrameSettings() {applyFraming = false}} 
+            )
+        {
+            DividerThickness = dividerThickness;
+            BoxHeight = boxHeight;
+            UseCustomColor = true;
+            Color = color;
+            SettingsAreLive = true;
+            LeftTrimPercentPropertyVarName = leftTrimPercentPropertyVarName;
+            RightTrimPercentPropertyVarName = rightTrimPercentPropertyVarName;
+        }
     }
+    
 
     public class BasicPropertyInfo : SingleInteractiveInfo
     {
@@ -506,9 +547,31 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         /// <summary>
         ///     Get divider element.
         /// </summary>
-        public static ElementInfo GetDividerElement( float boxHeight, float dividerThickness, Color color, float leftTrimPercent = 0f, float rightTrimPercent = 0f )
+        public static ElementInfo GetDividerElement( 
+            float boxHeight, 
+            float dividerThickness, 
+            Color color, 
+            string leftTrimPercentPropertyVarName, 
+            string rightTrimPercentPropertyVarName,
+            SingleCustomSettings customSettings = null
+        )
         {
-            return new DividerInfo( boxHeight, dividerThickness, color, leftTrimPercent, rightTrimPercent );
+            return new DividerInfo( boxHeight, dividerThickness, color, leftTrimPercentPropertyVarName, rightTrimPercentPropertyVarName, customSettings );
+        }
+        
+        /// <summary>
+        ///     Get divider element.
+        /// </summary>
+        public static ElementInfo GetDividerElement( 
+            float boxHeight, 
+            float dividerThickness, 
+            Color color, 
+            float leftTrimPercent = 0f, 
+            float rightTrimPercent = 0f,
+            SingleCustomSettings customSettings = null
+        )
+        {
+            return new DividerInfo( boxHeight, dividerThickness, color, leftTrimPercent, rightTrimPercent, customSettings );
         }
         
 #endregion

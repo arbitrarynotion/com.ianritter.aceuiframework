@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.2.0...v1.3.0) (2023-04-30)
+
+
+### Features
+
+* Update to AceThemeManager.cs ([aefb583](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/aefb583d9f9f210274524d116efdaaceb199e449))
+
 # [1.2.0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.1.6...v1.2.0) (2023-04-30)
 
 

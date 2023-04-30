@@ -1,21 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+using UnityEngine;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding.AceElementBuilder;
-using UnityEngine;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 {
-    public class TMButtonHandler
+    public class TmButtonHandler
     {
-        private readonly TMListHandler _tmListHandler;
+        private readonly TmListHandler _tmListHandler;
         private readonly AceThemeManager _themeManager;
         private readonly CustomLogger _logger;
 
-        public TMButtonHandler( TMListHandler tmListHandler, AceThemeManager themeManager, CustomLogger logger )
+        public TmButtonHandler( TmListHandler tmListHandler, AceThemeManager themeManager, CustomLogger logger )
         {
             _tmListHandler = tmListHandler;
             _themeManager = themeManager;
@@ -33,7 +32,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             return ( scriptInfoListSize > 0 ) ?
                 new Element[]
                 {
-                    
                     GetScanScriptsButton(),
                     // GetCurrentThemeSubscribersButton()
                     GetDividerElement( 6f, 2f ),
@@ -45,7 +43,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                     GetScanScriptsButton()
                 };
         }
-        
+
         private Element GetScanScriptsButton()
         {
             return GetBasicButton( 
@@ -61,10 +59,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         {
             _logger.LogStart( true );
             _logger.Log( "ScriptThemeInfoList state before refresh:" );
-            _themeManager.PrintScriptThemeInfoList();
+            // _themeManager.PrintScriptThemeInfoList();
             _themeManager.RefreshScriptThemeInfoList();
             _logger.Log( "ScriptThemeInfoList state after refresh:" );
-            _themeManager.PrintScriptThemeInfoList();
+            // _themeManager.PrintScriptThemeInfoList();
             _logger.LogEnd();
         }
         

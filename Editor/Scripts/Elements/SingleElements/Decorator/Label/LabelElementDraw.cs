@@ -27,9 +27,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
                     _style.fontStyle = FontStyle.Bold;
                     _style.normal.textColor = _labelElement.GlobalSettings.headingTextEnabledColor;
                 }
+
+                // _style.wordWrap = true;
             }
 
-            DrawAlignedLabelField();
+            DrawAlignedLabelField( _style );
         }
     }
 }

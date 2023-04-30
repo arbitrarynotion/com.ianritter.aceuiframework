@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AceDefaultTheme
   m_EditorClassIdentifier: 
   logger: {fileID: 11400000, guid: 993055de20daf4b4dbc34b32f77e4a47, type: 2}
-  selectedSection: 3
+  selectedSection: 4
   basicGroupLevelSettingsMode: 0
   headingGroupLevelSettingsMode: 0
   singleElementsLevelSettingsMode: 0
@@ -481,10 +481,10 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   singleElementSettingsList:
-  - topPadding: 2
-    leftPadding: 2
-    rightPadding: 2
-    bottomPadding: 2
+  - topPadding: 0
+    leftPadding: 0
+    rightPadding: 0
+    bottomPadding: 0
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
@@ -549,12 +549,12 @@ MonoBehaviour:
   singleElementFrameSettingsList:
   - applyFraming: 0
     includeBackground: 1
-    frameType: 0
+    frameType: 1
     frameOutlineThickness: 1
-    frameAutoPadding: 2.88
+    frameAutoPadding: 0
     frameOutlineColorIndex: 4
     backgroundColorIndex: 6
-    skipSingleLineFrames: 1
+    skipSingleLineFrames: 0
   - applyFraming: 1
     includeBackground: 0
     frameType: 1

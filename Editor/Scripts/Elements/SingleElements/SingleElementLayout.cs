@@ -87,14 +87,32 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             return SingleElement.SingleElementFrameSettings.applyFraming;
         }
 
-        public override bool ShouldApplyGlobalLeftPadding() => ShouldApplyPaddingToAnySide();
-        public override bool ShouldApplyGlobalRightPadding() => ShouldApplyPaddingToAnySide();
-        public override bool ShouldApplyGlobalTopPadding() => ShouldApplyPaddingToAnySide();
-        public override bool ShouldApplyGlobalBottomPadding() => ShouldApplyPaddingToAnySide();
+        public override bool ShouldApplyGlobalLeftPadding() => ShouldApplyGlobalPadding();
+        public override bool ShouldApplyGlobalRightPadding() => ShouldApplyGlobalPadding();
+        public override bool ShouldApplyGlobalTopPadding() => ShouldApplyGlobalPadding();
+        public override bool ShouldApplyGlobalBottomPadding() => ShouldApplyGlobalPadding();
 
-        public override bool ShouldApplyFramePadding() => ShouldApplyPaddingToAnySide();
+        // public override bool ShouldApplyFramePadding() => ShouldApplyPaddingToAnySide();
+        
+        private bool ShouldApplyGlobalPadding()
+        {
+            // Todo: Solve issue where custom frame override is still responding to 
+            // if ( SingleElement.CustomSettings.OverrideFrame() )
+            //     return true;
+            
+            if ( Element.IsRootElement() )
+                return false;
 
-        private bool ShouldApplyPaddingToAnySide()
+            if ( Element.ParentIsCompositeGroup() )
+                return false;
+
+            // if ( Element.HasOwnLine() && SingleElement.SingleElementFrameSettings.skipSingleLineFrames )
+            //     return false;
+
+            return true;
+        }
+
+        public override bool ShouldApplyFramePadding()
         {
             // Todo: Solve issue where custom frame override is still responding to 
             // if ( SingleElement.CustomSettings.OverrideFrame() )

@@ -9,13 +9,14 @@ using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
 using Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting;
 using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 using static Packages.com.ianritter.unityscriptingtools.Editor.AssetLoader;
+using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 {
     /// <summary>
     ///     Manages all operations on the script theme info list.
     /// </summary>
-    public class TMListHandler
+    public class TmListHandler
     {
         private List<MonoScript> ExistingScripts { get; set; }
         private List<AceTheme> ExistingThemes { get; set; }
@@ -24,7 +25,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         private readonly AceThemeManager _themeManager;
         private readonly CustomLogger _logger;
 
-        public TMListHandler( AceThemeManager themeManager, CustomLogger logger )
+        public TmListHandler( AceThemeManager themeManager, CustomLogger logger )
         {
             _themeManager = themeManager;
             _logger = logger;
@@ -37,13 +38,34 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         public List<AceTheme> GetThemesList( bool update = false )
         {
+            // _logger.LogStart( true );
             // _logger.Log( "GetThemeList was called..." );
-            if ( !update && ExistingThemes != null ) 
+            if ( !update && ExistingThemes != null )
+            {
+                // _logger.Log( "No changes, returning Themes List as is." );
+                // _logger.LogEnd();
                 return ExistingThemes;
+            }
             
-            ExistingThemes = GetAssetsByType<AceTheme>( ThemesSearchFolderName );
+            LoadThemes();
+            
+            // _logger.LogEnd();
             
             return ExistingThemes;
+        }
+
+        private void LoadThemes()
+        {
+            ExistingThemes = GetAssetsByType<AceTheme>( ThemesSearchFolderName );
+
+            string userThemeSearchPath = _themeManager.GetUserThemesPath();
+            
+            _logger.Log( $"Searching for user themes at path: {GetColoredStringGreen( userThemeSearchPath )}" );
+            List<AceTheme> userThemes = GetAssetsByType<AceTheme>( userThemeSearchPath );
+            _logger.Log( $"Found {GetColoredStringGreen( userThemes.Count.ToString() )} user themes." );
+            
+            if ( userThemes.Count > 0 )
+                ExistingThemes.AddRange( userThemes );
         }
 
         public AceTheme GetThemeForIndex( int index )
@@ -68,7 +90,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             // Update script and theme lists.
             ExistingScripts = GetAllAceUsers();
             PrintScripts();
-            ExistingThemes = GetAssetsByType<AceTheme>( ThemesSearchFolderName );
+            LoadThemes();
             PrintThemes();
             
             // Update script theme info list to reflect current state of script and theme lists.

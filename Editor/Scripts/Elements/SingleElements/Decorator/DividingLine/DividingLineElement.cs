@@ -21,8 +21,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         public readonly float BoxHeight;
         public readonly Color Color;
         public readonly bool UseCustomSettings;
-        public readonly float LeftTrimPercent;
-        public readonly float RightTrimPercent;
+        public readonly float LeftTrimPercent = 0f;
+        public readonly float RightTrimPercent = 1f;
         public readonly bool SettingsAreLive;
         private readonly string _leftTrimPercentPropertyVarName;
         private readonly string _rightTrimPercentPropertyVarName;

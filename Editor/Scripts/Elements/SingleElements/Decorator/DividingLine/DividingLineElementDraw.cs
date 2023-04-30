@@ -21,30 +21,38 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         private void DrawDivider( Color color )
         {
             float padding = _dividingLineElement.BoxHeight - _dividingLineElement.DividerThickness;
-            var elementHeightRect = new Rect(_dividingLineElement.SingleElementLayout.GetDrawRect());
-            // DrawRectOutline( elementHeightRect, Color.grey );
-
-            // Calculate trim values.
+            var drawRect = new Rect(_dividingLineElement.SingleElementLayout.GetDrawRect());
+            // DrawRectOutline( drawRect, Color.grey );
             
-            float leftTrim = _dividingLineElement.LeftTrimPercent;
-            float rightTrim = _dividingLineElement.RightTrimPercent;
+            drawRect = ApplyEdgePadding( drawRect );
+            // DrawRectOutline( drawRect, Color.yellow );
+
+            drawRect.y += padding / 2f;
+            drawRect.height = _dividingLineElement.DividerThickness;
+            DrawSolidRect( drawRect, color );
+        }
+
+        private Rect ApplyEdgePadding( Rect drawRect )
+        {
+            if ( !_dividingLineElement.UseCustomSettings ) return drawRect;
+            
+            float elementHeightRectWidth = drawRect.width;
+            
+            float leftTrimPadding = elementHeightRectWidth * _dividingLineElement.LeftTrimPercent;
+            float rightTrimPadding = elementHeightRectWidth * _dividingLineElement.RightTrimPercent;
             
             if ( _dividingLineElement.SettingsAreLive )
             {
-                leftTrim =  _dividingLineElement.LeftTrimPercentProperty.floatValue;
-                rightTrim = _dividingLineElement.RightTrimPercentProperty.floatValue;
-                // Debug.Log( $"DividerElement: LeftTripProp: {leftTrimPadding.ToString()}, RightTrimProp: {rightTrimPadding.ToString()}" );
+                leftTrimPadding =  elementHeightRectWidth * _dividingLineElement.LeftTrimPercentProperty.floatValue;
+                rightTrimPadding = elementHeightRectWidth * _dividingLineElement.RightTrimPercentProperty.floatValue;
             }
-            
-            float elementHeightRectWidth = elementHeightRect.width;
-            float leftTrimPadding = elementHeightRectWidth * leftTrim;
-            float rightTrimPadding = elementHeightRectWidth * rightTrim;
 
-            elementHeightRect.y += padding / 2f;
-            elementHeightRect.height = _dividingLineElement.DividerThickness;
-            elementHeightRect.xMin += leftTrimPadding;
-            elementHeightRect.xMax -= elementHeightRectWidth - rightTrimPadding;
-            DrawSolidRect( elementHeightRect, color );
+            drawRect.xMin += leftTrimPadding;
+            drawRect.xMax -= elementHeightRectWidth - rightTrimPadding;
+
+            return drawRect;
+
         }
+        
     }
 }

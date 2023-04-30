@@ -20,12 +20,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         /// <summary>
         ///     The propertyBeingChecked this element is built for.
         /// </summary>
-        public SerializedProperty Property;
+        public SerializedProperty Property { get; private set; }
         
         /// <summary>
         ///     Action to take when propertyBeingChecked is changed in the UI.
         /// </summary>
-        public Action ChangeCallBack;
+        public Action ChangeCallBack { get; }
         
         public bool IsBool { get; private set; } = false;
         public bool HasSlider { get; private set; } = false;

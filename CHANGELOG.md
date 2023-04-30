@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.1.6...v1.2.0) (2023-04-30)
+
+
+### Features
+
+* Update to DividingLineElement ([828ed88](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/828ed880ad3e02f60c23f65496aa7f1c34a2f464))
+
 ## [1.1.6](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.1.5...v1.1.6) (2023-04-29)
 
 

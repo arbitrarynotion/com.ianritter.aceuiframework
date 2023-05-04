@@ -42,7 +42,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
 
         protected override void InitializeElement( SerializedObject targetScriptableObject )
         {
-            Logger = LoadScriptableObject<CustomLogger>( ElementLoggerName );
+            Logger = GetAssetByName<CustomLogger>( ElementLoggerName );
             
             PathProperty = targetScriptableObject.FindProperty( PathVarName );
 

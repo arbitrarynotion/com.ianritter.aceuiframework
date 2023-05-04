@@ -66,7 +66,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
         // Todo: Get string for theme. Can't load target if type is specific.
         private void LoadSettingsScriptableObjects()
         {
-            AceTheme = LoadScriptableObject<AceTheme>( GetEditorWindowThemeName() );
+            AceTheme = GetAssetByName<AceTheme>( GetEditorWindowThemeName() );
             if ( AceTheme == null )
                 Debug.LogError( "Failed to load CET Editor Window theme!" );
 

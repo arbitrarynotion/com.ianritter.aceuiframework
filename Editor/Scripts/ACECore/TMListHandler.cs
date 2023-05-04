@@ -30,7 +30,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             _themeManager = themeManager;
             _logger = logger;
             
-            _defaultTheme = LoadScriptableObject<AceTheme>( DefaultThemeName );
+            _defaultTheme = GetAssetByName<AceTheme>( DefaultThemeName );
 
             if ( _defaultTheme == null )
                 throw new NullReferenceException( $"Unable to load theme \"{DefaultThemeName}\"" );

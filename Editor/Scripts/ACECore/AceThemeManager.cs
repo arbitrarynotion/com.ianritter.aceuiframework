@@ -8,6 +8,7 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElemen
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Label;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Enums;
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding.AceElementBuilder;
 using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
@@ -136,7 +137,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             List<AceTheme> themeList = _tmListHandler.GetThemesList();
             if ( themeList == null || themeList.Count == 0 )
             {
-                logger.LogWarning( "Theme list is null or empty!" );
+                logger.Log( "Theme list is null or empty!", CustomLogType.Error );
                 return new LabelElement( new GUIContent( "Failed to get Themes.") );
             }
             

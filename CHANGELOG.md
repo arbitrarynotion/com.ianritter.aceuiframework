@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.0...v1.3.1) (2023-05-04)
+
+
+### Bug Fixes
+
+* ScriptingTools Campatability Update ([eda708e](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/eda708ef28b72c132712557be2c1c7761f915485))
+
 # [1.3.0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.2.0...v1.3.0) (2023-04-30)
 
 

@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.1...v1.3.2) (2023-05-05)
+
+
+### Bug Fixes
+
+* Updated for UnityScriptingTools 1.3.4 ([f8433b0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/f8433b01375c865c38c73aa7bf798bcfe8c71a36))
+
 ## [1.3.1](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.0...v1.3.1) (2023-05-04)
 
 

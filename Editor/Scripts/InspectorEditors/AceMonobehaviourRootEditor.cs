@@ -58,6 +58,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
             Undo.undoRedoPerformed += OnUndoRedo;
             
             _targetScript.OnTargetUIStateChanged += OnTargetUiStateUpdated;
+            _targetScript.OnDataUpdateRequired += OnTargetDataUpdateRequired;
             
             GetInspectorElementsListFromTarget();
             
@@ -66,9 +67,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
             
             OnEnableLast();
         }
-
-        protected SerializedObject GetSerializedObject() => serializedObject;
-
+        
         private void InitializeTargetsTheme()
         {
             if ( _theme != null ) return;
@@ -77,8 +76,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
             _theme.OnDataUpdated += OnThemeUpdated;
             _theme.OnUIStateUpdated += OnThemeUpdated;
         }
-
-
+        
+        protected virtual void OnTargetDataUpdateRequired() => _targetSerializedObject.ApplyModifiedProperties();
+        
         private void UpdateTargetsTheme()
         {
             _logger.LogStart();
@@ -170,6 +170,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
             }
             
             _targetScript.OnTargetUIStateChanged -= OnTargetUiStateUpdated;
+            _targetScript.OnDataUpdateRequired -= OnTargetDataUpdateRequired;
             _themeManager.OnThemeAssignmentChanged -= OnTargetsThemeAssignmentUpdated;
             
             OnDisableInclusions();

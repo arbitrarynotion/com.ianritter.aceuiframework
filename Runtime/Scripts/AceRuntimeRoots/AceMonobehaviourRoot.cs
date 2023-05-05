@@ -37,5 +37,21 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots
         {
             OnTargetUIStateChanged?.Invoke();
         }
+        
+        public delegate void DataUpdated();
+        /// <summary>
+        ///     This event is invoked when a data change occurs that justifies a repaint (element values have changed).
+        /// </summary>
+        public event DataUpdated OnDataUpdated;
+
+        /// <summary>
+        ///     Used to tell the inspector to update when the global settings have changed.
+        /// </summary>
+        public void DataUpdatedNotify() => OnDataUpdated?.Invoke();
+        
+        public delegate void DataUpdateRequired();
+        public event DataUpdateRequired OnDataUpdateRequired;
+        
+        public void DataUpdateRequiredNotify() => OnDataUpdateRequired?.Invoke();
     }
 }

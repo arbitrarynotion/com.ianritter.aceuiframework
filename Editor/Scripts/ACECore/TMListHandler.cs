@@ -219,7 +219,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
             foreach ( T theme in list )
             {
-                logger.LogOneTimeIndent( $"{TextFormat.GetColoredStringYellow( logger.ApplyNameFormatting( theme.name ) )}" );
+                logger.LogOneTimeIndent( $"{TextFormat.GetColoredStringYellow( NicifyVariableName( theme.name ) )}" );
             }
         }
     }

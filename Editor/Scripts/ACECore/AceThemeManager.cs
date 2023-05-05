@@ -45,7 +45,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             OnThemeAssignmentChanged?.Invoke();
             logger.LogStart();
             
-            logger.LogIndentStart( $"{GetColoredStringOrange( logger.ApplyNameFormatting( name ) )}'s " +
+            logger.LogIndentStart( $"{GetColoredStringOrange( NicifyVariableName( name ) )}'s " +
                                    $"subscribers (all open Inspector window targets):" );
             PrintSubscribersForEvent( OnThemeAssignmentChanged, nameof( OnThemeAssignmentChanged ) );
             logger.DecrementMethodIndent();
@@ -247,8 +247,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             foreach ( ScriptThemeInfo scriptThemeInfo in scriptThemeInfoList )
             {
                 logger.LogOneTimeIndent(
-                    $"{GetColoredStringYellow( logger.ApplyNameFormatting( scriptThemeInfo.script.name ) )} " +
-                    $": {GetColoredStringGreen( logger.ApplyNameFormatting( scriptThemeInfo.theme.name ) )}" );
+                    $"{GetColoredStringYellow( NicifyVariableName( scriptThemeInfo.script.name ) )} " +
+                    $": {GetColoredStringGreen( NicifyVariableName( scriptThemeInfo.theme.name ) )}" );
             }
 
             logger.LogEnd();
@@ -260,7 +260,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
             foreach ( string script in scriptOptions )
             {
-                logger.Log( $"{GetColoredStringYellow( logger.ApplyNameFormatting( script ) )}" );
+                logger.Log( $"{GetColoredStringYellow( NicifyVariableName( script ) )}" );
             }
         }
 
@@ -269,7 +269,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             logger.Log( $"{GetColoredStringYellow( themeOptions.Length.ToString() )} theme options found:" );
             foreach ( string theme in themeOptions )
             {
-                logger.Log( $"{GetColoredStringYellow( logger.ApplyNameFormatting( theme ) )}" );
+                logger.Log( $"{GetColoredStringYellow( NicifyVariableName( theme ) )}" );
             }
         }
 

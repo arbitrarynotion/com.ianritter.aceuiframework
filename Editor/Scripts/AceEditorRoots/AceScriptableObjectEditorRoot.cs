@@ -81,7 +81,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
         public void PrintMySubscribers()
         {
             logger.LogStart( true );
-            logger.LogIndentStart( $"{GetColoredStringOrange( logger.ApplyNameFormatting( name ) )}'s Events and their subscribers:" );
+            logger.LogIndentStart( $"{GetColoredStringOrange( NicifyVariableName( name ) )}'s Events and their subscribers:" );
             PrintSubscribersForEvent( OnDataUpdated, nameof( OnDataUpdated ) );
             PrintSubscribersForEvent( OnUIStateUpdated, nameof( OnUIStateUpdated ) );
             logger.LogEnd();
@@ -89,7 +89,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
 
         protected void PrintSubscribersForEvent( Delegate myEvent, string eventName )
         {
-            logger.Log( $"• {GetColoredStringGreen( logger.ApplyNameFormatting( eventName ) )} subscribers:" );
+            logger.Log( $"• {GetColoredStringGreen( NicifyVariableName( eventName ) )} subscribers:" );
             
             if ( myEvent == null || myEvent.GetInvocationList().Length == 0 )
             {
@@ -107,7 +107,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
                 if ( currentDelegate.Target.GetType() == typeof( AceThemeEditorWindow ) )
                 {
                     var target = (AceThemeEditorWindow) currentDelegate.Target;
-                    logger.LogOneTimeIndent( $"• {GetColoredStringYellow( logger.ApplyNameFormatting( currentDelegate.Target.GetType().Name ) )}: " +
+                    logger.LogOneTimeIndent( $"• {GetColoredStringYellow( NicifyVariableName( currentDelegate.Target.GetType().Name ) )}: " +
                                              $"{GetColoredString( target.GetTargetName(), Yellow.color )}" );
                 }
                 // else if ( currentDelegate.Target.GetType() == typeof( AceMonobehaviourRoot ) )
@@ -118,7 +118,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
                 else if ( currentDelegate.Target.GetType() == typeof( AceMonobehaviourRootEditor ) )
                 {
                     var target = (AceMonobehaviourRootEditor) currentDelegate.Target;
-                    logger.LogOneTimeIndent( $"• {GetColoredStringYellow( logger.ApplyNameFormatting( currentDelegate.Target.GetType().Name ) )}: " +
+                    logger.LogOneTimeIndent( $"• {GetColoredStringYellow( NicifyVariableName( currentDelegate.Target.GetType().Name ) )}: " +
                                 $"{GetColoredString( target.target.name, Purple.color )}" );
                 }
                 else

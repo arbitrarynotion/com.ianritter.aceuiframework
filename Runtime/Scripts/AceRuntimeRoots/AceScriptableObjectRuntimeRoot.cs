@@ -79,7 +79,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots
         public void PrintMySubscribers()
         {
             logger.LogStart( true );
-            logger.LogIndentStart( $"{GetColoredStringOrange( logger.ApplyNameFormatting( name ) )}'s Events and their subscribers:" );
+            logger.LogIndentStart( $"{GetColoredStringOrange( NicifyVariableName( name ) )}'s Events and their subscribers:" );
             PrintSubscribersForEvent( OnDataUpdated, nameof( OnDataUpdated ) );
             PrintSubscribersForEvent( OnUIStateUpdated, nameof( OnUIStateUpdated ) );
             logger.LogEnd();
@@ -87,7 +87,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots
 
         protected void PrintSubscribersForEvent( Delegate myEvent, string eventName )
         {
-            logger.Log( $"{GetColoredStringGreen( logger.ApplyNameFormatting( eventName ) )} subscribers:" );
+            logger.Log( $"{GetColoredStringGreen( NicifyVariableName( eventName ) )} subscribers:" );
             
             if ( myEvent == null || myEvent.GetInvocationList().Length == 0 )
             {
@@ -99,7 +99,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots
             {
                 // Todo: At least for now, all editors will be monobehaviour roots. I'll need to update this if I include the scriptable object root.
                 // var monobehaviourRoot = (AceMonobehaviourRootEditor) @delegate.Target;
-                logger.LogOneTimeIndent( $"• {GetColoredStringYellow( logger.ApplyNameFormatting( @delegate.Target.GetType().Name ) )}" );
+                logger.LogOneTimeIndent( $"• {GetColoredStringYellow( NicifyVariableName( @delegate.Target.GetType().Name ) )}" );
             }
             
             // // Testing color selection

@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.3...v1.3.4) (2023-05-05)
+
+
+### Bug Fixes
+
+* Update to MonoBehaviourRoot ([7dea644](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/7dea6446963fa668db7fea81bd9513721b2d5124))
+
 ## [1.3.3](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.2...v1.3.3) (2023-05-05)
 
 

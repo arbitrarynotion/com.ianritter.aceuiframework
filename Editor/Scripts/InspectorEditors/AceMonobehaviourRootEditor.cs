@@ -67,6 +67,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
             OnEnableLast();
         }
 
+        protected SerializedObject GetSerializedObject() => serializedObject;
+
         private void InitializeTargetsTheme()
         {
             if ( _theme != null ) return;

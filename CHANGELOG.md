@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.4...v1.3.5) (2023-05-07)
+
+
+### Bug Fixes
+
+* Update to CustomLog references. ([76f4934](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/76f493422f98c54577ea75e380f69a843d7b9117))
+
 ## [1.3.4](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.3...v1.3.4) (2023-05-05)
 
 

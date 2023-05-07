@@ -114,7 +114,19 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         public ScriptThemeInfo GetSelectedScript()
         {
             logger.Log( $"Selection script index is {selectedScriptIndex.ToString()}" );
-            return scriptThemeInfoList[selectedScriptIndex] ?? null;
+
+            if ( selectedScriptIndex > ( scriptThemeInfoList.Count - 1 ) )
+                selectedScriptIndex = 0;
+
+            ScriptThemeInfo selectionScriptThemeInfo = scriptThemeInfoList[selectedScriptIndex];
+
+            if ( selectionScriptThemeInfo == null )
+            {
+                selectedScriptIndex = 0;
+                selectionScriptThemeInfo = scriptThemeInfoList[selectedScriptIndex];
+            }
+            
+            return selectionScriptThemeInfo ?? null;
         }
         
         public string[] GetThemeOptions() => _tmListHandler.GetThemeOptions();

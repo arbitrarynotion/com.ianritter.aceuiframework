@@ -12,7 +12,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots
     {
         [HideInInspector]
         public AceEventHandler aceEventHandler;
-        protected CustomLogger logger;
+        // protected CustomLogger logger;
+        
         /// <summary>
         ///     Provides a list of Elements which tells the editor how to draw the inspector.
         /// </summary>

@@ -25,7 +25,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
 
         private AceTheme _theme;
 
-        private CustomLogger _logger;
+        private CustomLogger _aceLogger;
 
         public string GetTargetName() => _targetScript.GetType().ToString();
 
@@ -41,14 +41,14 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
             
             _themeManager.OnThemeAssignmentChanged += OnTargetsThemeAssignmentUpdated;
             
-            _logger = GetAssetByName<CustomLogger>( MonobehaviourRootEditorLoggerName );
-            // string result = _logger == null ? "failed" : "succeeded";
+            _aceLogger = GetAssetByName<CustomLogger>( MonobehaviourRootEditorLoggerName );
+            // string result = _aceLogger == null ? "failed" : "succeeded";
             // Debug.LogWarning( $"AMRE|OE: Loading of {MonobehaviourRootEditorLoggerName}: {result}" );
 
             
             _targetSerializedObject = serializedObject;
             _targetScript = (AceMonobehaviourRoot) target;
-            _logger.Log( $"{_targetScript.name}'s OnEnable called." );
+            _aceLogger.Log( $"{_targetScript.name}'s OnEnable called." );
             
             InitializeTargetsTheme();
 
@@ -81,11 +81,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
         
         private void UpdateTargetsTheme()
         {
-            _logger.LogStart();
-            _logger.LogIndentStart( $"Updating {_targetScript.name}'s theme." );
+            _aceLogger.LogStart();
+            _aceLogger.LogIndentStart( $"Updating {_targetScript.name}'s theme." );
 
             AceTheme newTheme = _themeManager.GetThemeForScript( _targetScript.GetType().ToString().Split( '.' ).Last() );
-            _logger.LogIndentStart( $"{_targetScript.name}'s theme was changed to {(newTheme != null ? newTheme.name : "null")}." );
+            _aceLogger.LogIndentStart( $"{_targetScript.name}'s theme was changed to {(newTheme != null ? newTheme.name : "null")}." );
             
             // Initialize theme on first run.
             if ( _theme != newTheme )
@@ -112,13 +112,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
                 _theme.OnDataUpdated += OnThemeUpdated;
                 _theme.OnUIStateUpdated += OnThemeUpdated;
                 
-                _logger.Log( $"{_targetScript.name} has unsubscribed from {previousThemeName}, and subscribed to changes in {_theme.name}." );
+                _aceLogger.Log( $"{_targetScript.name} has unsubscribed from {previousThemeName}, and subscribed to changes in {_theme.name}." );
             }
             else
             {
-                _logger.Log( $"No change in {_targetScript.name}'s theme detected." );
+                _aceLogger.Log( $"No change in {_targetScript.name}'s theme detected." );
             }
-            _logger.LogEnd();
+            _aceLogger.LogEnd();
         }
 
         private void OnTargetsThemeAssignmentUpdated()

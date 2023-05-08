@@ -1,3 +1,10 @@
+## [1.3.6](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.5...v1.3.6) (2023-05-08)
+
+
+### Bug Fixes
+
+* Improved stability and custom settings ([9e6e415](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/9e6e415bb194de1000182739170e283fa7fd3cad))
+
 ## [1.3.5](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.4...v1.3.5) (2023-05-07)
 
 

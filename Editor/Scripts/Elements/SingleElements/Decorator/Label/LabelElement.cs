@@ -13,16 +13,17 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         public override SingleElementLayout SingleElementLayout => _labelElementLayout;
         public override SingleElementDraw SingleElementDraw => _labelElementDraw;
 
-        public readonly bool Bold = false;
-        
-
         public LabelElement( 
             GUIContent guiContent, 
-            bool bold = false,
             SingleCustomSettings singleCustomSettings = null ) :
-            base( guiContent, singleCustomSettings,false, new ElementCondition[] {} )
+            base
+            ( 
+                guiContent, 
+                singleCustomSettings ?? new SingleCustomSettings(),
+                false, 
+                new ElementCondition[] {} 
+            )
         {
-            Bold = bold;
         }
         
         

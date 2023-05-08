@@ -85,6 +85,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
 
                 if ( elementLayout == null )
                     throw new NullReferenceException( $"GEL|SLACI: {_groupElement.GetName()}: Error! \"{element.GetName()}\"'s layout is null!" );
+                
+
+                if ( element.GetType() == typeof( LabelElement ) && element.GUIContent.text.Equals( "Super Coolant Fluid" ) )
+                {
+                    Debug.Log( $"Found a label element. {element.GUIContent.text}" );
+                    Debug.Log( $"    ForceSingleLine is set to: {element.CustomSettings.ForceSingleLine.ToString()}" );
+                }
 
                 if ( element.CustomSettings.ForceSingleLine )
                 {

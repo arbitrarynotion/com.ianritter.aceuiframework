@@ -324,13 +324,13 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         /// <summary>
         ///     Get basic single element.
         /// </summary>
-        public static ElementInfo GetElement( string varName, bool includeVarNameAsLabel = true )
+        public static ElementInfo GetElement( string varName, bool includeVarNameAsLabel = true, SingleCustomSettings singleCustomSettings = null )
         {
             string name = includeVarNameAsLabel ? CapitalizeFirstLetter( NicifyVariableName( varName ) ) : string.Empty;
             return new BasicPropertyInfo( 
                 varName, 
                 new GUIContent( name ), 
-                new SingleCustomSettings(), 
+                singleCustomSettings ?? new SingleCustomSettings(), 
                 null
             );
         }
@@ -464,33 +464,17 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         /// <summary>
         ///     Get label element.
         /// </summary>
-        public static ElementInfo GetLabelElement( string title )
+        public static ElementInfo GetLabelElement( string title, SingleCustomSettings settings = null  )
         {
-            return new LabelInfo( new GUIContent( title ), new SingleCustomSettings() );
+            return new LabelInfo( new GUIContent( title ), settings ?? new SingleCustomSettings() );
         }
         
         /// <summary>
         ///     Get label element.
         /// </summary>
-        public static ElementInfo GetLabelElement( string title, string tooltip )
+        public static ElementInfo GetLabelElement( string title, string tooltip, SingleCustomSettings settings = null )
         {
-            return new LabelInfo( new GUIContent( title, tooltip), new SingleCustomSettings() );
-        }
-
-        /// <summary>
-        ///     Get label element.
-        /// </summary>
-        public static ElementInfo GetLabelElement( string title, SingleCustomSettings settings )
-        {
-            return new LabelInfo( new GUIContent( title ), settings );
-        }
-        
-        /// <summary>
-        ///     Get label element.
-        /// </summary>
-        public static ElementInfo GetLabelElement( string title, string tooltip, SingleCustomSettings settings )
-        {
-            return new LabelInfo( new GUIContent( title, tooltip), settings );
+            return new LabelInfo( new GUIContent( title, tooltip), settings ?? new SingleCustomSettings() );
         }
         
 #endregion

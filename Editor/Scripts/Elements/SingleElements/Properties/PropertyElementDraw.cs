@@ -38,7 +38,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
                     return;
                 }
 
-                if ( PropertyElement.IsRootElement() || PropertyElement.HasOwnLine() && propertyElementLayout.HasRoom )
+                if ( PropertyElement.IsRootElement() || ( PropertyElement.HasOwnLine() && propertyElementLayout.HasRoom ) )
                 {
                     DrawPropertyFieldRespectSeparator();
                     return;
@@ -81,13 +81,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
 
             // Draw label side of property manually to correct issue of labels with text longer than their
             // allocated space writing beyond that space.
+            // Bug: Manually taking over the label results in losing the ability to perform controls via the label like with number fields.
             var labelRect = new Rect( drawRect )
             {
-                width = EditorGUIUtility.labelWidth - Element.PropertySettings.propertyLabelEndPadding,
+                // width = EditorGUIUtility.labelWidth - Element.PropertySettings.propertyLabelEndPadding,
+                width = EditorGUIUtility.labelWidth - PropertyElement.PropertyElementLayout.LabelEndPadding,
                 height = EditorGUIUtility.singleLineHeight
             };
             DrawLabelField( labelRect );
 
+            // Todo: Allow constant field width in custom settings? Would be complicated as it would affect the already complex label width logic.
             drawRect.xMin += EditorGUIUtility.labelWidth;
             EditorGUI.BeginChangeCheck();
             EditorGUI.PropertyField( drawRect, PropertyElement.Property, GUIContent.none );
@@ -125,7 +128,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             float labelWidth = drawRect.width - boolBoxWidth;
             
             var labelDrawRect = new Rect( drawRect );
-            labelDrawRect.width -= Element.PropertySettings.propertyLabelEndPadding;
+            labelDrawRect.width -= PropertyElement.PropertyElementLayout.LabelEndPadding;
+            // labelDrawRect.width -= Element.PropertySettings.propertyLabelEndPadding;
             DrawAlignedLabelField( labelDrawRect );
 
             var fieldRect = new Rect( drawRect );
@@ -174,7 +178,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         {
             float labelWidth = EditorGUIUtility.labelWidth;
             EditorGUIUtility.labelWidth = PropertyElement.PropertiesSettings.propertyChildLabelWidth +
-                                          PropertyElement.PropertiesSettings.propertyLabelEndPadding;
+                                          PropertyElement.PropertyElementLayout.LabelEndPadding;
+                                          // PropertyElement.PropertiesSettings.propertyLabelEndPadding;
             DrawPropertyFieldWithLabel( PropertyElement.PropertyElementLayout.GetDrawRect() );
             EditorGUIUtility.labelWidth = labelWidth;
         }
@@ -259,7 +264,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             // Highlight the label end padding used in the required area.
             var labelEndPadding = new Rect( labelRect );
             labelEndPadding.x += labelRect.width;
-            labelEndPadding.width = PropertyElement.PropertiesSettings.propertyLabelEndPadding;
+            labelEndPadding.width = PropertyElement.PropertyElementLayout.LabelEndPadding;
+            // labelEndPadding.width = PropertyElement.PropertiesSettings.propertyLabelEndPadding;
             labelEndPadding.xMax.AtMost( drawRect.xMax );
             if ( PropertyElement.PropertyElementLayout.LabelWidth < usableWidth )
                 DrawSolidRect( labelEndPadding, dividerColor );

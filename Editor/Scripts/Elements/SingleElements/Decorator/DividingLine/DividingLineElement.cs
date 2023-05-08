@@ -70,7 +70,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         ) : 
             base( 
                 GUIContent.none, 
-                customSettings, 
+                customSettings ?? new SingleCustomSettings()
+                {
+                    ForceSingleLine = true
+                }, 
                 false, 
                 new ElementCondition[] {} 
             )
@@ -116,7 +119,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         
         protected override void InitializeElement( SerializedObject targetScriptableObject )
         {
-            SingleCustomSettings.ForceSingleLine = true;
+            // Not longer forcing single line, it defaults to this if no custom settings are specified.
+            // SingleCustomSettings.ForceSingleLine = true;
             
             if ( !SettingsAreLive ) return;
             

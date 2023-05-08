@@ -42,51 +42,58 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         
 
 #region Protected Methods
-        
-        /// <summary>
-        ///     Draws the guicontents to a label using alignment specified in the element's custom settings.
-        /// </summary>
-        protected void DrawAlignedLabelField() => 
-            DrawAlignedLabelField( Element.Layout.GetAlignedLabelDrawRect(), Element.GUIContent, EditorStyles.label );
-        
-        /// <summary>
-        ///     Draws the guicontents to a label using alignment specified in the element's custom settings.
-        /// </summary>
-        protected void DrawAlignedLabelField( GUIStyle style ) => 
-            DrawAlignedLabelField( Element.Layout.GetAlignedLabelDrawRect(), Element.GUIContent, style );
-        
-        /// <summary>
-        ///     Draws the guicontents to a label using alignment specified in the element's custom settings.
-        /// </summary>
-        protected void DrawAlignedLabelField( Rect drawRect ) => 
-            DrawAlignedLabelField( Element.Layout.GetAlignedLabelDrawRect( drawRect ), Element.GUIContent, EditorStyles.label );
 
         /// <summary>
         ///     Draws the guicontents to a label using alignment specified in the element's custom settings.
         /// </summary>
-        protected void DrawAlignedLabelField( Rect drawRect, GUIContent guiContent, GUIStyle style = null )
+        protected void DrawAlignedLabelField( GUIStyle style = null )
+        {
+            DrawAlignedLabelField( Element.Layout.GetDrawRect(), style );
+        }
+
+        /// <summary>
+        ///     Draws the guicontents to a label using alignment specified in the element's custom settings.
+        /// </summary>
+        protected void DrawAlignedLabelField( Rect drawRect, GUIStyle style = null )
+        {
+            style = ProcessGuiStyle( style );
+            EditorGUI.LabelField( Element.Layout.GetAlignedLabelDrawRect( drawRect ), Element.GUIContent, style );
+        }
+
+        private GUIStyle ProcessGuiStyle( GUIStyle style )
         {
             if ( style == null )
-                style = EditorStyles.label;
+                return Element.CustomSettings.BoldLabel ? EditorStyles.boldLabel : EditorStyles.label;
+
+            if ( Element.CustomSettings.BoldLabel )
+                style.fontStyle = FontStyle.Bold;
             
-            EditorGUI.LabelField( Element.Layout.GetAlignedLabelDrawRect( drawRect ), guiContent, style );
+            return style;
         }
 
         /// <summary>
         ///     Draws the guicontents to a label using the default editor label style.
         /// </summary>
-        protected void DrawLabelField( Rect drawRect ) => 
-            EditorGUI.LabelField( drawRect, Element.GUIContent, EditorStyles.label );
+        protected void DrawLabelField( Rect drawRect )
+        {
+            DrawAlignedLabelField( drawRect );
+            
+            // Defaulting to aligned label rect.
+            // EditorGUI.LabelField( drawRect, Element.GUIContent, EditorStyles.label );
+        }
 
         /// <summary>
         ///     Draws the guicontents to a label using the specified style.
         /// </summary>
         protected void DrawLabelField( Rect drawRect, GUIStyle style )
         {
-            if ( style == null )
-                style = EditorStyles.label;
-            
-            EditorGUI.LabelField( drawRect, Element.GUIContent, style );
+            DrawAlignedLabelField( drawRect, style );
+            // Defaulting to aligned label rect.
+
+            // if ( style == null )
+            //     style = EditorStyles.label;
+            //
+            // EditorGUI.LabelField( drawRect, Element.GUIContent, style );
         }
         
 #endregion

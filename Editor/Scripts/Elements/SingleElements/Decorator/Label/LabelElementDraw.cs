@@ -9,7 +9,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         private readonly LabelElement _labelElement;
         protected override SingleElement SingleElement => _labelElement;
 
-        
+
         public LabelElementDraw( LabelElement labelElement )
         {
             _labelElement = labelElement;
@@ -18,10 +18,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
 
         protected override void DrawElementContents()
         {
-            if (_style == null)
+            if ( _style == null )
             {
-                _style = new GUIStyle(EditorStyles.label);
-                if (_labelElement.Bold)
+                _style = new GUIStyle( EditorStyles.label );
+                // if (_labelElement.Bold)
+                if ( Element.CustomSettings.BoldLabel )
                 {
                     _style.richText = true;
                     _style.fontStyle = FontStyle.Bold;

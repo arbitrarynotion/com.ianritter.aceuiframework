@@ -58,6 +58,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
             LoadSettingsScriptableObjects();
             ApplyEditorWindowSettings();
             EstablishCallBacks();
+
             GetElementsListFromTarget();
             
             OnEnableLast();

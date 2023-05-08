@@ -165,10 +165,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         /// </summary>
         public Rect GetAlignedLabelDrawRect( Rect drawRect )
         {
+            if ( Element.CustomSettings.LabelAlignment == Alignment.Left ) return drawRect;
+            
             float labelWidth = CalcPrefixLabelWidth( Element.GUIContent ) + 4f;
+            if ( Element.CustomSettings.BoldLabel ) labelWidth += 5f;
 
             // Left aligned by default so only needs to adjusted if center or right is selected.
-            switch (Element.CustomSettings.LabelAlignment)
+            switch ( Element.CustomSettings.LabelAlignment )
             {
                 case Alignment.Center:
                 {

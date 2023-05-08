@@ -37,6 +37,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             {
                 if ( !SingleElement.HasLabel() )
                     return 0;
+                
+                if ( SingleElement.CustomSettings.LabelMinWidth >= 0 )
+                    return SingleElement.CustomSettings.LabelMinWidth;
 
                 if ( SingleElement.HasParent() && !SingleElement.HasOwnLine() )
                     return SingleElement.PropertiesSettings.propertyChildLabelWidth;
@@ -44,6 +47,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
                 return EditorGUIUtility.labelWidth - GetTotalLeftIndentAmount();
             }
         }
+        
+        public float LabelEndPadding =>
+            ( SingleElement.CustomSettings.LabelEndPadding >= 0 ) 
+                ? SingleElement.CustomSettings.LabelEndPadding 
+                : Element.PropertySettings.propertyLabelEndPadding;
 
         /// <summary>
         ///     True if the usable width of the assigned position rect has enough room for the required width of this element.
@@ -54,7 +62,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
                 : EditorGUIUtility.wideMode;
 
         public float RequiredWidth =>
-            LabelWidth + SingleElement.PropertiesSettings.propertyLabelEndPadding + FieldMinWidth;
+            LabelWidth + LabelEndPadding + FieldMinWidth;
+            // LabelWidth + SingleElement.PropertiesSettings.propertyLabelEndPadding + FieldMinWidth;
 
 
         protected SingleElementLayout( Element element ) : base( element )

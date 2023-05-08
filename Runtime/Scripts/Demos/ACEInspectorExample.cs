@@ -1,5 +1,6 @@
 using System;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
@@ -124,7 +125,10 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
             TargetUIStateChangedNotify();
             _enumsChangeCheck = enumsField;
         }
-
+        
+        public int intCount1;
+        public int intCount2;
+        
         private ElementInfo[] BasicExample1()
         {
             return new ElementInfo[] { 
@@ -141,7 +145,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 
                     GetElement( nameof(intField), "Int", string.Empty ), 
                 
-                    GetElement( nameof(characterField), "Char", string.Empty),
+                    GetElement( nameof(characterField), "Char", string.Empty ),
                 
                     GetGroupWithFoldoutHeading( null, "Section 2", "Section 2 tooltip!",
                         new GroupCustomSettings()
@@ -153,9 +157,56 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                         GetElement( nameof(stringField), "String", string.Empty )
                     ),
                     
-                    GetElement( nameof(animationCurveField), "Animation Curve", string.Empty)
-                )
+                    GetElement( nameof(animationCurveField), "Animation Curve", string.Empty),
+                    
+                    GetCompositeGroupExample( "Label on its own line in a composite group.", nameof( intCount1 ), nameof( intCount2 ) )
+                ),
+                
             };
+        }
+        
+        private ElementInfo GetCompositeGroupExample( string title, string field1VarName, string field2VarName )
+        {
+            return RuntimeElementBuilder.GetCompositeGroup( new GroupCustomSettings()
+                {
+                    NumberOfColumns = 2,
+                    // ConstantWidth = 255f,
+                    CustomFrameSettings = new CustomFrameSettings()
+                    {
+                        applyFraming = true,
+                        frameType = ElementFrameType.FullOutline,
+                        frameAutoPadding = 2f,
+                        frameOutlineThickness = 2,
+                        includeBackground = true,
+                        backgroundColorIndex = 2
+                    }
+                },
+                GetLabelElement( title, string.Empty, new SingleCustomSettings()
+                    {
+                        ForceSingleLine = true,
+                        LabelAlignment = Alignment.Center,
+                        BoldLabel = true
+                    }
+                ),
+                GetElement( field1VarName, true, new SingleCustomSettings()
+                    {
+                        LabelAlignment = Alignment.Right, 
+                        LabelMinWidth = 75f,
+                        LabelEndPadding = 0f,
+                        // ConstantWidth = 125f,
+                        RightPadding = 2f,
+                        BoldLabel = true,
+                        IndentLevelIncrease = 1
+                    } 
+                ),
+                GetElement( field2VarName, true, new SingleCustomSettings()
+                    {
+                        LabelAlignment = Alignment.Right,
+                        LabelEndPadding = 0f,
+                        BoldLabel = true
+                    } 
+                )
+            );
         }
 
         private ElementInfo[] BasicExample2()
@@ -448,11 +499,11 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                     GetElement( nameof(boundsField), "Bounds", string.Empty ), 
                     GetElement( nameof(rectField), "Rect", string.Empty ), 
                     
-                    GetDividerElement( 10f, 8f, Color.yellow, 0.25f, 0.5f ),
-                    GetDividerElement( 10f, 8f, Color.red, 0f, 0.35f ),
-                    GetDividerElement( 10f, 8f, Color.green, 0.25f, 1f ),
-                    
-                    
+                    GetDividerElement( 10f, 8f, Color.yellow, 0.25f, 0.5f, new SingleCustomSettings() {ForceSingleLine = true} ),
+                    GetDividerElement( 10f, 8f, Color.red, 0f, 0.35f, new SingleCustomSettings() {ForceSingleLine = true} ),
+                    GetDividerElement( 10f, 8f, Color.green, 0.25f, 1f, new SingleCustomSettings() {ForceSingleLine = true} ),
+
+
                     // Element level 1
                     GetGroupWithLabelHeading( "Labeled Group, indented by 1", "Head 2 tooltip!",
                         new GroupCustomSettings()
@@ -479,17 +530,22 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                                 BottomPadding = 4f
                             }
                         ),
-                        GetDividerElement( 10f, 8f, Color.cyan,
+                        GetDividerElement
+                        ( 10f, 8f, Color.cyan,
                             nameof( closeFade2 ), 
                             nameof( farFade2 ),
-                            new SingleCustomSettings() {CustomFrameSettings = new CustomFrameSettings()
-                            {
-                                applyFraming = true,
-                                includeBackground = true,
-                                frameAutoPadding = 2f,
-                                frameType = ElementFrameType.FullOutline
-                            }}
+                            new SingleCustomSettings() {
+                                CustomFrameSettings = new CustomFrameSettings()
+                                {
+                                    applyFraming = true,
+                                    includeBackground = true,
+                                    frameAutoPadding = 2f,
+                                    frameType = ElementFrameType.FullOutline
+                                },
+                                ForceSingleLine = true
+                            }
                         ),
+                        
                         GetElement( nameof( closeFade2 ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true } ),
                         GetElement( nameof( farFade2 ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true } ),
                         

@@ -99,8 +99,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
                     );
 
                 case ElementType.SingleDecoratorLabel:
-                    var singleElementInfo = (SingleElementInfo) elementInfo;
-                    return new LabelElement( singleElementInfo.GUIContent );
+                    var labelInfo = (LabelInfo) elementInfo;
+                    return new LabelElement( labelInfo.GUIContent, labelInfo.SingleCustomSettings );
 
                 case ElementType.GroupBasic:
                     var basicGroupInfo = (BasicGroupInfo) elementInfo;

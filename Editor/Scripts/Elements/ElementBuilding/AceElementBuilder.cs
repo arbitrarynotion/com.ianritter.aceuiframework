@@ -83,33 +83,15 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 
 
 #region LabelElements
-        
-        /// <summary>
-        ///     Get label element.
-        /// </summary>
-        public static Element GetLabelElement( 
-            string title )
-        {
-            return new LabelElement( new GUIContent( title ) );
-        }
-        
-        /// <summary>
-        ///     Get label element.
-        /// </summary>
-        public static Element GetLabelElement( 
-            string title, string tooltip )
-        {
-            return new LabelElement( new GUIContent( title, tooltip ) );
-        }
-        
+
         /// <summary>
         ///     Get label element.
         /// </summary>
         public static Element GetLabelElement( 
             string title, 
-            [CanBeNull] SingleCustomSettings settings )
+            SingleCustomSettings settings = null )
         {
-            return new LabelElement( new GUIContent( title ), false, settings );
+            return new LabelElement( new GUIContent( title ), settings ?? new SingleCustomSettings() );
         }
         
         /// <summary>
@@ -117,9 +99,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
         /// </summary>
         public static Element GetLabelElement( 
             string title, string tooltip, 
-            [CanBeNull] SingleCustomSettings settings )
+            SingleCustomSettings settings = null )
         {
-            return new LabelElement( new GUIContent( title, tooltip ), false, settings );
+            return new LabelElement( new GUIContent( title, tooltip ), settings ?? new SingleCustomSettings() );
         }
         
 #endregion

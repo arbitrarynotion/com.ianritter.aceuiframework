@@ -66,14 +66,21 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         protected void OnEnable()
         {
             logger.Log( "On enable called..." );
-            _tmListHandler = new TmListHandler( this, logger );
-            _tmButtonHandler = new TmButtonHandler( _tmListHandler, this, logger );
+            InitializeHandlers();
 
             // Rebuild the scripts list any time files are changed in the project window.
             EditorApplication.projectChanged += OnProjectChanged;
             OnScriptsReloaded += OnScriptsReloadedUpdate;
 
             RefreshScriptThemeInfoList();
+        }
+
+        private void InitializeHandlers()
+        {
+            if ( _tmListHandler == null )
+                _tmListHandler = new TmListHandler( this, logger );
+            if ( _tmButtonHandler == null )
+                _tmButtonHandler = new TmButtonHandler( _tmListHandler, this, logger );
         }
 
         private void OnDisable()
@@ -146,6 +153,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         
         private Element GetScriptAndThemeDropdown()
         {
+            InitializeHandlers();
+            
             List<AceTheme> themeList = _tmListHandler.GetThemesList();
             if ( themeList == null || themeList.Count == 0 )
             {

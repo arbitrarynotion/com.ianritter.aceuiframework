@@ -22,7 +22,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom
         /// <summary>
         ///     If true, element will be disabled no matter what.
         /// </summary>
-        public bool ForceDisable { get; set; } 
+        public bool ForceDisable { get; set; } = false; 
 
         /// <summary>
         ///     Use when this element is part of a section that allows multiple elements per line. If this is true, this
@@ -40,6 +40,22 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom
         ///     Set the horizontal position of a label.
         /// </summary>
         public Alignment LabelAlignment { get; set; } = Alignment.Left;
+
+        /// <summary>
+        /// Overrides Single Element global setting. Set the width allocated to the label when checking if element should move field to second line.
+        /// </summary>
+        public float LabelMinWidth { get; set; } = -1;
+        
+        /// <summary>
+        /// Overrides Property Specific global setting. Sets the width of padding added at the end of a label.
+        /// </summary>
+        public float LabelEndPadding { get; set; } = -1;
+
+        /// <summary>
+        /// When true, label will print in bold.
+        /// </summary>
+        public bool BoldLabel { get; set; } = false;
+
 
         /// <summary>
         ///     If true, element will center in the vertical space available on its line. This will have no effect if

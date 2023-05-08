@@ -55,7 +55,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
             Element colorField = new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 60f}, callback, false, filter);
 
             return GetGroup( new GroupCustomSettings() {CustomFrameSettings = new CustomFrameSettings() {applyFraming = false}, NumberOfColumns = 3}, 
-                new LabelElement( new GUIContent( title, tooltip ), false, new SingleCustomSettings() {CustomFrameSettings = NoFrame, UseIndentedDefaultLabelWidth = true} ), 
+                new LabelElement( new GUIContent( title, tooltip ), new SingleCustomSettings() {CustomFrameSettings = NoFrame, UseIndentedDefaultLabelWidth = true} ), 
                 popupField, 
                 colorField );
         }

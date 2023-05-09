@@ -36,6 +36,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
 
         public override bool ShouldShowFrame()
         {
+            if ( _compositeGroup.CustomSettings.OverrideFrame() )
+                return _compositeGroup.CustomSettings.CustomFrameSettings.applyFraming;
+            
             if ( _compositeGroup.IsRootElement() )
                 return false;
 

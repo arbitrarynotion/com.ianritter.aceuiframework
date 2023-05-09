@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AceDefaultTheme
   m_EditorClassIdentifier: 
   logger: {fileID: 11400000, guid: 993055de20daf4b4dbc34b32f77e4a47, type: 2}
-  selectedSection: 5
+  selectedSection: 3
   basicGroupLevelSettingsMode: 0
   headingGroupLevelSettingsMode: 0
   singleElementsLevelSettingsMode: 0
@@ -588,7 +588,7 @@ MonoBehaviour:
     backgroundColorIndex: 1
     skipSingleLineFrames: 1
   propertySpecificSettings:
-    showWideModeBoxes: 1
+    showWideModeBoxes: 0
     propertyChildLabelWidth: 75
     propertyLabelEndPadding: 4
     propertyNumberFieldsMinWidth: 40

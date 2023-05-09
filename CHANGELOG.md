@@ -1,3 +1,10 @@
+## [1.3.7](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.6...v1.3.7) (2023-05-09)
+
+
+### Bug Fixes
+
+* Update to CompositeGroupLayout.cs ([d144af2](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/d144af22d2126dba7df9c419a6ef52199187c899))
+
 ## [1.3.6](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.5...v1.3.6) (2023-05-08)
 
 

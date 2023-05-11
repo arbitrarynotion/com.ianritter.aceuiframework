@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.7...v1.4.0) (2023-05-11)
+
+
+### Features
+
+* Update to MonoBehaviorRootEditor ([d989409](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/d98940997c41670678faf49681d90f24827a297d))
+
 ## [1.3.7](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.6...v1.3.7) (2023-05-09)
 
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AceDefaultTheme
   m_EditorClassIdentifier: 
   logger: {fileID: 11400000, guid: 993055de20daf4b4dbc34b32f77e4a47, type: 2}
-  selectedSection: 3
+  selectedSection: 1
   basicGroupLevelSettingsMode: 0
   headingGroupLevelSettingsMode: 0
   singleElementsLevelSettingsMode: 0
@@ -21,6 +21,7 @@ MonoBehaviour:
     leftIndentUnitAmount: 15
     elementVerticalPadding: 2
     columnGap: 4
+    hideScriptField: 1
     sectionWidthPriorityAdjustment: 0
     groupWidthPriorityAdjustment: 0
     propertyWidthPriorityAdjustment: 0

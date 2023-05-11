@@ -24,6 +24,11 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.G
         [Range(0, 10 )]
         public float columnGap = 0f;
         
+        /// <summary>
+        /// When true, the script field 
+        /// </summary>
+        public bool hideScriptField = false;
+        
         
         // - Width Priorities
         /// <summary>

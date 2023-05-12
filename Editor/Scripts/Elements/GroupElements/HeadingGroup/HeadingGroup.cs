@@ -33,7 +33,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
         private readonly string _headingPropertyVarName;
         public SerializedProperty HeadingProperty { get; private set; }
 
-
+        /// <summary>
+        /// <para>Heading group consists of two pieces, a heading element and a child area group. The guiContent goes to the heading element
+        /// and the element list goes to the child area group. Note that his means that the group element which these two are drawn on
+        /// will use GUIContent.none, so it will have no name.</para>
+        /// The placement of the heading and child area group are handled in HeadingGroupLayout.
+        /// </summary>
         protected HeadingGroup( 
             GUIContent guiContent, 
             [CanBeNull] string headingPropertyVarName, 
@@ -50,8 +55,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
                 _headingPropertyVarName = headingPropertyVarName;
             }
             _headingPropertyVarName = headingPropertyVarName;
-            
-            BuildElementSet( headingElement, newElements );
+
+            BuildElementSet( guiContent.text, headingElement, newElements, groupCustomSettings?.IndentChildren ?? true );
         }
         
 
@@ -62,9 +67,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
         
         public override int GetElementLevel() => IsRootElement() ? 0 : ParentElement.GetElementLevel() + 1;
 
-        private void BuildElementSet( HeadingElement headingElement, Element[] newElements )
+        private void BuildElementSet( string parentsName, HeadingElement headingElement, Element[] newElements, bool indentChildren )
         {
-            ChildAreaGroup = new ChildAreaGroup.ChildAreaGroup( true, newElements, 
+            ChildAreaGroup = new ChildAreaGroup.ChildAreaGroup( 
+                parentsName,
+                indentChildren, 
+                newElements, 
                 new GroupCustomSettings { NumberOfColumns = GroupCustomSettings.NumberOfColumns } );
             Element[] elements =
             {

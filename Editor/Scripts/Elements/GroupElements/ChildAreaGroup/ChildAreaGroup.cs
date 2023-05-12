@@ -37,8 +37,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
         
 #region Constructors
 
-        public ChildAreaGroup( bool indent, Element[] newElements, GroupCustomSettings groupCustomSettings )
-            : base( GUIContent.none, groupCustomSettings ) 
+        public ChildAreaGroup( string parentsName, bool indent, Element[] newElements, GroupCustomSettings groupCustomSettings )
+            : base( new GUIContent($"{parentsName}'s Child Area Group"), groupCustomSettings ) 
         {
             Indent = indent;
 

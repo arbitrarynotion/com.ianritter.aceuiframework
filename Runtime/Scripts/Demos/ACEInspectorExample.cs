@@ -147,11 +147,12 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 
                     GetElement( nameof(characterField), "Char", string.Empty ),
                 
-                    GetGroupWithFoldoutHeading( null, "Section 2", "Section 2 tooltip!",
+                    GetGroupWithFoldoutHeading( null, "Section 2 with non-indent Child Area", "Section 2 tooltip!",
                         new GroupCustomSettings()
                         {
                             NumberOfColumns = 2,
-                            ColumnWidthPriority = 0f
+                            ColumnWidthPriority = 0f,
+                            IndentChildren = false
                         },
                         GetElement( nameof(floatField), "Float", string.Empty ), 
                         GetElement( nameof(stringField), "String", string.Empty )
@@ -167,7 +168,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
         
         private ElementInfo GetCompositeGroupExample( string title, string field1VarName, string field2VarName )
         {
-            return RuntimeElementBuilder.GetCompositeGroup( new GroupCustomSettings()
+            return GetCompositeGroup( new GroupCustomSettings()
                 {
                     NumberOfColumns = 2,
                     // ConstantWidth = 255f,

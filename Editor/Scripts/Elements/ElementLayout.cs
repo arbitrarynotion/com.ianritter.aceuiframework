@@ -63,16 +63,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 
                 if ( Element.ParentElement.Layout == null )
                 {
-                    Debug.LogError(
-                        $"E|TIL: Error! {Element.GetName()} can't get its parent's ({Element.ParentElement.GetName()}) indent level because the parent's layout is null!" );
+                    Debug.LogError( $"E|TIL: Error! {Element.GetName()} can't get its parent's ({Element.ParentElement.GetName()}) indent level because the parent's layout is null!" );
                     return 0;
                 }
 
-                if ( Element.ParentElement.GroupCustomSettings.IndentChildren )
-                    return Element.ParentElement.GroupElementLayout.ChildIndentAmount;
+                if ( !Element.ParentElement.GroupCustomSettings.IndentChildren )
+                    return 0;
+
 
                 // return parentsTotalIndent;
-                return 0;
+                return Element.ParentElement.GroupElementLayout.ChildIndentAmount;
             }
         }
 

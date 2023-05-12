@@ -22,7 +22,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
             GUIContent guiContent,
             [CanBeNull] GroupCustomSettings groupCustomSettings,
             params Element[] newElements )
-            : base( GUIContent.none, foldoutVarName, new FoldoutHeading( guiContent ), groupCustomSettings, newElements )
+            : base( guiContent, foldoutVarName, new FoldoutHeading( guiContent ), groupCustomSettings, newElements )
         {
         }
 

@@ -12,6 +12,7 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElemen
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Popup;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding;
+using UnityEngine;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding
 {
@@ -118,6 +119,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
                 
                 case ElementType.GroupHeadingFoldout:
                     var foldoutGroupInfo = (FoldoutGroupInfo) elementInfo;
+
                     return new FoldoutGroup( 
                         foldoutGroupInfo.VarName, 
                         foldoutGroupInfo.GUIContent, 

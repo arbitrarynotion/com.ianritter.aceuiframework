@@ -168,14 +168,41 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
             if ( Element.CustomSettings.LabelAlignment == Alignment.Left ) return drawRect;
             
             float labelWidth = CalcPrefixLabelWidth( Element.GUIContent ) + 4f;
+            // CalcPrefixLabelWidth doesn't account for bold text so right side padding has to be added manually or last letter will be partially cut off.
             if ( Element.CustomSettings.BoldLabel ) labelWidth += 5f;
 
+            return GetAlignedRect( drawRect, labelWidth );
+
+            // // Left aligned by default so only needs to adjusted if center or right is selected.
+            // switch ( Element.CustomSettings.LabelAlignment )
+            // {
+            //     case Alignment.Center:
+            //     {
+            //         float halfExtraWidth = ( drawRect.width - labelWidth ) / 2f;
+            //         drawRect.xMin += halfExtraWidth;
+            //         drawRect.width -= halfExtraWidth;
+            //         break;
+            //     }
+            //
+            //     case Alignment.Right:
+            //     {
+            //         float extraWidth = drawRect.width - labelWidth;
+            //         drawRect.xMin += extraWidth;
+            //         break;
+            //     }
+            // }
+            //
+            // return drawRect;
+        }
+
+        public Rect GetAlignedRect( Rect drawRect, float contentWidth )
+        {
             // Left aligned by default so only needs to adjusted if center or right is selected.
             switch ( Element.CustomSettings.LabelAlignment )
             {
                 case Alignment.Center:
                 {
-                    float halfExtraWidth = ( drawRect.width - labelWidth ) / 2f;
+                    float halfExtraWidth = ( drawRect.width - contentWidth ) / 2f;
                     drawRect.xMin += halfExtraWidth;
                     drawRect.width -= halfExtraWidth;
                     break;
@@ -183,7 +210,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 
                 case Alignment.Right:
                 {
-                    float extraWidth = drawRect.width - labelWidth;
+                    float extraWidth = drawRect.width - contentWidth;
                     drawRect.xMin += extraWidth;
                     break;
                 }

@@ -12,5 +12,12 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.S
         ///     applicable element types. Note that this is an override for the CISettings field min width settings.
         /// </summary>
         public float FieldMinWidth { get; set; } = 0;
+        
+        /// <summary>
+        ///     When true, a property's value will be drawn as a label rather than a field. This will result in only the
+        ///     field value being output - its title and tooltip will not be used. If you want to include a label, precede
+        ///     this element with a label element and use custom settings to align things how you want.
+        /// </summary>
+        public bool ConvertFieldToLabel { get; set; } = false;
     }
 }

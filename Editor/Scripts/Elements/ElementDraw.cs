@@ -50,14 +50,23 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         {
             DrawAlignedLabelField( Element.Layout.GetDrawRect(), style );
         }
-
+        
         /// <summary>
         ///     Draws the guicontents to a label using alignment specified in the element's custom settings.
         /// </summary>
         protected void DrawAlignedLabelField( Rect drawRect, GUIStyle style = null )
         {
             style = ProcessGuiStyle( style );
-            EditorGUI.LabelField( Element.Layout.GetAlignedLabelDrawRect( drawRect ), Element.GUIContent, style );
+            DrawAlignedLabelField( Element.GUIContent, drawRect, style );
+        }
+
+        /// <summary>
+        ///     Draws the guicontents to a label using alignment specified in the element's custom settings.
+        /// </summary>
+        protected void DrawAlignedLabelField( GUIContent guiContent, Rect drawRect, GUIStyle style = null )
+        {
+            style = ProcessGuiStyle( style );
+            EditorGUI.LabelField( Element.Layout.GetAlignedLabelDrawRect( drawRect ), guiContent, style );
         }
 
         private GUIStyle ProcessGuiStyle( GUIStyle style )

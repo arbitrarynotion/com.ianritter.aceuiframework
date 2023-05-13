@@ -1,4 +1,5 @@
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using UnityEditor;
 using UnityEngine;
 using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.UIGraphics.UIRectGraphics;
@@ -21,6 +22,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
 
             if ( !PropertyIsValid() )
                 return;
+            
+            // Handle ConvertFieldToLabel custom setting.
+            if ( PropertyElement.SingleCustomSettings.ConvertFieldToLabel )
+            {
+                DrawAlignedLabelField( new GUIContent( GetFieldValueAsString() ), PropertyElement.PropertyElementLayout.GetDrawRect() );
+                return;
+            }
 
             PropertyElementLayout propertyElementLayout = PropertyElement.PropertyElementLayout;
 
@@ -97,9 +105,20 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             if ( EditorGUI.EndChangeCheck() )
                 PropertyElement.ChangeCallBack?.Invoke();
         }
-        
-        
-        
+
+
+        private string GetFieldValueAsString()
+        {
+            SerializedProperty property = PropertyElement.Property;
+            return property.propertyType switch
+            {
+                SerializedPropertyType.Boolean => property.boolValue ? "True" : "False",
+                SerializedPropertyType.Integer => property.intValue.ToString("N0"),
+                SerializedPropertyType.Float => property.floatValue.ToString( "N" ),
+                SerializedPropertyType.Vector2 => $"{property.vector2Value.x.ToString( "F" )}, {property.vector2Value.y.ToString( "F" )}",
+                _=> "Type Not Supported"
+            };
+        }
         
         
 
@@ -177,8 +196,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         private void DrawPropertyFieldWithMinSpacing()
         {
             float labelWidth = EditorGUIUtility.labelWidth;
-            EditorGUIUtility.labelWidth = PropertyElement.PropertiesSettings.propertyChildLabelWidth +
-                                          PropertyElement.PropertyElementLayout.LabelEndPadding;
+            EditorGUIUtility.labelWidth = PropertyElement.PropertiesSettings.propertyChildLabelWidth + PropertyElement.PropertyElementLayout.LabelEndPadding;
                                           // PropertyElement.PropertiesSettings.propertyLabelEndPadding;
             DrawPropertyFieldWithLabel( PropertyElement.PropertyElementLayout.GetDrawRect() );
             EditorGUIUtility.labelWidth = labelWidth;

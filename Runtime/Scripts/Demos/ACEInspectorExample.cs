@@ -547,8 +547,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                             }
                         ),
                         
-                        GetElement( nameof( closeFade2 ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true } ),
-                        GetElement( nameof( farFade2 ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true } ),
+                        GetElement( nameof( closeFade2 ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true, ConvertFieldToLabel = true } ),
+                        GetElement( nameof( farFade2 ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true, ConvertFieldToLabel = true } ),
                         
                         GetMinMaxSliderElement( "MinMax Slider (Int) on its own line", "MinMax tooltip!", 
                             nameof(minMaxLowerInt), nameof(minMaxUpperInt), minMaxIntMinLimit, minMaxIntMaxLimit,
@@ -559,8 +559,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                             }
                         ),
 
-                        GetElement( nameof( minMaxLowerInt ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true } ),
-                        GetElement( nameof( minMaxUpperInt ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true } ),
+                        GetElement( nameof( minMaxLowerInt ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true, ConvertFieldToLabel = true } ),
+                        GetElement( nameof( minMaxUpperInt ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true, ConvertFieldToLabel = true } ),
                         
                         // Element level 2
                         GetGroupWithToggleHeading( null, "Toggle Group", "Head 3 tooltip!", null, false,

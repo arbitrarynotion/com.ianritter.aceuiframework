@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.4.0...v1.5.0) (2023-05-13)
+
+
+### Features
+
+* Update to PropertyElements ([d2222ff](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/d2222ffe0a92dc87eecd7afdab0f0d5658c39d93))
+
 # [1.4.0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.3.7...v1.4.0) (2023-05-11)
 
 

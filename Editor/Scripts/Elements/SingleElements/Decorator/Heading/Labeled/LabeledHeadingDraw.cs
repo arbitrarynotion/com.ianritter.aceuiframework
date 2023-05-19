@@ -24,5 +24,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             
             DrawLabelField( labelRect, GetHeadingLabelStyle( true ) );
         }
+        
+        protected override bool HeadingIsEnabled() => true;
     }
 }

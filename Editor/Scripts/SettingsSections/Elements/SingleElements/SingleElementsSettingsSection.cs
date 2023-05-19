@@ -57,9 +57,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     GetPositionSection( "Total Area", string.Empty, varNames, false )
                 ),
                 
-                GetFramesSection( "Frames", string.Empty, frameSettings, frameVarNames, false, 
-                    new BasicProperty( frameVarNames.FramesSkipSingleLine, new GUIContent( "Skip Single Line" ), new SingleCustomSettings(), null )
-                ),
+                // GetFramesSection( "Frames", string.Empty, frameSettings, frameVarNames, false, 
+                //     new BasicProperty( frameVarNames.FramesSkipSingleLine, new GUIContent( "Skip Single Line" ), new SingleCustomSettings(), null )
+                // ),
+                
+                GetFrameSection( frameSettings, frameVarNames ),
 
                 GetGroupWithToggleHeading( varNames.ShowLayoutVisualizations, $"Layout Visualizations ( LVL: {level.ToString()} )", string.Empty, null,
                     
@@ -72,6 +74,33 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     )
                 )
             };
+        }
+        
+        private Element GetFrameSection( SingleElementFrameSettings frameSettings, SingleElementFrameVarNames frameVarNames )
+        {
+            return GetGroupWithLabelHeading( "Frame", string.Empty, null,
+                GetElement( frameVarNames.FramesSkipSingleLine, "Skip Single Line" ),
+                GetGroupWithToggleHeading( frameVarNames.IncludeBackground, "Background", string.Empty, null,
+                    true,
+                    AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
+                        frameSettings.backgroundColorIndex,
+                        frameVarNames.BackgroundColorIndex, OnColorSelectionChanged,
+                        GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
+                ),
+
+                GetGroupWithToggleHeading( frameVarNames.IncludeOutline, "Outline", string.Empty, null,
+                    true,
+                    GetElement( frameVarNames.FrameType, "Style", string.Empty ),
+                    GetElement( frameVarNames.FramePadding, "Frame Padding", string.Empty, null, 
+                        false, GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
+                    GetElement( frameVarNames.FrameOutlineThickness, "Line Thickness", string.Empty, null,
+                        false, GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
+                    AceTheme.GetColorSelectionElement( "Color", string.Empty,
+                        frameSettings.frameOutlineColorIndex,
+                        frameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,
+                        GetMustHaveOutlineFilter( frameVarNames.FrameType ) )
+                )
+            );
         }
     }
 }

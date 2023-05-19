@@ -99,7 +99,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         /// <summary>
         ///     This event is invoked when a data change occurs that justifies a repaint (element values have changed).
         /// </summary>
-        public event AceDelegates.ColorsUpdated OnColorsUpdated;
+        public event ColorsUpdated OnColorsUpdated;
         
         /// <summary>
         ///     Used to notify when data that affects the UI data has occured, requiring a redraw.
@@ -112,6 +112,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             InitializeSettings();
             InitializeSections();
         }
+        
+        // public void Awake()
+        // {
+        //     InitializeSettings();
+        //     InitializeSections();
+        // }
 
 
 #region Initialization
@@ -120,7 +126,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         // had the chance to run its OnEnable - at which point it will call this method.
         private void InitializeSections()
         {
-            _sectionSelectionDropdown = new BasicProperty( nameof( selectedSection ), new GUIContent( "Selected Section" ), new SingleCustomSettings(), SectionSelectionChanged );
+            _sectionSelectionDropdown = new BasicProperty( nameof( selectedSection ), 
+                new GUIContent( "Selected Section" ), new SingleCustomSettings(), SectionSelectionChanged );
             
             // Instantiate basic sections.
             globalSettingsSection = new GlobalSettingsSection();
@@ -325,6 +332,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                 selectedIndexRelativeVarName,
                 callback, filter );
         }
+        
+        // public Element GetColorSelectionElement(
+        //     string title, string tooltip,
+        //     int selectedIndex, string selectedIndexRelativeVarName,
+        //     params ElementCondition[] filter )
+        // {
+        //     return customColorsSection.GetColorSelectionElement( title, tooltip, selectedIndex,
+        //         selectedIndexRelativeVarName,
+        //         filter );
+        // }
 
         public GlobalSettings GetGlobalSettings() => globalSettings;
 

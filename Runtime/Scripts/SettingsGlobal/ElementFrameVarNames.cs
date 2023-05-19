@@ -3,6 +3,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
     public abstract class ElementFrameVarNames
     {
         public readonly string ShowFrame;
+        public readonly string IncludeOutline;
         public readonly string IncludeBackground;
         public readonly string FrameType;
         public readonly string FrameOutlineThickness;
@@ -16,6 +17,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
             string arrayLookupString = sourceSettingsVarName + ".Array.data[" + ( index.ToString() ) + "].";
 
             ShowFrame = arrayLookupString + nameof( FrameSettings.applyFraming );
+            IncludeOutline = arrayLookupString + nameof( FrameSettings.includeOutline );
             IncludeBackground = arrayLookupString + nameof( FrameSettings.includeBackground );
             FrameType = arrayLookupString + nameof( FrameSettings.frameType );
             FrameOutlineThickness = arrayLookupString + nameof( FrameSettings.frameOutlineThickness );

@@ -8,6 +8,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums
         SinglePropertyBasic,
         SinglePropertyMinMaxSlider,
         SinglePropertyPopup,
+        SingleCustomColor,
         SingleBlank,
         SingleButtonBasic,
         SingleButtonTab,

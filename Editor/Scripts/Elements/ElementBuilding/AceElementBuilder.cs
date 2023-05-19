@@ -13,6 +13,7 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElemen
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Label;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Basic;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.CustomColor;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.MinMaxSlider;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Popup;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
@@ -75,6 +76,23 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
             return new PopupElement( varName, 
                 guiContent, 
                 options,
+                settings ?? new SingleCustomSettings(), 
+                callback, hideOnDisable, conditions );
+        }
+        
+        /// <summary>
+        ///     Get basic single element using both settings and conditions.
+        /// </summary>
+        public static Element GetCustomColorElement( 
+            string varName, 
+            GUIContent guiContent, 
+            [CanBeNull] SingleCustomSettings settings, 
+            Action callback,
+            bool hideOnDisable = false, 
+            params ElementCondition[] conditions )
+        {
+            return new ColorPickerElement( varName, 
+                guiContent, 
                 settings ?? new SingleCustomSettings(), 
                 callback, hideOnDisable, conditions );
         }
@@ -391,8 +409,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 #region CompositeGroups
 
         /// <summary>
-        ///  Get a group using groups settings, and a variable list of elements.
-        /// This group will be placed on the same settings level as it's parent.
+        ///     A composite group is a group with no heading that is treated as a Single Element in regards to
+        ///     global settings. Unlike all other group types, grouping elements into a composite group does not
+        ///     push them to the next settings level. As such, many elements can be combined and layered while
+        ///     being treated as one unit.
         /// </summary>
         public static Element GetCompositeGroup(
             [CanBeNull] GroupCustomSettings customSettings, 
@@ -474,7 +494,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
         
         public static Element GetTabbedOptionsSectionDisabled( Element activeSection, params ( string name, string tooltip, bool focused, Action callback )[] buttonInfoList )
         {
-            TabButtonElement[] newButtons = new TabButtonElement[buttonInfoList.Length];
+            Element[] newButtons = new Element[buttonInfoList.Length];
             for (int i = 0; i < newButtons.Length; i++)
             {
                 (string name, string tooltip, bool focused, Action callback) currentInfo = buttonInfoList[i];
@@ -492,19 +512,19 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
         
         public static Element GetTabbedOptionsSection( Element activeSection, params ( string name, string tooltip, bool focused, Action callback )[] buttonInfoList )
         {
-            TabButtonElement[] newButtons = new TabButtonElement[buttonInfoList.Length];
+            Element[] newButtons = new Element[buttonInfoList.Length];
             for (int i = 0; i < newButtons.Length; i++)
             {
-                var currentInfo = buttonInfoList[i];
-                newButtons[i] = new TabButtonElement( new GUIContent( currentInfo.name, currentInfo.tooltip ), currentInfo.focused, new SingleCustomSettings(), currentInfo.callback );
+                (string name, string tooltip, bool focused, Action callback) = buttonInfoList[i];
+                newButtons[i] = new TabButtonElement( new GUIContent( name, tooltip ), focused, new SingleCustomSettings(), callback );
             }
 
             return GetTabbedSection( activeSection, newButtons );
         }
         
-        private static Element GetTabbedSection( Element activeSection, TabButtonElement[] buttons )
+        private static Element GetTabbedSection( Element activeSection, Element[] buttons )
         {
-            Element buttonsGroup = GetGroup( new GroupCustomSettings()
+            Element buttonsGroup = GetCompositeGroup( new GroupCustomSettings()
                 {
                     ForceSingleLine = true, 
                     NumberOfColumns = buttons.Length,
@@ -516,7 +536,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
             );
 
             // Return the group with the buttons and active options section.
-            return GetGroup( new GroupCustomSettings()
+            return GetCompositeGroup( new GroupCustomSettings()
                 {
                     ForceSingleLine = true, 
                     NumberOfColumns = buttons.Length, 

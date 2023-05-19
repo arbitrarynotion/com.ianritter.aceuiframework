@@ -11,6 +11,7 @@ using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Group
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator;
+using UnityEngine;
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding.AceElementBuilder;
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore.AceDelegates;
 
@@ -46,7 +47,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
         /// <summary>
         ///     Used to notify when data that affects the UI data has occured, requiring a redraw.
         /// </summary>
-        protected void DataUpdatedNotify() => OnDataUpdated?.Invoke();
+        protected void DataUpdatedNotify()
+        {
+            // Debug.Log( "Setting section's Data Update Notify was called." );
+            OnDataUpdated?.Invoke();
+        }
 
         /// <summary>
         ///     Used to notify when data that affects the UI layout has occured, requiring a full UI rebuild.
@@ -108,22 +113,22 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
                 subSections.ToArray() );
         }
 
-        protected Element GetTextColorsSection( HeadingElementFrameSettings frameSettings, HeadingElementFrameSettingsVarNames frameVarNames )
-        {
-            return GetGroupWithLabelHeading( "Text PresetColors", string.Empty, null,
-                AceTheme.GetColorSelectionElement( "Enabled", string.Empty,
-                    frameSettings.enabledTextColorIndex,
-                    frameVarNames.EnabledTextColorIndex, OnColorSelectionChanged,
-                    GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
-                AceTheme.GetColorSelectionElement( "Disabled", string.Empty,
-                    frameSettings.disabledTextColorIndex,
-                    frameVarNames.DisabledTextColorIndex, OnColorSelectionChanged )
-            );
-        }
+        // protected Element GetTextColorsSection( HeadingElementFrameSettings frameSettings, HeadingElementFrameSettingsVarNames frameVarNames )
+        // {
+        //     return GetGroupWithLabelHeading( "Text Colors", string.Empty, null,
+        //         AceTheme.GetColorSelectionElement( "Enabled", string.Empty,
+        //             frameSettings.enabledTextColorIndex,
+        //             frameVarNames.EnabledTextColorIndex, OnColorSelectionChanged,
+        //             GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
+        //         AceTheme.GetColorSelectionElement( "Disabled", string.Empty,
+        //             frameSettings.disabledTextColorIndex,
+        //             frameVarNames.DisabledTextColorIndex, OnColorSelectionChanged )
+        //     );
+        // }
 
         protected Element GetLayoutVisualizationSection( params Element[] layoutVisualizationSubsections )
         {
-            return GetGroup(
+            return GetCompositeGroup(
                 null,
                 layoutVisualizationSubsections
             );
@@ -172,7 +177,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
 
         private Element GetFramesColorsSection( FrameSettings frameSettings, ElementFrameVarNames frameVarNames )
         {
-            return GetGroupWithLabelHeading( "Frame PresetColors", string.Empty, null,
+            return GetGroupWithLabelHeading( "Colors", string.Empty, null,
                 AceTheme.GetColorSelectionElement( "Outline", string.Empty,
                     frameSettings.frameOutlineColorIndex,
                     frameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,
@@ -184,7 +189,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
             );
         }
 
-        private void OnColorSelectionChanged() => DataUpdatedNotify();
+        protected void OnColorSelectionChanged() => DataUpdatedNotify();
 
         private void OnColorsChanged() => DataUpdatedNotify();
 
@@ -283,7 +288,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
 
         // Conditions: Returns true if the condition passes.
         // NotEqualTo is like saying "all but these are allowed".
-        private ElementCondition[] GetMustHaveOutlineFilter( string frameTypeVarName )
+        protected ElementCondition[] GetMustHaveOutlineFilter( string frameTypeVarName )
         {
             return new[]
             {
@@ -291,7 +296,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
             };
         }
 
-        private ElementCondition[] GetMustHaveBackgroundFilter( string includeBackgroundVarName )
+        protected ElementCondition[] GetMustHaveBackgroundFilter( string includeBackgroundVarName )
         {
             return new[]
             {

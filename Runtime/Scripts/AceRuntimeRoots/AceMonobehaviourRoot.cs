@@ -31,7 +31,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots
         public event TargetUIStateChanged OnTargetUIStateChanged;
 
         /// <summary>
-        ///     Call this when the target script detects a change in a value that manages its UI state.
+        ///     Call this when the target script detects a change in a value that manages its UI state, requiring the element
+        ///     list to be rebuilt (its structure has changed).
         ///     This is typically called in the target script's OnValidate method.
         /// </summary>
         protected void TargetUIStateChangedNotify()
@@ -50,6 +51,9 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots
         /// </summary>
         public void DataUpdatedNotify() => OnDataUpdated?.Invoke();
         
+        /// <summary>
+        /// Use when a change to a property is not getting saved. This will force a call to ApplyModifiedProperties.
+        /// </summary>
         public delegate void DataUpdateRequired();
         public event DataUpdateRequired OnDataUpdateRequired;
         

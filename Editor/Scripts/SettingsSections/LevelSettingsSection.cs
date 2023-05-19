@@ -197,10 +197,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
             InsertLabelIntoSelectedSection( labeledSection, sectionSelected, levelNames );
             
             Element tabbedOptionsSection = ( visibleLevels == 1 ) 
-                ? GetGroup( null, sectionSelected )
-                : GetTabbedOptionsSection( GetGroup( null, labeledSection ), returnButtonInfoList );
+                ? GetCompositeGroup( null, sectionSelected )
+                : GetTabbedOptionsSection( GetCompositeGroup( null, labeledSection ), returnButtonInfoList );
 
-            return GetGroup(
+            return GetCompositeGroup(
                 new GroupCustomSettings()
                 {
                     NumberOfColumns = 1,

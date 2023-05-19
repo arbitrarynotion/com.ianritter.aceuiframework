@@ -20,7 +20,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
         public SerializedObject targetSerializedObject;
 
         // This is the theme used to draw the window.
-        protected AceTheme AceTheme { get; private set; }
+        // protected AceTheme AceTheme { get; private set; }
+        protected AceTheme AceTheme { get; set; }
         
         public abstract string GetTargetName();
 

@@ -8,6 +8,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.E
         public readonly string BoxHeight;
         public readonly string EnabledTextColorIndex;
         public readonly string DisabledTextColorIndex;
+        public readonly string BackgroundInactiveColorIndex;
 
         public HeadingElementFrameSettingsVarNames( int index ) 
             : base( GetHeadingElementFrameSettingsListVarName, index )
@@ -18,6 +19,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.E
             BoxHeight = arrayLookupString + nameof( HeadingElementFrameSettings.boxHeight );
             EnabledTextColorIndex = arrayLookupString + nameof( HeadingElementFrameSettings.enabledTextColorIndex );
             DisabledTextColorIndex = arrayLookupString + nameof( HeadingElementFrameSettings.disabledTextColorIndex );
+            BackgroundInactiveColorIndex = arrayLookupString + nameof( HeadingElementFrameSettings.backgroundInactiveColorIndex );
         }
     }
 }

@@ -57,8 +57,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
 
         protected override AceScriptableObjectEditorRoot GetTarget()
         {
-            return _themeManager.GetThemeForIndex( selectedThemeIndex );
+            // Use this option to have the theme settings window modify the same theme that it's using.
+            // AceTheme = _themeManager.GetThemeForIndex( selectedThemeIndex );
+            // return AceTheme;
             
+            // This is the default behavior, keeping the system theme and target theme separate.
+            return _themeManager.GetThemeForIndex( selectedThemeIndex );
+
             // List<AceTheme> themes = _themeManager.GetThemeList();
             // Debug.Log( $"{name}: Getting target theme..." );
             // if ( selectedThemeIndex > ( themes.Count - 1 ) )
@@ -83,7 +88,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
             {
                 ThemeDropdownUpdated();
             }
-            EditorGUILayout.LabelField( $" {_themeManager.GetThemeForIndex(selectedThemeIndex).name}" );
+            // EditorGUILayout.LabelField( $" {_themeManager.GetThemeForIndex(selectedThemeIndex).name}" );
             
             // Draw the first three elements: divider, enums field, divider.
             for (int i = 0; i < 3; i++)

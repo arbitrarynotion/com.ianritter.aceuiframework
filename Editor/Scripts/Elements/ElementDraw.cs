@@ -129,12 +129,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         {
             if ( !Element.Layout.ShouldShowFrame() || !Element.FrameSettings.includeBackground ) return;
             
-            DrawSolidRect( Element.Layout.GetFrameRect(), Element.AceTheme.GetColorForIndex( Element.FrameSettings.backgroundColorIndex ) );
+            DrawSolidRect( Element.Layout.GetFrameRect(), Element.AceTheme.GetColorForIndex( GetBackgroundColorIndex() ) );
         }
+
+        protected virtual int GetBackgroundColorIndex() => Element.FrameSettings.backgroundColorIndex;
 
         private void DrawElementFrameOutline()
         {
             if (!Element.Layout.ShouldShowFrame()) return;
+
+            if ( !Element.FrameSettings.includeOutline ) return;
 
             DrawRect( 
                 Element.Layout.GetFrameRect(), 

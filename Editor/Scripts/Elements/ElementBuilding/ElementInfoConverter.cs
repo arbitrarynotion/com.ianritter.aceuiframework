@@ -8,6 +8,7 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElement
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.DividingLine;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Label;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Basic;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.CustomColor;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.MinMaxSlider;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Popup;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.Enums;
@@ -63,6 +64,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
                         ConvertElementConditions( popupPropertyInfo.ElementConditionInfos )
                     );
                     
+                case ElementType.SingleCustomColor:
+                    var customColorInfo = (CustomColorInfo) elementInfo;
+                    return new ColorPickerElement( 
+                        customColorInfo.VarName, 
+                        customColorInfo.GUIContent, 
+                        customColorInfo.SingleCustomSettings, 
+                        customColorInfo.Callback, 
+                        customColorInfo.HideOnDisable, 
+                        ConvertElementConditions( customColorInfo.ElementConditionInfos )
+                    );
                 
                 case ElementType.SingleBlank:
                     break;

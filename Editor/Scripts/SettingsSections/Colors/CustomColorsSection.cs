@@ -4,6 +4,7 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementConditions;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Label;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Basic;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.CustomColor;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Properties.Popup;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
@@ -18,14 +19,15 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
         private string[] _customColorOptions;
         private readonly string _customColorSettingsVarName;
         
+        
         public CustomColorsSection( AceTheme aceTheme, string customColorSettingsVarName )
         {
             AceTheme = aceTheme;
             _customColorSettingsVarName = customColorSettingsVarName;
         }
 
-        protected override string GetRelativePathVarName( string varName ) => 
-            _customColorSettingsVarName + "." + varName;
+        
+        protected override string GetRelativePathVarName( string varName ) => _customColorSettingsVarName + "." + varName;
         
         public override Element GetSection()
         {
@@ -48,14 +50,18 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
         {
             _customColorOptions = AceTheme.GetCustomColorOptions();
             
-            string selectedColorVarName = 
-                $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}].color";
+            string selectedColorVarName = $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}].color";
 
             Element popupField = new PopupElement( selectedIndexRelativeVarName, GUIContent.none, _customColorOptions, new SingleCustomSettings(), callback, false, filter );
-            Element colorField = new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 60f}, callback, false, filter);
+            // Element colorField = new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 60f}, callback, false, filter);
+            Element colorField = new ColorPickerElement( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 80f}, callback, false, filter);
+            // Element colorField = new ColorPickerElement( $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}]", 
+            //     GUIContent.none, new SingleCustomSettings() {ConstantWidth = 80f}, callback, false, filter);
 
-            return GetGroup( new GroupCustomSettings() {CustomFrameSettings = new CustomFrameSettings() {applyFraming = false}, NumberOfColumns = 3}, 
-                new LabelElement( new GUIContent( title, tooltip ), new SingleCustomSettings() {CustomFrameSettings = NoFrame, UseIndentedDefaultLabelWidth = true} ), 
+            return GetCompositeGroup( new GroupCustomSettings() {CustomFrameSettings = new CustomFrameSettings() {applyFraming = false}, NumberOfColumns = 3}, 
+                
+                new LabelElement( new GUIContent( title, tooltip ), 
+                    new SingleCustomSettings() {CustomFrameSettings = NoFrame, UseIndentedDefaultLabelWidth = true} ), 
                 popupField, 
                 colorField );
         }

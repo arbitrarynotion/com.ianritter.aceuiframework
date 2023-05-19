@@ -8,6 +8,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
     public class FrameSettings
     {
         public bool applyFraming = true;
+        public bool includeOutline = true;
         public bool includeBackground = false;
         public ElementFrameType frameType = ElementFrameType.LeftAndBottomOnly;
         [Range( 1, 4 )]

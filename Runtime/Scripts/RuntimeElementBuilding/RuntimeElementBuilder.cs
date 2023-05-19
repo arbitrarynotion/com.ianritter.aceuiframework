@@ -226,6 +226,25 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         }
     }
 
+    public class CustomColorInfo : SingleInteractiveInfo
+    {
+        public string VarName { get; }
+        
+        public CustomColorInfo( 
+            string varName, 
+            GUIContent guiContent, 
+            SingleCustomSettings customSettings,
+            Action callback,
+            bool hideOnDisable, 
+            ElementConditionInfo[] elementConditionInfos ) 
+            : base( ElementType.SingleCustomColor, guiContent, customSettings, callback )
+        {
+            VarName = varName;
+            HideOnDisable = hideOnDisable;
+            ElementConditionInfos = elementConditionInfos;
+        }
+    }
+
     public class MinMaxSliderInfo : SingleInteractiveInfo
     {
         public string MinVarName { get; }
@@ -452,6 +471,27 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
                 varName, 
                 new GUIContent( title, tooltip), 
                 options,
+                settings ?? new SingleCustomSettings(),
+                callback,
+                hideOnDisable, 
+                conditions );
+        }
+        
+        /// <summary>
+        ///     Get basic single element using both settings and conditions.
+        /// </summary>
+        public static ElementInfo GetCustomColorElement( 
+            string varName, 
+            string title, 
+            string tooltip,   
+            [CanBeNull] SingleCustomSettings settings,
+            Action callback = null, 
+            bool hideOnDisable = false, 
+            params ElementConditionInfo[] conditions )
+        {
+            return new CustomColorInfo( 
+                varName, 
+                new GUIContent( title, tooltip ), 
                 settings ?? new SingleCustomSettings(),
                 callback,
                 hideOnDisable, 

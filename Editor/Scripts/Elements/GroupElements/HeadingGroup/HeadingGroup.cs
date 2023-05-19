@@ -48,6 +48,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
             base( guiContent, groupCustomSettings )
         {
             HeadingElement = headingElement;
+            headingElement.HeadingGroup = this;
             
             if ( headingPropertyVarName != null )
             {

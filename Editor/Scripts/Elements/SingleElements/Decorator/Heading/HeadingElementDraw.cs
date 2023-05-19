@@ -6,7 +6,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
 {
     public abstract class HeadingElementDraw : SingleElementDraw
     {
-        private readonly HeadingElement _headingElement;
+        protected readonly HeadingElement _headingElement;
         protected override SingleElement SingleElement => _headingElement;
         
         protected const float DefaultLeftPadding = 2f;
@@ -39,8 +39,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         {
             Color textColor = enabled
                 ? Element.AceTheme.GetColorForIndex( _headingElement.HeadingElementFrameSettings.enabledTextColorIndex )
-                : Element.AceTheme.GetColorForIndex(
-                    _headingElement.HeadingElementFrameSettings.disabledTextColorIndex );
+                : Element.AceTheme.GetColorForIndex( _headingElement.HeadingElementFrameSettings.disabledTextColorIndex );
             
             return new GUIStyle( EditorStyles.label )
             {
@@ -49,5 +48,14 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
                 normal = {textColor = textColor}
             };
         }
+
+        protected override int GetBackgroundColorIndex()
+        {
+            return HeadingIsEnabled()
+                ? _headingElement.HeadingElementFrameSettings.backgroundColorIndex
+                : _headingElement.HeadingElementFrameSettings.backgroundInactiveColorIndex;
+        }
+
+        protected abstract bool HeadingIsEnabled();
     }
 }

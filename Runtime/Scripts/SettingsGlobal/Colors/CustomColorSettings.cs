@@ -53,6 +53,19 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
             return customColorOptions;
         }
         
+        // public string[] GetCustomColorsOptionsList()
+        // {
+        //     int colorsListLength = customColorsList.Length;
+        //     string[] customColorOptions = new string[colorsListLength + 1];
+        //     customColorOptions[0] = "Custom";
+        //     for (int i = 1; i < colorsListLength; i++)
+        //     {
+        //         customColorOptions[i] = customColorsList[i].name;
+        //     }
+        //
+        //     return customColorOptions;
+        // }
+        
         public Color GetColorForIndex( int index )
         {
             if (index >= 0 && index < customColorsList.Length)

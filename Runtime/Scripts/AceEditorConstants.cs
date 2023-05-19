@@ -10,7 +10,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
         public const string LoggersSearchFolderName = "Packages/com.ianritter.aceuiframework/Runtime/Scripts/Services/Loggers";
         
         // System theme names.
-        public const string EditorWindowThemeName = "AceEditorWindowTheme";
+        public const string EditorWindowThemeName = "Ghost";
+        // public const string EditorWindowThemeName = "AceEditorWindowTheme";
         public const string DefaultThemeName = "AceDefaultTheme";
         
         // Script names.

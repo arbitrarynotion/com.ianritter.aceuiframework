@@ -1,4 +1,5 @@
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementConditions;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.HeadingGroup;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator;
@@ -19,6 +20,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         public override SingleElementDraw SingleElementDraw => HeadingElementDraw;
         
         public override bool IsVisible { get => true; set{} }
+        
+        public HeadingGroup HeadingGroup;
 
 
         protected HeadingElement( GUIContent guiContent ) :

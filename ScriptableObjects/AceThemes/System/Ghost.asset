@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 076b7b2dc8b8fbd4dbb0d0a1a43b111e, type: 3}
-  m_Name: AceDefaultTheme
+  m_Name: Ghost
   m_EditorClassIdentifier: 
   logger: {fileID: 11400000, guid: 993055de20daf4b4dbc34b32f77e4a47, type: 2}
-  selectedSection: 0
+  selectedSection: 3
   basicGroupLevelSettingsMode: 0
-  headingGroupLevelSettingsMode: 0
+  headingGroupLevelSettingsMode: 2
   singleElementsLevelSettingsMode: 0
   globalSettings:
     leftIndentUnitAmount: 15
     elementVerticalPadding: 2
     columnGap: 4
-    hideScriptField: 0
+    hideScriptField: 1
     sectionWidthPriorityAdjustment: 0
     groupWidthPriorityAdjustment: 0
     propertyWidthPriorityAdjustment: 0
@@ -76,6 +76,10 @@ MonoBehaviour:
       color: {r: 1, g: 1, b: 1, a: 1}
     - name: Disabled Text
       color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+    - name: Heading Dark 1
+      color: {r: 0.1137255, g: 0.1137255, b: 0.1137255, a: 1}
+    - name: Almost Black
+      color: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
   basicGroupSettingsList:
   - topPadding: 0
     leftPadding: 0
@@ -144,15 +148,15 @@ MonoBehaviour:
     layoutToolsDrawRectColor: {r: 0.2, g: 0.5, b: 0.7, a: 1}
   basicGroupFrameSettingsList:
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 1
-    frameType: 1
+    frameType: 6
     frameOutlineThickness: 2
-    frameAutoPadding: 5
-    frameOutlineColorIndex: 7
-    backgroundColorIndex: 10
+    frameAutoPadding: 1.74
+    frameOutlineColorIndex: 0
+    backgroundColorIndex: 18
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 1
     frameOutlineThickness: 2
@@ -160,7 +164,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 11
     backgroundColorIndex: 14
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -168,7 +172,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -176,7 +180,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -189,7 +193,7 @@ MonoBehaviour:
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
-    bottomPadding: 0
+    bottomPadding: 10
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
@@ -203,7 +207,7 @@ MonoBehaviour:
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
-    bottomPadding: 0
+    bottomPadding: 4
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
@@ -214,10 +218,10 @@ MonoBehaviour:
     showDrawRect: 0
     layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
-  - topPadding: 3.31
-    leftPadding: 0.65
-    rightPadding: 10
-    bottomPadding: 6.21
+  - topPadding: 0.41
+    leftPadding: 0
+    rightPadding: 0
+    bottomPadding: 4
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
@@ -260,7 +264,7 @@ MonoBehaviour:
   - topPadding: 2
     leftPadding: 2
     rightPadding: 2
-    bottomPadding: 8
+    bottomPadding: 10
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
@@ -272,8 +276,8 @@ MonoBehaviour:
     layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
   - topPadding: 0
     leftPadding: 0
-    rightPadding: 2
-    bottomPadding: 4
+    rightPadding: 0
+    bottomPadding: 8
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
@@ -286,7 +290,7 @@ MonoBehaviour:
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
-    bottomPadding: 0
+    bottomPadding: 2
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
@@ -324,59 +328,59 @@ MonoBehaviour:
     layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
   headingElementFrameSettingsList:
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 1
     frameType: 4
     frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 18
-    textHorizontalOffset: 0
-    boxHeight: 10.4
-    enabledTextColorIndex: 19
-    disabledTextColorIndex: 20
-    backgroundInactiveColorIndex: 1
-  - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 1
-    frameType: 1
-    frameOutlineThickness: 3
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 11
-    backgroundColorIndex: 14
+    frameOutlineColorIndex: 21
+    backgroundColorIndex: 15
     textHorizontalOffset: 0
     boxHeight: 0
-    enabledTextColorIndex: 19
-    disabledTextColorIndex: 20
+    enabledTextColorIndex: 22
+    disabledTextColorIndex: 16
     backgroundInactiveColorIndex: 1
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 1
-    frameType: 1
-    frameOutlineThickness: 3
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 7
-    backgroundColorIndex: 10
-    textHorizontalOffset: 0
-    boxHeight: 8.7
-    enabledTextColorIndex: 19
-    disabledTextColorIndex: 20
-    backgroundInactiveColorIndex: 1
-  - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 1
-    frameType: 1
+    frameType: 5
     frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
+    frameOutlineColorIndex: 21
+    backgroundColorIndex: 15
     textHorizontalOffset: 0
     boxHeight: 0
-    enabledTextColorIndex: 19
-    disabledTextColorIndex: 20
+    enabledTextColorIndex: 22
+    disabledTextColorIndex: 16
     backgroundInactiveColorIndex: 1
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
+    includeBackground: 1
+    frameType: 6
+    frameOutlineThickness: 2
+    frameAutoPadding: 0
+    frameOutlineColorIndex: 21
+    backgroundColorIndex: 15
+    textHorizontalOffset: 0
+    boxHeight: 0
+    enabledTextColorIndex: 22
+    disabledTextColorIndex: 16
+    backgroundInactiveColorIndex: 1
+  - applyFraming: 1
+    includeOutline: 1
+    includeBackground: 1
+    frameType: 6
+    frameOutlineThickness: 2
+    frameAutoPadding: 0
+    frameOutlineColorIndex: 21
+    backgroundColorIndex: 15
+    textHorizontalOffset: 0
+    boxHeight: 0
+    enabledTextColorIndex: 22
+    disabledTextColorIndex: 16
+    backgroundInactiveColorIndex: 1
+  - applyFraming: 1
+    includeOutline: 1
     includeBackground: 0
     frameType: 1
     frameOutlineThickness: 1
@@ -390,39 +394,39 @@ MonoBehaviour:
     backgroundInactiveColorIndex: 1
   foldoutGroupSettingsList:
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
+    includeBackground: 0
+    frameType: 5
+    frameOutlineThickness: 2
+    frameAutoPadding: 0
+    frameOutlineColorIndex: 18
+    backgroundColorIndex: 1
+  - applyFraming: 1
+    includeOutline: 1
     includeBackground: 0
     frameType: 4
     frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
-  - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 0
-    frameType: 1
-    frameOutlineThickness: 1
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 0
+    frameOutlineColorIndex: 18
     backgroundColorIndex: 16
   - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 1
-    frameType: 2
-    frameOutlineThickness: 4
+    includeOutline: 1
+    includeBackground: 0
+    frameType: 10
+    frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
+    frameOutlineColorIndex: 18
     backgroundColorIndex: 17
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
-    frameType: 1
-    frameOutlineThickness: 1
+    frameType: 2
+    frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
+    frameOutlineColorIndex: 1
     backgroundColorIndex: 18
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -431,7 +435,7 @@ MonoBehaviour:
     backgroundColorIndex: 1
   toggleGroupSettingsList:
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -439,7 +443,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -447,7 +451,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -455,7 +459,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -463,7 +467,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -472,7 +476,7 @@ MonoBehaviour:
     backgroundColorIndex: 1
   labeledGroupInfoList:
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -480,7 +484,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -488,7 +492,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -496,7 +500,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -504,7 +508,7 @@ MonoBehaviour:
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -516,7 +520,7 @@ MonoBehaviour:
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
-    showLayoutVisualizations: 1
+    showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
     showPosRect: 1
@@ -578,8 +582,8 @@ MonoBehaviour:
     showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
   singleElementFrameSettingsList:
-  - applyFraming: 1
-    includeOutline: 0
+  - applyFraming: 0
+    includeOutline: 1
     includeBackground: 1
     frameType: 1
     frameOutlineThickness: 1
@@ -588,7 +592,7 @@ MonoBehaviour:
     backgroundColorIndex: 6
     skipSingleLineFrames: 0
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 1
     frameOutlineThickness: 1
@@ -597,7 +601,7 @@ MonoBehaviour:
     backgroundColorIndex: 4
     skipSingleLineFrames: 0
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 1
     frameOutlineThickness: 1
@@ -606,7 +610,7 @@ MonoBehaviour:
     backgroundColorIndex: 5
     skipSingleLineFrames: 0
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 1
     frameOutlineThickness: 1
@@ -615,7 +619,7 @@ MonoBehaviour:
     backgroundColorIndex: 6
     skipSingleLineFrames: 0
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 1
@@ -625,7 +629,7 @@ MonoBehaviour:
     skipSingleLineFrames: 1
   propertySpecificSettings:
     showWideModeBoxes: 0
-    propertyChildLabelWidth: 97
+    propertyChildLabelWidth: 75
     propertyLabelEndPadding: 4
     propertyNumberFieldsMinWidth: 40
     propertySlidersMinWidth: 75
@@ -646,5 +650,5 @@ MonoBehaviour:
   singleElementsSectionToggle: 1
   propertySpecificSectionToggle: 1
   basicGroupsSectionDrawAreaToggle: 1
-  headingGroupsSectionDrawAreaToggle: 0
+  headingGroupsSectionDrawAreaToggle: 1
   singleElementsSectionDrawAreaToggle: 1

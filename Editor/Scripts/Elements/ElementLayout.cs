@@ -39,7 +39,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 #region Protected Virtual Class Data
 
         /// <summary>
-        ///     Used by the settings to adjust the column width priority balance per element type.
+        ///     Used by the settings to adjust the column width priority balance per pickerElement type.
         /// </summary>
         protected virtual float ColumnWidthPriorityAdjustment => 0;
 
@@ -52,7 +52,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 
         /// <summary>
         ///     This is the total indent level including the single indent level applied by default. That is, the root
-        ///     element will have an indent level of 1 plus its custom indent level increase.
+        ///     pickerElement will have an indent level of 1 plus its custom indent level increase.
         /// </summary>
         private float TotalIndentLevel
         {
@@ -81,9 +81,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 
 #region Constructors
 
-        protected ElementLayout( Element element )
+        protected ElementLayout( Element pickerElement )
         {
-            PaddingHandler = new PaddingHandler( element );
+            PaddingHandler = new PaddingHandler( pickerElement );
         }
 
 #endregion
@@ -92,7 +92,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 #region Public Methods
 
         /// <summary>
-        ///     Set the cached position information for this element.
+        ///     Set the cached position information for this pickerElement.
         /// </summary>
         public void SetListPositionInfo( int line, int column )
         {
@@ -101,7 +101,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         }
 
         /// <summary>
-        ///     Set the cached position information for this element including its position in line.
+        ///     Set the cached position information for this pickerElement including its position in line.
         /// </summary>
         public void SetListPositionInfo( int line, int column, bool isFirstOnLine, bool isLastOnLine )
         {
@@ -112,16 +112,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         }
 
         /// <summary>
-        ///     Gets the height required by the element. The height is used to allocate the element's vertical space. Any
+        ///     Gets the height required by the pickerElement. The height is used to allocate the pickerElement's vertical space. Any
         ///     vertical padding should be included here.
         /// </summary>
         public float GetRequiredHeight( bool updating ) =>
             GetElementHeight( updating ) + PaddingHandler.GetTopEdgePadding() + PaddingHandler.GetBottomEdgePadding();
 
         /// <summary>
-        ///     Column width priority is used to control the amount of horizontal space assigned to this element when it
+        ///     Column width priority is used to control the amount of horizontal space assigned to this pickerElement when it
         ///     shares the line with other elements. This value is translated to the percentage of the sum of all the
-        ///     other column width priorities on this line - which is also the percentage of the usable width thi element
+        ///     other column width priorities on this line - which is also the percentage of the usable width thi pickerElement
         ///     will be assigned.
         /// </summary>
         public float ColumnWidthPriority =>
@@ -138,8 +138,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         /// </summary>
         public Rect GetDrawRect()
         {
-            // Apply individual element custom settings here before returning the rect.
-            // Note that these adjustments can't change the amount of space allocated to the element, just where the element is drawn.
+            // Apply individual pickerElement custom settings here before returning the rect.
+            // Note that these adjustments can't change the amount of space allocated to the pickerElement, just where the pickerElement is drawn.
             Rect customPosRect = GetPositionRect();
 
             if ( Element.CustomSettings.CenterInFullHeightOfLine )
@@ -232,7 +232,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         public abstract bool ShouldApplyGlobalBottomPadding();
 
         /// <summary>
-        ///     Set this to false when using a group element that contains a child area group. In that case, the parent
+        ///     Set this to false when using a group pickerElement that contains a child area group. In that case, the parent
         ///     group should not use padding as it should be applied to the child group. The child area group takes care
         ///     of that implementation.
         /// </summary>
@@ -252,17 +252,17 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 #region Public Abstract Methods
 
         /// <summary>
-        ///     Get the draw height of the element. Should NOT include the default element vertical padding.
+        ///     Get the draw height of the pickerElement. Should NOT include the default pickerElement vertical padding.
         /// </summary>
         public abstract float GetElementHeight( bool updating = false );
 
         /// <summary>
-        ///     Assigns a new position rect for a root element.
+        ///     Assigns a new position rect for a root pickerElement.
         /// </summary>
         public abstract void AssignNewPositionRect( bool updateRequired );
 
         /// <summary>
-        ///     Returns true if element frame is allowed. This is based on the custom settings, the presence of a parent,
+        ///     Returns true if pickerElement frame is allowed. This is based on the custom settings, the presence of a parent,
         ///     and that parent's custom settings - in that order.
         /// </summary>
         public abstract bool ShouldShowFrame();
@@ -273,7 +273,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 #region Public Virtual Methods
 
         /// <summary>
-        ///     Assign a child element's position rect and width.
+        ///     Assign a child pickerElement's position rect and width.
         /// </summary>
         public virtual void SetPositionRect( Rect newPositionRect, float width )
         {
@@ -282,12 +282,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         }
 
         /// <summary>
-        ///     The rect used to draw the outline around an element.
+        ///     The rect used to draw the outline around an pickerElement.
         /// </summary>
         public virtual Rect GetFrameRect() => new Rect( GetPositionRectWithGlobalAndCustomPadding() );
 
         /// <summary>
-        ///     This is the height of the element when it is not visible. Will be zero for all but heading elements.
+        ///     This is the height of the pickerElement when it is not visible. Will be zero for all but heading elements.
         /// </summary>
         /// <returns></returns>
         public virtual float GetCollapsedHeight() => 0;
@@ -325,7 +325,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 #region Protected Virtual Methods
 
         /// <summary>
-        ///     Get this element's indent level in pixels including the level inherited by its parent.
+        ///     Get this pickerElement's indent level in pixels including the level inherited by its parent.
         ///     This is recursive so each parent also inherits from their parents and so on.
         /// </summary>
         protected float GetTotalLeftIndentAmount() => TotalIndentLevel * Element.GlobalSettings.leftIndentUnitAmount;

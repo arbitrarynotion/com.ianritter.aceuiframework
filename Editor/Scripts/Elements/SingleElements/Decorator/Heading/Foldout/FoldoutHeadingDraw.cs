@@ -8,7 +8,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
     {
         private readonly FoldoutHeading _foldoutHeading;
 
-        
         public FoldoutHeadingDraw( FoldoutHeading foldoutHeading ) 
             : base( foldoutHeading )
         {
@@ -39,5 +38,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             if (foldoutGroup.HasProperty)
                 foldoutGroup.HeadingProperty.boolValue = foldoutGroup.IsVisible;
         }
+        
+        protected override bool HeadingIsEnabled() => ( (HeadingGroup) _foldoutHeading.ParentElement ).IsVisible;
     }
 }

@@ -622,7 +622,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                                     IndentLevelIncrease = 0
                                 },
                                 GetLabelElement( "Label in Basic Group", "Label 4 tooltip!" ), 
-                                GetElement( nameof(colorField), "Color in Basic Group", string.Empty,
+                                GetCustomColorElement( nameof(colorField), "Color in Basic Group", string.Empty,
                                     new SingleCustomSettings()
                                     {
                                         IndentLevelIncrease = 0
@@ -635,7 +635,14 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                             )
                         )
                     ) 
-                ) 
+                ),
+                
+                GetCustomColorElement( nameof(colorField), "Color on its own", string.Empty,
+                    new SingleCustomSettings()
+                    {
+                        IndentLevelIncrease = 0
+                    }
+                )
             };
         }
     }

@@ -13,7 +13,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             PropertyElement.GlobalSettings.propertyWidthPriorityAdjustment;
 
 
-        protected PropertyElementLayout( Element element ) : base( element )
+        protected PropertyElementLayout( Element pickerElement ) : base( pickerElement )
         {
         }
 

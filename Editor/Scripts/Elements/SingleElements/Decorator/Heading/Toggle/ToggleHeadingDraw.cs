@@ -38,5 +38,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             if ( toggleGroup.HasProperty )
                 toggleGroup.HeadingProperty.boolValue = toggleGroup.IsEnabled;
         }
+        
+        protected override bool HeadingIsEnabled() => ( (HeadingGroup) _toggleHeading.ParentElement ).IsEnabled;
     }
 }

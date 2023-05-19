@@ -76,7 +76,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
             _theme.OnDataUpdated += OnThemeUpdated;
             _theme.OnUIStateUpdated += OnThemeUpdated;
         }
-
+        
         protected virtual void OnTargetDataUpdateRequired() => _targetSerializedObject.ApplyModifiedProperties();
 
         private void UpdateTargetsTheme()

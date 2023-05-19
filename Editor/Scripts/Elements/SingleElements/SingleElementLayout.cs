@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements
 {
     /// <summary>
-    ///     Manages the position rect for a single element. Root single elements follow no special rules, using the default
+    ///     Manages the position rect for a single pickerElement. Root single elements follow no special rules, using the default
     ///     Unity control rect and wide mode adjustments. Non-root single elements simply use the rect assigned to them by
     ///     their parent section.
     /// </summary>
@@ -18,7 +18,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         protected virtual float GetFieldMinWidth() => 0;
 
         /// <summary>
-        ///     A property element is composed of a label and a field. This is width assigned to the field part of this element.
+        ///     A property pickerElement is composed of a label and a field. This is width assigned to the field part of this pickerElement.
         /// </summary>
         public float FieldMinWidth =>
             SingleElement.SingleCustomSettings.FieldMinWidth > 0
@@ -26,10 +26,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
                 : GetFieldMinWidth();
 
         /// <summary>
-        ///     A property element is composed of a label and a field. This is width assigned to the label part of this element.
+        ///     A property pickerElement is composed of a label and a field. This is width assigned to the label part of this pickerElement.
         ///     If this property is part of a section the width is set to the width of the text plus settings.labelEndPadding.
         ///     Otherwise, the width is set the Unity's default label width
-        ///     minus the element's indent.
+        ///     minus the pickerElement's indent.
         /// </summary>
         public float LabelWidth
         {
@@ -54,7 +54,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
                 : Element.PropertySettings.propertyLabelEndPadding;
 
         /// <summary>
-        ///     True if the usable width of the assigned position rect has enough room for the required width of this element.
+        ///     True if the usable width of the assigned position rect has enough room for the required width of this pickerElement.
         /// </summary>
         public bool HasRoom =>
             SingleElement.HasParent()
@@ -66,7 +66,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             // LabelWidth + SingleElement.PropertiesSettings.propertyLabelEndPadding + FieldMinWidth;
 
 
-        protected SingleElementLayout( Element element ) : base( element )
+        protected SingleElementLayout( Element pickerElement ) : base( pickerElement )
         {
         }
 

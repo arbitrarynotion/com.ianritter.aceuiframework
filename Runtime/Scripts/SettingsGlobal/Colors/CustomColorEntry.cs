@@ -1,6 +1,7 @@
 using System;
 using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomColors;
 using UnityEngine;
+using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
 
 namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Colors
 {
@@ -17,6 +18,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
         
         public CustomColorEntry( string colorName, Color customColor )
         {
+            Debug.Log( $"CustomColorEntry constructored called for {GetColoredStringLightSalmon( colorName )}." );
             this.customColor = new CustomColor( colorName, customColor );
             UpdateHexColor();
         }
@@ -25,6 +27,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
         public void UpdateHexColor() => _hexColor = customColor.GetHex();
 
         public string GetSymbol() => toggle ? customColor.name : string.Empty;
+
         
     }
 }

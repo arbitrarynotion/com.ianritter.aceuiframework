@@ -10,7 +10,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
         public const string LoggersSearchFolderName = "Packages/com.ianritter.aceuiframework/Runtime/Scripts/Services/Loggers";
         
         // System theme names.
-        public const string EditorWindowThemeName = "Ghost";
+        public const string EditorWindowThemeName = "Ghost_Sys";
         // public const string EditorWindowThemeName = "AceEditorWindowTheme";
         public const string DefaultThemeName = "AceDefaultTheme";
         
@@ -19,6 +19,13 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
         public const string MonobehaviourRootEditorLoggerName = "MonobehaviourRootEditorLogger";
         public const string ElementLoggerName = "ElementLogger";
         public const string ThemeCoreName = "AceTheme";
+        
+        // Theme custom color names.
+        public const string CustomColorOutlinesName = "Outlines";
+        public const string CustomColorRootBackgroundName = "Root Background";
+        public const string CustomColorChildBackgroundName = "Child Background";
+        public const string CustomColorEnabledTextName = "Enabled Text";
+        public const string CustomColorDisabledTextName = "Disabled Text";
 
         // Text displayed in the editor.
         public const string ThemeAssetMenuName = "ACE Theme";

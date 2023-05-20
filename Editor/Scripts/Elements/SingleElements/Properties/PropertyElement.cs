@@ -15,7 +15,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         ///     This string should match the variable name of the target data exactly as it is used to look up that
         ///     variable during initialization.
         /// </summary>
-        private string VarName { get; }
+        protected string VarName { get; }
 
         /// <summary>
         ///     The propertyBeingChecked this element is built for.

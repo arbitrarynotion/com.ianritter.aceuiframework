@@ -134,7 +134,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             propertiesSettingsSection = new PropertiesSettingsSection();
             
             // Initialize sections which implement element level settings.
-            customColorsSection = new CustomColorsSection( this, nameof( customColorsSettings) );
+            customColorsSection = new CustomColorsSection( this, customColorsSettings, nameof( customColorsSettings) );
             groupSettingsSection = new GroupSettingsSection( this, nameof( groupSettingsSection) );
             singleElementSettingsSection = new SingleElementsSettingsSection( this );
 
@@ -328,7 +328,21 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             Action callback,
             params ElementCondition[] filter )
         {
+            CustomColorEntry colorEntry = customColorsSettings.GetColorEntryForIndex( selectedIndex );
             return customColorsSection.GetColorSelectionElement( title, tooltip, selectedIndex,
+                selectedIndexRelativeVarName,
+                colorEntry.toggle,
+                callback, filter );
+        }
+        
+        // Try to track the color by name alone.
+        public Element GetColorSelectionElement(
+            string title, string tooltip,
+            string colorName, string selectedIndexRelativeVarName,
+            Action callback,
+            params ElementCondition[] filter )
+        {
+            return customColorsSection.GetColorSelectionElement( title, tooltip, colorName,
                 selectedIndexRelativeVarName,
                 callback, filter );
         }
@@ -414,5 +428,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         public PropertySpecificSettings GetPropertySpecificSettings() => propertySpecificSettings;
 
 #endregion
+
+        public CustomColorSettings GetCustomColorSettings() => customColorsSettings;
+        public int GetIndexForCustomColorName( string customColorName ) => customColorsSettings.GetIndexForCustomColorName( customColorName );
     }
 }

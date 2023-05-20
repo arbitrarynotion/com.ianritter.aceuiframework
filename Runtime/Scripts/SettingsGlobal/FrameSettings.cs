@@ -1,6 +1,7 @@
 using System;
 using Packages.com.ianritter.unityscriptingtools.Runtime.Enums;
 using UnityEngine;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 
 namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
 {
@@ -18,5 +19,11 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
 
         public int frameOutlineColorIndex = 0;
         public int backgroundColorIndex = 1;
+        
+        public string frameOutlineColorName = CustomColorOutlinesName;
+        public int FrameOutlineColorIndex { get; set; }
+        public string backgroundColorName = CustomColorRootBackgroundName;
+        public int BackgroundColorIndex { get; set; }
+
     }
 }

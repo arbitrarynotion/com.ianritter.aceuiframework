@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 
 namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Elements.SingleElements.Decorator
 {
@@ -32,5 +33,13 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.E
         ///     The background frame color when the heading is inactive (collapsed foldout or disable toggle).
         /// </summary>
         public int backgroundInactiveColorIndex = 1;
+        
+        public string enabledTextColorName = CustomColorEnabledTextName;
+        public string disabledTextColorName = CustomColorDisabledTextName;
+        public string backgroundInactiveColorName = CustomColorDisabledTextName;
+        
+        public int EnabledTextColorIndex { get; set; }
+        public int DisabledTextColorIndex { get; set; }
+        public int BackgroundInactiveColorIndex { get; set; }
     }
 }

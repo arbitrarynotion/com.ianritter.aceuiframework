@@ -28,7 +28,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             base( guiContent, new SingleCustomSettings() {ForceSingleLine = true}, false, new ElementCondition[] {} )
         {
         }
-        
-        protected override void InitializeElement( SerializedObject targetScriptableObject ) {}
+
+        protected override void InitializeElement( SerializedObject targetScriptableObject )
+        {
+            HeadingElementFrameSettings.EnabledTextColorIndex = AceTheme.GetIndexForCustomColorName( HeadingElementFrameSettings.enabledTextColorName );
+            HeadingElementFrameSettings.DisabledTextColorIndex = AceTheme.GetIndexForCustomColorName( HeadingElementFrameSettings.disabledTextColorName );
+            HeadingElementFrameSettings.BackgroundInactiveColorIndex = AceTheme.GetIndexForCustomColorName( HeadingElementFrameSettings.backgroundInactiveColorName );
+        }
     }
 }

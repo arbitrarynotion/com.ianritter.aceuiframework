@@ -6,6 +6,7 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElement
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupElements.CompositeGroup;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Colors;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Global;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.PropertySpecific;
 using UnityEditor;
@@ -71,6 +72,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         public GlobalSettings GlobalSettings => AceTheme.GetGlobalSettings();
         
         public PropertySpecificSettings PropertySettings => AceTheme.GetPropertySpecificSettings();
+        
         
         
         
@@ -177,6 +179,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 
             if ( CustomSettings == null )
                 throw new NullReferenceException( $"E|I: {GetName()} failed to initialize its CustomSettings!" );
+
+            FrameSettings.FrameOutlineColorIndex = AceTheme.GetIndexForCustomColorName( FrameSettings.frameOutlineColorName );
+            FrameSettings.BackgroundColorIndex = AceTheme.GetIndexForCustomColorName( FrameSettings.backgroundColorName );
 
             InitializeElement( targetScriptableObject );
 

@@ -37,7 +37,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             DrawPopup( fieldRect );
         }
         
-        private void DrawPopup( Rect drawRect )
+        protected virtual void DrawPopup( Rect drawRect )
         {
             EditorGUI.BeginChangeCheck();
             _popupElement.Property.intValue = EditorGUI.Popup( drawRect, _popupElement.Property.intValue, _popupElement.Options );

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AceDefaultTheme
   m_EditorClassIdentifier: 
   logger: {fileID: 11400000, guid: 993055de20daf4b4dbc34b32f77e4a47, type: 2}
-  selectedSection: 0
+  selectedSection: 3
   basicGroupLevelSettingsMode: 0
   headingGroupLevelSettingsMode: 0
   singleElementsLevelSettingsMode: 0
@@ -34,48 +34,98 @@ MonoBehaviour:
     showMeasurementLines: 0
   customColorsSettings:
     customColorsList:
-    - name: Outlines
-      color: {r: 0.32, g: 0.32, b: 0.32, a: 1}
-    - name: Root Background
-      color: {r: 0.18, g: 0.18, b: 0.18, a: 1}
-    - name: Child Background
-      color: {r: 0.25, g: 0.25, b: 0.25, a: 1}
-    - name: Green 1
-      color: {r: 0.2519464, g: 0.6415094, b: 0.21484515, a: 1}
-    - name: Green 2
-      color: {r: 0.17955618, g: 0.46226418, b: 0.15045391, a: 1}
-    - name: Green 3
-      color: {r: 0.13482375, g: 0.33962262, b: 0.11374155, a: 1}
-    - name: Green 4
-      color: {r: 0.08898064, g: 0.24528301, b: 0.07289071, a: 1}
-    - name: Blue 1
-      color: {r: 0.38959596, g: 0.6467465, b: 0.8018868, a: 1}
-    - name: Blue 2
-      color: {r: 0.08121216, g: 0.4582605, b: 0.6886792, a: 1}
-    - name: Blue 3
-      color: {r: 0.076628685, g: 0.2749996, b: 0.3962264, a: 1}
-    - name: Blue 4
-      color: {r: 0.078431375, g: 0.16862746, b: 0.23529413, a: 1}
-    - name: Orange 1
-      color: {r: 0.8862746, g: 0.69411767, b: 0.4156863, a: 1}
-    - name: Orange 2
-      color: {r: 0.764151, g: 0.53601706, b: 0.20545568, a: 1}
-    - name: Orange 3
-      color: {r: 0.5660378, g: 0.38396677, b: 0.120149545, a: 1}
-    - name: Orange 4
-      color: {r: 0.3962264, g: 0.25656596, b: 0.054200795, a: 1}
-    - name: Grey 1
-      color: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
-    - name: Grey 2
-      color: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
-    - name: Grey 3
-      color: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
-    - name: Grey 4
-      color: {r: 0.16981131, g: 0.16580632, b: 0.16580632, a: 1}
-    - name: Enabled Text
-      color: {r: 1, g: 1, b: 1, a: 1}
-    - name: Disabled Text
-      color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+    - toggle: 0
+      customColor:
+        name: Outlines
+        color: {r: 0.32156864, g: 0.32156864, b: 0.32156864, a: 1}
+    - toggle: 0
+      customColor:
+        name: Root Background
+        color: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 1}
+    - toggle: 0
+      customColor:
+        name: Child Background
+        color: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
+    - toggle: 0
+      customColor:
+        name: Grey 1
+        color: {r: 0.45098042, g: 0.45098042, b: 0.45098042, a: 1}
+    - toggle: 0
+      customColor:
+        name: Grey 2
+        color: {r: 0.32156864, g: 0.32156864, b: 0.32156864, a: 1}
+    - toggle: 0
+      customColor:
+        name: Grey 3
+        color: {r: 0.23137257, g: 0.23137257, b: 0.23137257, a: 1}
+    - toggle: 0
+      customColor:
+        name: Grey 4
+        color: {r: 0.15686275, g: 0.14901961, b: 0.14901961, a: 1}
+    - toggle: 0
+      customColor:
+        name: Green 1
+        color: {r: 0.2392157, g: 0.6117647, b: 0.21176472, a: 1}
+    - toggle: 0
+      customColor:
+        name: Green 2
+        color: {r: 0.18039216, g: 0.45882356, b: 0.14901961, a: 1}
+    - toggle: 0
+      customColor:
+        name: Green 3
+        color: {r: 0.12941177, g: 0.34117648, b: 0.10980393, a: 1}
+    - toggle: 0
+      customColor:
+        name: Green 4
+        color: {r: 0.09019608, g: 0.2509804, b: 0.07058824, a: 1}
+    - toggle: 0
+      customColor:
+        name: Blue 1
+        color: {r: 0.3803922, g: 0.6392157, b: 0.78823537, a: 1}
+    - toggle: 0
+      customColor:
+        name: Blue 2
+        color: {r: 0.07450981, g: 0.427451, b: 0.6431373, a: 1}
+    - toggle: 0
+      customColor:
+        name: Blue 3
+        color: {r: 0.07450981, g: 0.25490198, b: 0.37647063, a: 1}
+    - toggle: 0
+      customColor:
+        name: Blue 4
+        color: {r: 0.07058824, g: 0.15294118, b: 0.21960786, a: 1}
+    - toggle: 0
+      customColor:
+        name: Orange 1
+        color: {r: 0.85098046, g: 0.65882355, b: 0.40000004, a: 1}
+    - toggle: 0
+      customColor:
+        name: Orange 2
+        color: {r: 0.7607844, g: 0.5411765, b: 0.20000002, a: 1}
+    - toggle: 0
+      customColor:
+        name: Orange 3
+        color: {r: 0.5568628, g: 0.3803922, b: 0.121568635, a: 1}
+    - toggle: 0
+      customColor:
+        name: Orange 3
+        color: {r: 0.3921569, g: 0.24705884, b: 0.050980397, a: 1}
+    - toggle: 0
+      customColor:
+        name: Enabled Text
+        color: {r: 0.9490197, g: 0.9490197, b: 0.9490197, a: 1}
+    - toggle: 0
+      customColor:
+        name: Disabled Text
+        color: {r: 0.48235297, g: 0.48235297, b: 0.48235297, a: 1}
+    - toggle: 0
+      customColor:
+        name: Heading Dark 1
+        color: {r: 0.10980393, g: 0.10980393, b: 0.10980393, a: 1}
+    - toggle: 0
+      customColor:
+        name: Almost Black
+        color: {r: 0.07058824, g: 0.07058824, b: 0.07058824, a: 1}
   basicGroupSettingsList:
   - topPadding: 0
     leftPadding: 0

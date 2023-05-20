@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots;
+using Packages.com.ianritter.unityscriptingtools.Editor;
 using UnityEditor;
 using UnityEngine;
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorMeasurementLineGraphics;
@@ -16,6 +17,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
     /// </summary>
     public class AceThemeEditorWindow : AceEditorWindow
     {
+        // Icons
+        public static Texture LockedIcon;
+        public static Texture UnlockedIcon;
+        [SerializeField] private static int colorIdBase = 0000;
+        
         [MenuItem( ThemeSettingsWindowMenuItemName )]
         public static void OpenCustomEditorToolSettings() => GetWindow<AceThemeEditorWindow>();
         
@@ -34,12 +40,14 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
 
         private AceThemeManager _themeManager;
 
-
         protected override void OnEnableFirst()
         {
             _themeManager = GetAssetsByType<AceThemeManager>().FirstOrDefault();
             if ( _themeManager == null )
                 throw new NullReferenceException( "Unable to load theme manager.");
+            
+            LockedIcon = AssetLoader.GetAssetByName<Texture>( "d_TrackLockButtonEnabled" );
+            UnlockedIcon = AssetLoader.GetAssetByName<Texture>( "d_TrackLockButtonDisabled" );
         }
 
         // private string[] GetThemeOptions()
@@ -59,10 +67,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
         {
             // Use this option to have the theme settings window modify the same theme that it's using.
             // AceTheme = _themeManager.GetThemeForIndex( selectedThemeIndex );
-            // return AceTheme;
+            return AceTheme;
             
             // This is the default behavior, keeping the system theme and target theme separate.
-            return _themeManager.GetThemeForIndex( selectedThemeIndex );
+            // return _themeManager.GetThemeForIndex( selectedThemeIndex );
 
             // List<AceTheme> themes = _themeManager.GetThemeList();
             // Debug.Log( $"{name}: Getting target theme..." );
@@ -116,6 +124,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
             
             if (AceTheme.GetGlobalSettings().showMeasurementLines)
                 DrawMeasurementLines( 20, 100, new Color( graphLinesBrightness, graphLinesBrightness, graphLinesBrightness) );
+        }
+
+        public static int GetNextColorId()
+        {
+            return colorIdBase++;
         }
     }
 }

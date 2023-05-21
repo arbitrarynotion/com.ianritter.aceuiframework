@@ -301,6 +301,18 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
                 GUIContent = GUIContent.none;
         }
 
+        private void SubscribeForColorChanges()
+        {
+            // For each color, subscribe to the NameChanged event.
+            
+            
+        }
+
+        private void OnNameChanged( string nameOfColorThatChanged )
+        {
+            
+        }
+
 #endregion
         
         

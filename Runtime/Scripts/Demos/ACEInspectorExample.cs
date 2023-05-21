@@ -179,7 +179,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                         frameAutoPadding = 2f,
                         frameOutlineThickness = 2,
                         includeBackground = true,
-                        backgroundColorIndex = 2
+                        // backgroundColorIndex = 2
                     }
                 },
                 GetLabelElement( title, string.Empty, new SingleCustomSettings()

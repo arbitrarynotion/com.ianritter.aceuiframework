@@ -20,30 +20,20 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
     [Serializable]
     public abstract class SettingsSection
     {
-        /// <summary>
-        ///     This event is invoked when a data change occurs that justifies a repaint (element values have changed).
-        /// </summary>
-        public event DataUpdated OnDataUpdated;
-
-        /// <summary>
-        ///     This event is invoked when a data change occurs that requires a full UI rebuild (element layout was changed).
-        /// </summary>
-        public event UIStateUpdated OnUIStateUpdated;
-
         protected readonly CustomFrameSettings NoFrame = new CustomFrameSettings() { applyFraming = false };
-
         protected readonly ElementCondition[] NoFilter = new ElementCondition[0];
-
         protected AceTheme AceTheme;
-
         protected string MyRelativeVarName;
-
-
+        
         public abstract Element GetSection();
         
         public void ClearSubscriptions() => AceTheme.OnColorsUpdated -= OnColorsChanged;
 
 
+        /// <summary>
+        ///     This event is invoked when a data change occurs that justifies a repaint (element values have changed).
+        /// </summary>
+        public event DataUpdated OnDataUpdated;
         /// <summary>
         ///     Used to notify when data that affects the UI data has occured, requiring a redraw.
         /// </summary>
@@ -54,6 +44,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
         }
 
         /// <summary>
+        ///     This event is invoked when a data change occurs that requires a full UI rebuild (element layout was changed).
+        /// </summary>
+        public event UIStateUpdated OnUIStateUpdated;
+        /// <summary>
         ///     Used to notify when data that affects the UI layout has occured, requiring a full UI rebuild.
         /// </summary>
         protected void UIStateUpdatedNotify() => OnUIStateUpdated?.Invoke();
@@ -63,7 +57,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
         protected abstract string GetRelativePathVarName( string varName );
 
 
-        protected ( string varName, string title, string tooltip )[] GetPositionSection(
+        protected ( string varName, string title, string tooltip )[] GetDrawAreaPaddingSection(
             string topVarName,
             string leftVarName,
             string rightVarName,
@@ -78,7 +72,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
             };
         }
 
-        protected Element GetPositionSection( string title, string tooltip,
+        // Returns the Draw Area Padding section
+        protected Element GetDrawAreaPaddingSection( string title, string tooltip,
             ElementVarNames varNames, bool skipTop = false )
         {
             return skipTop
@@ -178,14 +173,26 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
         private Element GetFramesColorsSection( FrameSettings frameSettings, ElementFrameVarNames frameVarNames )
         {
             return GetGroupWithLabelHeading( "Colors", string.Empty, null,
+                
                 AceTheme.GetColorSelectionElement( "Outline", string.Empty,
-                    frameSettings.frameOutlineColorIndex,
-                    frameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,
+                    frameSettings.frameOutlineColorName,
+                    frameVarNames.FrameOutlineColorName, OnColorSelectionChanged,
                     GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
+                
+                // AceTheme.GetColorSelectionElement( "Outline", string.Empty,
+                //     frameSettings.frameOutlineColorIndex,
+                //     frameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,
+                //     GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
+                
                 AceTheme.GetColorSelectionElement( "Background", string.Empty,
-                    frameSettings.backgroundColorIndex,
-                    frameVarNames.BackgroundColorIndex, OnColorSelectionChanged,
+                    frameSettings.backgroundColorName,
+                    frameVarNames.BackgroundColorName, OnColorSelectionChanged,
                     GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
+                
+                // AceTheme.GetColorSelectionElement( "Background", string.Empty,
+                //     frameSettings.backgroundColorIndex,
+                //     frameVarNames.BackgroundColorIndex, OnColorSelectionChanged,
+                //     GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
             );
         }
 
@@ -222,8 +229,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
                     frameType = ElementFrameType.FullOutline,
                     frameOutlineThickness = 1,
                     frameAutoPadding = 3f,
-                    frameOutlineColorIndex = 0,
-                    backgroundColorIndex = 1
+                    // frameOutlineColorIndex = 0,
+                    // backgroundColorIndex = 1
                 }
             };
             
@@ -262,8 +269,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
                             frameType = ElementFrameType.CornersLeftBottomOnly,
                             // frameOutlineThickness = 1,
                             frameAutoPadding = 4f,
-                            frameOutlineColorIndex = 0,
-                            backgroundColorIndex = 1
+                            // frameOutlineColorIndex = 0,
+                            // backgroundColorIndex = 1
                         },
                         LeftPadding = 3f,
                         RightPadding = 3f

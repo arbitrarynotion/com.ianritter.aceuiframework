@@ -1,6 +1,8 @@
 using System;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
 using UnityEngine;
 using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
+using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
 
 namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.Colors
 {
@@ -12,12 +14,23 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
         private const float HeadingChildBackgroundBrightness = 0.25f;
         private const float HeadingTextEnabledBrightness = 1f;
         private const float HeadingTextDisabledBrightness = 0.5f;
+
+        private CustomLogger _logger;
         
         [SerializeField] private CustomColorEntry[] customColorsList;
         
-        public CustomColorSettings() => Initialize();
+        public CustomColorSettings()
+        {
+            
+            InitializeCustomColors();
+        }
 
-        private void Initialize() => InitializeCustomColors();
+        public void Initialize( CustomLogger logger )
+        {
+            _logger = logger;
+        }
+
+        public int GetColorListCount() => customColorsList.Length;
 
         private void InitializeCustomColors()
         {
@@ -45,7 +58,57 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
                 customColorsList[i] = new CustomColorEntry( ( "Color " + ( i + 1 ).ToString() ), 
                     new Color( HeadingChildBackgroundBrightness, HeadingChildBackgroundBrightness, HeadingChildBackgroundBrightness));
             }
+
+            // SubscribeToAllColorEntries();
         }
+
+        // private void SubscribeToAllColorEntries()
+        // {
+        //     foreach ( CustomColorEntry customColorEntry in customColorsList )
+        //     {
+        //         customColorEntry.OnNameUpdated += OnColorEntryUpdated;
+        //     }
+        // }
+        //
+        // private void OnColorEntryUpdated( string nameOfColorThatChanged )
+        // {
+        //     Debug.Log( $"CustomColorSettings: Notified that {GetColoredStringYellow(nameOfColorThatChanged)} was updated." );
+        // }
+
+        // public void SubscribeToNewColor()
+        // {
+        //     int listLength = customColorsList.Length;
+        //     // The new element is always the last in the list.
+        //     customColorsList[listLength - 1].OnNameUpdated += OnColorEntryUpdated;
+        //     Debug.Log( $"CustomColorSettings: Subscribed to new color {customColorsList[listLength - 1]} at index {( listLength - 1 ).ToString()}." );
+        // }
+
+        /// <summary>
+        ///     Scan through the custom colors list and fire the NameUpdated event on any that were changed.
+        /// </summary>
+        public void ScanForListUpdates()
+        {
+            if ( _logger != null) _logger.LogStart();
+            
+            foreach ( CustomColorEntry customColorEntry in customColorsList )
+            {
+                if ( !customColorEntry.wasUpdated ) continue;
+                _logger.Log( $"A name change was detected in {customColorEntry.customColor.name}. Notifying subscribers." );
+                customColorEntry.wasUpdated = false;
+                customColorEntry.NameUpdatedNotify();
+            }
+
+            if ( _logger != null)  _logger.LogEnd();
+        }
+
+        // public void SubscribeToColorEntryByName( string colorName, Func<string> callback )
+        // {
+        //     foreach ( CustomColorEntry customColorEntry in customColorsList )
+        //     {
+        //         if ( !customColorEntry.customColor.name.Equals( colorName ) ) continue;
+        //         customColorEntry.OnNameUpdated += callback;
+        //     }
+        // }
 
         public string[] GetCustomColorsOptionsList()
         {
@@ -74,6 +137,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
 
         public int GetIndexForCustomColorName( string customColorName )
         {
+            // What happens when the name can't be found?
             for (int i = 0; i < customColorsList.Length; i++)
             {
                 if ( customColorsList[i].customColor.name.Equals( customColorName ) )
@@ -104,5 +168,18 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
         }
 
         public static string GetCustomColorListVarName() => nameof( customColorsList );
+
+        public string GetColorNameForIndex( int index )
+        {
+            if ( index >= customColorsList.Length ) throw new IndexOutOfRangeException();
+
+            return customColorsList[index].customColor.name;
+        }
+
+        public Color GetColorForColorName( string colorName )
+        {
+            int index = GetIndexForCustomColorName( colorName );
+            return GetColorForIndex( index );
+        }
     }
 }

@@ -14,7 +14,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
         protected override HeadingGroupLayout HeadingGroupLayout => _toggleGroupLayout;
         protected override HeadingGroupDraw HeadingGroupDraw => _toggleGroupDraw;
 
-        public override FrameSettings HeadingGroupFrameSettings => AceTheme.GetToggleGroupFrameSettingsForLevel( ElementLevel );
+        public override FrameSettings HeadingGroupFrameSettings => AceTheme.GetFoldoutGroupFrameSettingsForLevel( ElementLevel );
+        // public override FrameSettings HeadingGroupFrameSettings => AceTheme.GetToggleGroupFrameSettingsForLevel( ElementLevel );
 
         public ToggleGroup( 
             [CanBeNull] string toggleVarName, 

@@ -51,7 +51,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
             return new Element[]{
                 GetGroupWithFoldoutHeading( nameof(AceTheme.basicGroupsSectionDrawAreaToggle), "Draw Area Padding", string.Empty, null,
                     
-                    GetPositionSection( "Total Area", string.Empty, basicGroupVarNames, false )
+                    GetDrawAreaPaddingSection( "Total Area", string.Empty, basicGroupVarNames, false )
                 ),
 
                 // GetFramesSection( "Frame", string.Empty, frameSettings, frameVarNames ),
@@ -74,10 +74,18 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
 
                 GetGroupWithToggleHeading( frameVarNames.IncludeBackground, "Background", string.Empty, null,
                     true,
+                    
                     AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
-                        frameSettings.backgroundColorIndex,
-                        frameVarNames.BackgroundColorIndex, OnColorSelectionChanged,
+                        frameSettings.backgroundColorName,
+                        frameVarNames.BackgroundColorName, 
+                        OnColorSelectionChanged,
                         GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
+                    
+                    // AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
+                    //     frameSettings.backgroundColorIndex,
+                    //     frameVarNames.BackgroundColorIndex, 
+                    //     OnColorSelectionChanged,
+                    //     GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
                 ),
 
                 GetGroupWithToggleHeading( frameVarNames.IncludeOutline, "Outline", string.Empty, null,
@@ -87,10 +95,18 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                         false, GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
                     GetElement( frameVarNames.FrameOutlineThickness, "Line Thickness", string.Empty, null,
                         false, GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
+                    
                     AceTheme.GetColorSelectionElement( "Color", string.Empty,
-                        frameSettings.frameOutlineColorIndex,
-                        frameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,
+                        frameSettings.frameOutlineColorName,
+                        frameVarNames.FrameOutlineColorName, 
+                        OnColorSelectionChanged,
                         GetMustHaveOutlineFilter( frameVarNames.FrameType ) )
+                    
+                    // AceTheme.GetColorSelectionElement( "Color", string.Empty,
+                    //     frameSettings.frameOutlineColorIndex,
+                    //     frameVarNames.FrameOutlineColorIndex, 
+                    //     OnColorSelectionChanged,
+                    //     GetMustHaveOutlineFilter( frameVarNames.FrameType ) )
                 )
             );
         }

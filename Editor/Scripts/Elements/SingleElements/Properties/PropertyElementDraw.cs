@@ -99,7 +99,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             DrawLabelField( labelRect );
 
             // Todo: Allow constant field width in custom settings? Would be complicated as it would affect the already complex label width logic.
-            drawRect.xMin += EditorGUIUtility.labelWidth;
+            drawRect.xMin += EditorGUIUtility.labelWidth + 4f;
             EditorGUI.BeginChangeCheck();
             EditorGUI.PropertyField( drawRect, PropertyElement.Property, GUIContent.none );
             if ( EditorGUI.EndChangeCheck() )

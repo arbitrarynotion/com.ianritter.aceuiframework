@@ -54,7 +54,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
             return new []
             {
                 GetGroupWithFoldoutHeading( nameof(AceTheme.singleElementsSectionDrawAreaToggle), "Draw Area", string.Empty, null,
-                    GetPositionSection( "Total Area", string.Empty, varNames, false )
+                    GetDrawAreaPaddingSection( "Total Area", string.Empty, varNames, false )
                 ),
                 
                 // GetFramesSection( "Frames", string.Empty, frameSettings, frameVarNames, false, 
@@ -82,10 +82,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                 GetElement( frameVarNames.FramesSkipSingleLine, "Skip Single Line" ),
                 GetGroupWithToggleHeading( frameVarNames.IncludeBackground, "Background", string.Empty, null,
                     true,
+                    
                     AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
-                        frameSettings.backgroundColorIndex,
-                        frameVarNames.BackgroundColorIndex, OnColorSelectionChanged,
+                        frameSettings.backgroundColorName,
+                        frameVarNames.BackgroundColorName, OnColorSelectionChanged,
                         GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
+                    
+                    // AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
+                    //     frameSettings.backgroundColorIndex,
+                    //     frameVarNames.BackgroundColorIndex, OnColorSelectionChanged,
+                    //     GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
                 ),
 
                 GetGroupWithToggleHeading( frameVarNames.IncludeOutline, "Outline", string.Empty, null,
@@ -95,10 +101,18 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                         false, GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
                     GetElement( frameVarNames.FrameOutlineThickness, "Line Thickness", string.Empty, null,
                         false, GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
+                    
+                    // Link colors only to their name, independent of that color's index number.
                     AceTheme.GetColorSelectionElement( "Color", string.Empty,
-                        frameSettings.frameOutlineColorIndex,
-                        frameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,
+                        frameSettings.frameOutlineColorName,
+                        frameVarNames.FrameOutlineColorName, OnColorSelectionChanged,
                         GetMustHaveOutlineFilter( frameVarNames.FrameType ) )
+                    
+                    // Link colors to their respective index number.
+                    // AceTheme.GetColorSelectionElement( "Color", string.Empty,
+                    //     frameSettings.frameOutlineColorIndex,
+                    //     frameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,
+                    //     GetMustHaveOutlineFilter( frameVarNames.FrameType ) )
                 )
             );
         }

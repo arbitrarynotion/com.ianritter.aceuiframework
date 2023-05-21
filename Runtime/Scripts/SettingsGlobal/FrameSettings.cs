@@ -17,12 +17,12 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
         [Range(0, 5)]
         public float frameAutoPadding = 0f;
 
-        public int frameOutlineColorIndex = 0;
-        public int backgroundColorIndex = 1;
+        // public int frameOutlineColorIndex = 0;
+        // public int backgroundColorIndex = 1;
         
         public string frameOutlineColorName = CustomColorOutlinesName;
-        public int FrameOutlineColorIndex { get; set; }
         public string backgroundColorName = CustomColorRootBackgroundName;
+        public int FrameOutlineColorIndex { get; set; }
         public int BackgroundColorIndex { get; set; }
 
     }

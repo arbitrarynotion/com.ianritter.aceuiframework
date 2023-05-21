@@ -51,8 +51,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                 _childAreaGroupVarNames[i] = new ChildAreaGroupVarNames( i );
                 _headingElementFrameVarNames[i] = new HeadingElementFrameSettingsVarNames( i );
                 _foldoutGroupVarNames[i] = new HeadingGroupFrameVarNames( AceTheme.GetFoldoutGroupSettingsListVarName, i );
-                _toggleGroupVarNames[i] = new HeadingGroupFrameVarNames( AceTheme.GetToggleGroupSettingsListVarName, i );
-                _labeledGroupVarNames[i] = new HeadingGroupFrameVarNames( AceTheme.GetLabeledGroupInfoListVarName, i );
+                // _toggleGroupVarNames[i] = new HeadingGroupFrameVarNames( AceTheme.GetToggleGroupSettingsListVarName, i );
+                // _labeledGroupVarNames[i] = new HeadingGroupFrameVarNames( AceTheme.GetLabeledGroupInfoListVarName, i );
             }
         }
         
@@ -95,8 +95,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
             return new Element[]{
                 GetGroupWithFoldoutHeading( nameof( AceTheme.headingGroupsSectionDrawAreaToggle ), "Draw Area Padding", string.Empty, 
                     null,
-                    GetPositionSection( "Total Area", string.Empty, headingGroupVarNames, false ),
-                    GetPositionSection( "Child Area", "Adjust the whole area used to draw the child elements of the group.", childAreaGroupVarNames, false )
+                    GetDrawAreaPaddingSection( "Total Area", string.Empty, headingGroupVarNames, false ),
+                    GetDrawAreaPaddingSection( "Child Area", "Adjust the whole area used to draw the child elements of the group.", childAreaGroupVarNames, false )
                 ),
                 
                 GetHeadingTextSection( headingElementFrameSettings, headingElementFrameVarNames ),
@@ -143,13 +143,24 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                 GetElement( headingElementFrameVarNames.TextHorizontalOffset, "Text Offset", string.Empty ),
 
                 GetGroupWithLabelHeading( "Text Colors", string.Empty, null,
+                    
                     AceTheme.GetColorSelectionElement( "Enabled", string.Empty,
-                        headingElementFrameSettings.enabledTextColorIndex,
-                        headingElementFrameVarNames.EnabledTextColorIndex, OnColorSelectionChanged,
+                        headingElementFrameSettings.enabledTextColorName,
+                        headingElementFrameVarNames.EnabledTextColorName, OnColorSelectionChanged,
                         GetMustHaveOutlineFilter( headingElementFrameVarNames.FrameType ) ),
+                    
+                    // AceTheme.GetColorSelectionElement( "Enabled", string.Empty,
+                    //     headingElementFrameSettings.enabledTextColorIndex,
+                    //     headingElementFrameVarNames.EnabledTextColorIndex, OnColorSelectionChanged,
+                    //     GetMustHaveOutlineFilter( headingElementFrameVarNames.FrameType ) ),
+                    
                     AceTheme.GetColorSelectionElement( "Disabled", string.Empty,
-                        headingElementFrameSettings.disabledTextColorIndex,
-                        headingElementFrameVarNames.DisabledTextColorIndex, OnColorSelectionChanged )
+                        headingElementFrameSettings.disabledTextColorName,
+                        headingElementFrameVarNames.DisabledTextColorName, OnColorSelectionChanged )
+                    
+                    // AceTheme.GetColorSelectionElement( "Disabled", string.Empty,
+                    //     headingElementFrameSettings.disabledTextColorIndex,
+                    //     headingElementFrameVarNames.DisabledTextColorIndex, OnColorSelectionChanged )
                 )
             );
         }
@@ -160,10 +171,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
 
                 GetGroupWithToggleHeading( frameVarNames.IncludeBackground, "Background", string.Empty, null,
                     true,
+                    
                     AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
-                        frameSettings.backgroundColorIndex,
-                        frameVarNames.BackgroundColorIndex, OnColorSelectionChanged,
+                        frameSettings.backgroundColorName,
+                        frameVarNames.BackgroundColorName, OnColorSelectionChanged,
                         GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
+                    
+                    // AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
+                    //     frameSettings.backgroundColorIndex,
+                    //     frameVarNames.BackgroundColorIndex, OnColorSelectionChanged,
+                    //     GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
                 ),
 
                 GetGroupWithToggleHeading( frameVarNames.IncludeOutline, "Outline", string.Empty, null,
@@ -171,10 +188,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     GetElement( frameVarNames.FrameType, "Style", string.Empty ),
                     GetElement( frameVarNames.FrameOutlineThickness, "Line Thickness", string.Empty, null,
                         false, GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
+                    
                     AceTheme.GetColorSelectionElement( "Color", string.Empty,
-                        frameSettings.frameOutlineColorIndex,
-                        frameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,
+                        frameSettings.frameOutlineColorName,
+                        frameVarNames.FrameOutlineColorName, OnColorSelectionChanged,
                         GetMustHaveOutlineFilter( frameVarNames.FrameType ) )
+                    
+                    // AceTheme.GetColorSelectionElement( "Color", string.Empty,
+                    //     frameSettings.frameOutlineColorIndex,
+                    //     frameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,
+                    //     GetMustHaveOutlineFilter( frameVarNames.FrameType ) )
                 )
             );
         }
@@ -187,14 +210,26 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                 GetElement( headingElementFrameVarNames.BoxHeight, "Height", string.Empty ),
                 GetGroupWithToggleHeading( headingElementFrameVarNames.IncludeBackground, "Background", string.Empty, null,
                     true,
+                    
                     AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
-                        headingElementFrameSettings.backgroundColorIndex,
-                        headingElementFrameVarNames.BackgroundColorIndex, OnColorSelectionChanged,
+                        headingElementFrameSettings.backgroundColorName,
+                        headingElementFrameVarNames.BackgroundColorName, OnColorSelectionChanged,
                         GetMustHaveBackgroundFilter( headingElementFrameVarNames.IncludeBackground ) ),
+                    
+                    // AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
+                    //     headingElementFrameSettings.backgroundColorIndex,
+                    //     headingElementFrameVarNames.BackgroundColorIndex, OnColorSelectionChanged,
+                    //     GetMustHaveBackgroundFilter( headingElementFrameVarNames.IncludeBackground ) ),
+                    
                     AceTheme.GetColorSelectionElement( "Inactive Color", string.Empty,
-                        headingElementFrameSettings.backgroundInactiveColorIndex,
-                        headingElementFrameVarNames.BackgroundInactiveColorIndex, OnColorSelectionChanged,
+                        headingElementFrameSettings.backgroundInactiveColorName,
+                        headingElementFrameVarNames.BackgroundInactiveColorName, OnColorSelectionChanged,
                         GetMustHaveBackgroundFilter( headingElementFrameVarNames.IncludeBackground ) )
+                    
+                    // AceTheme.GetColorSelectionElement( "Inactive Color", string.Empty,
+                    //     headingElementFrameSettings.backgroundInactiveColorIndex,
+                    //     headingElementFrameVarNames.BackgroundInactiveColorIndex, OnColorSelectionChanged,
+                    //     GetMustHaveBackgroundFilter( headingElementFrameVarNames.IncludeBackground ) )
                 ),
 
                 GetGroupWithToggleHeading( headingElementFrameVarNames.IncludeOutline, "Outline", string.Empty, null,
@@ -202,10 +237,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     GetElement( headingElementFrameVarNames.FrameType, "Style", string.Empty ),
                     GetElement( headingElementFrameVarNames.FrameOutlineThickness, "Line Thickness", string.Empty, null,
                         false, GetMustHaveOutlineFilter( headingElementFrameVarNames.FrameType ) ),
+                    
                     AceTheme.GetColorSelectionElement( "Color", string.Empty,
-                        headingElementFrameSettings.frameOutlineColorIndex,
-                        headingElementFrameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,
+                        headingElementFrameSettings.frameOutlineColorName,
+                        headingElementFrameVarNames.FrameOutlineColorName, OnColorSelectionChanged,
                         GetMustHaveOutlineFilter( headingElementFrameVarNames.FrameType ) )
+                    
+                    // AceTheme.GetColorSelectionElement( "Color", string.Empty,
+                    //     headingElementFrameSettings.frameOutlineColorIndex,
+                    //     headingElementFrameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,
+                    //     GetMustHaveOutlineFilter( headingElementFrameVarNames.FrameType ) )
                 )
             );
         }

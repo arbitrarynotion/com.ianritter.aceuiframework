@@ -129,10 +129,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         {
             if ( !Element.Layout.ShouldShowFrame() || !Element.FrameSettings.includeBackground ) return;
             
-            DrawSolidRect( Element.Layout.GetFrameRect(), Element.AceTheme.GetColorForIndex( GetBackgroundColorIndex() ) );
+            DrawSolidRect( Element.Layout.GetFrameRect(), Element.AceTheme.GetColorForColorName( GetBackgroundColorName() ) );
+            // DrawSolidRect( Element.Layout.GetFrameRect(), Element.AceTheme.GetColorForIndex( GetBackgroundColorIndex() ) );
         }
 
-        protected virtual int GetBackgroundColorIndex() => Element.FrameSettings.backgroundColorIndex;
+        protected virtual string GetBackgroundColorName() => Element.FrameSettings.backgroundColorName;
+        // protected virtual int GetBackgroundColorIndex() => Element.FrameSettings.backgroundColorIndex;
 
         private void DrawElementFrameOutline()
         {
@@ -143,8 +145,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
             DrawRect( 
                 Element.Layout.GetFrameRect(), 
                 Element.FrameSettings.frameType, 
-                Element.AceTheme.GetColorForIndex( Element.FrameSettings.frameOutlineColorIndex ),
-                Element.AceTheme.GetColorForIndex( Element.FrameSettings.backgroundColorIndex ),
+                Element.AceTheme.GetColorForColorName( Element.FrameSettings.frameOutlineColorName ),
+                Element.AceTheme.GetColorForColorName( Element.FrameSettings.backgroundColorName ),
+                // Element.AceTheme.GetColorForIndex( Element.FrameSettings.frameOutlineColorIndex ),
+                // Element.AceTheme.GetColorForIndex( Element.FrameSettings.backgroundColorIndex ),
                 Element.FrameSettings.frameOutlineThickness,
                 false );
 

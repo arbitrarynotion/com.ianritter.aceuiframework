@@ -1,5 +1,8 @@
 namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
 {
+    // To bridge the serialization boundary, class variable names are stored in strings that include
+    // the path information that will allow them to be retrieved from their respective serialized properties.
+    // AceMonobehaviourRoot -> AceMo
     public abstract class ElementFrameVarNames
     {
         public readonly string ShowFrame;
@@ -9,8 +12,10 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
         public readonly string FrameOutlineThickness;
         public readonly string FramePadding;
 
-        public readonly string FrameOutlineColorIndex;
-        public readonly string BackgroundColorIndex;
+        // public readonly string FrameOutlineColorIndex;
+        // public readonly string BackgroundColorIndex;
+        public readonly string FrameOutlineColorName;
+        public readonly string BackgroundColorName;
     
         public ElementFrameVarNames( string sourceSettingsVarName, int index )
         {
@@ -23,8 +28,11 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
             FrameOutlineThickness = arrayLookupString + nameof( FrameSettings.frameOutlineThickness );
             FramePadding = arrayLookupString + nameof( FrameSettings.frameAutoPadding );
             
-            FrameOutlineColorIndex = arrayLookupString + nameof( FrameSettings.frameOutlineColorIndex );
-            BackgroundColorIndex = arrayLookupString + nameof( FrameSettings.backgroundColorIndex );
+            // FrameOutlineColorIndex = arrayLookupString + nameof( FrameSettings.frameOutlineColorIndex );
+            // BackgroundColorIndex = arrayLookupString + nameof( FrameSettings.backgroundColorIndex );
+            
+            FrameOutlineColorName = arrayLookupString + nameof( FrameSettings.frameOutlineColorName );
+            BackgroundColorName = arrayLookupString + nameof( FrameSettings.backgroundColorName );
         }
     }
 }

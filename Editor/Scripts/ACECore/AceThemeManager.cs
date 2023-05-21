@@ -31,6 +31,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         [SerializeField]
         private string userThemesPath;
+        
+        public bool themeSettingsEditsOwnTheme = false;
+        [SerializeField] private bool debugFoldoutToggle = false;
 
         // private ColorPickerHandler _colorPickerHandler;
         
@@ -173,7 +176,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                 ? GetPopupElement( nameof( selectedThemeIndex ), GUIContent.none, GetThemeOptions(), new SingleCustomSettings(), ThemeDropdownUpdated ) 
                 : GetLabelElement( "No ACE themes found" );
 
-            return GetGroup( 
+            return GetCompositeGroup( 
                 null,
                 GetGroupWithLabelHeading(
                     "Script Theme Assignment", string.Empty,
@@ -199,10 +202,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                     },
 
                     _tmButtonHandler.GetButtons( scriptThemeInfoList.Count )
-                )
+                ),
             
                 // Todo: Menu for creating, duplicating, and deleting themes.
                 
+                GetGroupWithFoldoutHeading( nameof( debugFoldoutToggle ), "Debug", string.Empty, null,
+                    GetElement( nameof( themeSettingsEditsOwnTheme ), "Theme Self-Edit" )
+                )
             );
         }
 

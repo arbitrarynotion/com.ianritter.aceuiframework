@@ -8,7 +8,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
 {
     public class LabeledGroup : HeadingGroup
     {
-        public override FrameSettings HeadingGroupFrameSettings => AceTheme.GetLabeledGroupFrameSettingsForLevel( ElementLevel );
+        public override FrameSettings HeadingGroupFrameSettings => AceTheme.GetFoldoutGroupFrameSettingsForLevel( ElementLevel );
+        // public override FrameSettings HeadingGroupFrameSettings => AceTheme.GetLabeledGroupFrameSettingsForLevel( ElementLevel );
         protected override HeadingGroupLayout HeadingGroupLayout => _labeledGroupLayout;
         protected override HeadingGroupDraw HeadingGroupDraw => _labeledGroupDraw;
         private LabeledGroupLayout _labeledGroupLayout;

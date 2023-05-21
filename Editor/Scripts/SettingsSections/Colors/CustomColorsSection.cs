@@ -56,6 +56,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
             // Given a name, can I find the index number?
             // The name is in the CustomColor inside of the CustomColorEntry
             int selectedIndex = _customColorSettings.GetIndexForCustomColorName( colorName );
+            if ( selectedIndex == -1 ) Debug.LogWarning( $"Warning! Could not find custom color {GetColoredStringYellow(colorName)}" );
             CustomColorEntry customColorEntry = _customColorSettings.GetColorEntryForIndex( selectedIndex );
             // Debug.Log( $"CustomColorSection: The index returned for {GetColoredStringTeal(colorName)} is {GetColoredStringYellow(selectedIndex.ToString())}." );
             
@@ -67,49 +68,54 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
             Element popupField = new CustomColorEntryPopupElement( selectedIndexRelativeVarName, GUIContent.none, _customColorOptions, new SingleCustomSettings(), callback, false, filter );
             // Element colorField = new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 60f}, callback, false, filter);
             
+            // If the color is locked, draw a disabled color field. Otherwise, draw the color field with a color picker button.
             Element colorField = customColorEntry.toggle 
-                ? new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 80f, ForceDisable =  true}, callback, false, filter)
-                : (Element) new ColorPickerElement( selectedColorVarName, GUIContent.none, new SingleCustomSettings() { ConstantWidth = 80f }, callback, false, filter ); 
+                ? (Element) new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 80f, ForceDisable =  true}, callback, false, filter)
+                : new ColorPickerElement( selectedColorVarName, GUIContent.none, new SingleCustomSettings() { ConstantWidth = 80f }, callback, false, filter ); 
             // Element colorField = new ColorPickerElement( $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}]", 
             //     GUIContent.none, new SingleCustomSettings() {ConstantWidth = 80f}, callback, false, filter);
 
-            return GetCompositeGroup( new GroupCustomSettings() {CustomFrameSettings = new CustomFrameSettings() {applyFraming = false}, NumberOfColumns = 3}, 
-                
-                new LabelElement( new GUIContent( title, tooltip ), 
-                    new SingleCustomSettings() {CustomFrameSettings = NoFrame, UseIndentedDefaultLabelWidth = true} ), 
+            return GetCompositeGroup( 
+                new GroupCustomSettings() {CustomFrameSettings = new CustomFrameSettings() {applyFraming = false}, NumberOfColumns = 3},
+                new LabelElement( 
+                    new GUIContent( title, tooltip ), 
+                    new SingleCustomSettings() {CustomFrameSettings = NoFrame, UseIndentedDefaultLabelWidth = true} 
+                ), 
                 popupField, 
-                colorField );
+                colorField 
+            );
         }
         
-        public Element GetColorSelectionElement( 
-            string title, 
-            string tooltip, 
-            int selectedIndex, 
-            string selectedIndexRelativeVarName, 
-            bool isLocked,
-            Action callback,
-            params ElementCondition[] filter )
-        {
-            _customColorOptions = AceTheme.GetCustomColorOptions();
-            
-            string selectedColorVarName = $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}].customColor.color";
-
-            Element popupField = new PopupElement( selectedIndexRelativeVarName, GUIContent.none, _customColorOptions, new SingleCustomSettings(), callback, false, filter );
-            // Element colorField = new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 60f}, callback, false, filter);
-            
-            Element colorField = isLocked 
-                ? new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 80f, ForceDisable =  true}, callback, false, filter)
-                : (Element) new ColorPickerElement( selectedColorVarName, GUIContent.none, new SingleCustomSettings() { ConstantWidth = 80f }, callback, false, filter ); 
-            // Element colorField = new ColorPickerElement( $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}]", 
-            //     GUIContent.none, new SingleCustomSettings() {ConstantWidth = 80f}, callback, false, filter);
-
-            return GetCompositeGroup( new GroupCustomSettings() {CustomFrameSettings = new CustomFrameSettings() {applyFraming = false}, NumberOfColumns = 3}, 
-                
-                new LabelElement( new GUIContent( title, tooltip ), 
-                    new SingleCustomSettings() {CustomFrameSettings = NoFrame, UseIndentedDefaultLabelWidth = true} ), 
-                popupField, 
-                colorField );
-        }
+        // // This is the old index-based color selection approach.
+        // public Element GetColorSelectionElement( 
+        //     string title, 
+        //     string tooltip, 
+        //     int selectedIndex, 
+        //     string selectedIndexRelativeVarName, 
+        //     bool isLocked,
+        //     Action callback,
+        //     params ElementCondition[] filter )
+        // {
+        //     _customColorOptions = AceTheme.GetCustomColorOptions();
+        //     
+        //     string selectedColorVarName = $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}].customColor.color";
+        //
+        //     Element popupField = new PopupElement( selectedIndexRelativeVarName, GUIContent.none, _customColorOptions, new SingleCustomSettings(), callback, false, filter );
+        //     // Element colorField = new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 60f}, callback, false, filter);
+        //     
+        //     Element colorField = isLocked 
+        //         ? new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 80f, ForceDisable =  true}, callback, false, filter)
+        //         : (Element) new ColorPickerElement( selectedColorVarName, GUIContent.none, new SingleCustomSettings() { ConstantWidth = 80f }, callback, false, filter ); 
+        //     // Element colorField = new ColorPickerElement( $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}]", 
+        //     //     GUIContent.none, new SingleCustomSettings() {ConstantWidth = 80f}, callback, false, filter);
+        //
+        //     return GetCompositeGroup( new GroupCustomSettings() {CustomFrameSettings = new CustomFrameSettings() {applyFraming = false}, NumberOfColumns = 3}, 
+        //         
+        //         new LabelElement( new GUIContent( title, tooltip ), 
+        //             new SingleCustomSettings() {CustomFrameSettings = NoFrame, UseIndentedDefaultLabelWidth = true} ), 
+        //         popupField, 
+        //         colorField );
+        // }
         
         private void OnColorsChanged() => DataUpdatedNotify();
     }

@@ -24,13 +24,15 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         
         protected GUIStyle GetHeadingStyle( GUIStyle baseGuiStyle )
         {
-            Color enabledColor = Element.AceTheme.GetColorForIndex( _headingElement.HeadingElementFrameSettings.enabledTextColorIndex );
+            Color enabledColor = Element.AceTheme.GetColorForColorName( _headingElement.HeadingElementFrameSettings.enabledTextColorName );
+            // Color enabledColor = Element.AceTheme.GetColorForIndex( _headingElement.HeadingElementFrameSettings.enabledTextColorIndex );
             
             return new GUIStyle( baseGuiStyle )
             {
                 fontStyle = FontStyle.Bold, 
                 
-                normal = {textColor = Element.AceTheme.GetColorForIndex( _headingElement.HeadingElementFrameSettings.disabledTextColorIndex )}, 
+                normal = {textColor = Element.AceTheme.GetColorForColorName( _headingElement.HeadingElementFrameSettings.disabledTextColorName )}, 
+                // normal = {textColor = Element.AceTheme.GetColorForIndex( _headingElement.HeadingElementFrameSettings.disabledTextColorIndex )}, 
                 onNormal = {textColor = enabledColor}
             };
         }
@@ -38,8 +40,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         protected GUIStyle GetHeadingLabelStyle( bool enabled )
         {
             Color textColor = enabled
-                ? Element.AceTheme.GetColorForIndex( _headingElement.HeadingElementFrameSettings.enabledTextColorIndex )
-                : Element.AceTheme.GetColorForIndex( _headingElement.HeadingElementFrameSettings.disabledTextColorIndex );
+                ? Element.AceTheme.GetColorForColorName( _headingElement.HeadingElementFrameSettings.enabledTextColorName )
+                : Element.AceTheme.GetColorForColorName( _headingElement.HeadingElementFrameSettings.disabledTextColorName );
+            
+            // Color textColor = enabled
+            //     ? Element.AceTheme.GetColorForIndex( _headingElement.HeadingElementFrameSettings.enabledTextColorIndex )
+            //     : Element.AceTheme.GetColorForIndex( _headingElement.HeadingElementFrameSettings.disabledTextColorIndex );
             
             return new GUIStyle( EditorStyles.label )
             {
@@ -48,13 +54,20 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
                 normal = {textColor = textColor}
             };
         }
-
-        protected override int GetBackgroundColorIndex()
+        
+        protected override string GetBackgroundColorName()
         {
             return HeadingIsEnabled()
-                ? _headingElement.HeadingElementFrameSettings.backgroundColorIndex
-                : _headingElement.HeadingElementFrameSettings.backgroundInactiveColorIndex;
+                ? _headingElement.HeadingElementFrameSettings.backgroundColorName
+                : _headingElement.HeadingElementFrameSettings.backgroundInactiveColorName;
         }
+
+        // protected override int GetBackgroundColorIndex()
+        // {
+        //     return HeadingIsEnabled()
+        //         ? _headingElement.HeadingElementFrameSettings.backgroundColorIndex
+        //         : _headingElement.HeadingElementFrameSettings.backgroundInactiveColorIndex;
+        // }
 
         protected abstract bool HeadingIsEnabled();
     }

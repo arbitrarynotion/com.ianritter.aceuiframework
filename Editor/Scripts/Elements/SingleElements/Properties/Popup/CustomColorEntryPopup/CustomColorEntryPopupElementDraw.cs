@@ -1,3 +1,4 @@
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,10 +17,21 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
     
         protected override void DrawPopup( Rect drawRect )
         {
+            // Entries as saved as a string customColorName instead of an index.
+            
             EditorGUI.BeginChangeCheck();
-            _customColorEntryPopupElement.Property.intValue = EditorGUI.Popup( drawRect, _customColorEntryPopupElement.Property.intValue, _customColorEntryPopupElement.Options );
-            if (EditorGUI.EndChangeCheck())
-                _customColorEntryPopupElement.ChangeCallBack?.Invoke();
+            int returnIndex = EditorGUI.Popup( drawRect, _customColorEntryPopupElement.SelectedIndex, _customColorEntryPopupElement.Options );
+            if ( !EditorGUI.EndChangeCheck() ) return;
+            
+            // When the popup returns, look up the name and write it back to the string property.
+            _customColorEntryPopupElement.UpdateSelectedColorByIndex( returnIndex );
+            
+            _customColorEntryPopupElement.ChangeCallBack?.Invoke();
+            
+            // EditorGUI.BeginChangeCheck();
+            // _customColorEntryPopupElement.Property.intValue = EditorGUI.Popup( drawRect, _customColorEntryPopupElement.Property.intValue, _customColorEntryPopupElement.Options );
+            // if (EditorGUI.EndChangeCheck())
+            //     _customColorEntryPopupElement.ChangeCallBack?.Invoke();
         }
     }
 }

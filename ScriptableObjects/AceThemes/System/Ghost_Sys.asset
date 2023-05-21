@@ -201,6 +201,8 @@ MonoBehaviour:
     frameAutoPadding: 1.74
     frameOutlineColorIndex: 0
     backgroundColorIndex: 6
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 0
@@ -209,6 +211,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 11
     backgroundColorIndex: 14
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 0
@@ -217,6 +221,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 0
@@ -225,6 +231,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 0
@@ -233,6 +241,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   headingGroupSectionState: 0
   groupSectionState: 1
   headingGroupSettingsList:
@@ -381,11 +391,16 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 21
     backgroundColorIndex: 3
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
     textHorizontalOffset: 2
-    boxHeight: 5
+    boxHeight: 2
     enabledTextColorIndex: 22
-    disabledTextColorIndex: 21
-    backgroundInactiveColorIndex: 0
+    disabledTextColorIndex: 22
+    backgroundInactiveColorIndex: 1
+    enabledTextColorName: Enabled Text
+    disabledTextColorName: Enabled Text
+    backgroundInactiveColorName: Disabled Text
   - applyFraming: 1
     includeOutline: 1
     includeBackground: 1
@@ -394,11 +409,16 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 22
     backgroundColorIndex: 3
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
     textHorizontalOffset: 0
-    boxHeight: 2
+    boxHeight: 1
     enabledTextColorIndex: 22
-    disabledTextColorIndex: 4
+    disabledTextColorIndex: 21
     backgroundInactiveColorIndex: 1
+    enabledTextColorName: Enabled Text
+    disabledTextColorName: Enabled Text
+    backgroundInactiveColorName: Disabled Text
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 1
@@ -407,11 +427,16 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 21
     backgroundColorIndex: 15
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
     textHorizontalOffset: 0
     boxHeight: 0
     enabledTextColorIndex: 22
     disabledTextColorIndex: 16
     backgroundInactiveColorIndex: 1
+    enabledTextColorName: Enabled Text
+    disabledTextColorName: Enabled Text
+    backgroundInactiveColorName: Disabled Text
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 1
@@ -420,11 +445,16 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 21
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
     textHorizontalOffset: 0
     boxHeight: 0
     enabledTextColorIndex: 0
     disabledTextColorIndex: 1
     backgroundInactiveColorIndex: 1
+    enabledTextColorName: Enabled Text
+    disabledTextColorName: Enabled Text
+    backgroundInactiveColorName: Disabled Text
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 1
@@ -433,11 +463,16 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 21
     backgroundColorIndex: 15
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
     textHorizontalOffset: 15
     boxHeight: 0
     enabledTextColorIndex: 22
     disabledTextColorIndex: 16
     backgroundInactiveColorIndex: 1
+    enabledTextColorName: Enabled Text
+    disabledTextColorName: Enabled Text
+    backgroundInactiveColorName: Disabled Text
   foldoutGroupSettingsList:
   - applyFraming: 1
     includeOutline: 1
@@ -447,6 +482,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 6
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 1
     includeBackground: 0
@@ -455,6 +492,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 6
     backgroundColorIndex: 18
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 1
@@ -463,6 +502,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 21
     backgroundColorIndex: 17
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 1
@@ -471,6 +512,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 18
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 0
@@ -479,6 +522,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 18
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   toggleGroupSettingsList:
   - applyFraming: 1
     includeOutline: 0
@@ -488,6 +533,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 0
@@ -496,6 +543,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 0
@@ -504,6 +553,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 0
@@ -512,6 +563,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 0
@@ -520,6 +573,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   labeledGroupInfoList:
   - applyFraming: 1
     includeOutline: 0
@@ -529,6 +584,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 0
@@ -537,6 +594,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 0
@@ -545,6 +604,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 0
@@ -553,6 +614,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 0
     includeBackground: 0
@@ -561,6 +624,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
   singleElementSettingsList:
   - topPadding: 0
     leftPadding: 0
@@ -636,6 +701,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 1
     backgroundColorIndex: 6
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
     skipSingleLineFrames: 1
   - applyFraming: 1
     includeOutline: 0
@@ -645,6 +712,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 4
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
     skipSingleLineFrames: 0
   - applyFraming: 1
     includeOutline: 0
@@ -654,6 +723,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 5
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
     skipSingleLineFrames: 0
   - applyFraming: 1
     includeOutline: 0
@@ -663,6 +734,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 6
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
     skipSingleLineFrames: 0
   - applyFraming: 1
     includeOutline: 0
@@ -672,6 +745,8 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorIndex: 0
     backgroundColorIndex: 1
+    frameOutlineColorName: Outlines
+    backgroundColorName: Root Background
     skipSingleLineFrames: 1
   propertySpecificSettings:
     showWideModeBoxes: 0

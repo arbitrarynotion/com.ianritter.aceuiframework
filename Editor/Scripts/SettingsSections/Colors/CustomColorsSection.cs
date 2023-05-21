@@ -63,7 +63,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
             
             _customColorOptions = AceTheme.GetCustomColorOptions();
             
-            string selectedColorVarName = $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}].customColor.color";
+            string selectedColorVarName = $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}].color";
 
             Element popupField = new CustomColorEntryPopupElement( selectedIndexRelativeVarName, GUIContent.none, _customColorOptions, new SingleCustomSettings(), callback, false, filter );
             // Element colorField = new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 60f}, callback, false, filter);

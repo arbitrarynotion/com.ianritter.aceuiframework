@@ -19,7 +19,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         {
             var style = new GUIStyle( EditorStyles.centeredGreyMiniLabel ) {fontSize = 12};
             if (_buttonElement.Focused) 
-                style = EditorStyles.toolbarButton;
+                style = new GUIStyle( EditorStyles.toolbarButton ) {fontStyle = FontStyle.Bold };
 
             using (new EditorGUI.DisabledScope( _buttonElement.CustomSettings.ForceDisable))
             {

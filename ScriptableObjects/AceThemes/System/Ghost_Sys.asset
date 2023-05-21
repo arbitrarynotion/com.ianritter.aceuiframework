@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ghost_Sys
   m_EditorClassIdentifier: 
   logger: {fileID: 11400000, guid: 993055de20daf4b4dbc34b32f77e4a47, type: 2}
-  selectedSection: 2
+  selectedSection: 0
   basicGroupLevelSettingsMode: 0
   headingGroupLevelSettingsMode: 1
   singleElementsLevelSettingsMode: 0
@@ -35,97 +35,130 @@ MonoBehaviour:
   customColorsSettings:
     customColorsList:
     - toggle: 1
-      customColor:
-        name: Outlines
-        color: {r: 0.32, g: 0.32, b: 0.32, a: 1}
+      name: Outlines
+      color: {r: 0.32, g: 0.32, b: 0.32, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 1
-      customColor:
-        name: Root Background
-        color: {r: 0.18, g: 0.18, b: 0.18, a: 1}
+      name: Root Background
+      color: {r: 0.18, g: 0.18, b: 0.18, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 1
-      customColor:
-        name: Child Background
-        color: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+      name: Child Background
+      color: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+      previousName: 
+      wasUpdated: 0
+    - toggle: 1
+      name: Enabled Text
+      color: {r: 1, g: 1, b: 1, a: 1}
+      previousName: 
+      wasUpdated: 0
+    - toggle: 1
+      name: Disabled Text
+      color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+      previousName: 
+      wasUpdated: 0
+    - toggle: 1
+      name: Grey 1
+      color: {r: 0.45, g: 0.45, b: 0.45, a: 1}
+      previousName: 
+      wasUpdated: 0
+    - toggle: 1
+      name: Grey 2
+      color: {r: 0.32, g: 0.32, b: 0.32, a: 1}
+      previousName: 
+      wasUpdated: 0
+    - toggle: 1
+      name: Grey 3
+      color: {r: 0.23, g: 0.23, b: 0.23, a: 1}
+      previousName: 
+      wasUpdated: 0
+    - toggle: 1
+      name: Grey 4
+      color: {r: 0.17, g: 0.16, b: 0.16, a: 1}
+      previousName: 
+      wasUpdated: 0
+    - toggle: 1
+      name: Grey 5
+      color: {r: 0.11, g: 0.11, b: 0.11, a: 1}
+      previousName: 
+      wasUpdated: 0
+    - toggle: 1
+      name: Grey 6
+      color: {r: 0.07, g: 0.07, b: 0.07, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Grey 1
-        color: {r: 0.45, g: 0.45, b: 0.45, a: 1}
+      name: Green 1
+      color: {r: 0.25, g: 0.64, b: 0.22, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Grey 2
-        color: {r: 0.32, g: 0.32, b: 0.32, a: 1}
+      name: Green 2
+      color: {r: 0.18, g: 0.46, b: 0.15, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Grey 3
-        color: {r: 0.23, g: 0.23, b: 0.23, a: 1}
+      name: Green 3
+      color: {r: 0.13, g: 0.34, b: 0.11, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Grey 4
-        color: {r: 0.17, g: 0.16, b: 0.16, a: 1}
+      name: Green 4
+      color: {r: 0.09, g: 0.25, b: 0.07, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Green 1
-        color: {r: 0.25, g: 0.64, b: 0.22, a: 1}
+      name: Blue 1
+      color: {r: 0.39, g: 0.65, b: 0.8, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Green 2
-        color: {r: 0.18, g: 0.46, b: 0.15, a: 1}
+      name: Blue 2
+      color: {r: 0.08, g: 0.46, b: 0.69, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Green 3
-        color: {r: 0.13, g: 0.34, b: 0.11, a: 1}
+      name: Blue 3
+      color: {r: 0.08, g: 0.27, b: 0.4, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Green 4
-        color: {r: 0.09, g: 0.25, b: 0.07, a: 1}
+      name: Blue 4
+      color: {r: 0.08, g: 0.17, b: 0.24, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Blue 1
-        color: {r: 0.39, g: 0.65, b: 0.8, a: 1}
+      name: Orange 1
+      color: {r: 0.89, g: 0.69, b: 0.42, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Blue 2
-        color: {r: 0.08, g: 0.46, b: 0.69, a: 1}
+      name: Orange 2
+      color: {r: 0.76, g: 0.54, b: 0.2, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Blue 3
-        color: {r: 0.08, g: 0.27, b: 0.4, a: 1}
+      name: Orange 3
+      color: {r: 0.56, g: 0.38, b: 0.12, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Blue 4
-        color: {r: 0.08, g: 0.17, b: 0.24, a: 1}
+      name: Orange 4
+      color: {r: 0.4, g: 0.25, b: 0.05, a: 1}
+      previousName: 
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Orange 1
-        color: {r: 0.89, g: 0.69, b: 0.42, a: 1}
+      name: Orange 5
+      color: {r: 0.26415092, g: 0.16123846, b: 0.026165891, a: 1}
+      previousName: Orange 4
+      wasUpdated: 0
     - toggle: 0
-      customColor:
-        name: Orange 2
-        color: {r: 0.76, g: 0.54, b: 0.2, a: 1}
-    - toggle: 0
-      customColor:
-        name: Orange 3
-        color: {r: 0.56, g: 0.38, b: 0.12, a: 1}
-    - toggle: 0
-      customColor:
-        name: Orange 4
-        color: {r: 0.4, g: 0.25, b: 0.05, a: 1}
-    - toggle: 0
-      customColor:
-        name: Enabled Text
-        color: {r: 1, g: 1, b: 1, a: 1}
-    - toggle: 0
-      customColor:
-        name: Disabled Text
-        color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - toggle: 0
-      customColor:
-        name: Heading Dark 1
-        color: {r: 0.11, g: 0.11, b: 0.11, a: 1}
-    - toggle: 0
-      customColor:
-        name: Almost Black
-        color: {r: 0.07, g: 0.07, b: 0.07, a: 1}
+      name: Orange 6
+      color: {r: 0.1792453, g: 0.11073188, b: 0.021137415, a: 1}
+      previousName: Orange 5
+      wasUpdated: 0
   basicGroupSettingsList:
   - topPadding: 0
     leftPadding: 0
@@ -199,8 +232,6 @@ MonoBehaviour:
     frameType: 6
     frameOutlineThickness: 2
     frameAutoPadding: 1.74
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 6
     frameOutlineColorName: Outlines
     backgroundColorName: Root Background
   - applyFraming: 1
@@ -209,8 +240,6 @@ MonoBehaviour:
     frameType: 1
     frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 11
-    backgroundColorIndex: 14
     frameOutlineColorName: Outlines
     backgroundColorName: Root Background
   - applyFraming: 1
@@ -219,8 +248,6 @@ MonoBehaviour:
     frameType: 5
     frameOutlineThickness: 1
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
     frameOutlineColorName: Outlines
     backgroundColorName: Root Background
   - applyFraming: 1
@@ -229,8 +256,6 @@ MonoBehaviour:
     frameType: 5
     frameOutlineThickness: 1
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
     frameOutlineColorName: Outlines
     backgroundColorName: Root Background
   - applyFraming: 1
@@ -239,8 +264,6 @@ MonoBehaviour:
     frameType: 5
     frameOutlineThickness: 1
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
     frameOutlineColorName: Outlines
     backgroundColorName: Root Background
   headingGroupSectionState: 0
@@ -274,20 +297,6 @@ MonoBehaviour:
     showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
     useSeparateHeadingSettings: 0
-  - topPadding: 0.41
-    leftPadding: 0
-    rightPadding: 0
-    bottomPadding: 4
-    showLayoutVisualizations: 0
-    hideElements: 0
-    layoutVisualizationsFrameType: 0
-    showPosRect: 1
-    layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
-    showFrameRect: 1
-    frameRectColor: {r: 0, g: 0, b: 0, a: 0}
-    showDrawRect: 1
-    layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
-    useSeparateHeadingSettings: 0
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
@@ -305,7 +314,21 @@ MonoBehaviour:
   - topPadding: 0
     leftPadding: 0
     rightPadding: 0
-    bottomPadding: 2
+    bottomPadding: 4
+    showLayoutVisualizations: 0
+    hideElements: 0
+    layoutVisualizationsFrameType: 0
+    showPosRect: 1
+    layoutToolsPosRectColor: {r: 0.3, g: 0.1, b: 0.1, a: 1}
+    showFrameRect: 1
+    frameRectColor: {r: 0, g: 0, b: 0, a: 0}
+    showDrawRect: 1
+    layoutToolsDrawRectColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
+    useSeparateHeadingSettings: 0
+  - topPadding: 0
+    leftPadding: 0
+    rightPadding: 0
+    bottomPadding: 4
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
@@ -330,10 +353,10 @@ MonoBehaviour:
     frameRectColor: {r: 0.3930669, g: 0.3930669, b: 0.6886792, a: 1}
     showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
-  - topPadding: 0
+  - topPadding: 2
     leftPadding: 0
     rightPadding: 0
-    bottomPadding: 8
+    bottomPadding: 6
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
@@ -343,10 +366,10 @@ MonoBehaviour:
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
-  - topPadding: 0
+  - topPadding: 2
     leftPadding: 0
     rightPadding: 0
-    bottomPadding: 2
+    bottomPadding: 6
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
@@ -356,7 +379,7 @@ MonoBehaviour:
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
-  - topPadding: 0
+  - topPadding: 2
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 4
@@ -369,10 +392,10 @@ MonoBehaviour:
     frameRectColor: {r: 0, g: 0, b: 0, a: 0}
     showDrawRect: 1
     layoutToolsDrawRectColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
-  - topPadding: 0
+  - topPadding: 2
     leftPadding: 0
     rightPadding: 0
-    bottomPadding: 2
+    bottomPadding: 4
     showLayoutVisualizations: 0
     hideElements: 0
     layoutVisualizationsFrameType: 0
@@ -389,100 +412,88 @@ MonoBehaviour:
     frameType: 4
     frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 21
-    backgroundColorIndex: 3
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
-    textHorizontalOffset: 2
+    frameOutlineColorName: Grey 6
+    backgroundColorName: Grey 1
+    textHorizontalOffset: 2.3
     boxHeight: 2
     enabledTextColorIndex: 22
     disabledTextColorIndex: 22
     backgroundInactiveColorIndex: 1
-    enabledTextColorName: Enabled Text
-    disabledTextColorName: Enabled Text
-    backgroundInactiveColorName: Disabled Text
+    enabledTextColorName: Grey 6
+    disabledTextColorName: Grey 3
+    backgroundInactiveColorName: Grey 4
   - applyFraming: 1
     includeOutline: 1
     includeBackground: 1
     frameType: 6
     frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 22
-    backgroundColorIndex: 3
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
+    frameOutlineColorName: Grey 5
+    backgroundColorName: Grey 1
     textHorizontalOffset: 0
-    boxHeight: 1
+    boxHeight: 2
     enabledTextColorIndex: 22
     disabledTextColorIndex: 21
     backgroundInactiveColorIndex: 1
-    enabledTextColorName: Enabled Text
-    disabledTextColorName: Enabled Text
-    backgroundInactiveColorName: Disabled Text
+    enabledTextColorName: Grey 6
+    disabledTextColorName: Grey 3
+    backgroundInactiveColorName: Grey 5
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 1
     frameType: 6
     frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 21
-    backgroundColorIndex: 15
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
+    frameOutlineColorName: Grey 5
+    backgroundColorName: Grey 1
     textHorizontalOffset: 0
     boxHeight: 0
     enabledTextColorIndex: 22
     disabledTextColorIndex: 16
     backgroundInactiveColorIndex: 1
-    enabledTextColorName: Enabled Text
-    disabledTextColorName: Enabled Text
-    backgroundInactiveColorName: Disabled Text
+    enabledTextColorName: Grey 6
+    disabledTextColorName: Grey 3
+    backgroundInactiveColorName: Grey 5
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 1
     frameType: 6
     frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 21
-    backgroundColorIndex: 1
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
+    frameOutlineColorName: Grey 5
+    backgroundColorName: Grey 1
     textHorizontalOffset: 0
-    boxHeight: 0
+    boxHeight: 2
     enabledTextColorIndex: 0
     disabledTextColorIndex: 1
     backgroundInactiveColorIndex: 1
-    enabledTextColorName: Enabled Text
-    disabledTextColorName: Enabled Text
-    backgroundInactiveColorName: Disabled Text
+    enabledTextColorName: Grey 6
+    disabledTextColorName: Grey 3
+    backgroundInactiveColorName: Grey 5
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 1
     frameType: 6
     frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 21
-    backgroundColorIndex: 15
     frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
-    textHorizontalOffset: 15
-    boxHeight: 0
+    backgroundColorName: Grey 1
+    textHorizontalOffset: 0
+    boxHeight: 2
     enabledTextColorIndex: 22
     disabledTextColorIndex: 16
     backgroundInactiveColorIndex: 1
-    enabledTextColorName: Enabled Text
-    disabledTextColorName: Enabled Text
-    backgroundInactiveColorName: Disabled Text
-  foldoutGroupSettingsList:
+    enabledTextColorName: Grey 6
+    disabledTextColorName: Grey 3
+    backgroundInactiveColorName: Grey 5
+  foldoutGroupFrameSettingsList:
   - applyFraming: 1
     includeOutline: 1
     includeBackground: 0
     frameType: 5
     frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 6
-    backgroundColorIndex: 1
-    frameOutlineColorName: Outlines
+    frameOutlineColorName: Grey 4
     backgroundColorName: Root Background
   - applyFraming: 1
     includeOutline: 1
@@ -490,140 +501,30 @@ MonoBehaviour:
     frameType: 12
     frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 6
-    backgroundColorIndex: 18
-    frameOutlineColorName: Outlines
+    frameOutlineColorName: Grey 4
     backgroundColorName: Root Background
   - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 1
-    frameType: 4
-    frameOutlineThickness: 2
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 21
-    backgroundColorIndex: 17
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
-  - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 1
-    frameType: 4
-    frameOutlineThickness: 2
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 18
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
-  - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
     frameType: 12
     frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 18
-    backgroundColorIndex: 1
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
-  toggleGroupSettingsList:
-  - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 0
-    frameType: 5
-    frameOutlineThickness: 1
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
-    frameOutlineColorName: Outlines
+    frameOutlineColorName: Grey 4
     backgroundColorName: Root Background
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
-    frameType: 5
-    frameOutlineThickness: 1
+    frameType: 12
+    frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
+    frameOutlineColorName: Grey 4
+    backgroundColorName: Grey 4
   - applyFraming: 1
-    includeOutline: 0
+    includeOutline: 1
     includeBackground: 0
-    frameType: 5
+    frameType: 4
     frameOutlineThickness: 1
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
-  - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 0
-    frameType: 5
-    frameOutlineThickness: 1
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
-  - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 0
-    frameType: 5
-    frameOutlineThickness: 1
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
-  labeledGroupInfoList:
-  - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 0
-    frameType: 5
-    frameOutlineThickness: 1
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
-  - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 0
-    frameType: 5
-    frameOutlineThickness: 1
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
-  - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 0
-    frameType: 5
-    frameOutlineThickness: 1
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
-  - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 0
-    frameType: 5
-    frameOutlineThickness: 1
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
-  - applyFraming: 1
-    includeOutline: 0
-    includeBackground: 0
-    frameType: 5
-    frameOutlineThickness: 1
-    frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
     frameOutlineColorName: Outlines
     backgroundColorName: Root Background
   singleElementSettingsList:
@@ -694,15 +595,13 @@ MonoBehaviour:
     layoutToolsDrawRectColor: {r: 0.4, g: 0.5, b: 0.1, a: 1}
   singleElementFrameSettingsList:
   - applyFraming: 1
-    includeOutline: 1
-    includeBackground: 1
+    includeOutline: 0
+    includeBackground: 0
     frameType: 1
     frameOutlineThickness: 1
     frameAutoPadding: 0
-    frameOutlineColorIndex: 1
-    backgroundColorIndex: 6
-    frameOutlineColorName: Outlines
-    backgroundColorName: Root Background
+    frameOutlineColorName: Root Background
+    backgroundColorName: Outlines
     skipSingleLineFrames: 1
   - applyFraming: 1
     includeOutline: 0
@@ -710,8 +609,6 @@ MonoBehaviour:
     frameType: 1
     frameOutlineThickness: 1
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 4
     frameOutlineColorName: Outlines
     backgroundColorName: Root Background
     skipSingleLineFrames: 0
@@ -721,8 +618,6 @@ MonoBehaviour:
     frameType: 1
     frameOutlineThickness: 1
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 5
     frameOutlineColorName: Outlines
     backgroundColorName: Root Background
     skipSingleLineFrames: 0
@@ -732,8 +627,6 @@ MonoBehaviour:
     frameType: 1
     frameOutlineThickness: 1
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 6
     frameOutlineColorName: Outlines
     backgroundColorName: Root Background
     skipSingleLineFrames: 0
@@ -743,8 +636,6 @@ MonoBehaviour:
     frameType: 5
     frameOutlineThickness: 1
     frameAutoPadding: 0
-    frameOutlineColorIndex: 0
-    backgroundColorIndex: 1
     frameOutlineColorName: Outlines
     backgroundColorName: Root Background
     skipSingleLineFrames: 1

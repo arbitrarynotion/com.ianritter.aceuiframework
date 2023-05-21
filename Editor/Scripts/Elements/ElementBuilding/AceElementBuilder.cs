@@ -19,6 +19,7 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElemen
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.SingleElements;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Enums;
 using UnityEngine;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding
@@ -528,9 +529,17 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
                 {
                     ForceSingleLine = true, 
                     NumberOfColumns = buttons.Length,
-                    LeftPadding = 4f,
-                    RightPadding = 4f,
-                    BottomPadding = 2f
+                    // LeftPadding = 4f,
+                    // RightPadding = 4f,
+                    BottomPadding = 4f,
+                    CustomFrameSettings = new CustomFrameSettings()
+                    {
+                        applyFraming = true,
+                        frameType = ElementFrameType.SkipBottom,
+                        // includeBackground = true,
+                        frameOutlineColorName = "Grey 4",
+                        frameOutlineThickness = 1
+                    }
                 }, 
                 buttons
             );

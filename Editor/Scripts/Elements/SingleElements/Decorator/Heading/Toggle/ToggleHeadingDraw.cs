@@ -29,20 +29,14 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             // of its own.
             // toggleGroup.IsEnabled = GUI.Toggle( headingDrawRect, toggleGroup.IsEnabled, toggleGroup.GUIContent, GetHeadingStyle( EditorStyles.toggle ) );
 
-            headingDrawRect.xMin += 20f + _toggleHeading.HeadingElementFrameSettings.textHorizontalOffset;
-            
-            GUIContent label = EditorGUI.BeginProperty( headingDrawRect, _toggleHeading.GUIContent, toggleGroup.HeadingProperty );
-            
-            toggleGroup.IsEnabled = GUI.Toggle( toggleRect, toggleGroup.IsEnabled, GUIContent.none, GetHeadingStyle( EditorStyles.toggle ) );
+            toggleGroup.IsEnabled = GUI.Toggle( toggleRect, toggleGroup.IsEnabled, GUIContent.none,
+                GetHeadingStyle( EditorStyles.toggle ) );
 
-            // DrawLabelField( headingDrawRect, GetHeadingLabelStyle( toggleGroup.IsEnabled ) );
-            DrawAlignedLabelField( label, headingDrawRect, GetHeadingLabelStyle( toggleGroup.IsEnabled ) );
+            headingDrawRect.xMin += 20f + _toggleHeading.HeadingElementFrameSettings.textHorizontalOffset;
+            DrawLabelField( headingDrawRect, GetHeadingLabelStyle( toggleGroup.IsEnabled ) );
 
             if ( toggleGroup.HasProperty )
-                
                 toggleGroup.HeadingProperty.boolValue = toggleGroup.IsEnabled;
-            
-            EditorGUI.EndProperty();
         }
         
         protected override bool HeadingIsEnabled() => ( (HeadingGroup) _toggleHeading.ParentElement ).IsEnabled;

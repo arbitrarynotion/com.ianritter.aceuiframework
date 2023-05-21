@@ -91,8 +91,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             // Set the color picker button rect to start at the end of the available space plus a spacer.
             // Then get the width from the color picker handler.
             var buttonRect = new Rect( controlRect );
-            buttonRect.xMin += availableWidth + 2f;
-            buttonRect.width = ColorPickerHandler.GetColorPickerButtonWidth();
+            buttonRect.xMin += availableWidth;
+            // buttonRect.width = ColorPickerHandler.GetColorPickerButtonWidth();
             // DrawRectOutline( buttonRect, Color.yellow );
             
             // Finally, pass the button rect and the color property to the color picker handler.

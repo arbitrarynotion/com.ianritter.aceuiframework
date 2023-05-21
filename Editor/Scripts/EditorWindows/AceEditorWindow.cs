@@ -165,7 +165,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
 
         private void OnUndoRedo()
         {
-            Debug.Log( "Undo/Redo called on an Ace Editor Window." );
+            // Debug.Log( "Undo/Redo called on an Ace Editor Window." );
             targetSerializedObject.Update();
             GetElementsListFromTarget();
             Repaint();

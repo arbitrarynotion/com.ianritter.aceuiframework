@@ -81,11 +81,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             if ( Element.ParentIsCompositeGroup() )
                 return false;
 
-            if ( Element.CustomSettings.BlockFrame() )
-                return false;
-
             if ( Element.CustomSettings.OverrideFrame() )
                 return Element.CustomSettings.CustomFrameSettings.applyFraming;
+
+            // if ( Element.CustomSettings.BlockFrame() )
+            //     return false;
 
             if ( !Element.ParentElement.GroupCustomSettings.ChildSingleElementsHaveFrames )
                 return false;
@@ -105,7 +105,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         
         private bool ShouldApplyGlobalPadding()
         {
-            // Todo: Solve issue where custom frame override is still responding to 
             // if ( SingleElement.CustomSettings.OverrideFrame() )
             //     return true;
             
@@ -123,7 +122,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
 
         public override bool ShouldApplyFramePadding()
         {
-            // Todo: Solve issue where custom frame override is still responding to 
             // if ( SingleElement.CustomSettings.OverrideFrame() )
             //     return true;
             
@@ -139,7 +137,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             if ( Element.HasOwnLine() && SingleElement.SingleElementFrameSettings.skipSingleLineFrames )
                 return false;
 
-            if ( !Element.FrameSettings.applyFraming )
+            if ( !Element.FrameSettings.applyFraming || !Element.FrameSettings.includeOutline )
                 return false;
 
             return true;

@@ -270,12 +270,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         private void SubscribeToAllColors()
         {
-            Debug.Log( "AceTheme: Subscribing to all colors." );
+            // Debug.Log( "AceTheme: Subscribing to all colors." );
             
             for (int i = 0; i < customColorsSettings.GetColorListCount(); i++)
             {
                 CustomColorEntry currentEntry = customColorsSettings.GetColorEntryForIndex( i );
-                Debug.Log( $"    Subscribing to {currentEntry.customColor.name}." );
+                // Debug.Log( $"    Subscribing to {currentEntry.customColor.name}." );
                 currentEntry.OnNameUpdated -= ReplaceColorNameWithNewName;
                 currentEntry.OnNameUpdated += ReplaceColorNameWithNewName;
             }

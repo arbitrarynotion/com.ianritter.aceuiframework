@@ -93,7 +93,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
             foreach ( CustomColorEntry customColorEntry in customColorsList )
             {
                 if ( !customColorEntry.wasUpdated ) continue;
-                _logger.Log( $"A name change was detected in {customColorEntry.customColor.name}. Notifying subscribers." );
+                // _logger.Log( $"A name change was detected in {customColorEntry.customColor.name}. Notifying subscribers." );
                 customColorEntry.wasUpdated = false;
                 customColorEntry.NameUpdatedNotify();
             }
@@ -116,7 +116,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
             string[] customColorOptions = new string[colorsListLength];
             for (int i = 0; i < colorsListLength; i++)
             {
-                customColorOptions[i] = customColorsList[i].customColor.name;
+                customColorOptions[i] = customColorsList[i].name;
             }
 
             return customColorOptions;
@@ -140,7 +140,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
             // What happens when the name can't be found?
             for (int i = 0; i < customColorsList.Length; i++)
             {
-                if ( customColorsList[i].customColor.name.Equals( customColorName ) )
+                if ( customColorsList[i].name.Equals( customColorName ) )
                     return i;
             }
 
@@ -160,7 +160,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
         public Color GetColorForIndex( int index )
         {
             if (index >= 0 && index < customColorsList.Length)
-                return customColorsList[index].customColor.color;
+                return customColorsList[index].color;
 
             // Todo: Find a better workaround for when a color that is in use is deleted from the custom colors array.
             Debug.LogWarning( $"CT|GCFI: Error! Color index is out of range ({index.ToString()} out of {customColorsList.Length.ToString()})!" );
@@ -173,7 +173,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
         {
             if ( index >= customColorsList.Length ) throw new IndexOutOfRangeException();
 
-            return customColorsList[index].customColor.name;
+            return customColorsList[index].name;
         }
 
         public Color GetColorForColorName( string colorName )

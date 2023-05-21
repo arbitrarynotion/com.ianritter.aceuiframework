@@ -10,8 +10,12 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
     {
         [SerializeField]
         public bool toggle = true;
+        // [SerializeField]
+        // public CustomColor customColor;
+        [SerializeField] [Delayed]
+        public string name;
         [SerializeField]
-        public CustomColor customColor;
+        public Color color;
         
         private string _hexColor;
 
@@ -26,23 +30,22 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
         public event NameUpdated OnNameUpdated;
         public void NameUpdatedNotify()
         {
-            Debug.Log( $"CustomColorEntry: {customColor.name}'s NameUpdated event was triggered." );
-            OnNameUpdated?.Invoke( previousName, customColor.name );
+            // Debug.Log( $"CustomColorEntry: {name}'s NameUpdated event was triggered." );
+            OnNameUpdated?.Invoke( previousName, name );
         }
-
-
+        
         public CustomColorEntry( string colorName, Color customColor )
         {
-            // Debug.Log( $"CustomColorEntry constructored called for {GetColoredStringLightSalmon( colorName )}." );
-            this.customColor = new CustomColor( colorName, customColor );
-            UpdateHexColor();
+            // Debug.Log( $"CustomColorEntry constructor called for {GetColoredStringLightSalmon( colorName )}." );
+            // this.customColor = new CustomColor( colorName, customColor );
+            name = colorName;
+            color = customColor;
+            // UpdateHexColor();
         }
         
-        public string GetHexColor() => _hexColor;
-        public void UpdateHexColor() => _hexColor = customColor.GetHex();
-
-        public string GetSymbol() => toggle ? customColor.name : string.Empty;
-
-        
+        // public string GetHexColor() => _hexColor;
+        // public void UpdateHexColor() => _hexColor = customColor.GetHex();
+        //
+        // public string GetSymbol() => toggle ? customColor.name : string.Empty;
     }
 }

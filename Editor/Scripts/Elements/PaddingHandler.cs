@@ -73,7 +73,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
 
         private bool ShouldApplyAnyFramePadding() =>
             Element.Layout.ShouldApplyFramePadding() ||
-            Element.CustomSettings.OverrideFrame() && Element.FrameSettings.applyFraming;
+            Element.CustomSettings.OverrideFrame() && Element.FrameSettings.includeOutline;
 
         private float GetLeftAutoPaddingAmount() =>
             FrameHasLeft( Element.FrameSettings.frameType ) ? TotalFramePadding : 0;

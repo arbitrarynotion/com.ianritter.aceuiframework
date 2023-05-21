@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.5.0...v1.6.0) (2023-05-21)
+
+
+### Features
+
+* Colors overhaul ([625878d](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/625878dc6079c7d8987d965d9e5c2fbf0846cf35))
+
 # [1.5.0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.4.0...v1.5.0) (2023-05-13)
 
 

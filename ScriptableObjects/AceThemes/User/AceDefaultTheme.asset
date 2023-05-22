@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076b7b2dc8b8fbd4dbb0d0a1a43b111e, type: 3}
   m_Name: AceDefaultTheme
   m_EditorClassIdentifier: 
-  selectedSection: 3
+  selectedSection: 2
   basicGroupLevelSettingsMode: 0
   headingGroupLevelSettingsMode: 1
   singleElementsLevelSettingsMode: 0
@@ -78,12 +78,12 @@ MonoBehaviour:
       color: {r: 0.17, g: 0.16, b: 0.16, a: 1}
       previousName: 
       wasUpdated: 0
-    - toggle: 1
+    - toggle: 0
       name: Grey 5
       color: {r: 0.11, g: 0.11, b: 0.11, a: 1}
       previousName: 
       wasUpdated: 0
-    - toggle: 1
+    - toggle: 0
       name: Grey 6
       color: {r: 0.07, g: 0.07, b: 0.07, a: 1}
       previousName: 
@@ -91,7 +91,7 @@ MonoBehaviour:
     - toggle: 0
       name: Green 1
       color: {r: 0.25, g: 0.64, b: 0.22, a: 1}
-      previousName: 
+      previousName: 'Green 1 '
       wasUpdated: 0
     - toggle: 0
       name: Green 2
@@ -152,11 +152,6 @@ MonoBehaviour:
       name: Orange 5
       color: {r: 0.26415092, g: 0.16123846, b: 0.026165891, a: 1}
       previousName: Orange 4
-      wasUpdated: 0
-    - toggle: 0
-      name: Orange 6
-      color: {r: 0.1792453, g: 0.11073188, b: 0.021137415, a: 1}
-      previousName: Orange 5
       wasUpdated: 0
     - toggle: 0
       name: Orange 6
@@ -666,10 +661,10 @@ MonoBehaviour:
     minMaxSliderMinWidth: 157
     minMaxSliderFloatFieldWidth: 37.7
     minMaxSliderSeparation: 5
-  globalSettingsSectionToggle: 0
+  globalSettingsSectionToggle: 1
   colorsSectionToggle: 1
   groupsSectionToggle: 1
-  singleElementsSectionToggle: 0
+  singleElementsSectionToggle: 1
   propertySpecificSectionToggle: 0
   basicGroupsSectionDrawAreaToggle: 0
   headingGroupsSectionDrawAreaToggle: 0

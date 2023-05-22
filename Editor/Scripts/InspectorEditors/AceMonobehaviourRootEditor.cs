@@ -43,7 +43,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
         /// </summary>
         private void OnEnable()
         {
-            _aceLogger = GetAssetByName<CustomLogger>( MonobehaviourRootEditorLoggerName );
+            _aceLogger = GetAssetByName<CustomLogger>( MonobehaviourRootEditorLoggerName, LoggersSearchFolderName );
             // string result = _aceLogger == null ? "failed" : "succeeded";
             // Debug.LogWarning( $"AMRE|OE: Loading of {MonobehaviourRootEditorLoggerName}: {result}" );
             

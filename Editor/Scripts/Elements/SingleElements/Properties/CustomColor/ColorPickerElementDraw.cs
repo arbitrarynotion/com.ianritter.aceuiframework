@@ -97,6 +97,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             
             // Finally, pass the button rect and the color property to the color picker handler.
             // This can either be a direct color property via serializedObject.FindProperty or an indirect one via property.FindPropertyRelative.
+            // Subscribe to the color picker handler to be notified when the color button returns a color.
+            // ColorPickerHandler.OnColorSelected += _colorPickerElement.OnColorSelection;
+            
             ColorPickerHandler.DrawColorPickerPropertyButton( buttonRect, targetProperty );
         }
 

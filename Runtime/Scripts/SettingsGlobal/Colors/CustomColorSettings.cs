@@ -88,7 +88,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
         
         public void ProcessNewColorEntry()
         {
-            _logger.LogStart();
+            if ( _logger != null ) _logger.LogStart();
             // A color has been added to the list. As it was added via the + button on the reorderable list,
             // the CustomColorEntry's default constructor was called and Unity copied the serialized data
             // of the previous name onto the new entry. This bypasses the copy constructor so I can't intercept it there
@@ -106,7 +106,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
             newColorEntry.color = entryIsBlank ? new Color( 0f, 0f, 0f, 1f ) : newColorEntry.color;
             newColorEntry.previousName = "";
 
-            _logger.LogEnd();
+            if ( _logger != null ) _logger.LogEnd();
         }
 
         /// <summary>
@@ -114,38 +114,38 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
         /// </summary>
         public void ScanForListUpdates()
         {
-            _logger.LogStart();
+            // _logger.LogStart();
             
             foreach ( CustomColorEntry customColorEntry in customColorsList )
             {
                 if ( !customColorEntry.wasUpdated ) continue;
                 // _logger.Log( $"A name change was detected in {customColorEntry.customColor.name}. Notifying subscribers." );
                 customColorEntry.wasUpdated = false;
-                _logger.Log( $"{customColorEntry.name} was updated from {customColorEntry.previousName}." );
+                // _logger.Log( $"{customColorEntry.name} was updated from {customColorEntry.previousName}." );
 
                 // Check to make sure the name isn't a duplicate of an existing name.
-                if ( UpdatedNameIsADuplicate( customColorEntry ) ) continue;
+                if ( UpdatedNameIsDuplicate( customColorEntry ) ) continue;
 
                 customColorEntry.NameUpdatedNotify();
             }
 
-            _logger.LogEnd();
+            // _logger.LogEnd();
         }
 
-        private bool UpdatedNameIsADuplicate( CustomColorEntry changedColorEntry )
+        private bool UpdatedNameIsDuplicate( CustomColorEntry changedColorEntry )
         {
-            _logger.LogStart();
+            // _logger.LogStart();
             foreach ( CustomColorEntry customColorEntry in customColorsList )
             {
                 if ( changedColorEntry == customColorEntry ) continue;
                 if ( !changedColorEntry.name.Equals( customColorEntry.name ) ) continue;
                 
                 // The name is a duplicate. Revert it back to previousName and return true.
-                _logger.LogEnd( $"{changedColorEntry.name} is a duplicate. Reverting name to {changedColorEntry.previousName}." );
+                // _logger.LogEnd( $"{changedColorEntry.name} is a duplicate. Reverting name to {changedColorEntry.previousName}." );
                 changedColorEntry.name = changedColorEntry.previousName;
                 return true;
             }
-            _logger.LogEnd();
+            // _logger.LogEnd();
             return false;
         }
 

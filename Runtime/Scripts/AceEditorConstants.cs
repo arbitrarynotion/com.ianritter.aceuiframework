@@ -7,7 +7,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
         public const string ThemesSearchFolderName = "Packages/com.ianritter.aceuiframework/ScriptableObjects/AceThemes/User";
         public const string SystemCoreSearchFolderName = "Packages/com.ianritter.aceuiframework/ScriptableObjects/ACECore";
         public const string DemosSearchFolderName = "Packages/com.ianritter.aceuiframework/Runtime/Scripts/Demos";
-        public const string LoggersSearchFolderName = "Packages/com.ianritter.aceuiframework/Runtime/Scripts/Services/Loggers";
+        public const string LoggersSearchFolderName = "Packages/com.ianritter.aceuiframework/ScriptableObjects";
         
         // Custom Editor text.
         public const string ThemeCustomEditorHelpInfoText = "For the sake of your sanity, use the settings window at \"Tools / ACE UI / Theme Settings\".\n" +

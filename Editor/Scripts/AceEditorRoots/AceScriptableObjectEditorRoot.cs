@@ -19,7 +19,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
         // public AceEventHandler aceEventHandler;
         protected CustomLogger logger;
         
-        // public CustomLogger GetLogger => logger;
+        public CustomLogger GetLogger => logger;
 
         
         // public void OnEnable()
@@ -45,10 +45,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
 
         private void OnEnable()
         {
-            logger = GetAssetByName<CustomLogger>( GetLoggerName() );
+            logger = GetAssetByName<CustomLogger>( GetLoggerName(), LoggersSearchFolderName );
             if ( logger == null )
             {
-                logger = GetAssetByName<CustomLogger>( DefaultSoLoggerName );
+                logger = GetAssetByName<CustomLogger>( DefaultSoLoggerName, LoggersSearchFolderName );
                 Debug.LogError( $"Failed to load {GetLoggerName()}! Loading Default theme." );
             }
             // string result = logger == null ? $"{GetColoredStringMaroon( "failed" )}" : $"{GetColoredStringGreenYellow( "succeeded" )}";

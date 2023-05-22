@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.6.1...v1.6.2) (2023-05-22)
+
+
+### Bug Fixes
+
+* Update to Color Picker ([4c74343](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/4c74343aacfc4c14e27fed343ec23dcb971a929e))
+
 ## [1.6.1](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.6.0...v1.6.1) (2023-05-22)
 
 

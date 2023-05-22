@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.6.0...v1.6.1) (2023-05-22)
+
+
+### Bug Fixes
+
+* Update to custom color renaming logic ([02a02aa](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/02a02aab271c8fe577993450bc4474d91dcd9b05))
+
 # [1.6.0](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.5.0...v1.6.0) (2023-05-21)
 
 

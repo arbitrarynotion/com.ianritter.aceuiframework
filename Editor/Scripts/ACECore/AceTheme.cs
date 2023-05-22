@@ -115,14 +115,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             InitializeSettings();
             InitializeSections();
         }
-        
+
+        protected override string GetLoggerName() => ThemeLoggerName;
+
         // public void Awake()
         // {
         //     InitializeSettings();
         //     InitializeSections();
         // }
 
-        private void OnEnable()
+        protected override void OnEnableLast()
         {
             if ( logger != null ) logger.LogStart();
             customColorsSettings.Initialize( logger );
@@ -252,20 +254,31 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         private void OnValidate()
         {
-            if ( logger != null) logger.LogStart();
+            // logger.LogStart();
             
             // If the customColorSettings list was changed, need to know.
             int newColorListCount = customColorsSettings.GetColorListCount();
-            if ( newColorListCount != _customColorsListCount )
+            if ( newColorListCount > _customColorsListCount )
             {
-                logger.Log( $"Color list count has changed from {_customColorsListCount.ToString()} to {newColorListCount.ToString()}!" );
+                // logger.Log( $"Color list count has changed from {_customColorsListCount.ToString()} to {newColorListCount.ToString()}!" );
+                // logger.Log( $"Color list count has increased from {_customColorsListCount.ToString()} to {newColorListCount.ToString()}!" );
+                
+                // Inform customColorSettings of the change so the duplicate name can be modified.
+                customColorsSettings.ProcessNewColorEntry();
+                
                 _customColorsListCount = newColorListCount;
                 SubscribeToNewColor();
+            }
+
+            if ( newColorListCount < _customColorsListCount )
+            {
+                // logger.Log( $"Color list count has decreased from {_customColorsListCount.ToString()} to {newColorListCount.ToString()}!" );
+                _customColorsListCount = newColorListCount;
             }
             
             customColorsSettings.ScanForListUpdates();
 
-            if ( logger != null) logger.LogEnd();
+            // logger.LogEnd();
         }
 
         private void SubscribeToAllColors()
@@ -413,6 +426,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         public static string GetPropertySpecificSettingsVarName => nameof( propertySpecificSettings );
 
         public static string GetCustomColorListVarName => CustomColorSettings.GetCustomColorListVarName();
+        public static string GetBackupColorVarName => CustomColorSettings.GetBackupColorVarName();
 
 
         public static int GetLevelBasedOnMode( int level, LevelSettingsSection.LevelSettingsMode levelSettingsMode ) =>
@@ -532,10 +546,20 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
 
         // public Color GetColorForIndex( int index ) => customColorsSettings.GetColorForIndex( index );
-        public Color GetColorForColorName( string colorName ) => customColorsSettings.GetColorForColorName( colorName );
         public string[] GetCustomColorOptions() => customColorsSettings.GetCustomColorsOptionsList();
-        // public CustomColorSettings GetCustomColorSettings() => customColorsSettings;
+        
+        /// <summary>
+        /// This is used by draw classes to convert the name into a usable color. Note that the index is never used.
+        /// </summary>
+        public Color GetColorForColorName( string colorName ) => customColorsSettings.GetColorForColorName( colorName );
+
+        /// <summary>
+        /// This should be used only for when a popup element needs to translate the color into a selection number.
+        /// </summary>
         public int GetIndexForCustomColorName( string customColorName ) => customColorsSettings.GetIndexForCustomColorName( customColorName );
+        /// <summary>
+        /// This should be used only for when a popup needs to convert the selected index back into a color name.
+        /// </summary>
         public string GetColorNameForIndex( int index ) => customColorsSettings.GetColorNameForIndex( index );
 
         public PropertySpecificSettings GetPropertySpecificSettings() => propertySpecificSettings;

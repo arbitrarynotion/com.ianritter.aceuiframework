@@ -1,3 +1,4 @@
+using System;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.EventHandlers;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBuilding;
 using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
@@ -12,7 +13,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots
     {
         [HideInInspector]
         public AceEventHandler aceEventHandler;
-        // protected CustomLogger logger;
+        protected CustomLogger logger;
         
         /// <summary>
         ///     Provides a list of Elements which tells the editor how to draw the inspector.
@@ -20,7 +21,9 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots
         // public abstract Element[] GetElementList();
 
         public abstract string GetTargetName();
-        
+
+        protected virtual string GetLoggerName() => "none";
+
         public abstract ElementInfo[] GetElementInfoList();
         
         /// <summary>

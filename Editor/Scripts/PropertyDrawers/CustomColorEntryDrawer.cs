@@ -91,12 +91,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.PropertyDrawers
                 
                 // Text field position
                 var textFieldRect = new Rect( dataRect );
-                
                 // DrawRectOutline( textFieldRect, Green1.color );
-                
                 
                 EditorGUI.PropertyField( boolRect, toggleProperty, GUIContent.none );
 
+                // When the entry is locked, fields are visible but can't be modified.
                 using ( new EditorGUI.DisabledScope( toggleProperty.boolValue ) )
                 {
                     // EditorGUI.PropertyField( symbolRect, property.FindPropertyRelative( "customColor" ), GUIContent.none );

@@ -18,6 +18,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
         private CustomLogger _logger;
         
         [SerializeField] private CustomColorEntry[] customColorsList;
+        // This will give the property field something to work with when there are no entries in the color list. 
+        [SerializeField] private CustomColorEntry backupColor = new CustomColorEntry( "Backup Color", Color.magenta) {toggle = true};
         
         public CustomColorSettings()
         {
@@ -83,22 +85,68 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
         //     Debug.Log( $"CustomColorSettings: Subscribed to new color {customColorsList[listLength - 1]} at index {( listLength - 1 ).ToString()}." );
         // }
 
+        
+        public void ProcessNewColorEntry()
+        {
+            _logger.LogStart();
+            // A color has been added to the list. As it was added via the + button on the reorderable list,
+            // the CustomColorEntry's default constructor was called and Unity copied the serialized data
+            // of the previous name onto the new entry. This bypasses the copy constructor so I can't intercept it there
+            // either. My only option is to monitor the array size in AceTheme, then to modify the new entry
+            // manually here before the AceTheme subscribes to respond to name changes.
+            // There are two main cases:
+            // 1. The list was empty so this color has no name (Default values are ignored).
+            // 2. The list was not empty so the color will be an exact duplicate of the one before it.
+            
+            // Get new color.
+            CustomColorEntry newColorEntry = customColorsList[customColorsList.Length - 1];
+
+            bool entryIsBlank = newColorEntry.name.Equals( "" ) & newColorEntry.color == new Color( 0f, 0f, 0f, 0f );
+            newColorEntry.name = entryIsBlank ? "New Color" : $"{newColorEntry.name}_copy";
+            newColorEntry.color = entryIsBlank ? new Color( 0f, 0f, 0f, 1f ) : newColorEntry.color;
+            newColorEntry.previousName = "";
+
+            _logger.LogEnd();
+        }
+
         /// <summary>
         ///     Scan through the custom colors list and fire the NameUpdated event on any that were changed.
         /// </summary>
         public void ScanForListUpdates()
         {
-            if ( _logger != null) _logger.LogStart();
+            _logger.LogStart();
             
             foreach ( CustomColorEntry customColorEntry in customColorsList )
             {
                 if ( !customColorEntry.wasUpdated ) continue;
                 // _logger.Log( $"A name change was detected in {customColorEntry.customColor.name}. Notifying subscribers." );
                 customColorEntry.wasUpdated = false;
+                _logger.Log( $"{customColorEntry.name} was updated from {customColorEntry.previousName}." );
+
+                // Check to make sure the name isn't a duplicate of an existing name.
+                if ( UpdatedNameIsADuplicate( customColorEntry ) ) continue;
+
                 customColorEntry.NameUpdatedNotify();
             }
 
-            if ( _logger != null)  _logger.LogEnd();
+            _logger.LogEnd();
+        }
+
+        private bool UpdatedNameIsADuplicate( CustomColorEntry changedColorEntry )
+        {
+            _logger.LogStart();
+            foreach ( CustomColorEntry customColorEntry in customColorsList )
+            {
+                if ( changedColorEntry == customColorEntry ) continue;
+                if ( !changedColorEntry.name.Equals( customColorEntry.name ) ) continue;
+                
+                // The name is a duplicate. Revert it back to previousName and return true.
+                _logger.LogEnd( $"{changedColorEntry.name} is a duplicate. Reverting name to {changedColorEntry.previousName}." );
+                changedColorEntry.name = changedColorEntry.previousName;
+                return true;
+            }
+            _logger.LogEnd();
+            return false;
         }
 
         // public void SubscribeToColorEntryByName( string colorName, Func<string> callback )
@@ -156,18 +204,18 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
             Debug.LogWarning( $"CT|GCFI: Error! Color index is out of range ({index.ToString()} out of {customColorsList.Length.ToString()})!" );
             return new CustomColorEntry( "Failed to Load", Color.magenta );
         }
-        
-        public Color GetColorForIndex( int index )
+
+        private Color GetColorForIndex( int index )
         {
             if (index >= 0 && index < customColorsList.Length)
                 return customColorsList[index].color;
 
-            // Todo: Find a better workaround for when a color that is in use is deleted from the custom colors array.
-            Debug.LogWarning( $"CT|GCFI: Error! Color index is out of range ({index.ToString()} out of {customColorsList.Length.ToString()})!" );
+            // Debug.LogWarning( $"CT|GCFI: Error! Color index is out of range ({index.ToString()} out of {customColorsList.Length.ToString()})!" );
             return Color.magenta;
         }
 
         public static string GetCustomColorListVarName() => nameof( customColorsList );
+        public static string GetBackupColorVarName() => nameof( backupColor );
 
         public string GetColorNameForIndex( int index )
         {
@@ -179,7 +227,11 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.C
         public Color GetColorForColorName( string colorName )
         {
             int index = GetIndexForCustomColorName( colorName );
-            return GetColorForIndex( index );
+            
+            // Note that the color name is not overwritten if the color name is not found.
+            // This is to allow the user to recover from an accidental color deletion. As long as a matching name is
+            // provided without changing the color selected, the correct color will return.
+            return ( index == -1 ) ? Color.magenta : GetColorForIndex( index );
         }
     }
 }

@@ -6,6 +6,8 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors;
 using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
 using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
 using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomColors.PresetColors;
+using static Packages.com.ianritter.unityscriptingtools.Editor.AssetLoader;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
 {
@@ -15,9 +17,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
     public abstract class AceScriptableObjectEditorRoot : ScriptableObject
     {
         // public AceEventHandler aceEventHandler;
-        public CustomLogger logger;
+        protected CustomLogger logger;
         
-        public CustomLogger GetLogger => logger;
+        // public CustomLogger GetLogger => logger;
 
         
         // public void OnEnable()
@@ -40,6 +42,36 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
         public abstract Element[] GetElementList();
         
         // public abstract ElementInfo[] GetElementInfoList();
+
+        private void OnEnable()
+        {
+            logger = GetAssetByName<CustomLogger>( GetLoggerName() );
+            if ( logger == null )
+            {
+                logger = GetAssetByName<CustomLogger>( DefaultSoLoggerName );
+                Debug.LogError( $"Failed to load {GetLoggerName()}! Loading Default theme." );
+            }
+            // string result = logger == null ? $"{GetColoredStringMaroon( "failed" )}" : $"{GetColoredStringGreenYellow( "succeeded" )}";
+            // Debug.LogWarning( $"Loading SO's theme: {result}." );
+            OnEnableFirst();
+            OnEnableLast();
+        }
+
+        protected abstract string GetLoggerName();
+
+        /// <summary>
+        ///     Called in OnEnable before anything else.
+        /// </summary>
+        protected virtual void OnEnableFirst()
+        {
+        }
+
+        /// <summary>
+        ///     Call in OnEnable after everything else.
+        /// </summary>
+        protected virtual void OnEnableLast()
+        {
+        }
 
 
 
@@ -119,7 +151,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
                 {
                     var target = (AceMonobehaviourRootEditor) currentDelegate.Target;
                     logger.LogOneTimeIndent( $"• {GetColoredStringYellow( NicifyVariableName( currentDelegate.Target.GetType().Name ) )}: " +
-                                $"{GetColoredString( target.target.name, Purple.color )}" );
+                                $"{GetColoredString( target.target.name, GreenYellow.color )}" );
                 }
                 else
                 {

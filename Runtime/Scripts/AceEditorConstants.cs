@@ -9,16 +9,31 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
         public const string DemosSearchFolderName = "Packages/com.ianritter.aceuiframework/Runtime/Scripts/Demos";
         public const string LoggersSearchFolderName = "Packages/com.ianritter.aceuiframework/Runtime/Scripts/Services/Loggers";
         
+        // Custom Editor text.
+        public const string ThemeCustomEditorHelpInfoText = "For the sake of your sanity, use the settings window at \"Tools / ACE UI / Theme Settings\".\n" +
+                                                            "If you want to modify the settings of the ACE UI Settings windows, use the debug option 'Theme Self-edit'" +
+                                                            "in the Theme Manager window.";
+        
         // System theme names.
         public const string EditorWindowThemeName = "Ghost_Sys";
         // public const string EditorWindowThemeName = "AceEditorWindowTheme";
         public const string DefaultThemeName = "AceDefaultTheme";
         
-        // Script names.
-        public const string ThemeManagerCoreName = "AceThemeManager";
+        // Logger names.
+        public const string DefaultElementLoggerName = "_ElementLogger";
+        public const string DefaultMbRootLoggerName = "_MBRootLogger";
+        public const string DefaultSoLoggerName = "_SORootLogger";
+        public const string ThemeLoggerName = "ThemeLogger";
+        public const string ThemeManagerLoggerName = "ThemeManagerLogger";
         public const string MonobehaviourRootEditorLoggerName = "MonobehaviourRootEditorLogger";
         public const string ElementLoggerName = "ElementLogger";
-        public const string ThemeCoreName = "AceTheme";
+        
+        // Script names.
+        /// <summary>
+        /// This is both the script name and the scriptable object instance name.
+        /// </summary>
+        public const string ThemeManagerCoreName = "AceThemeManager";
+        public const string ThemeCoreClassName = "AceTheme";
         
         // Theme custom color names.
         public const string CustomColorOutlinesName = "Outlines";

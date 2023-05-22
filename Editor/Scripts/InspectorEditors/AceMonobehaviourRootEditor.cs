@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
@@ -11,6 +12,7 @@ using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.DefaultInspectorDrawing;
 using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 using static Packages.com.ianritter.unityscriptingtools.Editor.AssetLoader;
+using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
 {
@@ -29,27 +31,35 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
 
         public string GetTargetName() => _targetScript.GetType().ToString();
 
+        // private void Awake()
+        // {
+        //     Debug.Log( "AMRE|OE: Awake was called." );
+        //     
+        // }
+        
+
         /// <summary>
         ///     If you override this method, be sure to first call base.OnEnable to ensure set up is still done.
         /// </summary>
         private void OnEnable()
         {
-            _themeManager = GetAssetByName<AceThemeManager>( ThemeManagerCoreName, SystemCoreSearchFolderName );
-
-            // string result = _themeManager == null ? "failed" : "succeeded";
-            // Debug.LogWarning( $"AMRE|OE: Loading of {ThemeManagerCoreName}: {result}" );
-
-            _themeManager.OnThemeAssignmentChanged += OnTargetsThemeAssignmentUpdated;
-
             _aceLogger = GetAssetByName<CustomLogger>( MonobehaviourRootEditorLoggerName );
             // string result = _aceLogger == null ? "failed" : "succeeded";
             // Debug.LogWarning( $"AMRE|OE: Loading of {MonobehaviourRootEditorLoggerName}: {result}" );
-
-
+            
             _targetSerializedObject = serializedObject;
             _targetScript = (AceMonobehaviourRoot) target;
-            _aceLogger.Log( $"{_targetScript.name}'s OnEnable called." );
+            
+            _aceLogger.LogStart( true, $"{_targetScript.name}'s OnEnable called." );
+            
+            _themeManager = GetAssetByName<AceThemeManager>( ThemeManagerCoreName, SystemCoreSearchFolderName );
 
+            string result = _themeManager == null ? $"{GetColoredStringIndianRed( "failed" )}" : $"{GetColoredStringGreen( "succeeded" )}";
+            _aceLogger.Log( $"Loading of {ThemeManagerCoreName}: {result}" );
+
+            _themeManager.OnThemeAssignmentChanged += OnTargetsThemeAssignmentUpdated;
+            
+            
             InitializeTargetsTheme();
 
             OnEnableFirst();
@@ -66,15 +76,31 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
             SetPropertyConditions();
 
             OnEnableLast();
+            
+            _aceLogger.LogEnd();
         }
 
         private void InitializeTargetsTheme()
         {
-            if ( _theme != null ) return;
+            _aceLogger.LogStart();
+
+            // If the theme is not null when OnEnable is called, this is likely the result of a compilation. If so, the subscriptions
+            // would be lost so we'll re-up them.
+            if ( _theme != null )
+            {
+                _theme.OnDataUpdated -= OnThemeUpdated;
+                _theme.OnDataUpdated += OnThemeUpdated;
+                _theme.OnUIStateUpdated -= OnThemeUpdated;
+                _theme.OnUIStateUpdated += OnThemeUpdated;
+                _aceLogger.LogEnd( $"Theme {_theme.name} was not null. Re-established subscriptions." );
+                return;
+            }
 
             _theme = _themeManager.GetThemeForScript( _targetScript.GetType().ToString().Split( '.' ).Last() );
             _theme.OnDataUpdated += OnThemeUpdated;
             _theme.OnUIStateUpdated += OnThemeUpdated;
+
+            _aceLogger.LogEnd( $"Theme was null. Retrieve theme {GetColoredStringOrange(_theme.name)} and subscribed to its events." );
         }
         
         protected virtual void OnTargetDataUpdateRequired() => _targetSerializedObject.ApplyModifiedProperties();
@@ -129,6 +155,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
 
         private void GetInspectorElementsListFromTarget()
         {
+            _aceLogger.LogStart();
+            
             _inspectorElements = ConvertElementInfoList( _targetScript.GetElementInfoList() );
 
             // Initialize the inspector elements.
@@ -136,6 +164,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
             {
                 element.Initialize( _targetSerializedObject, _theme, true );
             }
+
+            _aceLogger.LogEnd();
         }
 
         private void OnTargetUiStateUpdated()

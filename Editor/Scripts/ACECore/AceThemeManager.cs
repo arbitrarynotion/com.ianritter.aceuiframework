@@ -37,8 +37,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         // private ColorPickerHandler _colorPickerHandler;
         
-        
-        
+        protected override string GetLoggerName() => ThemeManagerLoggerName;
+
         public override Element[] GetElementList() => new [] { GetScriptAndThemeDropdown() };
 
         public delegate void ThemeAssignmentChanged();
@@ -66,9 +66,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             OnScriptsReloaded?.Invoke();
         }
 
-        protected void OnEnable()
+        protected override void OnEnableLast()
         {
-            logger.Log( "On enable called..." );
+            logger.LogStart();
             InitializeHandlers();
 
             // Rebuild the scripts list any time files are changed in the project window.
@@ -76,6 +76,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             OnScriptsReloaded += OnScriptsReloadedUpdate;
 
             RefreshScriptThemeInfoList();
+            logger.LogEnd();
         }
 
         private void InitializeHandlers()

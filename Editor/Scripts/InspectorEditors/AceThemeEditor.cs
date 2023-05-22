@@ -1,5 +1,6 @@
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
 using UnityEditor;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
 {
@@ -16,7 +17,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
 
         public override void OnInspectorGUI()
         {
-            EditorGUILayout.HelpBox( "For the sake of your sanity, use the settings window at \"Tools / Custom Editor Tool (CET) Settings\".", 
+            EditorGUILayout.HelpBox( ThemeCustomEditorHelpInfoText, 
                 MessageType.Info );
 
             drawDefaultInspector = EditorGUILayout.Toggle( "Show Settings Anyways...", drawDefaultInspector );

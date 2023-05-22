@@ -180,8 +180,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
             if ( CustomSettings == null )
                 throw new NullReferenceException( $"E|I: {GetName()} failed to initialize its CustomSettings!" );
 
-            FrameSettings.FrameOutlineColorIndex = AceTheme.GetIndexForCustomColorName( FrameSettings.frameOutlineColorName );
-            FrameSettings.BackgroundColorIndex = AceTheme.GetIndexForCustomColorName( FrameSettings.backgroundColorName );
+            // FrameSettings.FrameOutlineColorIndex = AceTheme.GetIndexForCustomColorName( FrameSettings.frameOutlineColorName );
+            // FrameSettings.BackgroundColorIndex = AceTheme.GetIndexForCustomColorName( FrameSettings.backgroundColorName );
 
             InitializeElement( targetScriptableObject );
 

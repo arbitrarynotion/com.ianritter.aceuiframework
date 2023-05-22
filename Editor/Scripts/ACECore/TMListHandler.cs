@@ -46,10 +46,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                 // _logger.LogEnd();
                 return ExistingThemes;
             }
+
+            string reason = update ? " update was requested" : " the list was null";
+            _logger.LogStart( true, $"ExistingThemes is being rebuilt because: {reason}." );
             
             LoadThemes();
             
-            // _logger.LogEnd();
+            _logger.LogEnd();
             
             return ExistingThemes;
         }
@@ -59,8 +62,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             ExistingThemes = GetAssetsByType<AceTheme>( ThemesSearchFolderName );
 
             string userThemeSearchPath = _themeManager.GetUserThemesPath();
+            if ( userThemeSearchPath.Equals( "" ) ) return;
             
-            _logger.Log( $"Searching for user themes at path: {GetColoredStringGreen( userThemeSearchPath )}" );
+            _logger.LogIndentStart( $"Searching for user themes at path: {GetColoredStringGreen( userThemeSearchPath )}" );
             List<AceTheme> userThemes = GetAssetsByType<AceTheme>( userThemeSearchPath );
             _logger.Log( $"Found {GetColoredStringGreen( userThemes.Count.ToString() )} user themes." );
             
@@ -181,7 +185,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
                 // Debug.Log( $"        Scanning \"{TextFormat.GetColoredStringYellow(monoScript.name)}\"..." );
 
-                if ( monoScript.name.Equals( ThemeCoreName ) || monoScript.name.Equals( ThemeManagerCoreName ) )
+                if ( monoScript.name.Equals( ThemeCoreClassName ) || monoScript.name.Equals( ThemeManagerCoreName ) )
                     continue;
 
                 if ( scriptType != null && scriptType.IsSubclassOf( typeof( AceMonobehaviourRoot ) ) )

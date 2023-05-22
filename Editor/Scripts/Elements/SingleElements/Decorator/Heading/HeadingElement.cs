@@ -31,9 +31,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
 
         protected override void InitializeElement( SerializedObject targetScriptableObject )
         {
-            HeadingElementFrameSettings.EnabledTextColorIndex = AceTheme.GetIndexForCustomColorName( HeadingElementFrameSettings.enabledTextColorName );
-            HeadingElementFrameSettings.DisabledTextColorIndex = AceTheme.GetIndexForCustomColorName( HeadingElementFrameSettings.disabledTextColorName );
-            HeadingElementFrameSettings.BackgroundInactiveColorIndex = AceTheme.GetIndexForCustomColorName( HeadingElementFrameSettings.backgroundInactiveColorName );
+            // HeadingElementFrameSettings.EnabledTextColorNameIndex = AceTheme.GetIndexForCustomColorName( HeadingElementFrameSettings.enabledTextColorName );
+            // HeadingElementFrameSettings.DisabledTextColorNameIndex = AceTheme.GetIndexForCustomColorName( HeadingElementFrameSettings.disabledTextColorName );
+            // HeadingElementFrameSettings.BackgroundInactiveColorNameIndex = AceTheme.GetIndexForCustomColorName( HeadingElementFrameSettings.backgroundInactiveColorName );
         }
     }
 }

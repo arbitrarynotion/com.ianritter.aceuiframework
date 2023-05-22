@@ -1,0 +1,31 @@
+@startuml ColorSystemArchitecture
+
+!theme reddress-darkblue
+' !theme reddress-darkorange
+' !include https://raw.githubusercontent.com/bschwarz/puml-themes/master/themes/cyborg/puml-theme-cyborg.puml
+
+
+package "Editor" <<Folder>>{
+    class AceTheme{
+        - CustomColorSettings: customColorSettings
+    }
+
+    CustomColorSettings --> AceTheme::customColorSettings
+
+    class CustomColorSettings{
+        - CustomColorEntry[]: customColorList
+    }
+
+    
+}
+
+package "Runtime" <<Folder>>{
+    class CustomColorEntry{
+        +bool: toggle
+        +string: name
+        +Color: color
+        -string: previousName
+        -bool: wasUpdated
+    }
+    CustomColorEntry --> CustomColorSettings::customColorList
+}

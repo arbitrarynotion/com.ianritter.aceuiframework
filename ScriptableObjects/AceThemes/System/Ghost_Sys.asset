@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ghost_Sys
   m_EditorClassIdentifier: 
   logger: {fileID: 11400000, guid: 993055de20daf4b4dbc34b32f77e4a47, type: 2}
-  selectedSection: 0
+  selectedSection: 3
   basicGroupLevelSettingsMode: 0
   headingGroupLevelSettingsMode: 1
   singleElementsLevelSettingsMode: 0
@@ -414,14 +414,14 @@ MonoBehaviour:
     frameAutoPadding: 0
     frameOutlineColorName: Grey 6
     backgroundColorName: Grey 1
-    textHorizontalOffset: 2.3
+    textHorizontalOffset: 0
     boxHeight: 2
     enabledTextColorIndex: 22
     disabledTextColorIndex: 22
     backgroundInactiveColorIndex: 1
     enabledTextColorName: Grey 6
     disabledTextColorName: Grey 3
-    backgroundInactiveColorName: Grey 4
+    backgroundInactiveColorName: Grey 5
   - applyFraming: 1
     includeOutline: 1
     includeBackground: 1
@@ -431,7 +431,7 @@ MonoBehaviour:
     frameOutlineColorName: Grey 5
     backgroundColorName: Grey 1
     textHorizontalOffset: 0
-    boxHeight: 2
+    boxHeight: 0
     enabledTextColorIndex: 22
     disabledTextColorIndex: 21
     backgroundInactiveColorIndex: 1
@@ -656,11 +656,11 @@ MonoBehaviour:
     minMaxSliderMinWidth: 157
     minMaxSliderFloatFieldWidth: 37.7
     minMaxSliderSeparation: 5
-  globalSettingsSectionToggle: 1
-  colorsSectionToggle: 1
+  globalSettingsSectionToggle: 0
+  colorsSectionToggle: 0
   groupsSectionToggle: 1
-  singleElementsSectionToggle: 1
-  propertySpecificSectionToggle: 1
+  singleElementsSectionToggle: 0
+  propertySpecificSectionToggle: 0
   basicGroupsSectionDrawAreaToggle: 1
   headingGroupsSectionDrawAreaToggle: 0
   singleElementsSectionDrawAreaToggle: 1

@@ -172,7 +172,7 @@ package "Runtime" <<Folder>> {
             
     }
 
-    ScriptableObjects --o AceScriptableObjectEditorRoot::theme
+    ' ScriptableObjects --o AceScriptableObjectEditorRoot::theme
 
 
     ' package "Services" <<Frame>>{

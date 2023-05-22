@@ -10,22 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2446efb71edc1d4dbf1152fb3a81ae5, type: 3}
-  m_Name: ThemeLogger
+  m_Name: _ElementLogger
   m_EditorClassIdentifier: 
-  showLogs: 1
+  showLogs: 0
   useClassPrefix: 1
   boldMethods: 1
   boldBlockMethods: 1
+  maxPrefixCharacters: 0
   nicifiedNames: 1
-  includeStackTrace: 0
-  fullPathName: 0
-  targetClass: 
-  targetMethod: 
   logPrefix:
     toggle: 1
     customColor:
-      name: Theme
-      color: {r: 0.3, g: 0.6, b: 0.9, a: 1}
+      name: Element
+      color: {r: 0.23529412, g: 0.7019608, b: 0.44313726, a: 1}
   blockDivider:
     toggle: 1
     customColor:
@@ -57,4 +54,4 @@ MonoBehaviour:
       name: '***'
       color: {r: 0.9019608, g: 0.5019608, b: 0.2, a: 1}
   blockMethodColor: {r: 1, g: 1, b: 0, a: 1}
-  methodColor: {r: 1, g: 0.84, b: 0, a: 1}
+  methodColor: {r: 0.9019608, g: 0.5019608, b: 0.2, a: 1}

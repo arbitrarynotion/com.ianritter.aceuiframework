@@ -37,8 +37,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.E
         public string enabledTextColorName = CustomColorEnabledTextName;
         public string disabledTextColorName = CustomColorDisabledTextName;
         public string backgroundInactiveColorName = CustomColorDisabledTextName;
-        public int EnabledTextColorIndex { get; set; }
-        public int DisabledTextColorIndex { get; set; }
-        public int BackgroundInactiveColorIndex { get; set; }
+        // public int EnabledTextColorNameIndex { get; set; }
+        // public int DisabledTextColorNameIndex { get; set; }
+        // public int BackgroundInactiveColorNameIndex { get; set; }
     }
 }

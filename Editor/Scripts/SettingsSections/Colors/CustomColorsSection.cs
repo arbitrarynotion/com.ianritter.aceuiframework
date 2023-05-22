@@ -56,14 +56,18 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
             // Given a name, can I find the index number?
             // The name is in the CustomColor inside of the CustomColorEntry
             int selectedIndex = _customColorSettings.GetIndexForCustomColorName( colorName );
-            if ( selectedIndex == -1 ) Debug.LogWarning( $"Warning! Could not find custom color {GetColoredStringYellow(colorName)}" );
+            string selectedColorVarName = $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}].color";
+            if ( selectedIndex == -1 )
+            {
+                Debug.LogWarning( $"Warning! Could not find custom color {GetColoredStringYellow(colorName)}" );
+                selectedColorVarName = $"{GetRelativePathVarName( AceTheme.GetBackupColorVarName )}.color";
+            }
             CustomColorEntry customColorEntry = _customColorSettings.GetColorEntryForIndex( selectedIndex );
             // Debug.Log( $"CustomColorSection: The index returned for {GetColoredStringTeal(colorName)} is {GetColoredStringYellow(selectedIndex.ToString())}." );
             
             
             _customColorOptions = AceTheme.GetCustomColorOptions();
             
-            string selectedColorVarName = $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}].color";
 
             Element popupField = new CustomColorEntryPopupElement( selectedIndexRelativeVarName, GUIContent.none, _customColorOptions, new SingleCustomSettings(), callback, false, filter );
             // Element colorField = new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 60f}, callback, false, filter);

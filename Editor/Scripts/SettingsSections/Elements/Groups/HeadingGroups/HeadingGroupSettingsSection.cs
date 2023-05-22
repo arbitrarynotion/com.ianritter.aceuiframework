@@ -151,7 +151,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     
                     // AceTheme.GetColorSelectionElement( "Enabled", string.Empty,
                     //     headingElementFrameSettings.enabledTextColorIndex,
-                    //     headingElementFrameVarNames.EnabledTextColorIndex, OnColorSelectionChanged,
+                    //     headingElementFrameVarNames.EnabledTextColorNameIndex, OnColorSelectionChanged,
                     //     GetMustHaveOutlineFilter( headingElementFrameVarNames.FrameType ) ),
                     
                     AceTheme.GetColorSelectionElement( "Disabled", string.Empty,
@@ -160,7 +160,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     
                     // AceTheme.GetColorSelectionElement( "Disabled", string.Empty,
                     //     headingElementFrameSettings.disabledTextColorIndex,
-                    //     headingElementFrameVarNames.DisabledTextColorIndex, OnColorSelectionChanged )
+                    //     headingElementFrameVarNames.DisabledTextColorNameIndex, OnColorSelectionChanged )
                 )
             );
         }
@@ -228,7 +228,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     
                     // AceTheme.GetColorSelectionElement( "Inactive Color", string.Empty,
                     //     headingElementFrameSettings.backgroundInactiveColorIndex,
-                    //     headingElementFrameVarNames.BackgroundInactiveColorIndex, OnColorSelectionChanged,
+                    //     headingElementFrameVarNames.BackgroundInactiveColorNameIndex, OnColorSelectionChanged,
                     //     GetMustHaveBackgroundFilter( headingElementFrameVarNames.IncludeBackground ) )
                 ),
 

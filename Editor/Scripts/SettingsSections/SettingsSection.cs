@@ -113,11 +113,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
         //     return GetGroupWithLabelHeading( "Text Colors", string.Empty, null,
         //         AceTheme.GetColorSelectionElement( "Enabled", string.Empty,
         //             frameSettings.enabledTextColorIndex,
-        //             frameVarNames.EnabledTextColorIndex, OnColorSelectionChanged,
+        //             frameVarNames.EnabledTextColorNameIndex, OnColorSelectionChanged,
         //             GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
         //         AceTheme.GetColorSelectionElement( "Disabled", string.Empty,
         //             frameSettings.disabledTextColorIndex,
-        //             frameVarNames.DisabledTextColorIndex, OnColorSelectionChanged )
+        //             frameVarNames.DisabledTextColorNameIndex, OnColorSelectionChanged )
         //     );
         // }
 

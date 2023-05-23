@@ -27,6 +27,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts
         public const string ThemeManagerLoggerName = "ThemeManagerLogger";
         public const string MonobehaviourRootEditorLoggerName = "MonobehaviourRootEditorLogger";
         public const string ElementLoggerName = "ElementLogger";
+        public const string EditorWindowLoggerName = "AceEditorWindowLogger";
         
         // Script names.
         /// <summary>

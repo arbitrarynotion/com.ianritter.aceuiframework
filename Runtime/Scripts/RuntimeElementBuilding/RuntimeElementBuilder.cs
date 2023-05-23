@@ -271,30 +271,36 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
     public class FoldoutGroupInfo : GroupElementInfo
     {
         public string VarName { get; }
+        public Action ChangeCallBack { get; }
         public FoldoutGroupInfo(
             string varName,
             GUIContent guiContent, 
             GroupCustomSettings customSettings,
+            Action callback,
             ElementInfo[] elementInfos ) 
             : base( ElementType.GroupHeadingFoldout, guiContent, customSettings, elementInfos )
         {
             VarName = varName;
+            ChangeCallBack = callback;
         }
     }
     
     public class ToggleGroupInfo : GroupElementInfo
     {
         public string VarName { get; }
+        public Action ChangeCallBack { get; }
         public ToggleGroupInfo(
             string varName,
             GUIContent guiContent, 
             GroupCustomSettings customSettings,
             bool hideOnDisable,
+            Action callback,
             ElementInfo[] elementInfos ) 
             : base( ElementType.GroupHeadingToggle, guiContent, customSettings, elementInfos )
         {
             VarName = varName;
             HideOnDisable = hideOnDisable;
+            ChangeCallBack = callback;
         }
     }
     
@@ -609,14 +615,26 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
         /// </summary>
         public static ElementInfo GetGroupWithFoldoutHeading( 
-            [CanBeNull] string toggleVarName, 
             string title, 
             string tooltip, 
-            [CanBeNull] GroupCustomSettings customSettings, 
+            [CanBeNull] GroupCustomSettings customSettings,
             params ElementInfo[] elements )
         {
-            return GetGroupWithFoldoutHeading(
-                toggleVarName, title, tooltip, customSettings, elements, new ElementInfo[]{} );
+            return GetGroupWithFoldoutHeading( null, title, tooltip, customSettings, null, elements, new ElementInfo[]{} );
+        }
+        
+        /// <summary>
+        ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
+        /// </summary>
+        public static ElementInfo GetGroupWithFoldoutHeading( 
+            string toggleVarName, 
+            string title, 
+            string tooltip, 
+            [CanBeNull] GroupCustomSettings customSettings,
+            Action callback, 
+            params ElementInfo[] elements )
+        {
+            return GetGroupWithFoldoutHeading( toggleVarName, title, tooltip, customSettings, callback, elements, new ElementInfo[]{} );
         }
         
         /// <summary>
@@ -626,7 +644,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
             [CanBeNull] string toggleVarName, 
             string title, 
             string tooltip, 
-            [CanBeNull] GroupCustomSettings customSettings, 
+            [CanBeNull] GroupCustomSettings customSettings,
+            Action callback, 
             ElementInfo[] elementList,
             params ElementInfo[] elementsSingles )
         {
@@ -642,17 +661,18 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
                 elements[index++] = element;
             }
             
-            return new FoldoutGroupInfo( toggleVarName, new GUIContent( title, tooltip ), customSettings, elements );
+            return new FoldoutGroupInfo( toggleVarName, new GUIContent( title, tooltip ), customSettings, callback, elements );
         }
         
         /// <summary>
         ///     Get a foldout group using a locked, groups settings, a single element, and a variable list of elements.
         /// </summary>
         public static ElementInfo GetGroupWithFoldoutHeading( 
-            [CanBeNull] string toggleVarName, 
+            string toggleVarName, 
             string title, 
             string tooltip, 
-            [CanBeNull] GroupCustomSettings customSettings, 
+            [CanBeNull] GroupCustomSettings customSettings,
+            Action callback, 
             ElementInfo singleElement,
             params ElementInfo[] elementList )
         {
@@ -664,17 +684,18 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
                 elements[index++] = element;
             }
 
-            return new FoldoutGroupInfo( toggleVarName, new GUIContent( title, tooltip ), customSettings, elements );
+            return new FoldoutGroupInfo( toggleVarName, new GUIContent( title, tooltip ), customSettings, callback, elements );
         }
         
         /// <summary>
         ///     Get a foldout group using a locked, groups settings, a list of elements, and a single element.
         /// </summary>
         public static ElementInfo GetGroupWithFoldoutHeading( 
-            [CanBeNull] string toggleVarName, 
+            string toggleVarName, 
             string title, 
             string tooltip, 
-            [CanBeNull] GroupCustomSettings customSettings, 
+            [CanBeNull] GroupCustomSettings customSettings,
+            Action callback, 
             ElementInfo[] elementList,
             ElementInfo singleElement )
         {
@@ -688,7 +709,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
             
             elements[index] = singleElement;
 
-            return new FoldoutGroupInfo( toggleVarName, new GUIContent( title, tooltip ), customSettings, elements );
+            return new FoldoutGroupInfo( toggleVarName, new GUIContent( title, tooltip ), customSettings, callback, elements );
         }
 
 #endregion
@@ -697,17 +718,32 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
 #region GroupWithToggleHeading
         
         /// <summary>
-        ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
+        ///     Get a toggle group that isn't connect to a local variable. This will still disable all elements in the group when toggled off. The result just won't be
+        ///     saved.
         /// </summary>
         public static ElementInfo GetGroupWithToggleHeading( 
-            [CanBeNull] string toggleVarName, 
             string title, 
             string tooltip, 
             [CanBeNull] GroupCustomSettings customSettings, 
             bool hideOnDisable,
             params ElementInfo[] elements )
         {
-            return new ToggleGroupInfo( toggleVarName, new GUIContent( title, tooltip ), customSettings, hideOnDisable, elements );
+            return new ToggleGroupInfo( null, new GUIContent( title, tooltip ), customSettings, hideOnDisable, null, elements );
+        }
+        
+        /// <summary>
+        ///     Get a toggle group attached to a local bool variable with an optional callback when the toggle is changed.
+        /// </summary>
+        public static ElementInfo GetGroupWithToggleHeading( 
+            string toggleVarName, 
+            string title, 
+            string tooltip, 
+            [CanBeNull] GroupCustomSettings customSettings, 
+            bool hideOnDisable,
+            Action callback,
+            params ElementInfo[] elements )
+        {
+            return new ToggleGroupInfo( toggleVarName, new GUIContent( title, tooltip ), customSettings, hideOnDisable, callback, elements );
         }
 
 #endregion

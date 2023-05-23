@@ -28,15 +28,18 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             var foldoutRect = new Rect( headingDrawRect );
             foldoutRect.xMin += defaultDropdownArrowOffset + DefaultLeftPadding + _foldoutHeading.HeadingElementFrameSettings.textHorizontalOffset;
             
-            // foldoutGroup.IsVisible = EditorGUI.Foldout( headingRect, foldoutGroup.IsVisible, foldoutGroup.GUIContent, true, GetHeadingStyle( EditorStyles.foldout ) );
-            
+            EditorGUI.BeginChangeCheck();
             foldoutGroup.IsVisible = EditorGUI.Foldout( foldoutRect, foldoutGroup.IsVisible, GUIContent.none, true, GetHeadingStyle( EditorStyles.foldout ) );
             headingDrawRect.xMin += 15f + _foldoutHeading.HeadingElementFrameSettings.textHorizontalOffset;
-            // DrawLabelField( headingDrawRect );
             DrawLabelField( headingDrawRect, GetHeadingLabelStyle( foldoutGroup.IsVisible ) );
+            if ( !EditorGUI.EndChangeCheck() ) return;
+            
+            // Debug.Log( "A Heading Foldout was changed." );
             
             if (foldoutGroup.HasProperty)
                 foldoutGroup.HeadingProperty.boolValue = foldoutGroup.IsVisible;
+            
+            foldoutGroup.ChangeCallBack?.Invoke();
         }
         
         protected override bool HeadingIsEnabled() => ( (HeadingGroup) _foldoutHeading.ParentElement ).IsVisible;

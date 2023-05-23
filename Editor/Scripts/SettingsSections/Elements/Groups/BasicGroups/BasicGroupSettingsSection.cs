@@ -49,7 +49,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
             BasicGroupFrameSettings frameSettings = AceTheme.GetBasicGroupFrameSettingsForLevel( level );
             
             return new Element[]{
-                GetGroupWithFoldoutHeading( nameof(AceTheme.basicGroupsSectionDrawAreaToggle), "Draw Area Padding", string.Empty, null,
+                GetGroupWithFoldoutHeading( nameof(AceTheme.basicGroupsSectionDrawAreaToggle), "Draw Area Padding", string.Empty, null, OnColorRelatedBoolToggled,
                     
                     GetDrawAreaPaddingSection( "Total Area", string.Empty, basicGroupVarNames, false )
                 ),
@@ -73,9 +73,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
             return GetGroupWithLabelHeading( "Group Frame", string.Empty, null,
 
                 GetGroupWithToggleHeading( frameVarNames.IncludeBackground, "Background", string.Empty, null,
+                    OnColorRelatedBoolToggled,
                     true,
                     
-                    AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
+                    AceTheme.GetColorSelectionElement( "Color", string.Empty,
                         frameSettings.backgroundActiveColorName,
                         frameVarNames.BackgroundColorName, 
                         OnColorSelectionChanged,
@@ -89,6 +90,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                 ),
 
                 GetGroupWithToggleHeading( frameVarNames.IncludeOutline, "Outline", string.Empty, null,
+                    OnColorRelatedBoolToggled,
                     true,
                     GetElement( frameVarNames.FrameType, "Style", string.Empty ),
                     GetElement( frameVarNames.FramePadding, "Frame Padding", string.Empty, null, 

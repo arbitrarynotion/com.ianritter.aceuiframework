@@ -29,14 +29,22 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             // of its own.
             // toggleGroup.IsEnabled = GUI.Toggle( headingDrawRect, toggleGroup.IsEnabled, toggleGroup.GUIContent, GetHeadingStyle( EditorStyles.locked ) );
 
-            toggleGroup.IsEnabled = GUI.Toggle( toggleRect, toggleGroup.IsEnabled, GUIContent.none,
-                GetHeadingStyle( EditorStyles.toggle ) );
-
+            EditorGUI.BeginChangeCheck();
+            // bool previousState = toggleGroup.IsEnabled;
+            toggleGroup.IsEnabled = GUI.Toggle( toggleRect, toggleGroup.IsEnabled, GUIContent.none, GetHeadingStyle( EditorStyles.toggle ) );
             headingDrawRect.xMin += 20f + _toggleHeading.HeadingElementFrameSettings.textHorizontalOffset;
             DrawLabelField( headingDrawRect, GetHeadingLabelStyle( toggleGroup.IsEnabled ) );
+            if ( !EditorGUI.EndChangeCheck() ) return;
+            
+            // Debug.Log( $"A Heading Toggle was changed from {previousState.ToString()} to {toggleGroup.IsEnabled.ToString()}." );
 
             if ( toggleGroup.HasProperty )
+            {
                 toggleGroup.HeadingProperty.boolValue = toggleGroup.IsEnabled;
+                // Debug.Log( $"Applying modified bool property. Result: " +
+                //            $"{( toggleGroup.HeadingProperty.serializedObject.ApplyModifiedProperties() ? "A change was detected." : "No changes detected." )}" );
+            }
+            toggleGroup.ChangeCallBack?.Invoke();
         }
         
         protected override bool HeadingIsEnabled() => ( (HeadingGroup) _toggleHeading.ParentElement ).IsEnabled;

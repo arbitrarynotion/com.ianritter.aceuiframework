@@ -110,7 +110,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
 
                 // headingsSection,
 
-                GetGroupWithFoldoutHeading( null, "Frames", string.Empty, new GroupCustomSettings() {},
+                GetGroupWithFoldoutHeading( nameof( AceTheme.headingGroupsSectionFramesToggle ), "Frames", string.Empty, new GroupCustomSettings() {},
                     GetHeadingFrameSection( headingElementFrameSettings, headingElementFrameVarNames ),
                     GetGroupFrameSection( frameSettings, frameVarNames )
 
@@ -138,7 +138,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
             HeadingElementFrameSettings headingElementFrameSettings, 
             HeadingElementFrameSettingsVarNames headingElementFrameVarNames )
         {
-            return GetGroupWithFoldoutHeading( null, "Heading Text", string.Empty, null,
+            return GetGroupWithFoldoutHeading( nameof( AceTheme.headingGroupsSectionHeadingTextToggle ), "Heading Text", string.Empty, null,
                 GetElement( headingElementFrameVarNames.TextHorizontalOffset, "Text Offset", string.Empty ),
 
                 GetGroupWithLabelHeading( "Text Colors", string.Empty, null,
@@ -168,35 +168,30 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
         {
             return GetGroupWithLabelHeading( "Group Frame", string.Empty, null,
 
-                GetGroupWithToggleHeading( frameVarNames.IncludeBackground, "Background", string.Empty, null,
-                    true,
-                    
-                    AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
-                        frameSettings.backgroundActiveColorName,
-                        frameVarNames.BackgroundColorName, OnColorSelectionChanged,
-                        GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
-                    
-                    // AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
-                    //     frameSettings.backgroundColorIndex,
-                    //     frameVarNames.BackgroundColorIndex, OnColorSelectionChanged,
-                    //     GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
-                ),
-
                 GetGroupWithToggleHeading( frameVarNames.IncludeOutline, "Outline", string.Empty, null,
+                    OnColorRelatedBoolToggled,
                     true,
                     GetElement( frameVarNames.FrameType, "Style", string.Empty ),
                     GetElement( frameVarNames.FrameOutlineThickness, "Line Thickness", string.Empty, null,
-                        false, GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
+                        false, GetMustHaveOutlineFilter( frameVarNames.FrameType ) 
+                    ),
                     
                     AceTheme.GetColorSelectionElement( "Color", string.Empty,
                         frameSettings.frameOutlineColorName,
                         frameVarNames.FrameOutlineColorName, OnColorSelectionChanged,
-                        GetMustHaveOutlineFilter( frameVarNames.FrameType ) )
+                        GetMustHaveOutlineFilter( frameVarNames.FrameType ) 
+                    )
+                ),
+                
+                GetGroupWithToggleHeading( frameVarNames.IncludeBackground, "Background", string.Empty, null,
+                    OnColorRelatedBoolToggled,
+                    true,
                     
-                    // AceTheme.GetColorSelectionElement( "Color", string.Empty,
-                    //     frameSettings.frameOutlineColorIndex,
-                    //     frameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,
-                    //     GetMustHaveOutlineFilter( frameVarNames.FrameType ) )
+                    AceTheme.GetColorSelectionElement( "Color", string.Empty,
+                        frameSettings.backgroundActiveColorName,
+                        frameVarNames.BackgroundColorName, OnColorSelectionChanged,
+                        GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) 
+                    )
                 )
             );
         }
@@ -207,31 +202,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
         {
             return GetGroupWithLabelHeading( "Heading Frame", string.Empty, null,
                 GetElement( headingElementFrameVarNames.BoxHeight, "Height", string.Empty ),
-                GetGroupWithToggleHeading( headingElementFrameVarNames.IncludeBackground, "Background", string.Empty, null,
-                    true,
-                    
-                    AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
-                        headingElementFrameSettings.backgroundActiveColorName,
-                        headingElementFrameVarNames.BackgroundColorName, OnColorSelectionChanged,
-                        GetMustHaveBackgroundFilter( headingElementFrameVarNames.IncludeBackground ) ),
-                    
-                    // AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
-                    //     headingElementFrameSettings.backgroundColorIndex,
-                    //     headingElementFrameVarNames.BackgroundColorIndex, OnColorSelectionChanged,
-                    //     GetMustHaveBackgroundFilter( headingElementFrameVarNames.IncludeBackground ) ),
-                    
-                    AceTheme.GetColorSelectionElement( "Inactive Color", string.Empty,
-                        headingElementFrameSettings.backgroundInactiveColorName,
-                        headingElementFrameVarNames.BackgroundInactiveColorName, OnColorSelectionChanged,
-                        GetMustHaveBackgroundFilter( headingElementFrameVarNames.IncludeBackground ) )
-                    
-                    // AceTheme.GetColorSelectionElement( "Inactive Color", string.Empty,
-                    //     headingElementFrameSettings.backgroundInactiveColorIndex,
-                    //     headingElementFrameVarNames.BackgroundInactiveColorNameIndex, OnColorSelectionChanged,
-                    //     GetMustHaveBackgroundFilter( headingElementFrameVarNames.IncludeBackground ) )
-                ),
-
+                
                 GetGroupWithToggleHeading( headingElementFrameVarNames.IncludeOutline, "Outline", string.Empty, null,
+                    OnColorRelatedBoolToggled,
                     true,
                     GetElement( headingElementFrameVarNames.FrameType, "Style", string.Empty ),
                     GetElement( headingElementFrameVarNames.FrameOutlineThickness, "Line Thickness", string.Empty, null,
@@ -241,11 +214,20 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                         headingElementFrameSettings.frameOutlineColorName,
                         headingElementFrameVarNames.FrameOutlineColorName, OnColorSelectionChanged,
                         GetMustHaveOutlineFilter( headingElementFrameVarNames.FrameType ) )
-                    
-                    // AceTheme.GetColorSelectionElement( "Color", string.Empty,
-                    //     headingElementFrameSettings.frameOutlineColorIndex,
-                    //     headingElementFrameVarNames.FrameOutlineColorIndex, OnColorSelectionChanged,
-                    //     GetMustHaveOutlineFilter( headingElementFrameVarNames.FrameType ) )
+                ),
+                                
+                GetGroupWithToggleHeading( headingElementFrameVarNames.IncludeBackground, "Background", string.Empty, null,
+                    OnColorRelatedBoolToggled,
+                    true,
+                    AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
+                        headingElementFrameSettings.backgroundActiveColorName,
+                        headingElementFrameVarNames.BackgroundColorName, OnColorSelectionChanged,
+                        GetMustHaveBackgroundFilter( headingElementFrameVarNames.IncludeBackground ) ),
+
+                    AceTheme.GetColorSelectionElement( "Inactive Color", string.Empty,
+                        headingElementFrameSettings.backgroundInactiveColorName,
+                        headingElementFrameVarNames.BackgroundInactiveColorName, OnColorSelectionChanged,
+                        GetMustHaveBackgroundFilter( headingElementFrameVarNames.IncludeBackground ) )
                 )
             );
         }

@@ -11,7 +11,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.E
         ///     Shifts the element to the right.
         /// </summary>
         [Range( 0, 30 )]
-        public float textHorizontalOffset = 15f;
+        public float textHorizontalOffset = 0f;
         
         /// <summary>
         ///     Expands the element vertically with the heading vertically centered.
@@ -19,20 +19,20 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal.E
         [Range( 0, 15 )] 
         public float boxHeight = 0;
         
-        /// <summary>
-        ///     The color of the heading text when the heading is active.
-        /// </summary>
-        public int enabledTextColorIndex = 0;
-        
-        /// <summary>
-        ///     The color of the heading text when the heading is inactive.
-        /// </summary>
-        public int disabledTextColorIndex = 1;
-        
-        /// <summary>
-        ///     The background frame color when the heading is inactive (collapsed foldout or disable locked).
-        /// </summary>
-        public int backgroundInactiveColorIndex = 1;
+        // /// <summary>
+        // ///     The color of the heading text when the heading is active.
+        // /// </summary>
+        // public int enabledTextColorIndex = 0;
+        //
+        // /// <summary>
+        // ///     The color of the heading text when the heading is inactive.
+        // /// </summary>
+        // public int disabledTextColorIndex = 1;
+        //
+        // /// <summary>
+        // ///     The background frame color when the heading is inactive (collapsed foldout or disable locked).
+        // /// </summary>
+        // public int backgroundInactiveColorIndex = 1;
         
         public string enabledTextColorName = CustomColorEnabledTextName;
         public string disabledTextColorName = CustomColorDisabledTextName;

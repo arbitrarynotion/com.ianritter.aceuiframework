@@ -2,9 +2,11 @@ using System;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
 using UnityEditor;
 using UnityEngine;
 using static Packages.com.ianritter.unityscriptingtools.Editor.AssetLoader;
+using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
 {
@@ -25,6 +27,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
         protected AceTheme AceTheme { get; set; }
         
         public abstract string GetTargetName();
+
+        private CustomLogger _logger;
 
         // This theme is the data that the menu will be displaying, it has no effect on this window's layout.
         private AceScriptableObjectEditorRoot TargetScript
@@ -55,6 +59,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
 
         private void OnEnable()
         {
+            _logger = GetAssetByName<CustomLogger>( EditorWindowLoggerName, LoggersSearchFolderName );
+            if ( _logger == null )
+            {
+                Debug.LogError( $"Failed to load {EditorWindowLoggerName}! Loading Default theme." );
+            }
             OnEnableFirst();
             
             LoadSettingsScriptableObjects();
@@ -143,16 +152,28 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
             Repaint();
         }
 
-        protected virtual void OnTargetDataUpdateRequired() => targetSerializedObject.ApplyModifiedProperties();
+        protected virtual void OnTargetDataUpdateRequired()
+        {
+            _logger.LogStart();
+            _logger.LogIndentStart( "Applying modified properties." );
+            _logger.Log( targetSerializedObject.ApplyModifiedProperties() ? "A change was detected but no action is being taken in response." : "No changes detected." );
+            _logger.LogEnd();
+        }
 
         /// <summary>
         ///     The target script has made a change to its element list so rebuild the list and repaint.
         /// </summary>
         protected virtual void OnTargetUiStateUpdated()
         {
-            targetSerializedObject.ApplyModifiedProperties();
+            _logger.LogStart();
+            _logger.LogIndentStart( "Applying modified properties." );
+            _logger.Log( targetSerializedObject.ApplyModifiedProperties() ? "A change was detected but no action is being taken in response." : "No changes detected." );
+            _logger.DecrementMethodIndent();
+            _logger.Log( "Getting element list." );
             GetElementsListFromTarget();
+            _logger.Log( "Repainting." );
             Repaint();
+            _logger.LogEnd();
         }
 
         /// <summary>

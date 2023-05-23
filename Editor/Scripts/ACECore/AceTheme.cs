@@ -89,9 +89,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         [HideInInspector] public bool groupsSectionToggle = true;
         [HideInInspector] public bool singleElementsSectionToggle = true;
         [HideInInspector] public bool propertySpecificSectionToggle = true;
-        [HideInInspector] public bool basicGroupsSectionDrawAreaToggle;
-        [HideInInspector] public bool headingGroupsSectionDrawAreaToggle;
-        [HideInInspector] public bool singleElementsSectionDrawAreaToggle;
+        [HideInInspector] public bool basicGroupsSectionDrawAreaToggle = true;
+        [HideInInspector] public bool headingGroupsSectionDrawAreaToggle = true;
+        [HideInInspector] public bool headingGroupsSectionHeadingTextToggle = true;
+        [HideInInspector] public bool headingGroupsSectionFramesToggle = true;
+        [HideInInspector] public bool singleElementsSectionDrawAreaToggle = true;
 
         private readonly Element _dividingLine = new DividingLineElement();
         private Element _sectionSelectionDropdown;
@@ -198,9 +200,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             
             groupSettingsSection.OnDataUpdated += RepaintSettingsWindow;
             groupSettingsSection.OnUIStateUpdated += RebuildSettingsWindow;
+            groupSettingsSection.OnColorUserModified += OnColorUsersModified;
             
             singleElementSettingsSection.OnDataUpdated += RepaintSettingsWindow;
             singleElementSettingsSection.OnUIStateUpdated += RebuildSettingsWindow;
+            singleElementSettingsSection.OnColorUserModified += OnColorUsersModified;
             
             propertiesSettingsSection.OnDataUpdated += RepaintSettingsWindow;
             propertiesSettingsSection.OnUIStateUpdated += RebuildSettingsWindow;
@@ -220,10 +224,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             
             groupSettingsSection.OnDataUpdated -= RepaintSettingsWindow;
             groupSettingsSection.OnUIStateUpdated -= RebuildSettingsWindow;
+            groupSettingsSection.OnColorUserModified -= OnColorUsersModified;
             groupSettingsSection.UnsubscribeFromChildSections();
 
             singleElementSettingsSection.OnDataUpdated -= RepaintSettingsWindow;
             singleElementSettingsSection.OnUIStateUpdated -= RebuildSettingsWindow;
+            singleElementSettingsSection.OnColorUserModified -= OnColorUsersModified;
             
             propertiesSettingsSection.OnDataUpdated -= RepaintSettingsWindow;
             propertiesSettingsSection.OnUIStateUpdated -= RebuildSettingsWindow;
@@ -242,10 +248,17 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         private void RepaintSettingsWindow()
         {
+            logger.LogStart();
+            logger.Log( "Calling Data Update Required Notify." );
             DataUpdateRequiredNotify();
+            
+            // UpdateAllColorUseCounts();
+            
             // Todo: Make updates more efficient. All repainting set to rebuilding while ironing out updating issues.
+            logger.Log( "Calling UI State Updated Notify." );
             UIStateUpdatedNotify();
             // DataUpdatedNotify();
+            logger.LogEnd();
         }
 
 
@@ -300,11 +313,11 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         private void SubscribeToNewColor()
         {
-            logger.LogStart();
+            // logger.LogStart();
             CustomColorEntry newColorEntry = colorsPaletteSettings.GetColorEntryForIndex( colorsPaletteSettings.GetColorListCount() - 1 );
             // Note that this event is only triggered if the color passes the name check in ColorPaletteSettings.
             newColorEntry.OnNameUpdated += ReplaceColorNameWithNewName;
-            logger.LogEnd();
+            // logger.LogEnd();
         }
         
         private void ReplaceColorNameWithNewName( string oldName, string newName )
@@ -350,6 +363,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                     frameSettings[i].backgroundInactiveColorName = newName;
             }
         }
+
+        public void OnColorUsersModified()
+        {
+            UpdateAllColorUseCounts();
+            UIStateUpdatedNotify();
+        }
         
         public void UpdateAllColorUseCounts()
         {
@@ -371,94 +390,156 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         /// <returns></returns>
         private void GetNumberOfUsesForColor( CustomColorEntry colorEntry )
         {
+            colorEntry.userList = "Users:";
             GetNumberOfUniversalUsesForColor( "Heading Group", headingGroupFrameSettingsList, headingGroupLevelSettingsMode, colorEntry );
             GetNumberOfUniversalUsesForColor( "Basic Group", basicGroupFrameSettingsList, basicGroupLevelSettingsMode, colorEntry );
             GetNumberOfUniversalUsesForColor( "Single Element", singleElementFrameSettingsList, singleElementsLevelSettingsMode, colorEntry );
-            GetNumberOfHeadingUsesForColor( headingElementFrameSettingsList, headingGroupLevelSettingsMode, colorEntry );
+            GetNumberOfUniversalUsesForColor( "Heading Element", headingElementFrameSettingsList, headingGroupLevelSettingsMode, colorEntry );
+            if ( colorEntry.userList.Equals( "Users:" ) ) colorEntry.userList += " none";
         }
         
+        /// <summary>
+        ///     Records all color uses on all active settings level for this settings set.
+        /// </summary>
         private void GetNumberOfUniversalUsesForColor( 
             string settingsName, 
             IReadOnlyList<FrameSettings> frameSettings, 
             LevelSettingsSection.LevelSettingsMode levelSettingsMode, 
             CustomColorEntry colorEntry )
         {
+            // Stores the list of users for this color entry. If none are found, this string will still be empty by the end of the method.
+            string listOfUsers = "";
+
             for (int i = 0; i < Levels; i++)
             {
+                // Stores the list of users for this level. If none are found, this string will still be empty by the end of this loop.
+                string currentLevelOutput = "";
+                
                 // Only count the active settings levels.
                 if ( levelSettingsMode == LevelSettingsSection.LevelSettingsMode.AllUseRootLevel && i > 0 ) continue;
                 if ( levelSettingsMode == LevelSettingsSection.LevelSettingsMode.AllChildrenUseLevel1 && i > 1 ) continue;
 
                 FrameSettings currentFrameSettings = frameSettings[i];
-                if ( !currentFrameSettings.applyFraming ) continue;
+                
+                // All heading element frame settings only.
+                if ( currentFrameSettings.GetType() == typeof( HeadingElementFrameSettings ) )
+                {
+                    var currentHeadingElementFrameSetting = (HeadingElementFrameSettings) frameSettings[i];
+                    
+                    if ( currentHeadingElementFrameSetting.enabledTextColorName.Equals( colorEntry.name ) ) 
+                        currentLevelOutput = UpdateColorEntry( currentLevelOutput, colorEntry, "Enabled Text" );
+
+                    if ( currentHeadingElementFrameSetting.disabledTextColorName.Equals( colorEntry.name ) ) 
+                        currentLevelOutput = UpdateColorEntry( currentLevelOutput, colorEntry, "Disabled Text" );
+                }
+
+                // If framing is not used for this level of settings, stop here.
+                if ( !currentFrameSettings.applyFraming )
+                {
+                    listOfUsers = ProcessColorUsersLine( currentLevelOutput, listOfUsers, i );
+                    continue;
+                }
+                
+                if ( currentFrameSettings.includeOutline && currentFrameSettings.frameOutlineColorName.Equals( colorEntry.name ) )
+                    currentLevelOutput = UpdateColorEntry( currentLevelOutput, colorEntry, "Outlines" );
+
                 if ( currentFrameSettings.includeBackground && currentFrameSettings.backgroundActiveColorName.Equals( colorEntry.name ) )
+                    currentLevelOutput = UpdateColorEntry( currentLevelOutput, colorEntry, "Background" );
+
+                // All heading element frame settings only.
+                if ( currentFrameSettings.GetType() == typeof( HeadingElementFrameSettings ) )
                 {
-                    colorEntry.userCount++;
-                    colorEntry.userList += $"\n{settingsName} Frame Background LVL{i.ToString()}";
+                    var currentHeadingElementFrameSetting = (HeadingElementFrameSettings) frameSettings[i];
+                    if ( currentHeadingElementFrameSetting.backgroundInactiveColorName.Equals( colorEntry.name ) )
+                    {
+                        currentLevelOutput = UpdateColorEntry( currentLevelOutput, colorEntry, "Inactive Background" );
+                    }
                 }
                 
-                if ( currentFrameSettings.includeOutline && currentFrameSettings.frameOutlineColorName.Equals( colorEntry.name ) )
-                {
-                    colorEntry.userCount++;
-                    colorEntry.userList += $"\n{settingsName} Frame Outline LVL{i.ToString()}";
-                }
+                listOfUsers = ProcessColorUsersLine( currentLevelOutput, listOfUsers, i );
             }
+
+            // If any users were recorded for this color, append the list to the color entry.
+            if ( listOfUsers.Equals( "" ) ) return;
+            
+            if ( !listOfUsers.Equals( "" ) ) listOfUsers += "\n";
+            colorEntry.userList += $"\n    {settingsName}:{listOfUsers}";
         }
-
-        private void GetNumberOfHeadingUsesForColor( 
-            IReadOnlyList<HeadingElementFrameSettings> frameSettings, 
-            LevelSettingsSection.LevelSettingsMode levelSettingsMode, 
-            CustomColorEntry colorEntry )
+        
+        private string UpdateColorEntry( string currentLevelOutput, CustomColorEntry colorEntry, string colorUseName )
         {
-            for (int i = 0; i < Levels; i++)
-            {
-                // Only count the active settings levels.
-                if ( levelSettingsMode == LevelSettingsSection.LevelSettingsMode.AllUseRootLevel && i > 0 ) continue;
-                if ( levelSettingsMode == LevelSettingsSection.LevelSettingsMode.AllChildrenUseLevel1 && i > 1 ) continue;
-
-                HeadingElementFrameSettings currentFrameSettings = frameSettings[i];
-                
-                if ( currentFrameSettings.enabledTextColorName.Equals( colorEntry.name ) )
-                {
-                    colorEntry.userCount++;
-                    colorEntry.userList += $"\nHeading Enabled Text LVL{i.ToString()}";
-                }
-                
-                if ( currentFrameSettings.disabledTextColorName.Equals( colorEntry.name ) )
-                {
-                    colorEntry.userCount++;
-                    colorEntry.userList += $"\nHeading Disabled Text LVL{i.ToString()}";
-                }
-
-                if ( !currentFrameSettings.applyFraming ) continue;
-                
-                if ( currentFrameSettings.includeOutline && currentFrameSettings.frameOutlineColorName.Equals( colorEntry.name ) )
-                {
-                    colorEntry.userCount++;
-                    colorEntry.userList += $"\nHeading Frame Outline LVL{i.ToString()}";
-                }
-                
-                if ( !currentFrameSettings.includeBackground ) continue;
-                
-                if ( currentFrameSettings.backgroundActiveColorName.Equals( colorEntry.name ) )
-                {
-                    colorEntry.userCount++;
-                    colorEntry.userList += $"\nHeading Active Background LVL{i.ToString()}";
-                }
-                
-                if ( currentFrameSettings.backgroundInactiveColorName.Equals( colorEntry.name ) )
-                {
-                    colorEntry.userCount++;
-                    colorEntry.userList += $"\nHeading Inactive Background LVL{i.ToString()}";
-                }
-            }
-        }
-
-        private void UpdateColorEntry( string settingsName, CustomColorEntry colorEntry, int index )
-        {
+            // Add new line char if this isn't the first entry this loop.
+            if ( !currentLevelOutput.Equals( "" ) ) currentLevelOutput += "\n";
+                    
             colorEntry.userCount++;
-            colorEntry.userList += $"\n{settingsName} LVL{index.ToString()}";
+            currentLevelOutput += $"            {colorUseName}";
+            return currentLevelOutput;
         }
+
+        private string ProcessColorUsersLine( string currentLevelOutput, string listOfUsers, int settingsLevel )
+        {
+            // If there were any users of the current color on this level, add the level entries to the output string.
+            if ( currentLevelOutput.Equals( "" ) ) return listOfUsers;
+            
+            string levelName = ( settingsLevel == 0 ) ? "Root LVL" : $"LVL{settingsLevel.ToString()}";
+            listOfUsers += $"\n        {levelName}:\n{currentLevelOutput}";
+
+            return listOfUsers;
+        }
+
+        // private void GetNumberOfHeadingUsesForColor( 
+        //     IReadOnlyList<HeadingElementFrameSettings> frameSettings, 
+        //     LevelSettingsSection.LevelSettingsMode levelSettingsMode, 
+        //     CustomColorEntry colorEntry )
+        // {
+        //     
+        //     for (int i = 0; i < Levels; i++)
+        //     {
+        //         if ( frameSettings[i].GetType() == typeof( HeadingElementFrameSettings) ) Debug.Log( "Found heading element frame settings." );
+        //
+        //         // Only count the active settings levels.
+        //         if ( levelSettingsMode == LevelSettingsSection.LevelSettingsMode.AllUseRootLevel && i > 0 ) continue;
+        //         if ( levelSettingsMode == LevelSettingsSection.LevelSettingsMode.AllChildrenUseLevel1 && i > 1 ) continue;
+        //
+        //         HeadingElementFrameSettings currentFrameSettings = frameSettings[i];
+        //         
+        //         if ( currentFrameSettings.enabledTextColorName.Equals( colorEntry.name ) )
+        //         {
+        //             colorEntry.userCount++;
+        //             colorEntry.userList += $"\nHeading Group / Heading Enabled Text LVL{i.ToString()}";
+        //         }
+        //         
+        //         if ( currentFrameSettings.disabledTextColorName.Equals( colorEntry.name ) )
+        //         {
+        //             colorEntry.userCount++;
+        //             colorEntry.userList += $"\nHeading Group / Heading Disabled Text LVL{i.ToString()}";
+        //         }
+        //
+        //         if ( !currentFrameSettings.applyFraming ) continue;
+        //         
+        //         if ( currentFrameSettings.includeOutline && currentFrameSettings.frameOutlineColorName.Equals( colorEntry.name ) )
+        //         {
+        //             colorEntry.userCount++;
+        //             colorEntry.userList += $"\nHeading Group / Heading Frame Outline LVL{i.ToString()}";
+        //         }
+        //         
+        //         if ( !currentFrameSettings.includeBackground ) continue;
+        //         
+        //         if ( currentFrameSettings.backgroundActiveColorName.Equals( colorEntry.name ) )
+        //         {
+        //             colorEntry.userCount++;
+        //             colorEntry.userList += $"\nHeading Group / Heading Active Background LVL{i.ToString()}";
+        //         }
+        //         
+        //         if ( currentFrameSettings.backgroundInactiveColorName.Equals( colorEntry.name ) )
+        //         {
+        //             colorEntry.userCount++;
+        //             colorEntry.userList += $"\nHeading Group / Heading Inactive Background LVL{i.ToString()}";
+        //         }
+        //     }
+        // }
+
+
 
 
 #region GettingElements
@@ -473,7 +554,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                     _sectionSelectionDropdown,
                     _dividingLine,
                     GetGlobalSettingsElement(),
-                    GetCustomColorsElement(),
+                    GetColorPaletteElement(),
                     GetGroupsElement(),
                     GetSinglesElement(),
                     GetPropertiesElement()
@@ -489,7 +570,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                 {
                     SettingsSectionOptions.GlobalAdjustments => GetGlobalSettingsElement(),
                     SettingsSectionOptions.GroupElements => GetGroupsElement(),
-                    SettingsSectionOptions.Colors => GetCustomColorsElement(),
+                    SettingsSectionOptions.Colors => GetColorPaletteElement(),
                     SettingsSectionOptions.SingleElements => GetSinglesElement(),
                     SettingsSectionOptions.PropertyElements => GetPropertiesElement(),
                     _ => throw new ArgumentOutOfRangeException()
@@ -498,7 +579,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         }
 
         private Element GetGlobalSettingsElement() => globalSettingsSection.GetSection();
-        private Element GetCustomColorsElement() => colorPaletteSection.GetSection();
+        private Element GetColorPaletteElement()
+        {
+            UpdateAllColorUseCounts();
+            return colorPaletteSection.GetSection();
+        }
+
         private Element GetGroupsElement() => groupSettingsSection.GetSection();
         private Element GetSinglesElement() => singleElementSettingsSection.GetSection();
         private Element GetPropertiesElement() => propertiesSettingsSection.GetSection();

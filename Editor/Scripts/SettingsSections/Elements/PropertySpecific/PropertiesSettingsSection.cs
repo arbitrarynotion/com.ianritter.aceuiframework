@@ -17,7 +17,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
             return GetGroupWithFoldoutHeading( nameof( AceTheme.propertySpecificSectionToggle ),
                 "Property Elements", "Settings specific to property elements.", null,
 
-
+                // GetLabelElement( "Note that these settings only apply to elements that share a line with other elements." ),
                 GetGroupWithFoldoutHeading( null, "Field widths for Column Properties", 
                     "The following settings control how much space is allocated to the two parts of an element: label and field." +
                     "When the assigned min width exceeds the width available, the element will draw its field on a second line.", null,

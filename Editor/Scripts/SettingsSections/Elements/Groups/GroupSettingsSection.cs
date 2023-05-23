@@ -2,6 +2,7 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.Groups.BasicGroups;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.Groups.HeadingGroups;
+using UnityEngine;
 using static Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementBuilding.AceElementBuilder;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Elements.Groups
@@ -25,20 +26,26 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
 
         private void SubscribeToChildSections()
         {
-            // Note that the Group section acts as a go between telling the CET editor when
+            // Note that the Group section acts as a go between telling the Ace Theme editor when
             // the heading and basic group sections have updated.
             _basicGroupSettingsSection.OnDataUpdated += BasicGroupSectionDataChanged;
             _basicGroupSettingsSection.OnUIStateUpdated += BasicGroupSectionUIStateChanged;
+            _basicGroupSettingsSection.OnColorUserModified += ColorUserModifiedNotify;
+            
             _headingGroupSettingsSection.OnDataUpdated += HeadingGroupSectionDataChanged;
             _headingGroupSettingsSection.OnUIStateUpdated += HeadingGroupSectionDataChanged;
+            _headingGroupSettingsSection.OnColorUserModified += ColorUserModifiedNotify;
         }
 
         public void UnsubscribeFromChildSections()
         {
             _basicGroupSettingsSection.OnDataUpdated -= BasicGroupSectionDataChanged;
             _basicGroupSettingsSection.OnUIStateUpdated += BasicGroupSectionDataChanged;
+            _basicGroupSettingsSection.OnColorUserModified += ColorUserModifiedNotify;
+            
             _headingGroupSettingsSection.OnDataUpdated -= HeadingGroupSectionDataChanged;
             _headingGroupSettingsSection.OnUIStateUpdated += HeadingGroupSectionUIChanged;
+            _headingGroupSettingsSection.OnColorUserModified += ColorUserModifiedNotify;
 
             
             _basicGroupSettingsSection.ClearSubscriptions();
@@ -69,8 +76,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                 null,
 
                 GetTabbedOptionsSection( activeSection,
-                    ( "Heading GroupElements", string.Empty, groupSectionState == GroupSectionState.HeadingGroups, OnHeadingGroupButtonPressed ),
-                    ( "Basic GroupElements", string.Empty, groupSectionState == GroupSectionState.BasicGroups, OnBasicGroupButtonPressed )
+                    ( "Heading Groups", string.Empty, groupSectionState == GroupSectionState.HeadingGroups, OnHeadingGroupButtonPressed ),
+                    ( "Basic Groups", string.Empty, groupSectionState == GroupSectionState.BasicGroups, OnBasicGroupButtonPressed )
                 )
             );
         }

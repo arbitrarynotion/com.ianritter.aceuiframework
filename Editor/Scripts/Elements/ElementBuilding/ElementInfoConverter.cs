@@ -134,7 +134,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
                     return new FoldoutGroup( 
                         foldoutGroupInfo.VarName, 
                         foldoutGroupInfo.GUIContent, 
-                        foldoutGroupInfo.GroupCustomSettings, 
+                        foldoutGroupInfo.GroupCustomSettings,
+                        foldoutGroupInfo.ChangeCallBack,
                         ConvertElementInfoList( foldoutGroupInfo.ElementInfos ) 
                     );
                 
@@ -146,6 +147,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
                         toggleGroupInfo.GUIContent, 
                         toggleGroupInfo.GroupCustomSettings, 
                         toggleGroupInfo.HideOnDisable,
+                        toggleGroupInfo.ChangeCallBack,
                         ConvertElementInfoList( toggleGroupInfo.ElementInfos ) 
                     );
                 

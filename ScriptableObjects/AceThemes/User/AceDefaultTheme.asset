@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedSection: 0
   basicGroupLevelSettingsMode: 0
-  headingGroupLevelSettingsMode: 1
+  headingGroupLevelSettingsMode: 0
   singleElementsLevelSettingsMode: 0
   globalSettings:
     leftIndentUnitAmount: 15
@@ -33,30 +33,18 @@ MonoBehaviour:
     showMeasurementLines: 0
   colorsPaletteSettings:
     colorEntryList:
-    - locked: 0
+    - locked: 1
       name: Outlines
       color: {r: 0.32, g: 0.32, b: 0.32, a: 1}
-      userCount: 2
-      userList: 'Users:
-
-        Heading Group Frame Outline LVL0
-
-        Heading
-        Group Frame Outline LVL1'
+      userCount: 0
+      userList: 'Users:'
       previousName: 
       wasUpdated: 0
     - locked: 0
       name: Root Background
       color: {r: 0.18, g: 0.18, b: 0.18, a: 1}
-      userCount: 3
-      userList: 'Users:
-
-        Basic Group Frame Background LVL0
-
-        Heading
-        Active Background LVL0
-
-        Heading Active Background LVL1'
+      userCount: 1
+      userList: "Users:\nBasic Group Frame:\n    Root LVL:\n        Background\n"
       previousName: 
       wasUpdated: 0
     - locked: 0
@@ -83,64 +71,52 @@ MonoBehaviour:
     - locked: 0
       name: Grey 1
       color: {r: 0.45, g: 0.45, b: 0.45, a: 1}
-      userCount: 0
-      userList: 'Users:'
+      userCount: 1
+      userList: 'Users:
+
+        Heading Group / Heading Active Background LVL0'
       previousName: 
       wasUpdated: 0
     - locked: 0
       name: Grey 2
       color: {r: 0.32, g: 0.32, b: 0.32, a: 1}
-      userCount: 1
-      userList: 'Users:
-
-        Basic Group Frame Outline LVL0'
+      userCount: 2
+      userList: "Users:\nBasic Group Frame:\n    Root LVL:\n        Outline\n\nHeading
+        Group / Heading Disabled Text LVL0"
       previousName: 
       wasUpdated: 0
     - locked: 0
       name: Grey 3
       color: {r: 0.23, g: 0.23, b: 0.23, a: 1}
-      userCount: 2
-      userList: 'Users:
-
-        Heading Disabled Text LVL0
-
-        Heading Disabled
-        Text LVL1'
+      userCount: 0
+      userList: 'Users:'
       previousName: 
       wasUpdated: 0
     - locked: 0
       name: Grey 4
       color: {r: 0.17, g: 0.16, b: 0.16, a: 1}
       userCount: 2
-      userList: 'Users:
-
-        Heading Inactive Background LVL0
-
-        Heading
-        Inactive Background LVL1'
+      userList: "Users:\nHeading Group Frame:\n    Root LVL:\n        Outline\n\nHeading
+        Group / Heading Inactive Background LVL0"
       previousName: 
       wasUpdated: 0
     - locked: 0
       name: Grey 5
       color: {r: 0.11, g: 0.11, b: 0.11, a: 1}
-      userCount: 1
-      userList: 'Users:
-
-        Heading Frame Outline LVL1'
+      userCount: 0
+      userList: 'Users:'
       previousName: 
       wasUpdated: 0
     - locked: 0
       name: Grey 6
       color: {r: 0.07, g: 0.07, b: 0.07, a: 1}
-      userCount: 3
+      userCount: 2
       userList: 'Users:
 
-        Heading Enabled Text LVL0
+        Heading Group / Heading Enabled Text LVL0
 
-        Heading Frame
-        Outline LVL0
-
-        Heading Enabled Text LVL1'
+        Heading
+        Group / Heading Frame Outline LVL0'
       previousName: 
       wasUpdated: 0
     - locked: 0
@@ -148,7 +124,7 @@ MonoBehaviour:
       color: {r: 0.25, g: 0.64, b: 0.22, a: 1}
       userCount: 0
       userList: 'Users:'
-      previousName: 'Green 1 '
+      previousName: 
       wasUpdated: 0
     - locked: 0
       name: Green 2
@@ -232,7 +208,7 @@ MonoBehaviour:
       color: {r: 0.26415092, g: 0.16123846, b: 0.026165891, a: 1}
       userCount: 0
       userList: 'Users:'
-      previousName: Orange 4
+      previousName: 
       wasUpdated: 0
     - locked: 0
       name: Orange 6
@@ -503,14 +479,11 @@ MonoBehaviour:
     frameOutlineThickness: 2
     frameAutoPadding: 0
     frameOutlineColorName: Grey 6
-    backgroundActiveColorName: Root Background
+    backgroundActiveColorName: Grey 1
     textHorizontalOffset: 0
     boxHeight: 2
-    enabledTextColorIndex: 22
-    disabledTextColorIndex: 22
-    backgroundInactiveColorIndex: 1
     enabledTextColorName: Grey 6
-    disabledTextColorName: Grey 3
+    disabledTextColorName: Grey 2
     backgroundInactiveColorName: Grey 4
   - applyFraming: 1
     includeOutline: 1
@@ -522,9 +495,6 @@ MonoBehaviour:
     backgroundActiveColorName: Root Background
     textHorizontalOffset: 0
     boxHeight: 2
-    enabledTextColorIndex: 22
-    disabledTextColorIndex: 21
-    backgroundInactiveColorIndex: 1
     enabledTextColorName: Grey 6
     disabledTextColorName: Grey 3
     backgroundInactiveColorName: Grey 4
@@ -538,9 +508,6 @@ MonoBehaviour:
     backgroundActiveColorName: Root Background
     textHorizontalOffset: 0
     boxHeight: 0
-    enabledTextColorIndex: 22
-    disabledTextColorIndex: 16
-    backgroundInactiveColorIndex: 1
     enabledTextColorName: Grey 6
     disabledTextColorName: Grey 3
     backgroundInactiveColorName: Grey 5
@@ -554,9 +521,6 @@ MonoBehaviour:
     backgroundActiveColorName: Root Background
     textHorizontalOffset: 0
     boxHeight: 2
-    enabledTextColorIndex: 0
-    disabledTextColorIndex: 1
-    backgroundInactiveColorIndex: 1
     enabledTextColorName: Grey 6
     disabledTextColorName: Grey 3
     backgroundInactiveColorName: Grey 5
@@ -570,9 +534,6 @@ MonoBehaviour:
     backgroundActiveColorName: Root Background
     textHorizontalOffset: 0
     boxHeight: 2
-    enabledTextColorIndex: 22
-    disabledTextColorIndex: 16
-    backgroundInactiveColorIndex: 1
     enabledTextColorName: Grey 6
     disabledTextColorName: Grey 3
     backgroundInactiveColorName: Grey 5
@@ -580,10 +541,10 @@ MonoBehaviour:
   - applyFraming: 1
     includeOutline: 1
     includeBackground: 0
-    frameType: 4
-    frameOutlineThickness: 1
+    frameType: 12
+    frameOutlineThickness: 2
     frameAutoPadding: 0
-    frameOutlineColorName: Outlines
+    frameOutlineColorName: Grey 4
     backgroundActiveColorName: Root Background
   - applyFraming: 1
     includeOutline: 1
@@ -746,11 +707,13 @@ MonoBehaviour:
     minMaxSliderMinWidth: 157
     minMaxSliderFloatFieldWidth: 37.7
     minMaxSliderSeparation: 5
-  globalSettingsSectionToggle: 1
+  globalSettingsSectionToggle: 0
   colorsSectionToggle: 1
   groupsSectionToggle: 1
   singleElementsSectionToggle: 1
   propertySpecificSectionToggle: 0
   basicGroupsSectionDrawAreaToggle: 0
   headingGroupsSectionDrawAreaToggle: 0
+  headingGroupsSectionHeadingTextToggle: 1
+  headingGroupsSectionFramesToggle: 1
   singleElementsSectionDrawAreaToggle: 1

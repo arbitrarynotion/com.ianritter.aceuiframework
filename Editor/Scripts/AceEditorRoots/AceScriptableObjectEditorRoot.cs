@@ -76,7 +76,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
 
 
 #region EventHandling
-
+        
         public delegate void DataUpdated();
         /// <summary>
         ///     This event is invoked when a data change occurs that justifies a repaint (element values have changed).
@@ -97,7 +97,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
 
         /// <summary>
         ///     Call this when the target script detects a change that justifies rebuilding its inspector. This will result
-        ///     in the editor calling the target script's GetElementList to get the updated element list.
+        ///     in the editor calling ApplyModifiedProperties, then calling the target script's GetElementList to get the updated
+        ///     element list, then calling Repaint.
         /// </summary>
         public void UIStateUpdatedNotify()
         {
@@ -105,6 +106,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
             // PrintMyUIStateUpdatedNotifySubscribers();
         }
         
+        /// <summary>
+        /// Use when ApplyModifiedProperties needs to be called without triggering a complete rebuild of the settings window.
+        /// </summary>
         public delegate void DataUpdateRequired();
         public event DataUpdateRequired OnDataUpdateRequired;
         

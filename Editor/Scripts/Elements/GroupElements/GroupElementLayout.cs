@@ -155,7 +155,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
                 {
                     // Get the default label width and subtract if from the usable window width.
                     // Todo: UseIndentedDefaultLabelWidth Issue: Not sure why this 4f reduction is necessary to get the field lined up with the label/field separator. Test element was grandchild.
-                    float indentedLabelWidth = GetSingleLineChildLabelWidth() - 4f;
+                    float indentedLabelWidth = GetSingleLineChildLabelWidth();
+                    // float indentedLabelWidth = GetSingleLineChildLabelWidth() - 4f;
 
                     scalableWidth -= indentedLabelWidth;
                     firstElement.Layout.Width = indentedLabelWidth;

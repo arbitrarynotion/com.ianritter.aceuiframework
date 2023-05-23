@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Toggle;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
@@ -22,9 +23,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
             GUIContent guiContent, 
             GroupCustomSettings groupCustomSettings,
             bool hideOnDisable = false, 
+            Action callback = null,
             params Element[] newElements 
             ) 
-            : base( GUIContent.none, toggleVarName, new ToggleHeading( guiContent ), groupCustomSettings, newElements )
+            : base( GUIContent.none, toggleVarName, new ToggleHeading( guiContent ), groupCustomSettings, callback, newElements )
         {
             HideOnDisable = hideOnDisable;
         }

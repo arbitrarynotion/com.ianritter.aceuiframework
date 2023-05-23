@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Labeled;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
@@ -20,7 +21,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
             GUIContent guiContent, 
             [CanBeNull] GroupCustomSettings groupCustomSettings, 
             params Element[] newElements ) 
-            : base( GUIContent.none, null, new LabeledHeading( guiContent ), groupCustomSettings, newElements )
+            : base( GUIContent.none, null, new LabeledHeading( guiContent ), groupCustomSettings, null, newElements )
         {
         }
         

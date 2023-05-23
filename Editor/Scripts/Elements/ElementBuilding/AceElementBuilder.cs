@@ -236,8 +236,21 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
             [CanBeNull] GroupCustomSettings customSettings, 
             params Element[] elements )
         {
-            return GetGroupWithFoldoutHeading(
-                toggleVarName, title, tooltip, customSettings, elements, new Element[]{} );
+            return GetGroupWithFoldoutHeading( toggleVarName, title, tooltip, customSettings, null, elements, new Element[]{} );
+        }
+        
+        /// <summary>
+        ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
+        /// </summary>
+        public static Element GetGroupWithFoldoutHeading( 
+            [CanBeNull] string toggleVarName, 
+            string title, 
+            string tooltip, 
+            [CanBeNull] GroupCustomSettings customSettings, 
+            [CanBeNull] Action callback, 
+            params Element[] elements )
+        {
+            return GetGroupWithFoldoutHeading( toggleVarName, title, tooltip, customSettings, callback, elements, new Element[]{} );
         }
         
         /// <summary>
@@ -248,6 +261,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
             string title, 
             string tooltip, 
             [CanBeNull] GroupCustomSettings customSettings, 
+            [CanBeNull] Action callback, 
             Element[] elementList,
             params Element[] elementsSingles )
         {
@@ -263,7 +277,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
                 elements[index++] = element;
             }
             
-            return new FoldoutGroup( toggleVarName, new GUIContent( title, tooltip ), customSettings, elements );
+            return new FoldoutGroup( toggleVarName, new GUIContent( title, tooltip ), customSettings, callback, elements );
         }
         
         /// <summary>
@@ -274,6 +288,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
             string title, 
             string tooltip, 
             [CanBeNull] GroupCustomSettings customSettings, 
+            [CanBeNull] Action callback, 
             Element singleElement,
             params Element[] elementList )
         {
@@ -285,7 +300,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
                 elements[index++] = element;
             }
 
-            return new FoldoutGroup( toggleVarName, new GUIContent( title, tooltip ), customSettings, elements );
+            return new FoldoutGroup( toggleVarName, new GUIContent( title, tooltip ), customSettings, callback, elements );
         }
         
         /// <summary>
@@ -296,6 +311,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
             string title, 
             string tooltip, 
             [CanBeNull] GroupCustomSettings customSettings, 
+            [CanBeNull] Action callback, 
             Element[] elementList,
             Element singleElement )
         {
@@ -309,7 +325,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
             
             elements[index] = singleElement;
 
-            return new FoldoutGroup( toggleVarName, new GUIContent( title, tooltip ), customSettings, elements );
+            return new FoldoutGroup( toggleVarName, new GUIContent( title, tooltip ), customSettings, callback, elements );
         }
 
 #endregion
@@ -328,7 +344,22 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
             bool hideOnDisable,
             params Element[] elements )
         {
-            return new ToggleGroup( toggleVarName, new GUIContent( title, tooltip ), customSettings, hideOnDisable, elements );
+            return new ToggleGroup( toggleVarName, new GUIContent( title, tooltip ), customSettings, hideOnDisable, null, elements );
+        }
+        
+        /// <summary>
+        ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
+        /// </summary>
+        public static Element GetGroupWithToggleHeading( 
+            [CanBeNull] string toggleVarName, 
+            string title, 
+            string tooltip, 
+            [CanBeNull] GroupCustomSettings customSettings, 
+            [CanBeNull] Action callback, 
+            bool hideOnDisable,
+            params Element[] elements )
+        {
+            return new ToggleGroup( toggleVarName, new GUIContent( title, tooltip ), customSettings, hideOnDisable, callback, elements );
         }
 
 #endregion
@@ -384,7 +415,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
                 elements[index++] = element;
             }
             
-            return new LabeledGroup( new GUIContent( title, tooltip ), customSettings, elements.ToArray() );
+            return new LabeledGroup( new GUIContent( title, tooltip ), customSettings, elements );
         }
 
 #endregion

@@ -87,7 +87,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 GetMinMaxSliderElement( "Short MM GetName", "MinMax tooltip!", 
                     nameof(closeFade2), nameof(farFade2), 0, 1, new SingleCustomSettings() ),
                 GetElement( nameof(closeFade1), "Close Fade 1", string.Empty ), 
-                GetGroupWithFoldoutHeading( null, "Section 1", "Head 1 tooltip!",
+                GetGroupWithFoldoutHeading( "Section 1", "Head 1 tooltip!",
                     new GroupCustomSettings()
                     {
                         NumberOfColumns = 2,

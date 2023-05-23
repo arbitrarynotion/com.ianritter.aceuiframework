@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Heading.Foldout;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
@@ -20,9 +21,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
         public FoldoutGroup(
             [CanBeNull] string foldoutVarName,
             GUIContent guiContent,
-            [CanBeNull] GroupCustomSettings groupCustomSettings,
+            [CanBeNull] GroupCustomSettings groupCustomSettings, 
+            Action callback = null,
             params Element[] newElements )
-            : base( guiContent, foldoutVarName, new FoldoutHeading( guiContent ), groupCustomSettings, newElements )
+            : base( guiContent, foldoutVarName, new FoldoutHeading( guiContent ), groupCustomSettings, callback, newElements )
         {
         }
 

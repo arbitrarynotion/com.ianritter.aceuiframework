@@ -136,7 +136,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 _layoutDropdownElement,
                 _dividerElement,
                 
-                GetGroupWithFoldoutHeading( null, "Section 1", "Section 1 tooltip!",
+                GetGroupWithFoldoutHeading( "Section 1", "Section 1 tooltip!",
                     new GroupCustomSettings()
                     {
                         NumberOfColumns = 2,
@@ -147,7 +147,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 
                     GetElement( nameof(characterField), "Char", string.Empty ),
                 
-                    GetGroupWithFoldoutHeading( null, "Section 2 with non-indent Child Area", "Section 2 tooltip!",
+                    GetGroupWithFoldoutHeading( "Section 2 with non-indent Child Area", "Section 2 tooltip!",
                         new GroupCustomSettings()
                         {
                             NumberOfColumns = 2,
@@ -220,7 +220,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 GetMinMaxSliderElement( "Short MM GetName", "MinMax tooltip!", 
                     nameof(closeFade2), nameof(farFade2), 0, 1, new SingleCustomSettings() ),
                 GetElement( nameof(closeFade1), "Close Fade 1", string.Empty ), 
-                GetGroupWithFoldoutHeading( null, "Section 1", "Head 1 tooltip!",
+                GetGroupWithFoldoutHeading( "Section 1", "Head 1 tooltip!",
                     new GroupCustomSettings()
                     {
                         NumberOfColumns = 2,
@@ -243,11 +243,11 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 _dividerElement,
                 GetElement( nameof(stringField), "String", string.Empty ), 
                 GetElement( nameof(animationCurveField), "Animation Curve", string.Empty ),  
-                GetGroupWithFoldoutHeading( null, "Heading 1", "Head 1 tooltip!", null,
+                GetGroupWithFoldoutHeading( "Heading 1", "Head 1 tooltip!", null,
                     GetElement( nameof(boolField), "Bool", string.Empty ), 
                     GetElement( nameof(intField), "Int", "Int tooltip!" ) 
                 ), 
-                GetGroupWithFoldoutHeading( null, "Heading 2", "Head 2 tooltip!", null,
+                GetGroupWithFoldoutHeading( "Heading 2", "Head 2 tooltip!", null,
                     GetLabelElement( "Label 1", "Label 1 tooltip!" ), 
                     GetElement( nameof(floatField), "Float, indented by 1", string.Empty,
                         new SingleCustomSettings()
@@ -261,7 +261,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                             IndentLevelIncrease = 2
                         }
                     ), 
-                    GetGroupWithFoldoutHeading( null, "Heading 3", "Head 3 tooltip!", null,
+                    GetGroupWithFoldoutHeading( "Heading 3", "Head 3 tooltip!", null,
                         GetElement( nameof(objectField), "Object", string.Empty ),
                         GetElement( nameof(intSliderField), "Int Slider", string.Empty )
                     ),
@@ -278,7 +278,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 _layoutDropdownElement,
                 _dividerElement,
                 GetElement( nameof(stringField), "String", string.Empty ), 
-                GetGroupWithFoldoutHeading( null, "Heading 1", "Head 1 tooltip!",
+                GetGroupWithFoldoutHeading( "Heading 1", "Head 1 tooltip!",
                     new GroupCustomSettings()
                     {
                         NumberOfColumns = 2
@@ -318,7 +318,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 _layoutDropdownElement,
                 _dividerElement,
                 GetElement( nameof(stringField), "String", string.Empty ), 
-                GetGroupWithFoldoutHeading( null, "Heading 1", "Head 1 tooltip!", null,
+                GetGroupWithFoldoutHeading( "Heading 1", "Head 1 tooltip!", null,
                     
                     GetGroup( null,
                         GetElement( nameof(vector3Field), "Vector3", string.Empty ), 
@@ -344,7 +344,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 _dividerElement,
                 _layoutDropdownElement,
                 _dividerElement,
-                GetGroupWithFoldoutHeading( null, "Property Field Width Examples", "Head 1 tooltip!",
+                GetGroupWithFoldoutHeading( "Property Field Width Examples", "Head 1 tooltip!",
                     new GroupCustomSettings()
                     {
                         NumberOfColumns = 2
@@ -491,7 +491,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 GetElement( nameof(objectField), "Object Standalone", string.Empty ), 
                 
                 // Root Element level
-                GetGroupWithFoldoutHeading( null, "Foldout Group, indented by 1", "Head 1 tooltip!",
+                GetGroupWithFoldoutHeading( "Foldout Group, indented by 1", "Head 1 tooltip!",
                     new GroupCustomSettings()
                     {
                         NumberOfColumns = 2,
@@ -563,12 +563,12 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                         GetElement( nameof( minMaxUpperInt ), GUIContent.none, new SingleCustomSettings() { ForceDisable = true, ConvertFieldToLabel = true } ),
                         
                         // Element level 2
-                        GetGroupWithToggleHeading( null, "Toggle Group", "Head 3 tooltip!", null, false,
+                        GetGroupWithToggleHeading( null, "Toggle Group", "Head 3 tooltip!", null, false, null,
                             GetElement( nameof(floatField), "Float", string.Empty ), 
                             GetElement( nameof(stringField), "String", string.Empty ), 
                             
                             // Element level 3
-                            GetGroupWithFoldoutHeading( null, "Foldout Group, indented by 2", "Head 4 tooltip!",
+                            GetGroupWithFoldoutHeading( "Foldout Group, indented by 2", "Head 4 tooltip!",
                                 new GroupCustomSettings()
                                 {
                                     IndentLevelIncrease = 2
@@ -587,7 +587,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 GetElement( nameof(intSliderField), "Int Slider Standalone", string.Empty ), 
                 
                 // Root Element level
-                GetGroupWithFoldoutHeading( null, "Section 5", "Head 5 tooltip!", null,
+                GetGroupWithFoldoutHeading( null, "Section 5", "Head 5 tooltip!", null, OnFoldoutToggled,
                     GetElement( nameof(boolField), "Bool", string.Empty ), 
                     GetElement( nameof(enumsField), "Enums", string.Empty ), 
                     
@@ -597,7 +597,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                         GetElement( nameof(intArray), "Integer Array in Basic Group", "I'm always indented by one to compensate for my left-indented label." ) 
                     ), 
                     
-                    GetGroupWithFoldoutHeading( null, "Section 6", "Head 6 tooltip!", null,
+                    GetGroupWithFoldoutHeading( "Section 6", "Head 6 tooltip!", null,
                         GetElement( nameof(layerMaskField), "Layer Mask", string.Empty ), 
                         GetElement( nameof(vector2Field), "Vector2, indented by 1", string.Empty,
                             new SingleCustomSettings()
@@ -607,7 +607,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                         ), 
                         
                         // Element level 2
-                        GetGroupWithFoldoutHeading( null, "Foldout Group", "Head 7 tooltip!",
+                        GetGroupWithFoldoutHeading( "Foldout Group", "Head 7 tooltip!",
                             new GroupCustomSettings()
                             {
                                 NumberOfColumns = 2
@@ -644,6 +644,11 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                     }
                 )
             };
+        }
+
+        private void OnFoldoutToggled()
+        {
+            Debug.Log( "AceInspectorExample: A foldout was toggled." );
         }
     }
 }

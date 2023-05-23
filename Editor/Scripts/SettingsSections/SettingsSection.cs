@@ -51,6 +51,18 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
         ///     Used to notify when data that affects the UI layout has occured, requiring a full UI rebuild.
         /// </summary>
         protected void UIStateUpdatedNotify() => OnUIStateUpdated?.Invoke();
+        
+        public delegate void ColorUserModified();
+        /// <summary>
+        ///     This event is invoked when a data change occurs that requires a full UI rebuild (element layout was changed).
+        /// </summary>
+        public event ColorUserModified OnColorUserModified;
+        /// <summary>
+        ///     Used to notify when data that affects the UI layout has occured, requiring a full UI rebuild.
+        /// </summary>
+        protected void ColorUserModifiedNotify() => OnColorUserModified?.Invoke();
+        
+        
 
         protected void EstablishSubscriptions() => AceTheme.OnColorsUpdated += OnColorsChanged;
 
@@ -197,6 +209,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
         }
 
         protected void OnColorSelectionChanged() => DataUpdatedNotify();
+        
+        protected void OnColorRelatedBoolToggled() => ColorUserModifiedNotify();
 
         private void OnColorsChanged() => DataUpdatedNotify();
 

@@ -6,15 +6,15 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
 {
     public abstract class HeadingElementDraw : SingleElementDraw
     {
-        protected readonly HeadingElement _headingElement;
-        protected override SingleElement SingleElement => _headingElement;
+        protected readonly HeadingElement HeadingElement;
+        protected override SingleElement SingleElement => HeadingElement;
         
         protected const float DefaultLeftPadding = 2f;
 
         
         protected HeadingElementDraw( HeadingElement headingElement )
         {
-            _headingElement = headingElement;
+            HeadingElement = headingElement;
         }
 
         
@@ -24,14 +24,14 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         
         protected GUIStyle GetHeadingStyle( GUIStyle baseGuiStyle )
         {
-            Color enabledColor = Element.AceTheme.GetColorForColorName( _headingElement.HeadingElementFrameSettings.enabledTextColorName );
+            Color enabledColor = Element.AceTheme.GetColorForColorName( HeadingElement.HeadingElementFrameSettings.enabledTextColorName );
             // Color enabledColor = Element.AceTheme.GetColorForIndex( _headingElement.HeadingElementFrameSettings.enabledTextColorIndex );
             
             return new GUIStyle( baseGuiStyle )
             {
                 fontStyle = FontStyle.Bold, 
                 
-                normal = {textColor = Element.AceTheme.GetColorForColorName( _headingElement.HeadingElementFrameSettings.disabledTextColorName )}, 
+                normal = {textColor = Element.AceTheme.GetColorForColorName( HeadingElement.HeadingElementFrameSettings.disabledTextColorName )}, 
                 // normal = {textColor = Element.AceTheme.GetColorForIndex( _headingElement.HeadingElementFrameSettings.disabledTextColorIndex )}, 
                 onNormal = {textColor = enabledColor}
             };
@@ -40,8 +40,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         protected GUIStyle GetHeadingLabelStyle( bool enabled )
         {
             Color textColor = enabled
-                ? Element.AceTheme.GetColorForColorName( _headingElement.HeadingElementFrameSettings.enabledTextColorName )
-                : Element.AceTheme.GetColorForColorName( _headingElement.HeadingElementFrameSettings.disabledTextColorName );
+                ? Element.AceTheme.GetColorForColorName( HeadingElement.HeadingElementFrameSettings.enabledTextColorName )
+                : Element.AceTheme.GetColorForColorName( HeadingElement.HeadingElementFrameSettings.disabledTextColorName );
             
             // Color textColor = enabled
             //     ? Element.AceTheme.GetColorForIndex( _headingElement.HeadingElementFrameSettings.enabledTextColorIndex )
@@ -58,8 +58,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         protected override string GetBackgroundColorName()
         {
             return HeadingIsEnabled()
-                ? _headingElement.HeadingElementFrameSettings.backgroundActiveColorName
-                : _headingElement.HeadingElementFrameSettings.backgroundInactiveColorName;
+                ? HeadingElement.HeadingElementFrameSettings.backgroundActiveColorName
+                : HeadingElement.HeadingElementFrameSettings.backgroundInactiveColorName;
         }
 
         // protected override int GetBackgroundColorIndex()

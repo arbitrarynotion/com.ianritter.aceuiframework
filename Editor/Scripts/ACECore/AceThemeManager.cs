@@ -247,7 +247,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             AceTheme previousTheme = selectedScript.theme;
             selectedScript.theme = _tmListHandler.GetThemesList()[selectedThemeIndex];
             logger.Log( $"{GetColoredStringYellow( selectedScript.script.name )}'s theme was changed from " +
-                        $"{GetColoredStringYellow( previousTheme.name )} " +
+                        $"{GetColoredStringYellow( ( previousTheme == null ) ? "DELETED" : previousTheme.name )} " +
                         $"to {GetColoredStringGreen( selectedScript.theme.name )}." );
 
             ThemeAssignmentChangedNotify();

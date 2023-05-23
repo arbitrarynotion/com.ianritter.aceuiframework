@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleElements.Decorator.Heading;
 using Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsCustom.Groups;
@@ -32,6 +33,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
         public bool HasProperty { get; }
         private readonly string _headingPropertyVarName;
         public SerializedProperty HeadingProperty { get; private set; }
+        public Action ChangeCallBack { get; }
 
         /// <summary>
         /// <para>Heading group consists of two pieces, a heading element and a child area group. The guiContent goes to the heading element
@@ -44,11 +46,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
             [CanBeNull] string headingPropertyVarName, 
             HeadingElement headingElement, 
             GroupCustomSettings groupCustomSettings,
+            Action callback,
             Element[] newElements ) : 
             base( guiContent, groupCustomSettings )
         {
             HeadingElement = headingElement;
             headingElement.HeadingGroup = this;
+            ChangeCallBack = callback;
             
             if ( headingPropertyVarName != null )
             {

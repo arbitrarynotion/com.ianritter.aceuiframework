@@ -1,3 +1,4 @@
+using System;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
@@ -78,7 +79,20 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
             
         }
 
+        // Keeps the window from presenting an outdated state if it's not the focus.
+        // This can happen when the color picker is clicked, closing the color picker popup, and the mouse is over
+        // a different window. The focus will change to the new window. While the result of the color selection will show
+        // a subsequent undo while the window is still not the focus won't display correctly unless this repaint is performed.
+        private void OnSelectionChange()
+        {
+            Repaint();
+        }
 
+        // Keeps the window from presenting an outdated state if it didn't get repainted during recompilation.
+        private void OnFocus()
+        {
+            Repaint();
+        }
 
         private void ApplyEditorWindowSettings()
         {

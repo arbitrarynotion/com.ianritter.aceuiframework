@@ -84,7 +84,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     true,
                     
                     AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
-                        frameSettings.backgroundColorName,
+                        frameSettings.backgroundActiveColorName,
                         frameVarNames.BackgroundColorName, OnColorSelectionChanged,
                         GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
                     

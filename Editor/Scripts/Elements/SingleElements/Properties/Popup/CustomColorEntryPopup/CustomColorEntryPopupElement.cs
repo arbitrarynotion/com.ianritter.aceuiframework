@@ -28,7 +28,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             base.InitializeElement( targetScriptableObject );
             _serializedObject = targetScriptableObject;
             // Have to look up the index by the name. Do this as rarely as possible since it's expensive.
-            SelectedIndex = AceTheme.GetIndexForCustomColorName( Property.stringValue );
+            SelectedIndex = AceTheme.GetIndexForColorName( Property.stringValue );
             // Debug.Log( $"CustomColorPopup index initialized to {GetColoredStringYellow(SelectedIndex.ToString())} for color {GetColoredStringOrange(Property.stringValue)}." );
         }
 

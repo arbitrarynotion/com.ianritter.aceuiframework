@@ -185,7 +185,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
                 //     GetMustHaveOutlineFilter( frameVarNames.FrameType ) ),
                 
                 AceTheme.GetColorSelectionElement( "Background", string.Empty,
-                    frameSettings.backgroundColorName,
+                    frameSettings.backgroundActiveColorName,
                     frameVarNames.BackgroundColorName, OnColorSelectionChanged,
                     GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
                 
@@ -310,5 +310,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections
                 new ElementCondition( includeBackgroundVarName ),
             };
         }
+
+
+        protected void OnCustomColorDropdownChanged() => AceTheme.UpdateAllColorUseCounts();
     }
 }

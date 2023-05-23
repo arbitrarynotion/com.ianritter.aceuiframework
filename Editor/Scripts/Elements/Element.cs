@@ -79,7 +79,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         // Reference properties.
 
         /// <summary>
-        ///     Used to grey-out this element if it's toggled off by either a toggle section above it or by a bool element
+        ///     Used to grey-out this element if it's toggled off by either a locked section above it or by a bool element
         ///     it's dependent on via an element condition.
         /// </summary>
         public bool IsEnabled
@@ -180,8 +180,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
             if ( CustomSettings == null )
                 throw new NullReferenceException( $"E|I: {GetName()} failed to initialize its CustomSettings!" );
 
-            // FrameSettings.FrameOutlineColorIndex = AceTheme.GetIndexForCustomColorName( FrameSettings.frameOutlineColorName );
-            // FrameSettings.BackgroundColorIndex = AceTheme.GetIndexForCustomColorName( FrameSettings.backgroundColorName );
+            // FrameSettings.FrameOutlineColorIndex = AceTheme.GetIndexForColorName( FrameSettings.frameOutlineColorName );
+            // FrameSettings.BackgroundColorIndex = AceTheme.GetIndexForColorName( FrameSettings.backgroundActiveColorName );
 
             InitializeElement( targetScriptableObject );
 

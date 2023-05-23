@@ -25,9 +25,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             var toggleRect = new Rect( headingDrawRect );
             toggleRect.xMin += DefaultLeftPadding + _toggleHeading.HeadingElementFrameSettings.textHorizontalOffset + 2f;
 
-            // The heading displays the toggle for the heading group but it uses the IsEnabled bool from its parent instead
+            // The heading displays the locked for the heading group but it uses the IsEnabled bool from its parent instead
             // of its own.
-            // toggleGroup.IsEnabled = GUI.Toggle( headingDrawRect, toggleGroup.IsEnabled, toggleGroup.GUIContent, GetHeadingStyle( EditorStyles.toggle ) );
+            // toggleGroup.IsEnabled = GUI.Toggle( headingDrawRect, toggleGroup.IsEnabled, toggleGroup.GUIContent, GetHeadingStyle( EditorStyles.locked ) );
 
             toggleGroup.IsEnabled = GUI.Toggle( toggleRect, toggleGroup.IsEnabled, GUIContent.none,
                 GetHeadingStyle( EditorStyles.toggle ) );

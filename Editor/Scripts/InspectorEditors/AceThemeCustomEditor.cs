@@ -8,7 +8,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
     ///     This editor applies to the ACE theme when it's drawn in the inspector.
     /// </summary>
     [CustomEditor(typeof(AceTheme))]
-    public class AceThemeEditor : UnityEditor.Editor
+    public class AceThemeCustomEditor : UnityEditor.Editor
     {
         private AceTheme _theme;
         public bool drawDefaultInspector = true;

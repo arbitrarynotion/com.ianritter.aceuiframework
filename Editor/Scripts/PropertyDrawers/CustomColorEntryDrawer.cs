@@ -18,8 +18,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.PropertyDrawers
         
         public override void OnGUI( Rect position, SerializedProperty property, GUIContent label )
         {
-            // Disable all field when toggle is off.
-            SerializedProperty toggleProperty = property.FindPropertyRelative( "toggle" );
+            // Disable all field when locked is off.
+            SerializedProperty toggleProperty = property.FindPropertyRelative( "locked" );
             
             Texture lockedTextureAsset = toggleProperty.boolValue 
                 ? AceThemeEditorWindow.LockedIcon
@@ -33,9 +33,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.PropertyDrawers
                 const float divider = 2f;
                 const float verticalPadding = 2f;
                 float labelWidth = EditorGUIUtility.labelWidth;
-                const float boolWidth = 16f;
+                // const float boolWidth = 16f;
                 const float colorFieldWidth = 60f;
                 // const float previousNameLabelWidth = 100f;
+                const float userCountLabelWidth = 30f;
                 float colorPickerWidth = ColorPickerHandler.GetColorPickerButtonWidth();
         
                 EditorGUIUtility.labelWidth = 0.01f;
@@ -43,7 +44,17 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.PropertyDrawers
                 // Icon rect
                 var iconRect = new Rect( position );
                 iconRect.width = lockIconWidth;
-                EditorGUI.LabelField( iconRect, new GUIContent( lockedTextureAsset ) );
+                iconRect.yMax -= 2f;
+                // EditorGUI.LabelField( iconRect, new GUIContent( lockedTextureAsset ) );
+                var style = new GUIStyle( EditorStyles.label ) {};
+                if (GUI.skin.customStyles.Length > 0)
+                {
+                    GUI.skin.customStyles[0].onHover.textColor = Color.yellow;
+                }
+                if ( GUI.Button( iconRect, new GUIContent( lockedTextureAsset ), style ) )
+                {
+                    toggleProperty.boolValue = !toggleProperty.boolValue;
+                }
                 
                 position.xMin += lockIconWidth;
                 
@@ -64,13 +75,13 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.PropertyDrawers
                 //     dataRect.xMin += labelWidth + divider;
                 // }
         
-                // Bool position
-                var boolRect = new Rect( dataRect )
-                {
-                    width = boolWidth
-                };
-                // DrawRectOutline( boolRect, Orange.color );
-                dataRect.xMin += boolWidth + divider;
+                // // Bool position
+                // var boolRect = new Rect( dataRect )
+                // {
+                //     width = boolWidth
+                // };
+                // // DrawRectOutline( boolRect, Orange.color );
+                // dataRect.xMin += boolWidth + divider;
         
                 // Color Picker position
                 var colorPickerRect = new Rect( dataRect );
@@ -84,17 +95,31 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.PropertyDrawers
                 // DrawRectOutline( colorFieldRect, YellowGreen.color );
                 dataRect.xMax -= colorFieldWidth;
         
+                // Use to show the previous name in the editor.
                 // var previousNameRect = new Rect( dataRect );
                 // previousNameRect.xMin += dataRect.width - previousNameLabelWidth;
                 // // DrawRectOutline( previousNameRect, YellowGreen.color );
                 // dataRect.xMax -= previousNameLabelWidth + divider;
                 
+                // Use to display the number of users in the editor.
+                var userCountRect = new Rect( dataRect );
+                userCountRect.xMin += dataRect.width - userCountLabelWidth;
+                // DrawRectOutline( previousNameRect, YellowGreen.color );
+                dataRect.xMax -= userCountLabelWidth + divider;
+                
                 // Text field position
                 var textFieldRect = new Rect( dataRect );
                 // DrawRectOutline( textFieldRect, Green1.color );
                 
-                EditorGUI.PropertyField( boolRect, toggleProperty, GUIContent.none );
+                // EditorGUI.PropertyField( boolRect, toggleProperty, GUIContent.none );
 
+                SerializedProperty userCountProperty = property.FindPropertyRelative( "userCount" );
+                string userCount = userCountProperty.intValue == 0 ? GetColoredStringGray( "0" ) : userCountProperty.intValue.ToString();
+                EditorGUI.LabelField( userCountRect, new GUIContent( userCount, property.FindPropertyRelative( "userList" ).stringValue ), 
+                    new GUIStyle( EditorStyles.label ) {alignment = TextAnchor.MiddleCenter, richText = true} );
+                // EditorGUI.LabelField( userCountRect, new GUIContent( userCount, "Total users of this color.\nSecond line." ), 
+                //     new GUIStyle( EditorStyles.label ) {alignment = TextAnchor.MiddleCenter, richText = true} );
+                
                 // When the entry is locked, fields are visible but can't be modified.
                 using ( new EditorGUI.DisabledScope( toggleProperty.boolValue ) )
                 {

@@ -32,7 +32,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
             // BackgroundColorIndex = arrayLookupString + nameof( FrameSettings.backgroundColorIndex );
             
             FrameOutlineColorName = arrayLookupString + nameof( FrameSettings.frameOutlineColorName );
-            BackgroundColorName = arrayLookupString + nameof( FrameSettings.backgroundColorName );
+            BackgroundColorName = arrayLookupString + nameof( FrameSettings.backgroundActiveColorName );
         }
     }
 }

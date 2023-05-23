@@ -7,7 +7,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
     ///     This editor applies to the CET theme manager database when it's drawn in the inspector.
     /// </summary>
     [CustomEditor(typeof(AceThemeManager))]
-    public class AceThemeManagerEditor : UnityEditor.Editor
+    public class AceThemeManagerCustomEditor : UnityEditor.Editor
     {
         private AceThemeManager _target;
 

@@ -58,7 +58,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
         protected override string GetBackgroundColorName()
         {
             return HeadingIsEnabled()
-                ? _headingElement.HeadingElementFrameSettings.backgroundColorName
+                ? _headingElement.HeadingElementFrameSettings.backgroundActiveColorName
                 : _headingElement.HeadingElementFrameSettings.backgroundInactiveColorName;
         }
 

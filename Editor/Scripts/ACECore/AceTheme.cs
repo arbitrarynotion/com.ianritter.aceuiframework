@@ -47,8 +47,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         [Header("Global Settings")]
         [SerializeField] private GlobalSettings globalSettings;
         
-        [Header("Color Settings")]
-        [SerializeField] private CustomColorSettings customColorsSettings;
+        [Header("Color Palette Settings")]
+        [SerializeField] private ColorPaletteSettings colorsPaletteSettings;
         
         [Header("Basic Group Settings")]
         [SerializeField] private List<BasicGroupSettings> basicGroupSettingsList;
@@ -62,7 +62,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         [SerializeField] private List<HeadingGroupSettings> headingGroupSettingsList;
         [SerializeField] private List<ChildAreaGroupSettings> childAreaGroupSettingsList;
         [SerializeField] private List<HeadingElementFrameSettings> headingElementFrameSettingsList;
-        [SerializeField] private List<FrameSettings> foldoutGroupFrameSettingsList;
+        [SerializeField] private List<FrameSettings> headingGroupFrameSettingsList;
         // [SerializeField] private List<FrameSettings> toggleGroupSettingsList;
         // [SerializeField] private List<FrameSettings> labeledGroupInfoList;
 
@@ -75,7 +75,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         // Section instances (Not Serializable).
         [SerializeField] private GlobalSettingsSection globalSettingsSection;
-        [SerializeField] private CustomColorsSection customColorsSection;
+        [SerializeField] private ColorPaletteSection colorPaletteSection;
         [SerializeField] private GroupSettingsSection groupSettingsSection;
         [SerializeField] private SingleElementsSettingsSection singleElementSettingsSection;
         [SerializeField] private PropertiesSettingsSection propertiesSettingsSection;
@@ -96,7 +96,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         private readonly Element _dividingLine = new DividingLineElement();
         private Element _sectionSelectionDropdown;
 
-        private int _customColorsListCount;
+        private int _colorEntryListCount;
         
         
         /// <summary>
@@ -127,8 +127,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         protected override void OnEnableLast()
         {
             if ( logger != null ) logger.LogStart();
-            customColorsSettings.Initialize( logger );
+            colorsPaletteSettings.Initialize( logger );
             SubscribeToAllColors();
+            UpdateAllColorUseCounts();
             if ( logger != null ) logger.LogEnd();
         }
 
@@ -138,8 +139,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         private void InitializeSettings()
         {
             if (globalSettings == null) globalSettings = new GlobalSettings();
-            if (customColorsSettings == null) customColorsSettings = new CustomColorSettings();
-            _customColorsListCount = customColorsSettings.GetColorListCount();
+            if (colorsPaletteSettings == null) colorsPaletteSettings = new ColorPaletteSettings();
+            _colorEntryListCount = colorsPaletteSettings.GetColorListCount();
             
             basicGroupSettingsList = InitializeList( basicGroupSettingsList );
             basicGroupFrameSettingsList = InitializeList( basicGroupFrameSettingsList );
@@ -147,7 +148,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             headingGroupSettingsList = InitializeList( headingGroupSettingsList );
             childAreaGroupSettingsList = InitializeList( childAreaGroupSettingsList );
             headingElementFrameSettingsList = InitializeList( headingElementFrameSettingsList );
-            foldoutGroupFrameSettingsList = InitializeList( foldoutGroupFrameSettingsList );
+            headingGroupFrameSettingsList = InitializeList( headingGroupFrameSettingsList );
             // toggleGroupSettingsList = InitializeList( toggleGroupSettingsList );
             // labeledGroupInfoList = InitializeList( labeledGroupInfoList );
             
@@ -183,7 +184,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             propertiesSettingsSection = new PropertiesSettingsSection();
             
             // Initialize sections which implement element level settings.
-            customColorsSection = new CustomColorsSection( this, customColorsSettings, nameof( customColorsSettings) );
+            colorPaletteSection = new ColorPaletteSection( this, colorsPaletteSettings, nameof( colorsPaletteSettings) );
             groupSettingsSection = new GroupSettingsSection( this, nameof( groupSettingsSection) );
             singleElementSettingsSection = new SingleElementsSettingsSection( this );
 
@@ -192,8 +193,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             globalSettingsSection.OnDataUpdated += RepaintSettingsWindow;
             globalSettingsSection.OnUIStateUpdated += RebuildSettingsWindow;
             
-            customColorsSection.OnDataUpdated += RepaintSettingsWindow;
-            customColorsSection.OnUIStateUpdated += RebuildSettingsWindow;
+            colorPaletteSection.OnDataUpdated += RepaintSettingsWindow;
+            colorPaletteSection.OnUIStateUpdated += RebuildSettingsWindow;
             
             groupSettingsSection.OnDataUpdated += RepaintSettingsWindow;
             groupSettingsSection.OnUIStateUpdated += RebuildSettingsWindow;
@@ -204,8 +205,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             propertiesSettingsSection.OnDataUpdated += RepaintSettingsWindow;
             propertiesSettingsSection.OnUIStateUpdated += RebuildSettingsWindow;
 
-            customColorsSection.OnDataUpdated += ColorsUpdatedNotify;
-            customColorsSection.OnUIStateUpdated += RebuildSettingsWindow;
+            colorPaletteSection.OnDataUpdated += ColorsUpdatedNotify;
+            colorPaletteSection.OnUIStateUpdated += RebuildSettingsWindow;
         }
 
         private void OnDisable()
@@ -214,8 +215,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             globalSettingsSection.OnDataUpdated -= RepaintSettingsWindow;
             globalSettingsSection.OnUIStateUpdated -= RebuildSettingsWindow;
             
-            customColorsSection.OnDataUpdated -= RepaintSettingsWindow;
-            customColorsSection.OnUIStateUpdated -= RebuildSettingsWindow;
+            colorPaletteSection.OnDataUpdated -= RepaintSettingsWindow;
+            colorPaletteSection.OnUIStateUpdated -= RebuildSettingsWindow;
             
             groupSettingsSection.OnDataUpdated -= RepaintSettingsWindow;
             groupSettingsSection.OnUIStateUpdated -= RebuildSettingsWindow;
@@ -256,27 +257,30 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         {
             // logger.LogStart();
             
-            // If the customColorSettings list was changed, need to know.
-            int newColorListCount = customColorsSettings.GetColorListCount();
-            if ( newColorListCount > _customColorsListCount )
+            // If the colorPaletteSettings list was changed, need to know.
+            int newColorListCount = colorsPaletteSettings.GetColorListCount();
+            if ( newColorListCount > _colorEntryListCount )
             {
-                // logger.Log( $"Color list count has changed from {_customColorsListCount.ToString()} to {newColorListCount.ToString()}!" );
-                // logger.Log( $"Color list count has increased from {_customColorsListCount.ToString()} to {newColorListCount.ToString()}!" );
+                // logger.Log( $"Color list count has changed from {_colorEntryListCount.ToString()} to {newColorListCount.ToString()}!" );
+                // logger.Log( $"Color list count has increased from {_colorEntryListCount.ToString()} to {newColorListCount.ToString()}!" );
                 
-                // Inform customColorSettings of the change so the duplicate name can be modified.
-                customColorsSettings.ProcessNewColorEntry();
+                // Inform colorPaletteSettings of the change so the duplicate name can be modified.
+                int totalNewColorEntries = newColorListCount - _colorEntryListCount;
+                colorsPaletteSettings.ProcessNewColorEntry( totalNewColorEntries );
                 
-                _customColorsListCount = newColorListCount;
+                _colorEntryListCount = newColorListCount;
                 SubscribeToNewColor();
+                UpdateAllColorUseCounts();
             }
 
-            if ( newColorListCount < _customColorsListCount )
+            if ( newColorListCount < _colorEntryListCount )
             {
-                // logger.Log( $"Color list count has decreased from {_customColorsListCount.ToString()} to {newColorListCount.ToString()}!" );
-                _customColorsListCount = newColorListCount;
+                // logger.Log( $"Color list count has decreased from {_colorEntryListCount.ToString()} to {newColorListCount.ToString()}!" );
+                _colorEntryListCount = newColorListCount;
+                UpdateAllColorUseCounts();
             }
             
-            customColorsSettings.ScanForListUpdates();
+            colorsPaletteSettings.ScanForListUpdates();
 
             // logger.LogEnd();
         }
@@ -285,9 +289,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         {
             // Debug.Log( "AceTheme: Subscribing to all colors." );
             
-            for (int i = 0; i < customColorsSettings.GetColorListCount(); i++)
+            for (int i = 0; i < colorsPaletteSettings.GetColorListCount(); i++)
             {
-                CustomColorEntry currentEntry = customColorsSettings.GetColorEntryForIndex( i );
+                CustomColorEntry currentEntry = colorsPaletteSettings.GetColorEntryForIndex( i );
                 // Debug.Log( $"    Subscribing to {currentEntry.customColor.name}." );
                 currentEntry.OnNameUpdated -= ReplaceColorNameWithNewName;
                 currentEntry.OnNameUpdated += ReplaceColorNameWithNewName;
@@ -297,7 +301,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         private void SubscribeToNewColor()
         {
             logger.LogStart();
-            CustomColorEntry newColorEntry = customColorsSettings.GetColorEntryForIndex( customColorsSettings.GetColorListCount() - 1 );
+            CustomColorEntry newColorEntry = colorsPaletteSettings.GetColorEntryForIndex( colorsPaletteSettings.GetColorListCount() - 1 );
+            // Note that this event is only triggered if the color passes the name check in ColorPaletteSettings.
             newColorEntry.OnNameUpdated += ReplaceColorNameWithNewName;
             logger.LogEnd();
         }
@@ -308,22 +313,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             // Look at colors in all settings groups to see if the old name is registered.
             // If found, replace it with the new one.
             logger.Log( $"Replacing all instances of {GetColoredStringAquamarine( oldName )} with {GetColoredStringCyan( newName )}." );
-            
-            // Names used by all:
-            // public string frameOutlineColorName = CustomColorOutlinesName;
-            // public string backgroundColorName = CustomColorRootBackgroundName;
-            // headingElementFrameSettingsList only names:
-            // public string enabledTextColorName = CustomColorEnabledTextName;
-            // public string disabledTextColorName = CustomColorDisabledTextName;
-            // public string backgroundInactiveColorName = CustomColorDisabledTextName;
-            
+
             // Loop through all lists to deal with the universal names.
+            UpdateFrameSettingsNames( headingGroupFrameSettingsList, oldName, newName );
             UpdateFrameSettingsNames( basicGroupFrameSettingsList, oldName, newName );
-            UpdateFrameSettingsNames( foldoutGroupFrameSettingsList, oldName, newName );
             UpdateFrameSettingsNames( singleElementFrameSettingsList, oldName, newName );
             UpdateFrameSettingsNames( headingElementFrameSettingsList, oldName, newName );
-            // Loop through foldoutGroupFrameSettingsList to deal with its unique names.
+            // Loop through headingElementFrameSettingsList to deal with its unique names.
             UpdateHeadingFrameSettingsNames( headingElementFrameSettingsList, oldName, newName );
+            
+            UpdateAllColorUseCounts();
             
             logger.LogEnd();
         }
@@ -334,8 +333,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             {
                 if ( frameSettings[i].frameOutlineColorName.Equals( oldName ) ) 
                     frameSettings[i].frameOutlineColorName = newName;
-                if ( frameSettings[i].backgroundColorName.Equals( oldName ) ) 
-                    frameSettings[i].backgroundColorName = newName;
+                if ( frameSettings[i].backgroundActiveColorName.Equals( oldName ) ) 
+                    frameSettings[i].backgroundActiveColorName = newName;
             }
         }
          
@@ -343,10 +342,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         {
             for (int i = 0; i < Levels; i++)
             {
-                // if ( frameSettings[i].frameOutlineColorName.Equals( oldName ) ) 
-                //     frameSettings[i].frameOutlineColorName = newName;
-                // if ( frameSettings[i].backgroundColorName.Equals( oldName ) ) 
-                //     frameSettings[i].backgroundColorName = newName;
                 if ( frameSettings[i].enabledTextColorName.Equals( oldName ) ) 
                     frameSettings[i].enabledTextColorName = newName;
                 if ( frameSettings[i].disabledTextColorName.Equals( oldName ) ) 
@@ -354,6 +349,115 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
                 if ( frameSettings[i].backgroundInactiveColorName.Equals( oldName ) ) 
                     frameSettings[i].backgroundInactiveColorName = newName;
             }
+        }
+        
+        public void UpdateAllColorUseCounts()
+        {
+            // Get the size of the custom colors list.
+            int colorListSize = colorsPaletteSettings.GetColorListLength();
+            for (int i = 0; i < colorListSize; i++)
+            {
+                CustomColorEntry currentColorEntry = colorsPaletteSettings.GetColorEntryForIndex( i );
+                currentColorEntry.userCount = 0;
+                currentColorEntry.userList = "Users:";
+                GetNumberOfUsesForColor( currentColorEntry );
+            }
+        }
+
+        /// <summary>
+        ///     Returns the total count of all uses of the color.
+        /// </summary>
+        /// <param name="colorEntry"></param>
+        /// <returns></returns>
+        private void GetNumberOfUsesForColor( CustomColorEntry colorEntry )
+        {
+            GetNumberOfUniversalUsesForColor( "Heading Group", headingGroupFrameSettingsList, headingGroupLevelSettingsMode, colorEntry );
+            GetNumberOfUniversalUsesForColor( "Basic Group", basicGroupFrameSettingsList, basicGroupLevelSettingsMode, colorEntry );
+            GetNumberOfUniversalUsesForColor( "Single Element", singleElementFrameSettingsList, singleElementsLevelSettingsMode, colorEntry );
+            GetNumberOfHeadingUsesForColor( headingElementFrameSettingsList, headingGroupLevelSettingsMode, colorEntry );
+        }
+        
+        private void GetNumberOfUniversalUsesForColor( 
+            string settingsName, 
+            IReadOnlyList<FrameSettings> frameSettings, 
+            LevelSettingsSection.LevelSettingsMode levelSettingsMode, 
+            CustomColorEntry colorEntry )
+        {
+            for (int i = 0; i < Levels; i++)
+            {
+                // Only count the active settings levels.
+                if ( levelSettingsMode == LevelSettingsSection.LevelSettingsMode.AllUseRootLevel && i > 0 ) continue;
+                if ( levelSettingsMode == LevelSettingsSection.LevelSettingsMode.AllChildrenUseLevel1 && i > 1 ) continue;
+
+                FrameSettings currentFrameSettings = frameSettings[i];
+                if ( !currentFrameSettings.applyFraming ) continue;
+                if ( currentFrameSettings.includeBackground && currentFrameSettings.backgroundActiveColorName.Equals( colorEntry.name ) )
+                {
+                    colorEntry.userCount++;
+                    colorEntry.userList += $"\n{settingsName} Frame Background LVL{i.ToString()}";
+                }
+                
+                if ( currentFrameSettings.includeOutline && currentFrameSettings.frameOutlineColorName.Equals( colorEntry.name ) )
+                {
+                    colorEntry.userCount++;
+                    colorEntry.userList += $"\n{settingsName} Frame Outline LVL{i.ToString()}";
+                }
+            }
+        }
+
+        private void GetNumberOfHeadingUsesForColor( 
+            IReadOnlyList<HeadingElementFrameSettings> frameSettings, 
+            LevelSettingsSection.LevelSettingsMode levelSettingsMode, 
+            CustomColorEntry colorEntry )
+        {
+            for (int i = 0; i < Levels; i++)
+            {
+                // Only count the active settings levels.
+                if ( levelSettingsMode == LevelSettingsSection.LevelSettingsMode.AllUseRootLevel && i > 0 ) continue;
+                if ( levelSettingsMode == LevelSettingsSection.LevelSettingsMode.AllChildrenUseLevel1 && i > 1 ) continue;
+
+                HeadingElementFrameSettings currentFrameSettings = frameSettings[i];
+                
+                if ( currentFrameSettings.enabledTextColorName.Equals( colorEntry.name ) )
+                {
+                    colorEntry.userCount++;
+                    colorEntry.userList += $"\nHeading Enabled Text LVL{i.ToString()}";
+                }
+                
+                if ( currentFrameSettings.disabledTextColorName.Equals( colorEntry.name ) )
+                {
+                    colorEntry.userCount++;
+                    colorEntry.userList += $"\nHeading Disabled Text LVL{i.ToString()}";
+                }
+
+                if ( !currentFrameSettings.applyFraming ) continue;
+                
+                if ( currentFrameSettings.includeOutline && currentFrameSettings.frameOutlineColorName.Equals( colorEntry.name ) )
+                {
+                    colorEntry.userCount++;
+                    colorEntry.userList += $"\nHeading Frame Outline LVL{i.ToString()}";
+                }
+                
+                if ( !currentFrameSettings.includeBackground ) continue;
+                
+                if ( currentFrameSettings.backgroundActiveColorName.Equals( colorEntry.name ) )
+                {
+                    colorEntry.userCount++;
+                    colorEntry.userList += $"\nHeading Active Background LVL{i.ToString()}";
+                }
+                
+                if ( currentFrameSettings.backgroundInactiveColorName.Equals( colorEntry.name ) )
+                {
+                    colorEntry.userCount++;
+                    colorEntry.userList += $"\nHeading Inactive Background LVL{i.ToString()}";
+                }
+            }
+        }
+
+        private void UpdateColorEntry( string settingsName, CustomColorEntry colorEntry, int index )
+        {
+            colorEntry.userCount++;
+            colorEntry.userList += $"\n{settingsName} LVL{index.ToString()}";
         }
 
 
@@ -394,7 +498,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         }
 
         private Element GetGlobalSettingsElement() => globalSettingsSection.GetSection();
-        private Element GetCustomColorsElement() => customColorsSection.GetSection();
+        private Element GetCustomColorsElement() => colorPaletteSection.GetSection();
         private Element GetGroupsElement() => groupSettingsSection.GetSection();
         private Element GetSinglesElement() => singleElementSettingsSection.GetSection();
         private Element GetPropertiesElement() => propertiesSettingsSection.GetSection();
@@ -415,7 +519,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         public static string GetHeadingGroupSettingsListVarName => nameof( headingGroupSettingsList );
         public static string GetHeadingElementFrameSettingsListVarName => nameof( headingElementFrameSettingsList );
         public static string GetChildAreaGroupSettingsListVarName => nameof( childAreaGroupSettingsList );
-        public static string GetFoldoutGroupSettingsListVarName => nameof( foldoutGroupFrameSettingsList );
+        public static string GetFoldoutGroupSettingsListVarName => nameof( headingGroupFrameSettingsList );
         // public static string GetToggleGroupSettingsListVarName => nameof( toggleGroupSettingsList );
         // public static string GetLabeledGroupInfoListVarName => nameof( labeledGroupInfoList );
         
@@ -425,8 +529,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         
         public static string GetPropertySpecificSettingsVarName => nameof( propertySpecificSettings );
 
-        public static string GetCustomColorListVarName => CustomColorSettings.GetCustomColorListVarName();
-        public static string GetBackupColorVarName => CustomColorSettings.GetBackupColorVarName();
+        public static string GetCustomColorListVarName => ColorPaletteSettings.GetCustomColorListVarName();
+        public static string GetBackupColorVarName => ColorPaletteSettings.GetBackupColorVarName();
 
 
         public static int GetLevelBasedOnMode( int level, LevelSettingsSection.LevelSettingsMode levelSettingsMode ) =>
@@ -447,10 +551,26 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         //     Action callback,
         //     params ElementCondition[] filter )
         // {
-        //     CustomColorEntry colorEntry = customColorsSettings.GetColorEntryForIndex( selectedIndex );
-        //     return customColorsSection.GetColorSelectionElement( title, tooltip, selectedIndex,
+        //     CustomColorEntry colorEntry = colorsPaletteSettings.GetColorEntryForIndex( selectedIndex );
+        //     return colorPaletteSection.GetColorSelectionElement( title, tooltip, selectedIndex,
         //         selectedIndexRelativeVarName,
-        //         colorEntry.toggle,
+        //         colorEntry.locked,
+        //         callback, filter );
+        // }
+        
+        // /// <summary>
+        // ///     Use to link colors by their names to keep the link independent of the color's position in the custom
+        // ///     colors list.
+        // /// </summary>
+        // public Element GetColorSelectionElement(
+        //     string title, string tooltip,
+        //     string colorName, 
+        //     string selectedIndexRelativeVarName,
+        //     Action callback,
+        //     params ElementCondition[] filter )
+        // {
+        //     return colorPaletteSection.GetColorSelectionElement( title, tooltip, colorName,
+        //         selectedIndexRelativeVarName,
         //         callback, filter );
         // }
         
@@ -465,9 +585,18 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             Action callback,
             params ElementCondition[] filter )
         {
-            return customColorsSection.GetColorSelectionElement( title, tooltip, colorName,
+            // Hijacked the callback here to include the update all color use counts call.
+            // The callbacks just led back to this to call data update required notify and rebuild settings window.
+            return colorPaletteSection.GetColorSelectionElement( title, tooltip, colorName,
                 selectedIndexRelativeVarName,
-                callback, filter );
+                OnColorDropdownChanged, filter );
+        }
+
+        private void OnColorDropdownChanged()
+        {
+            DataUpdateRequiredNotify();
+            UpdateAllColorUseCounts();
+            RebuildSettingsWindow();
         }
         
         // public Element GetColorSelectionElement(
@@ -475,7 +604,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         //     int selectedIndex, string selectedIndexRelativeVarName,
         //     params ElementCondition[] filter )
         // {
-        //     return customColorsSection.GetColorSelectionElement( title, tooltip, selectedIndex,
+        //     return colorPaletteSection.GetColorSelectionElement( title, tooltip, selectedIndex,
         //         selectedIndexRelativeVarName,
         //         filter );
         // }
@@ -497,7 +626,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         
         public FrameSettings GetFoldoutGroupFrameSettingsForLevel( int level ) =>
             GetHeadingGroupSettingsForLevel( level ).useSeparateHeadingSettings 
-                ? foldoutGroupFrameSettingsList[GetLevelBasedOnMode( level, headingGroupLevelSettingsMode )]
+                ? headingGroupFrameSettingsList[GetLevelBasedOnMode( level, headingGroupLevelSettingsMode )]
                 : GetDefaultGroupFrameSettingsForLevel( level );
 
         // public FrameSettings GetToggleGroupFrameSettingsForLevel( int level ) =>
@@ -515,14 +644,14 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             // Heading group type defaults to foldout group settings.
             headingGroupSectionState = HeadingGroupSectionState.FoldoutGroups;
             DataUpdateRequiredNotify();
-            return foldoutGroupFrameSettingsList[GetLevelBasedOnMode( level, headingGroupLevelSettingsMode )];
+            return headingGroupFrameSettingsList[GetLevelBasedOnMode( level, headingGroupLevelSettingsMode )];
         }
         
         public FrameSettings GetCurrentModeHeadingGroupFrameSettings( int level )
         {
             return headingGroupSectionState switch
             {
-                HeadingGroupSectionState.FoldoutGroups => foldoutGroupFrameSettingsList[level],
+                HeadingGroupSectionState.FoldoutGroups => headingGroupFrameSettingsList[level],
                 // HeadingGroupSectionState.ToggleGroups => toggleGroupSettingsList[level],
                 // HeadingGroupSectionState.LabeledGroups => labeledGroupInfoList[level],
                 _ => throw new ArgumentOutOfRangeException()
@@ -545,22 +674,22 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             singleElementFrameSettingsList[GetLevelBasedOnMode( level, singleElementsLevelSettingsMode )];
 
 
-        // public Color GetColorForIndex( int index ) => customColorsSettings.GetColorForIndex( index );
-        public string[] GetCustomColorOptions() => customColorsSettings.GetCustomColorsOptionsList();
+        // public Color GetColorForIndex( int index ) => colorsPaletteSettings.GetColorForIndex( index );
+        public string[] GetColorEntryOptions() => colorsPaletteSettings.GetCustomColorsOptionsList();
         
         /// <summary>
         /// This is used by draw classes to convert the name into a usable color. Note that the index is never used.
         /// </summary>
-        public Color GetColorForColorName( string colorName ) => customColorsSettings.GetColorForColorName( colorName );
+        public Color GetColorForColorName( string colorName ) => colorsPaletteSettings.GetColorForColorName( colorName );
 
         /// <summary>
         /// This should be used only for when a popup element needs to translate the color into a selection number.
         /// </summary>
-        public int GetIndexForCustomColorName( string customColorName ) => customColorsSettings.GetIndexForCustomColorName( customColorName );
+        public int GetIndexForColorName( string colorEntryName ) => colorsPaletteSettings.GetIndexForColorName( colorEntryName );
         /// <summary>
         /// This should be used only for when a popup needs to convert the selected index back into a color name.
         /// </summary>
-        public string GetColorNameForIndex( int index ) => customColorsSettings.GetColorNameForIndex( index );
+        public string GetColorNameForIndex( int index ) => colorsPaletteSettings.GetColorNameForIndex( index );
 
         public PropertySpecificSettings GetPropertySpecificSettings() => propertySpecificSettings;
 

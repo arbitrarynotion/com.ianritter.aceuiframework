@@ -91,7 +91,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
             //         new [] { activeSection } 
             //     );
 
-            
             return new Element[]{
                 GetGroupWithFoldoutHeading( nameof( AceTheme.headingGroupsSectionDrawAreaToggle ), "Draw Area Padding", string.Empty, 
                     null,
@@ -173,7 +172,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     true,
                     
                     AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
-                        frameSettings.backgroundColorName,
+                        frameSettings.backgroundActiveColorName,
                         frameVarNames.BackgroundColorName, OnColorSelectionChanged,
                         GetMustHaveBackgroundFilter( frameVarNames.IncludeBackground ) )
                     
@@ -212,7 +211,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     true,
                     
                     AceTheme.GetColorSelectionElement( "Active Color", string.Empty,
-                        headingElementFrameSettings.backgroundColorName,
+                        headingElementFrameSettings.backgroundActiveColorName,
                         headingElementFrameVarNames.BackgroundColorName, OnColorSelectionChanged,
                         GetMustHaveBackgroundFilter( headingElementFrameVarNames.IncludeBackground ) ),
                     

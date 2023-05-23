@@ -227,7 +227,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 #region GroupWithFoldoutHeading
         
         /// <summary>
-        ///     Get a foldout group using a toggle, groups settings, and a variable list of elements.
+        ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
         /// </summary>
         public static Element GetGroupWithFoldoutHeading( 
             [CanBeNull] string toggleVarName, 
@@ -241,7 +241,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
         }
         
         /// <summary>
-        ///     Get a foldout group using a toggle, groups settings, a list of elements, and a variable list of elements.
+        ///     Get a foldout group using a locked, groups settings, a list of elements, and a variable list of elements.
         /// </summary>
         public static Element GetGroupWithFoldoutHeading( 
             [CanBeNull] string toggleVarName, 
@@ -267,7 +267,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
         }
         
         /// <summary>
-        ///     Get a foldout group using a toggle, groups settings, a single element, and a variable list of elements.
+        ///     Get a foldout group using a locked, groups settings, a single element, and a variable list of elements.
         /// </summary>
         public static Element GetGroupWithFoldoutHeading( 
             [CanBeNull] string toggleVarName, 
@@ -289,7 +289,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
         }
         
         /// <summary>
-        ///     Get a foldout group using a toggle, groups settings, a list of elements, and a single element.
+        ///     Get a foldout group using a locked, groups settings, a list of elements, and a single element.
         /// </summary>
         public static Element GetGroupWithFoldoutHeading( 
             [CanBeNull] string toggleVarName, 
@@ -318,7 +318,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 #region GroupWithToggleHeading
         
         /// <summary>
-        ///     Get a foldout group using a toggle, groups settings, and a variable list of elements.
+        ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
         /// </summary>
         public static Element GetGroupWithToggleHeading( 
             [CanBeNull] string toggleVarName, 
@@ -337,7 +337,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 #region GroupWithLabelHeading
 
         /// <summary>
-        ///     Get a foldout group using a toggle, groups settings, and a variable list of elements.
+        ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
         /// </summary>
         public static Element GetGroupWithLabelHeading( 
             string title, 
@@ -349,7 +349,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
         }
         
         // /// <summary>
-        // ///     Get a foldout group using a toggle, groups settings, and a variable list of elements.
+        // ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
         // /// </summary>
         // public static Element GetGroupWithLabelHeading( 
         //     string title, 
@@ -363,7 +363,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
         // }
         
         /// <summary>
-        ///     Get a foldout group using a toggle, groups settings, a list of elements, and a variable list of elements.
+        ///     Get a foldout group using a locked, groups settings, a list of elements, and a variable list of elements.
         /// </summary>
         public static Element GetGroupWithLabelHeading( 
             string title, 
@@ -567,7 +567,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         #region GroupWithFoldoutHeading
 //         
 //         /// <summary>
-//         ///     Get a foldout group using a toggle, groups settings, and a variable list of elements.
+//         ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
 //         /// </summary>
 //         public static Element GetGroupWithFoldoutHeading( 
 //             [CanBeNull] string toggleVarName, 
@@ -581,7 +581,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         }
 //         
 //         /// <summary>
-//         ///     Get a foldout group using a toggle, groups settings, a list of elements, and a variable list of elements.
+//         ///     Get a foldout group using a locked, groups settings, a list of elements, and a variable list of elements.
 //         /// </summary>
 //         public static Element GetGroupWithFoldoutHeading( 
 //             [CanBeNull] string toggleVarName, 
@@ -607,7 +607,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         }
 //         
 //         /// <summary>
-//         ///     Get a foldout group using a toggle, groups settings, a single element, and a variable list of elements.
+//         ///     Get a foldout group using a locked, groups settings, a single element, and a variable list of elements.
 //         /// </summary>
 //         public static Element GetGroupWithFoldoutHeading( 
 //             [CanBeNull] string toggleVarName, 
@@ -629,7 +629,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         }
 //         
 //         /// <summary>
-//         ///     Get a foldout group using a toggle, groups settings, a list of elements, and a single element.
+//         ///     Get a foldout group using a locked, groups settings, a list of elements, and a single element.
 //         /// </summary>
 //         public static Element GetGroupWithFoldoutHeading( 
 //             [CanBeNull] string toggleVarName, 
@@ -653,7 +653,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         }
 //         
 //         // /// <summary>
-//         // ///     Get a foldout group using a toggle, group settings, and a variable list of tuples.
+//         // ///     Get a foldout group using a locked, group settings, and a variable list of tuples.
 //         // /// </summary>
 //         // public static Element GetGroupWithFoldoutHeading
 //         //     ( 
@@ -674,7 +674,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         // }
 //
 //         // /// <summary>
-//         // ///     Get a foldout group using a toggle, group settings and variable list of tuples with settings.
+//         // ///     Get a foldout group using a locked, group settings and variable list of tuples with settings.
 //         // /// </summary>
 //         // public static Element GetGroupWithFoldoutHeading
 //         // ( 
@@ -696,7 +696,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         // }
 //         //
 //         // /// <summary>
-//         // ///     Get a foldout group using a toggle, group settings and variable list of tuples with conditions.
+//         // ///     Get a foldout group using a locked, group settings and variable list of tuples with conditions.
 //         // /// </summary>
 //         // public static Element GetGroupWithFoldoutHeading
 //         //     ( 
@@ -718,7 +718,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         // }
 //         //
 //         // /// <summary>
-//         // ///     Get a foldout group using a toggle, group settings and variable list of tuples with both settings and conditions.
+//         // ///     Get a foldout group using a locked, group settings and variable list of tuples with both settings and conditions.
 //         // /// </summary>
 //         // public static Element GetGroupWithFoldoutHeading
 //         //     ( 
@@ -832,7 +832,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 // #region GroupWithToggleHeading
 //         
 //         /// <summary>
-//         ///     Get a foldout group using a toggle, groups settings, and a variable list of elements.
+//         ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
 //         /// </summary>
 //         public static Element GetGroupWithToggleHeading( 
 //             [CanBeNull] string toggleVarName, 
@@ -847,7 +847,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         
 //
 //         // /// <summary>
-//         // ///     Get a foldout group using a toggle, group settings, and a variable list of tuples.
+//         // ///     Get a foldout group using a locked, group settings, and a variable list of tuples.
 //         // /// </summary>
 //         // public static Element GetGroupWithToggleHeading
 //         //     ( 
@@ -869,7 +869,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         // }
 //         //
 //         // /// <summary>
-//         // ///     Get a foldout group using a toggle, group settings and variable list of tuples with settings.
+//         // ///     Get a foldout group using a locked, group settings and variable list of tuples with settings.
 //         // /// </summary>
 //         // public static Element GetGroupWithToggleHeading
 //         // ( 
@@ -892,7 +892,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         // }
 //         //
 //         // /// <summary>
-//         // ///     Get a foldout group using a toggle, group settings and variable list of tuples with conditions.
+//         // ///     Get a foldout group using a locked, group settings and variable list of tuples with conditions.
 //         // /// </summary>
 //         // public static Element GetGroupWithToggleHeading
 //         //     ( 
@@ -915,7 +915,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         // }
 //         //
 //         // /// <summary>
-//         // ///     Get a foldout group using a toggle, group settings and variable list of tuples with both settings and conditions.
+//         // ///     Get a foldout group using a locked, group settings and variable list of tuples with both settings and conditions.
 //         // /// </summary>
 //         // public static Element GetGroupWithToggleHeading
 //         //     ( 
@@ -1035,7 +1035,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 // #region GroupWithLabelHeading
 //
 //         /// <summary>
-//         ///     Get a foldout group using a toggle, groups settings, and a variable list of elements.
+//         ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
 //         /// </summary>
 //         public static Element GetGroupWithLabelHeading( 
 //             string title, 
@@ -1048,7 +1048,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         
 //
 //         /// <summary>
-//         ///     Get a foldout group using a toggle, group settings, and a variable list of tuples.
+//         ///     Get a foldout group using a locked, group settings, and a variable list of tuples.
 //         /// </summary>
 //         public static Element GetGroupWithLabelHeading
 //             ( 
@@ -1068,7 +1068,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         }
 //         
 //         /// <summary>
-//         ///     Get a foldout group using a toggle, group settings, and a variable list of tuples.
+//         ///     Get a foldout group using a locked, group settings, and a variable list of tuples.
 //         /// </summary>
 //         public static Element GetGroupWithLabelHeading
 //         ( 
@@ -1089,7 +1089,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         }
 //
 //         /// <summary>
-//         ///     Get a foldout group using a toggle, group settings and variable list of tuples with settings.
+//         ///     Get a foldout group using a locked, group settings and variable list of tuples with settings.
 //         /// </summary>
 //         public static Element GetGroupWithLabelHeading
 //         ( 
@@ -1110,7 +1110,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         }
 //         
 //         /// <summary>
-//         ///     Get a foldout group using a toggle, group settings and variable list of tuples with conditions.
+//         ///     Get a foldout group using a locked, group settings and variable list of tuples with conditions.
 //         /// </summary>
 //         public static Element GetGroupWithLabelHeading
 //             ( 
@@ -1131,7 +1131,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.ElementB
 //         }
 //         
 //         /// <summary>
-//         ///     Get a foldout group using a toggle, group settings and variable list of tuples with both settings and conditions.
+//         ///     Get a foldout group using a locked, group settings and variable list of tuples with both settings and conditions.
 //         /// </summary>
 //         public static Element GetGroupWithLabelHeading
 //             ( 

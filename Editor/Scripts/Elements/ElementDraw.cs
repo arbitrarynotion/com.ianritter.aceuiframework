@@ -133,7 +133,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
             // DrawSolidRect( Element.Layout.GetFrameRect(), Element.AceTheme.GetColorForIndex( GetBackgroundColorIndex() ) );
         }
 
-        protected virtual string GetBackgroundColorName() => Element.FrameSettings.backgroundColorName;
+        protected virtual string GetBackgroundColorName() => Element.FrameSettings.backgroundActiveColorName;
         // protected virtual int GetBackgroundColorIndex() => Element.FrameSettings.backgroundColorIndex;
 
         private void DrawElementFrameOutline()
@@ -146,7 +146,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
                 Element.Layout.GetFrameRect(), 
                 Element.FrameSettings.frameType, 
                 Element.AceTheme.GetColorForColorName( Element.FrameSettings.frameOutlineColorName ),
-                Element.AceTheme.GetColorForColorName( Element.FrameSettings.backgroundColorName ),
+                Element.AceTheme.GetColorForColorName( Element.FrameSettings.backgroundActiveColorName ),
                 // Element.AceTheme.GetColorForIndex( Element.FrameSettings.frameOutlineColorIndex ),
                 // Element.AceTheme.GetColorForIndex( Element.FrameSettings.backgroundColorIndex ),
                 Element.FrameSettings.frameOutlineThickness,

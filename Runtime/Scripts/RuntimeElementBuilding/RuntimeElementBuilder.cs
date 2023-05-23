@@ -606,7 +606,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
 #region GroupWithFoldoutHeading
         
         /// <summary>
-        ///     Get a foldout group using a toggle, groups settings, and a variable list of elements.
+        ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
         /// </summary>
         public static ElementInfo GetGroupWithFoldoutHeading( 
             [CanBeNull] string toggleVarName, 
@@ -620,7 +620,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         }
         
         /// <summary>
-        ///     Get a foldout group using a toggle, groups settings, a list of elements, and a variable list of elements.
+        ///     Get a foldout group using a locked, groups settings, a list of elements, and a variable list of elements.
         /// </summary>
         public static ElementInfo GetGroupWithFoldoutHeading( 
             [CanBeNull] string toggleVarName, 
@@ -646,7 +646,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         }
         
         /// <summary>
-        ///     Get a foldout group using a toggle, groups settings, a single element, and a variable list of elements.
+        ///     Get a foldout group using a locked, groups settings, a single element, and a variable list of elements.
         /// </summary>
         public static ElementInfo GetGroupWithFoldoutHeading( 
             [CanBeNull] string toggleVarName, 
@@ -668,7 +668,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
         }
         
         /// <summary>
-        ///     Get a foldout group using a toggle, groups settings, a list of elements, and a single element.
+        ///     Get a foldout group using a locked, groups settings, a list of elements, and a single element.
         /// </summary>
         public static ElementInfo GetGroupWithFoldoutHeading( 
             [CanBeNull] string toggleVarName, 
@@ -697,7 +697,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
 #region GroupWithToggleHeading
         
         /// <summary>
-        ///     Get a foldout group using a toggle, groups settings, and a variable list of elements.
+        ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
         /// </summary>
         public static ElementInfo GetGroupWithToggleHeading( 
             [CanBeNull] string toggleVarName, 
@@ -716,7 +716,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.RuntimeElementBu
 #region GroupWithLabelHeading
 
         /// <summary>
-        ///     Get a foldout group using a toggle, groups settings, and a variable list of elements.
+        ///     Get a foldout group using a locked, groups settings, and a variable list of elements.
         /// </summary>
         public static ElementInfo GetGroupWithLabelHeading( 
             string title, 

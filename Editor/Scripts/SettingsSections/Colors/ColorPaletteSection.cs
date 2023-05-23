@@ -17,17 +17,17 @@ using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFor
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.Colors
 {
-    public class CustomColorsSection : SettingsSection
+    public class ColorPaletteSection : SettingsSection
     {
         private string[] _customColorOptions;
         private readonly string _customColorSettingsVarName;
-        private CustomColorSettings _customColorSettings;
+        private readonly ColorPaletteSettings _colorPaletteSettings;
         
         
-        public CustomColorsSection( AceTheme aceTheme, CustomColorSettings customColorSettings, string customColorSettingsVarName )
+        public ColorPaletteSection( AceTheme aceTheme, ColorPaletteSettings colorPaletteSettings, string customColorSettingsVarName )
         {
             AceTheme = aceTheme;
-            _customColorSettings = customColorSettings;
+            _colorPaletteSettings = colorPaletteSettings;
             _customColorSettingsVarName = customColorSettingsVarName;
         }
 
@@ -36,12 +36,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
         
         public override Element GetSection()
         {
-            return GetGroupWithFoldoutHeading( nameof( AceTheme.colorsSectionToggle ), "PresetColors", string.Empty,
+            return GetGroupWithFoldoutHeading( nameof( AceTheme.colorsSectionToggle ), "Color Palette", string.Empty,
                 new GroupCustomSettings() {CustomFrameSettings = NoFrame},
 
                 // Custom colors array. Note that the Custom Color class has a property drawer applied to it
                 // which determines how each element in the array is drawn.
-                new BasicProperty( GetRelativePathVarName( AceTheme.GetCustomColorListVarName ), new GUIContent( "Custom PresetColors" ), new SingleCustomSettings(), OnColorsChanged )
+                new BasicProperty( GetRelativePathVarName( AceTheme.GetCustomColorListVarName ), new GUIContent( "Color Palette" ), new SingleCustomSettings(), OnColorsChanged )
             );
         }
 
@@ -55,25 +55,25 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
         {
             // Given a name, can I find the index number?
             // The name is in the CustomColor inside of the CustomColorEntry
-            int selectedIndex = _customColorSettings.GetIndexForCustomColorName( colorName );
+            int selectedIndex = _colorPaletteSettings.GetIndexForColorName( colorName );
             string selectedColorVarName = $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}].color";
             if ( selectedIndex == -1 )
             {
                 Debug.LogWarning( $"Warning! Could not find custom color {GetColoredStringYellow(colorName)}" );
                 selectedColorVarName = $"{GetRelativePathVarName( AceTheme.GetBackupColorVarName )}.color";
             }
-            CustomColorEntry customColorEntry = _customColorSettings.GetColorEntryForIndex( selectedIndex );
+            CustomColorEntry customColorEntry = _colorPaletteSettings.GetColorEntryForIndex( selectedIndex );
             // Debug.Log( $"CustomColorSection: The index returned for {GetColoredStringTeal(colorName)} is {GetColoredStringYellow(selectedIndex.ToString())}." );
             
             
-            _customColorOptions = AceTheme.GetCustomColorOptions();
+            _customColorOptions = AceTheme.GetColorEntryOptions();
             
 
             Element popupField = new CustomColorEntryPopupElement( selectedIndexRelativeVarName, GUIContent.none, _customColorOptions, new SingleCustomSettings(), callback, false, filter );
             // Element colorField = new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 60f}, callback, false, filter);
             
             // If the color is locked, draw a disabled color field. Otherwise, draw the color field with a color picker button.
-            Element colorField = customColorEntry.toggle 
+            Element colorField = customColorEntry.locked 
                 ? (Element) new BasicProperty( selectedColorVarName, GUIContent.none, new SingleCustomSettings() {ConstantWidth = 80f, ForceDisable =  true}, callback, false, filter)
                 : new ColorPickerElement( selectedColorVarName, GUIContent.none, new SingleCustomSettings() { ConstantWidth = 80f }, callback, false, filter ); 
             // Element colorField = new ColorPickerElement( $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}]", 
@@ -100,7 +100,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
         //     Action callback,
         //     params ElementCondition[] filter )
         // {
-        //     _customColorOptions = AceTheme.GetCustomColorOptions();
+        //     _customColorOptions = AceTheme.GetColorEntryOptions();
         //     
         //     string selectedColorVarName = $"{GetRelativePathVarName( AceTheme.GetCustomColorListVarName )}.Array.data[{selectedIndex.ToString()}].customColor.color";
         //

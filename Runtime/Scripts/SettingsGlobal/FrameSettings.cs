@@ -21,9 +21,9 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.SettingsGlobal
         // public int backgroundColorIndex = 1;
         
         public string frameOutlineColorName = CustomColorOutlinesName;
-        public string backgroundColorName = CustomColorRootBackgroundName;
-        public int FrameOutlineColorIndex { get; set; }
-        public int BackgroundColorIndex { get; set; }
+        public string backgroundActiveColorName = CustomColorRootBackgroundName;
+        // public int FrameOutlineColorIndex { get; set; }
+        // public int BackgroundColorIndex { get; set; }
 
     }
 }

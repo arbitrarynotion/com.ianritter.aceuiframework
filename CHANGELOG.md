@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.6.2...v1.6.3) (2023-05-23)
+
+
+### Bug Fixes
+
+* Update to Color Palette Section ([76b236e](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/76b236e7bba845efa70b3139655df7ff33dc46e1))
+
 ## [1.6.2](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.6.1...v1.6.2) (2023-05-22)
 
 

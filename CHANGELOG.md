@@ -1,3 +1,10 @@
+## [1.6.4](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.6.3...v1.6.4) (2023-05-23)
+
+
+### Bug Fixes
+
+* Update to Color Palette user count logic ([90cfdd6](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/90cfdd6ca3d81108b0af22aaaae586f8bd841304))
+
 ## [1.6.3](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.6.2...v1.6.3) (2023-05-23)
 
 

@@ -1,3 +1,10 @@
+## [1.6.5](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.6.4...v1.6.5) (2023-05-28)
+
+
+### Bug Fixes
+
+* Fix for user CustomLogger loading. ([f5b32bb](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/commit/f5b32bb1bb26b90dc50a6f96aea58519a2626227))
+
 ## [1.6.4](https://github.com/arbitrarynotion/com.ianritter.aceuiframework/compare/v1.6.3...v1.6.4) (2023-05-23)
 
 

@@ -11,9 +11,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots
     /// </summary>
     public abstract class AceMonobehaviourRoot : MonoBehaviour
     {
-        [HideInInspector]
-        public AceEventHandler aceEventHandler;
-        protected CustomLogger logger;
+        [HideInInspector] public AceEventHandler aceEventHandler;
+        public CustomLogger logger;
         
         /// <summary>
         ///     Provides a list of Elements which tells the editor how to draw the inspector.
@@ -22,7 +21,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots
 
         public abstract string GetTargetName();
 
-        protected virtual string GetLoggerName() => "none";
+        public virtual string GetLoggerName() => "none";
 
         public abstract ElementInfo[] GetElementInfoList();
         
@@ -55,7 +54,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots
         public void DataUpdatedNotify() => OnDataUpdated?.Invoke();
         
         /// <summary>
-        /// Use when a change to a property is not getting saved. This will force a call to ApplyModifiedProperties.
+        /// Use when a change to a property is not getting saved or needs to happen immediately. This will force a call to ApplyModifiedProperties.
         /// </summary>
         public delegate void DataUpdateRequired();
         public event DataUpdateRequired OnDataUpdateRequired;

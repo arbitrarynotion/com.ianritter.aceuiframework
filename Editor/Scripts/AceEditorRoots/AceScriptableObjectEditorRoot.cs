@@ -1,8 +1,8 @@
 using System;
+using Packages.com.ianritter.aceuiframework.Editor.Scripts.CustomEditors;
 using UnityEngine;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements;
-using Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors;
 using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
 using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
 using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomColors.PresetColors;
@@ -17,24 +17,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
     public abstract class AceScriptableObjectEditorRoot : ScriptableObject
     {
         // public AceEventHandler aceEventHandler;
-        protected CustomLogger logger;
-        
-        public CustomLogger GetLogger => logger;
-
-        
-        // public void OnEnable()
-        // {
-        //     Debug.Log( "AceScriptableObjectEditorRoot OnEnable called." );
-        //     // Logger = LoadScriptableObject<CustomLogger>( ThemeLoggerName, LoggersSearchFolderName );
-        //     // Debug.Log( ( Logger != null ) ? "Logger successfully assigned." : "Could not find Logger!" );
-        //
-        //     // aceEventHandler = new AceEventHandler( name, Logger );
-        //     // Debug.Log( ( aceEventHandler != null ) ? "AceEventHandler successfully instantiated." : "Could not instantiate AceEventHandler!" );
-        //
-        //     OnEnableLast();
-        // }
-        //
-        // protected virtual void OnEnableLast() {}
+        /// <summary>
+        ///     Used for formatted debug console writing.
+        /// </summary>
+        protected CustomLogger Logger;
 
         /// <summary>
         ///     Provides a list of InspectorElements which tells the editor how to draw the inspector.
@@ -45,29 +31,30 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
 
         private void OnEnable()
         {
-            logger = GetAssetByName<CustomLogger>( GetLoggerName(), LoggersSearchFolderName );
-            if ( logger == null )
-            {
-                logger = GetAssetByName<CustomLogger>( DefaultSoLoggerName, LoggersSearchFolderName );
-                Debug.LogError( $"Failed to load {GetLoggerName()}! Loading Default theme." );
-            }
-            // string result = logger == null ? $"{GetColoredStringMaroon( "failed" )}" : $"{GetColoredStringGreenYellow( "succeeded" )}";
-            // Debug.LogWarning( $"Loading SO's theme: {result}." );
-            OnEnableFirst();
+            LoadLogger();
+            
+            // aceEventHandler = new AceEventHandler( name, Logger );
+            // Debug.Log( ( aceEventHandler != null ) ? "AceEventHandler successfully instantiated." : "Could not instantiate AceEventHandler!" );
+            
             OnEnableLast();
         }
 
         protected abstract string GetLoggerName();
 
-        /// <summary>
-        ///     Called in OnEnable before anything else.
-        /// </summary>
-        protected virtual void OnEnableFirst()
+        private void LoadLogger()
         {
+            
+            Logger = GetAssetByName<CustomLogger>( GetLoggerName(), LoggersSearchFolderName );
+            if ( Logger != null ) return;
+            
+            Logger = GetAssetByName<CustomLogger>( DefaultSoLoggerName, LoggersSearchFolderName );
+            Debug.LogError( $"Failed to load {GetLoggerName()}! Loading Default theme." );
+            // string result = logger == null ? $"{GetColoredStringMaroon( "failed" )}" : $"{GetColoredStringGreenYellow( "succeeded" )}";
+            // Debug.LogWarning( $"Loading SO's theme: {result}." );
         }
 
         /// <summary>
-        ///     Call in OnEnable after everything else.
+        ///     Use to call OnEnable only after the Root has loaded its assets (including logger).
         /// </summary>
         protected virtual void OnEnableLast()
         {
@@ -116,20 +103,20 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
 
         public void PrintMySubscribers()
         {
-            logger.LogStart( true );
-            logger.LogIndentStart( $"{GetColoredStringOrange( NicifyVariableName( name ) )}'s Events and their subscribers:" );
+            Logger.LogStart( true );
+            Logger.LogIndentStart( $"{GetColoredStringOrange( NicifyVariableName( name ) )}'s Events and their subscribers:" );
             PrintSubscribersForEvent( OnDataUpdated, nameof( OnDataUpdated ) );
             PrintSubscribersForEvent( OnUIStateUpdated, nameof( OnUIStateUpdated ) );
-            logger.LogEnd();
+            Logger.LogEnd();
         }
 
         protected void PrintSubscribersForEvent( Delegate myEvent, string eventName )
         {
-            logger.Log( $"• {GetColoredStringGreen( NicifyVariableName( eventName ) )} subscribers:" );
+            Logger.Log( $"• {GetColoredStringGreen( NicifyVariableName( eventName ) )} subscribers:" );
             
             if ( myEvent == null || myEvent.GetInvocationList().Length == 0 )
             {
-                logger.LogOneTimeIndent( "None" );
+                Logger.LogOneTimeIndent( "None" );
                 return;
             }
 
@@ -143,7 +130,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
                 if ( currentDelegate.Target.GetType() == typeof( AceThemeEditorWindow ) )
                 {
                     var target = (AceThemeEditorWindow) currentDelegate.Target;
-                    logger.LogOneTimeIndent( $"• {GetColoredStringYellow( NicifyVariableName( currentDelegate.Target.GetType().Name ) )}: " +
+                    Logger.LogOneTimeIndent( $"• {GetColoredStringYellow( NicifyVariableName( currentDelegate.Target.GetType().Name ) )}: " +
                                              $"{GetColoredString( target.GetTargetName(), Yellow.color )}" );
                 }
                 // else if ( currentDelegate.Target.GetType() == typeof( AceMonobehaviourRoot ) )
@@ -154,15 +141,15 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots
                 else if ( currentDelegate.Target.GetType() == typeof( AceMonobehaviourRootEditor ) )
                 {
                     var target = (AceMonobehaviourRootEditor) currentDelegate.Target;
-                    logger.LogOneTimeIndent( $"• {GetColoredStringYellow( NicifyVariableName( currentDelegate.Target.GetType().Name ) )}: " +
+                    Logger.LogOneTimeIndent( $"• {GetColoredStringYellow( NicifyVariableName( currentDelegate.Target.GetType().Name ) )}: " +
                                 $"{GetColoredString( target.target.name, GreenYellow.color )}" );
                 }
                 else
                 {
-                    logger.LogIndentStart( $"{GetColoredStringRed( "Couldn't identify the target type" )}:", true );
-                    logger.LogIndentStart( $"delegate.GetType() = {GetColoredStringOrange( currentDelegate.GetType().ToString() )}", true );
-                    logger.Log( $"delegate.Target.GetType() = {GetColoredStringYellow( currentDelegate.Target.GetType().ToString() )}" );
-                    logger.DecrementMethodIndent( 2 );
+                    Logger.LogIndentStart( $"{GetColoredStringRed( "Couldn't identify the target type" )}:", true );
+                    Logger.LogIndentStart( $"delegate.GetType() = {GetColoredStringOrange( currentDelegate.GetType().ToString() )}", true );
+                    Logger.Log( $"delegate.Target.GetType() = {GetColoredStringYellow( currentDelegate.Target.GetType().ToString() )}" );
+                    Logger.DecrementMethodIndent( 2 );
                 }
             }
             

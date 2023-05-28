@@ -2,32 +2,37 @@ using System;
 using System.Linq;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.AceEditorRoots;
+using Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceRuntimeRoots;
 using Packages.com.ianritter.unityscriptingtools.Editor;
+using Packages.com.ianritter.unityscriptingtools.Runtime.Services.CustomLogger;
 using UnityEditor;
 using UnityEngine;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorMeasurementLineGraphics;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.Graphics.EditorMeasurementLineGraphics;
 using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 using static Packages.com.ianritter.unityscriptingtools.Editor.AssetLoader;
+using static Packages.com.ianritter.unityscriptingtools.Runtime.Services.TextFormatting.TextFormat;
 
 namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
 {
     /// <summary>
-    ///     Draws the ACE theme settings window. Note that the data drawn comes from the target
-    ///     theme while how it is drawn comes from the editor window theme.
+    ///     Draws the ACE theme settings window. Note, as this can be a source of confusion: the settings
+    ///     being edited are from the target theme (loaded from the themeManager) and the settings being
+    ///     used to draw the settings window are from the editor window theme.
     /// </summary>
     public class AceThemeEditorWindow : AceEditorWindow
     {
+        [MenuItem( ThemeSettingsWindowMenuItemName )]
+        public static void OpenCustomEditorToolSettings() => GetWindow<AceThemeEditorWindow>();
+
         // Icons
         public static Texture LockedIcon;
         public static Texture UnlockedIcon;
         
-        [MenuItem( ThemeSettingsWindowMenuItemName )]
-        public static void OpenCustomEditorToolSettings() => GetWindow<AceThemeEditorWindow>();
-        
         public int selectedThemeIndex;
         
-        public override string GetTargetName() => GetTarget().name;
-
+        private Vector2 _scrollPosition;
+        private AceThemeManager _themeManager;
+        
         protected override Vector2 GetEditorWindowMinSize() => new Vector2( 375, 300);
 
         protected override string GetEditorWindowThemeName() => EditorWindowThemeName;
@@ -35,52 +40,29 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
         protected override string GetTitle() => ThemeSettingsWindowTitle;
         protected override string GetTooltip() => string.Empty;
         
-        private Vector2 _scrollPosition;
-
-        private AceThemeManager _themeManager;
 
         protected override void OnEnableFirst()
         {
-            _themeManager = GetAssetsByType<AceThemeManager>().FirstOrDefault();
             if ( _themeManager == null )
-                throw new NullReferenceException( "Unable to load theme manager.");
+            {
+                _themeManager = GetAssetsByType<AceThemeManager>().FirstOrDefault();
+                if ( _themeManager == null )
+                    throw new NullReferenceException( "Unable to load theme manager.");
+            }
             
-            LockedIcon = AssetLoader.GetAssetByName<Texture>( "d_TrackLockButtonEnabled" );
-            UnlockedIcon = AssetLoader.GetAssetByName<Texture>( "d_TrackLockButtonDisabled" );
+            if ( LockedIcon == null )
+                LockedIcon = GetAssetByName<Texture>( "d_TrackLockButtonEnabled" );
+            if ( UnlockedIcon == null )
+                UnlockedIcon = GetAssetByName<Texture>( "d_TrackLockButtonDisabled" );
         }
-
-        // private string[] GetThemeOptions()
-        // {
-        //     List<AceTheme> themes = _themeManager.GetThemeList();
-        //     string[] themeOptions = new string[themes.Count];
-        //     for (int i = 0; i < themes.Count; i++)
-        //     {
-        //         themeOptions[i] = $"({i.ToString()}) {themes[i].name}";
-        //     }
-        //     return themeOptions;
-        // }
         
-        private void ThemeDropdownUpdated() => PerformTargetSwap();
-
-        protected override AceScriptableObjectEditorRoot GetTarget()
-        {
-            // Use this option to have the theme settings window modify the same theme that it's using.
-            // AceTheme = _themeManager.GetThemeForIndex( selectedThemeIndex );
-            // return AceTheme;
-            
-            // This is the default behavior, keeping the system theme and target theme separate.
-            // return _themeManager.GetThemeForIndex( selectedThemeIndex );
-            
-            return _themeManager.themeSettingsEditsOwnTheme ? AceTheme : _themeManager.GetThemeForIndex( selectedThemeIndex );
-
-            // List<AceTheme> themes = _themeManager.GetThemeList();
-            // Debug.Log( $"{name}: Getting target theme..." );
-            // if ( selectedThemeIndex > ( themes.Count - 1 ) )
-            //     Debug.LogWarning( $"{name}: theme index {selectedThemeIndex.ToString()} exceeds existing list's length of {themes.Count.ToString()}." );
-            //
-            // return themes[selectedThemeIndex];
-        }
-
+        
+        public override string GetTargetName() => GetTarget().name;
+        /// <summary>
+        ///     Returns the theme to be edited. If themeSettingsEditsOwnTheme is true, the theme settings window will load its own theme.
+        /// </summary>
+        protected override AceScriptableObjectEditorRoot GetTarget() => _themeManager.themeSettingsEditsOwnTheme ? AceTheme : _themeManager.GetThemeForIndex( selectedThemeIndex );
+        
         /// <summary>
         ///     Draw the elements to the editor window. Returns true if the settings get changed.
         /// </summary>
@@ -97,6 +79,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
             {
                 ThemeDropdownUpdated();
             }
+            
+            // Show name of currently edited theme. Good for catching asset loading errors.
             // EditorGUILayout.LabelField( $" {_themeManager.GetThemeForIndex(selectedThemeIndex).name}" );
             
             // Draw the first three elements: divider, enums field, divider.
@@ -116,6 +100,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
             GUILayout.EndScrollView();
         }
         
+        private void ThemeDropdownUpdated() => PerformTargetSwap();
+
         private void DrawDebugVisuals()
         {
             const float guideLinesBrightness = 0.4f;

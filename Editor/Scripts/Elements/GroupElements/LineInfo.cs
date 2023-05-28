@@ -2,6 +2,7 @@
 {
     /// <summary>
     ///     Used to store details about a line of elements to speed up performance by reducing per-frame calculations.
+    ///     Used to store unchanging information about a line of elements.
     /// </summary>
     public class LineInfo
     {

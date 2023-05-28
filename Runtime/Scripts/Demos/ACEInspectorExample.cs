@@ -87,6 +87,9 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
         public int minMaxIntMaxLimit = 10;
         public int minMaxLowerInt = 0;
         public int minMaxUpperInt = 5;
+        
+        public int intCount1;
+        public int intCount2;
 
         private InspectorLayouts _enumsChangeCheck = InspectorLayouts.BasicExample1;
         
@@ -96,12 +99,22 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
         
         // Editor reference.
         public SingleElementSettings singleElementSettings = new SingleElementSettings();
-        
-        
+
+
+        private void OnEnable()
+        {
+            logger.LogStart();
+            logger.LogEnd();
+        }
+
         public override string GetTargetName() => name;
+        
+        public override string GetLoggerName() => "UserLogger01";
 
         public override ElementInfo[] GetElementInfoList()
         {
+            logger.LogStart();
+            logger.LogEnd();
             return enumsField switch
             {
                 InspectorLayouts.BasicExample1 => BasicExample1(),
@@ -117,6 +130,9 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
             };
         }
 
+        // This is how a dropdown can be used to change the state of the inspector UI. Store the current enum state and
+        // compare it to the current during the OnValidate event. If a change is detected, call TargetUIStateChangedNotify.
+        // This tells the editor script that it needs to retrieve the elementInfoList to rebuild the UI, and repaint.
         private void OnValidate()
         {
             if (_enumsChangeCheck == enumsField)
@@ -125,9 +141,6 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
             TargetUIStateChangedNotify();
             _enumsChangeCheck = enumsField;
         }
-        
-        public int intCount1;
-        public int intCount2;
         
         private ElementInfo[] BasicExample1()
         {
@@ -337,6 +350,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
             };
         }
 
+        // Use this example to play around with the property specific settings.
         private ElementInfo[] PropertyTypesExample()
         {
             return new ElementInfo[]
@@ -427,6 +441,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
                 
                 GetElement( nameof(vector3Field), "Vector3", string.Empty ),
                 
+                // Had to kill this example when I converted the codebase to a package because it was using code from editor land
+                // that was no longer reachable.
                 // GetGroupWithToggleHeading( 
                 //     null,
                 //     "Layout Position and Draw Rects",
@@ -480,6 +496,7 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
             };
         }
 
+        // This is just a mishmash of field types stacked in various ways to show how a complex UI is built.
         private ElementInfo[] ComplexExample()
         {
             return new ElementInfo[] {
@@ -646,6 +663,8 @@ namespace Packages.com.ianritter.aceuiframework.Runtime.Scripts.Demos
             };
         }
 
+        // This is an example callback method. Callbacks get triggered at the point in which the data is changed, allowing
+        // 
         private void OnFoldoutToggled()
         {
             Debug.Log( "AceInspectorExample: A foldout was toggled." );

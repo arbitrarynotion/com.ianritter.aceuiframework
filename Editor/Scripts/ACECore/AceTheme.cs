@@ -34,7 +34,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
     ///     The theme houses both the theme settings and the element structure
     ///     which determines how they will be grouped in the editor window.
     /// </summary>
-    
     [CreateAssetMenu(menuName = ThemeAssetMenuName)]
     public class AceTheme : AceScriptableObjectEditorRoot
     {
@@ -100,7 +99,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         private int _colorEntryListCount;
         
-        
         /// <summary>
         ///     This event is invoked when a data change occurs that justifies a repaint (element values have changed).
         /// </summary>
@@ -118,21 +116,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             InitializeSections();
         }
 
+        
         protected override string GetLoggerName() => ThemeLoggerName;
-
-        // public void Awake()
-        // {
-        //     InitializeSettings();
-        //     InitializeSections();
-        // }
 
         protected override void OnEnableLast()
         {
-            if ( logger != null ) logger.LogStart();
-            colorsPaletteSettings.Initialize( logger );
+            if ( Logger != null ) Logger.LogStart();
+            colorsPaletteSettings.Initialize( Logger );
             SubscribeToAllColors();
             UpdateAllColorUseCounts();
-            if ( logger != null ) logger.LogEnd();
+            if ( Logger != null ) Logger.LogEnd();
         }
 
 
@@ -248,17 +241,17 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         private void RepaintSettingsWindow()
         {
-            logger.LogStart();
-            logger.Log( "Calling Data Update Required Notify." );
+            Logger.LogStart();
+            Logger.Log( "Calling Data Update Required Notify." );
             DataUpdateRequiredNotify();
             
             // UpdateAllColorUseCounts();
             
             // Todo: Make updates more efficient. All repainting set to rebuilding while ironing out updating issues.
-            logger.Log( "Calling UI State Updated Notify." );
+            Logger.Log( "Calling UI State Updated Notify." );
             UIStateUpdatedNotify();
             // DataUpdatedNotify();
-            logger.LogEnd();
+            Logger.LogEnd();
         }
 
 
@@ -274,12 +267,9 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             int newColorListCount = colorsPaletteSettings.GetColorListCount();
             if ( newColorListCount > _colorEntryListCount )
             {
-                // logger.Log( $"Color list count has changed from {_colorEntryListCount.ToString()} to {newColorListCount.ToString()}!" );
-                // logger.Log( $"Color list count has increased from {_colorEntryListCount.ToString()} to {newColorListCount.ToString()}!" );
-                
                 // Inform colorPaletteSettings of the change so the duplicate name can be modified.
                 int totalNewColorEntries = newColorListCount - _colorEntryListCount;
-                colorsPaletteSettings.ProcessNewColorEntry( totalNewColorEntries );
+                colorsPaletteSettings.ProcessNewColorEntries( totalNewColorEntries );
                 
                 _colorEntryListCount = newColorListCount;
                 SubscribeToNewColor();
@@ -300,12 +290,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         private void SubscribeToAllColors()
         {
-            // Debug.Log( "AceTheme: Subscribing to all colors." );
+            // logger.Log( "AceTheme: Subscribing to all colors." );
             
             for (int i = 0; i < colorsPaletteSettings.GetColorListCount(); i++)
             {
                 CustomColorEntry currentEntry = colorsPaletteSettings.GetColorEntryForIndex( i );
-                // Debug.Log( $"    Subscribing to {currentEntry.customColor.name}." );
+                // logger.Log( $"    Subscribing to {currentEntry.customColor.name}." );
                 currentEntry.OnNameUpdated -= ReplaceColorNameWithNewName;
                 currentEntry.OnNameUpdated += ReplaceColorNameWithNewName;
             }
@@ -322,10 +312,10 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         
         private void ReplaceColorNameWithNewName( string oldName, string newName )
         {
-            logger.LogStart();
+            Logger.LogStart();
             // Look at colors in all settings groups to see if the old name is registered.
             // If found, replace it with the new one.
-            logger.Log( $"Replacing all instances of {GetColoredStringAquamarine( oldName )} with {GetColoredStringCyan( newName )}." );
+            Logger.Log( $"Replacing all instances of {GetColoredStringAquamarine( oldName )} with {GetColoredStringCyan( newName )}." );
 
             // Loop through all lists to deal with the universal names.
             UpdateFrameSettingsNames( headingGroupFrameSettingsList, oldName, newName );
@@ -337,7 +327,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             
             UpdateAllColorUseCounts();
             
-            logger.LogEnd();
+            Logger.LogEnd();
         }
 
         private void UpdateFrameSettingsNames( IReadOnlyList<FrameSettings> frameSettings, string oldName, string newName )
@@ -364,7 +354,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             }
         }
 
-        public void OnColorUsersModified()
+        private void OnColorUsersModified()
         {
             UpdateAllColorUseCounts();
             UIStateUpdatedNotify();
@@ -386,8 +376,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         /// <summary>
         ///     Returns the total count of all uses of the color.
         /// </summary>
-        /// <param name="colorEntry"></param>
-        /// <returns></returns>
         private void GetNumberOfUsesForColor( CustomColorEntry colorEntry )
         {
             colorEntry.userList = "Users:";

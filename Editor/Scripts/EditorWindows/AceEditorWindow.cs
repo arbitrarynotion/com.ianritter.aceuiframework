@@ -60,10 +60,8 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorWindows
         private void OnEnable()
         {
             _logger = GetAssetByName<CustomLogger>( EditorWindowLoggerName, LoggersSearchFolderName );
-            if ( _logger == null )
-            {
-                Debug.LogError( $"Failed to load {EditorWindowLoggerName}! Loading Default theme." );
-            }
+            if ( _logger == null ) Debug.LogError( $"Failed to load {EditorWindowLoggerName}! Loading Default theme." );
+            
             OnEnableFirst();
             
             LoadSettingsScriptableObjects();

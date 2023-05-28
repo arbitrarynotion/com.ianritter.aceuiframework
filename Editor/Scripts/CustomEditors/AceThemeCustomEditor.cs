@@ -2,7 +2,7 @@ using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
 using UnityEditor;
 using static Packages.com.ianritter.aceuiframework.Runtime.Scripts.AceEditorConstants;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.CustomEditors
 {
     /// <summary>
     ///     This editor applies to the ACE theme when it's drawn in the inspector.

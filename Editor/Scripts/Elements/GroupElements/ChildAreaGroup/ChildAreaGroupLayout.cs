@@ -25,8 +25,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
         }
         
 
-        public override float GetLeftEdgeTypeBasedAdjustment() =>
-            ChildIndentAmount * ChildAreaGroup.GlobalSettings.leftIndentUnitAmount;
+        public override float GetLeftEdgeTypeBasedAdjustment() => ChildIndentAmount * ChildAreaGroup.GlobalSettings.leftIndentUnitAmount;
         
         public override bool ShouldShowFrame() => false;
 

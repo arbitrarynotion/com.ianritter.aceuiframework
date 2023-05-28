@@ -7,16 +7,14 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
 {
     public class PropertiesSettingsSection : SettingsSection
     {
-        protected override string GetRelativePathVarName( string varName )
-        {
-            return AceTheme.GetPropertySpecificSettingsVarName  + "." + varName;
-        }
-    
+        protected override string GetRelativePathVarName( string varName ) => AceTheme.GetPropertySpecificSettingsVarName  + "." + varName;
+
         public override Element GetSection()
         {
             return GetGroupWithFoldoutHeading( nameof( AceTheme.propertySpecificSectionToggle ),
                 "Property Elements", "Settings specific to property elements.", null,
 
+                // Todo: provide text explanations. Need to develop label element that auto-sizes vertically to fit its text. 
                 // GetLabelElement( "Note that these settings only apply to elements that share a line with other elements." ),
                 GetGroupWithFoldoutHeading( null, "Field widths for Column Properties", 
                     "The following settings control how much space is allocated to the two parts of an element: label and field." +
@@ -48,7 +46,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.SettingsSections.
                     )
                 ),
                 
-            
                 GetGroupWithFoldoutHeading( null,
                     "Min/Max Sliders", "Settings specific to min/max slider property elements.", null,
 

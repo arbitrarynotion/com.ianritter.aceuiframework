@@ -1,7 +1,7 @@
 using Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore;
 using UnityEditor;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.InspectorEditors
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.CustomEditors
 {
     /// <summary>
     ///     This editor applies to the CET theme manager database when it's drawn in the inspector.

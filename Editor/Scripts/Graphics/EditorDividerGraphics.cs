@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Graphics
 {
     public static class EditorDividerGraphics
     {

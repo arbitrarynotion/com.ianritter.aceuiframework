@@ -1,8 +1,8 @@
 using UnityEditor;
 using UnityEngine;
-using static Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics.EditorDividerGraphics;
+using static Packages.com.ianritter.aceuiframework.Editor.Scripts.Graphics.EditorDividerGraphics;
 
-namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.EditorGraphics
+namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Graphics
 {
     public static class EditorMeasurementLineGraphics
     {

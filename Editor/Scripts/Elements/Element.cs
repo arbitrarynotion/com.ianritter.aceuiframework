@@ -194,6 +194,20 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
             if ( Draw == null ) throw new NullReferenceException( $"E|I: {GetName()} failed to initialize its draw!" );
         }
 
+#region LayoutEvent
+        
+        // public void DoElementLayout()
+        // {
+        //     DoLayout();
+        // }
+
+        // protected abstract void DoLayout();
+        
+#endregion
+
+
+#region RepaintEvent
+        
         /// <summary>
         ///     Draw the element in the editor.
         /// </summary>
@@ -203,11 +217,16 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements
         /// </param>
         public void DrawElement( bool updateRequired )
         {
-            if ( IsRootElement() )
-                Layout.AssignNewPositionRect( updateRequired );
+            // Layout Event
+            if ( IsRootElement() ) Layout.AssignNewPositionRect( updateRequired );
 
+            // Repaint Event
+            // if ( Event.current.type != EventType.Repaint ) return;
             Draw.DrawElement();
         }
+        
+#endregion
+
 
         /// <summary>
         ///     Add a property condition to the set of property conditions that will be used to determine if this property should

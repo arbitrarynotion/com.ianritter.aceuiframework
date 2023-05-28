@@ -159,7 +159,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.GroupEle
 
                 float constantWidthTotal = 0;
 
-                // if (_groupElement.GetName.Equals( focusSection )) Debug.Log( $"GEL|AW:     line[{line.ToString()}]:" );
                 // Now we're on the correct line, grab the elements on this line and collect info for line info entry.
                 _elementLines[line] = new Element[_lineInfoList[line].NumberOfElements];
                 for (int column = 0; column < _elementLines[line].Length; column++)

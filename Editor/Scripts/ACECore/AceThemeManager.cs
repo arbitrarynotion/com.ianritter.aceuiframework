@@ -35,8 +35,6 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         public bool themeSettingsEditsOwnTheme = false;
         [SerializeField] private bool debugFoldoutToggle = false;
 
-        // private ColorPickerHandler _colorPickerHandler;
-        
         protected override string GetLoggerName() => ThemeManagerLoggerName;
 
         public override Element[] GetElementList() => new [] { GetScriptAndThemeDropdown() };
@@ -46,13 +44,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
         private void ThemeAssignmentChangedNotify()
         {
             OnThemeAssignmentChanged?.Invoke();
-            logger.LogStart();
+            Logger.LogStart();
             
-            logger.LogIndentStart( $"{GetColoredStringOrange( NicifyVariableName( name ) )}'s " +
-                                   $"subscribers (all open Inspector window targets):" );
+            Logger.LogIndentStart( $"{GetColoredStringOrange( NicifyVariableName( name ) )}'s subscribers (all open Inspector window targets):" );
             PrintSubscribersForEvent( OnThemeAssignmentChanged, nameof( OnThemeAssignmentChanged ) );
-            logger.DecrementMethodIndent();
-            logger.LogEnd();
+            Logger.DecrementMethodIndent();
+            Logger.LogEnd();
             
         }
         
@@ -68,7 +65,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         protected override void OnEnableLast()
         {
-            logger.LogStart();
+            Logger.LogStart();
             InitializeHandlers();
 
             // Rebuild the scripts list any time files are changed in the project window.
@@ -76,15 +73,15 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             OnScriptsReloaded += OnScriptsReloadedUpdate;
 
             RefreshScriptThemeInfoList();
-            logger.LogEnd();
+            Logger.LogEnd();
         }
 
         private void InitializeHandlers()
         {
             if ( _tmListHandler == null )
-                _tmListHandler = new TmListHandler( this, logger );
+                _tmListHandler = new TmListHandler( this, Logger );
             if ( _tmButtonHandler == null )
-                _tmButtonHandler = new TmButtonHandler( _tmListHandler, this, logger );
+                _tmButtonHandler = new TmButtonHandler( _tmListHandler, this, Logger );
         }
 
         private void OnDisable()
@@ -95,24 +92,20 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         private void OnProjectChanged()
         {
-            logger.Log( "Project Changed event called." );
+            Logger.Log( "Project Changed event called." );
             RefreshScriptThemeInfoList();
         }
 
         private void OnScriptsReloadedUpdate()
         {
             // _logger.Log( $"{GetColoredStringOrange( "***" )} Scripts Reloaded event called." );
-            logger.LogEvent();
+            Logger.LogEvent();
             RefreshScriptThemeInfoList();
         }
 
-        public AceTheme GetThemeForIndex( int index )
-        {
-            return _tmListHandler.GetThemeForIndex( index );
-        }
+        public AceTheme GetThemeForIndex( int index ) => _tmListHandler.GetThemeForIndex( index );
 
-        public void RefreshScriptThemeInfoList() => 
-            _tmListHandler.GetScriptThemeInfoList( scriptThemeInfoList );
+        public void RefreshScriptThemeInfoList() => _tmListHandler.GetScriptThemeInfoList( scriptThemeInfoList );
         
         public bool IsSaved( MonoScript script ) => scriptThemeInfoList.Any( scriptInfo => scriptInfo.script == script );
 
@@ -124,7 +117,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         public ScriptThemeInfo GetSelectedScript()
         {
-            logger.Log( $"Selection script index is {selectedScriptIndex.ToString()}" );
+            Logger.Log( $"Selection script index is {selectedScriptIndex.ToString()}" );
 
             if ( selectedScriptIndex > ( scriptThemeInfoList.Count - 1 ) )
                 selectedScriptIndex = 0;
@@ -162,7 +155,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             List<AceTheme> themeList = _tmListHandler.GetThemesList();
             if ( themeList == null || themeList.Count == 0 )
             {
-                logger.Log( "Theme list is null or empty!", CustomLogType.Error );
+                Logger.Log( "Theme list is null or empty!", CustomLogType.Error );
                 return new LabelElement( new GUIContent( "Failed to get Themes.") );
             }
             
@@ -246,7 +239,7 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
             ScriptThemeInfo selectedScript = GetSelectedScript();
             AceTheme previousTheme = selectedScript.theme;
             selectedScript.theme = _tmListHandler.GetThemesList()[selectedThemeIndex];
-            logger.Log( $"{GetColoredStringYellow( selectedScript.script.name )}'s theme was changed from " +
+            Logger.Log( $"{GetColoredStringYellow( selectedScript.script.name )}'s theme was changed from " +
                         $"{GetColoredStringYellow( ( previousTheme == null ) ? "DELETED" : previousTheme.name )} " +
                         $"to {GetColoredStringGreen( selectedScript.theme.name )}." );
 
@@ -269,35 +262,35 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.ACECore
 
         public void PrintScriptThemeInfoList()
         {
-            logger.LogStart();
-            logger.LogIndentStart( "Script theme assignments:", true );
+            Logger.LogStart();
+            Logger.LogIndentStart( "Script theme assignments:", true );
 
             foreach ( ScriptThemeInfo scriptThemeInfo in scriptThemeInfoList )
             {
-                logger.LogOneTimeIndent(
+                Logger.LogOneTimeIndent(
                     $"{GetColoredStringYellow( NicifyVariableName( scriptThemeInfo.script.name ) )} " +
                     $": {GetColoredStringGreen( NicifyVariableName( scriptThemeInfo.theme.name ) )}" );
             }
 
-            logger.LogEnd();
+            Logger.LogEnd();
         }
 
         public void PrintScriptOptions( string[] scriptOptions )
         {
-            logger.Log( $"{scriptOptions.Length.ToString()} script options found:" );
+            Logger.Log( $"{scriptOptions.Length.ToString()} script options found:" );
 
             foreach ( string script in scriptOptions )
             {
-                logger.Log( $"{GetColoredStringYellow( NicifyVariableName( script ) )}" );
+                Logger.Log( $"{GetColoredStringYellow( NicifyVariableName( script ) )}" );
             }
         }
 
         public void PrintThemeOptions( string[] themeOptions )
         {
-            logger.Log( $"{GetColoredStringYellow( themeOptions.Length.ToString() )} theme options found:" );
+            Logger.Log( $"{GetColoredStringYellow( themeOptions.Length.ToString() )} theme options found:" );
             foreach ( string theme in themeOptions )
             {
-                logger.Log( $"{GetColoredStringYellow( NicifyVariableName( theme ) )}" );
+                Logger.Log( $"{GetColoredStringYellow( NicifyVariableName( theme ) )}" );
             }
         }
 

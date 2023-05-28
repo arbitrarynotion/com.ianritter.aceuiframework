@@ -21,15 +21,12 @@ namespace Packages.com.ianritter.aceuiframework.Editor.Scripts.Elements.SingleEl
             if ( _style == null )
             {
                 _style = new GUIStyle( EditorStyles.label );
-                // if (_labelElement.Bold)
                 if ( Element.CustomSettings.BoldLabel )
                 {
                     _style.richText = true;
                     _style.fontStyle = FontStyle.Bold;
                     _style.normal.textColor = _labelElement.GlobalSettings.headingTextEnabledColor;
                 }
-
-                // _style.wordWrap = true;
             }
 
             DrawAlignedLabelField( _style );
